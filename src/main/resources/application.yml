@@ -1,0 +1,51 @@
+server:
+  port: 8088 #端口号
+
+
+spring:
+  thymeleaf:
+    cache: false
+    prefix:
+      classpath: /templates
+  mvc:
+    static-path-pattern: /static/**
+ #数据源
+  datasource:
+    #连接池的类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    #连接驱动
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost/ym?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+    druid:
+      domestic1:  #国外1
+        url: jdbc:mysql://localhost/ym?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password: 123456
+
+      #初始大小
+      initial-size: 1
+      #最大连接数
+      max-active: 100
+      #最最小空闲连接数
+      min-idle: 10
+      #配置获取连接等待超时的时间
+      max-wait: 60000
+      default-auto-commit: true
+      #池的准备好的语句
+      #      pool-prepared-statements: true
+      #每个连接大小的MAX池准备语句
+      max-pool-prepared-statement-per-connection-size: 20
+mybatis:
+  #mapper-locations: classpath:mapper/*.xml  #注意：一定要对应mapper映射xml文件的所在路径
+  type-aliases-package: cn.com.fovsoft.common.bean  # 注意：对应实体类的路径
+
+
+#pagehelper
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+  returnPageInfo: check
