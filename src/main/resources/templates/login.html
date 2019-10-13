@@ -99,7 +99,7 @@
 
 														<button type="button" class="width-35 pull-right btn btn-sm btn-primary" onclick="loginCheck();">
 															<i class="ace-icon fa fa-key"></i>
-															<span class="bigger-110" loginCheck();>登陆</span>
+															<span class="bigger-110">登陆</span>
 														</button>
 													</div>
 
@@ -387,7 +387,7 @@
 					var code = username+","+password+","+$("#code").val();
 					$.ajax({
 						type: "POST",//请求方式为POST
-						url: 'loginCheck',//检验url
+						url: 'login',//检验url
 						data: {LOGINDATA:code,tm:new Date().getTime()},//请求数据
 						dataType:'json',//数据类型为JSON类型
 						cache: false,//关闭缓存

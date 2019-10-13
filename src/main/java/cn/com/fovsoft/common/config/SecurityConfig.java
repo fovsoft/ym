@@ -3,6 +3,9 @@ package cn.com.fovsoft.common.config;
 import cn.com.fovsoft.common.bean.SysRole;
 import cn.com.fovsoft.common.service.CustomUserDetailsService;
 import cn.com.fovsoft.common.service.SysUserService;
+import cn.com.fovsoft.common.service.security.CustomAuthenticationFailureHandler;
+import cn.com.fovsoft.common.service.security.CustomAuthenticationSuccessHandler;
+import cn.com.fovsoft.common.service.security.CustomUsernamePasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 
 @Configuration
@@ -22,11 +26,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
 
+    @Autowired
+    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
+
+    @Autowired
+    private CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //super.configure(http);
         http
-                .formLogin().loginPage("/login").loginProcessingUrl("/login").failureUrl("/login-error").permitAll()
+                .formLogin().loginPage("/login-page").loginProcessingUrl("/login").failureUrl("/login-error").permitAll()
                 .and()
                 .authorizeRequests()
                 .antMatchers("/global/**","/static/**","/templates/**").permitAll()
@@ -35,6 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .csrf().disable();
+        http.addFilterAt(CustUsernamePasswordAuthenticationFilterBean(), UsernamePasswordAuthenticationFilter.class);
+
 
         http
                 .logout().permitAll();
@@ -53,6 +65,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //需要将密码加密后写入数据库
         auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
         auth.eraseCredentials(false);
+    }
+
+
+    public CustomUsernamePasswordAuthenticationFilter CustUsernamePasswordAuthenticationFilterBean() throws Exception {
+        CustomUsernamePasswordAuthenticationFilter customUsernamePasswordAuthenticationFilter = new CustomUsernamePasswordAuthenticationFilter();
+        customUsernamePasswordAuthenticationFilter.setAuthenticationManager(super.authenticationManager());
+        customUsernamePasswordAuthenticationFilter.setAuthenticationSuccessHandler(customAuthenticationSuccessHandler);
+        return customUsernamePasswordAuthenticationFilter;
     }
 
     @Bean
