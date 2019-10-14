@@ -1,9 +1,6 @@
 package cn.com.fovsoft.common.ctrl;
 
-import cn.com.fovsoft.common.bean.SysUser;
-import cn.com.fovsoft.common.co.BaseResult;
-import cn.com.fovsoft.common.co.ReturnCode;
-import cn.com.fovsoft.common.constant.VarConstant;
+
 import cn.com.fovsoft.common.service.CustomUserDetailsService;
 import cn.com.fovsoft.common.service.SysUserService;
 import cn.com.fovsoft.common.util.VerifyStringEmpty;
