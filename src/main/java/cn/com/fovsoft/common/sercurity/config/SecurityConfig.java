@@ -5,9 +5,8 @@ import cn.com.fovsoft.common.sercurity.filter.VerifyCodeFilter;
 import cn.com.fovsoft.common.sercurity.handler.CustomUserLoginFailureHandler;
 import cn.com.fovsoft.common.sercurity.handler.CustomUserLoginSuccessHandler;
 import cn.com.fovsoft.common.sercurity.verify.UnAuthorizedEntryPoint;
-import cn.com.fovsoft.common.service.CustomUserDetailsService;
-import cn.com.fovsoft.common.sercurity.handler.CustomAuthenticationFailureHandler;
-import cn.com.fovsoft.common.sercurity.handler.CustomAuthenticationSuccessHandler;
+import cn.com.fovsoft.common.sercurity.verify.CustomUserDetailsService;
+
 import cn.com.fovsoft.common.service.security.CustomUsernamePasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -28,13 +27,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
-
-    @Autowired
-    private CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler;
-
-    @Autowired
-    private CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
-
 
     @Autowired
     private CustomUserLoginSuccessHandler customUserLoginSuccessHandler;
@@ -97,14 +89,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-    @Bean
-    public CustomUsernamePasswordAuthenticationFilter CustUsernamePasswordAuthenticationFilterBean() throws Exception {
-        CustomUsernamePasswordAuthenticationFilter customUsernamePasswordAuthenticationFilter = new CustomUsernamePasswordAuthenticationFilter();
-        customUsernamePasswordAuthenticationFilter.setAuthenticationManager(super.authenticationManager());
-        customUsernamePasswordAuthenticationFilter.setAuthenticationSuccessHandler(customAuthenticationSuccessHandler);
-        customUsernamePasswordAuthenticationFilter.setAuthenticationFailureHandler(customAuthenticationFailureHandler);
-        return customUsernamePasswordAuthenticationFilter;
-    }
+//    @Bean
+//    public CustomUsernamePasswordAuthenticationFilter CustUsernamePasswordAuthenticationFilterBean() throws Exception {
+//        CustomUsernamePasswordAuthenticationFilter customUsernamePasswordAuthenticationFilter = new CustomUsernamePasswordAuthenticationFilter();
+//        customUsernamePasswordAuthenticationFilter.setAuthenticationManager(super.authenticationManager());
+//        customUsernamePasswordAuthenticationFilter.setAuthenticationSuccessHandler(customAuthenticationSuccessHandler);
+//        customUsernamePasswordAuthenticationFilter.setAuthenticationFailureHandler(customAuthenticationFailureHandler);
+//        return customUsernamePasswordAuthenticationFilter;
+//    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){

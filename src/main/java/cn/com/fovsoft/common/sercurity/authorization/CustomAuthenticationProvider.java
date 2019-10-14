@@ -1,9 +1,8 @@
 package cn.com.fovsoft.common.sercurity.authorization;
 
-import cn.com.fovsoft.common.service.CustomUserDetailsService;
+import cn.com.fovsoft.common.sercurity.verify.CustomUserDetailsService;
 import cn.com.fovsoft.common.support.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

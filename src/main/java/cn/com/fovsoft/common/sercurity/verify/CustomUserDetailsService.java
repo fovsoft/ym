@@ -1,6 +1,7 @@
-package cn.com.fovsoft.common.service;
+package cn.com.fovsoft.common.sercurity.verify;
 
 import cn.com.fovsoft.common.bean.SysUser;
+import cn.com.fovsoft.common.service.SysUserService;
 import cn.com.fovsoft.common.support.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -31,6 +32,8 @@ public class CustomUserDetailsService implements UserDetailsService {
 
         if(sysUser == null){
             throw new UsernameNotFoundException("not have this user");
+        }else{
+
         }
         System.out.println("数据库取出的用户名为："+sysUser.getUsername());
         CustomUserDetails customUserDetails = new CustomUserDetails(sysUser);

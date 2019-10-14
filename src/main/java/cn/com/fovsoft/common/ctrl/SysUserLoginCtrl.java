@@ -1,9 +1,6 @@
 package cn.com.fovsoft.common.ctrl;
 
 
-import cn.com.fovsoft.common.service.CustomUserDetailsService;
-import cn.com.fovsoft.common.service.SysUserService;
-import cn.com.fovsoft.common.util.VerifyStringEmpty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.stereotype.Controller;
@@ -11,8 +8,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 
 
 @Controller
@@ -21,25 +16,27 @@ public class SysUserLoginCtrl {
     @Autowired
     private SessionRegistry sessionRegistry;
 
-    @Autowired
-    private CustomUserDetailsService customUserDetailsService;
-
-    @Autowired
-    private SysUserService sysUserService;
-
+    /**
+     * 功能描述:实现登录页面跳转
+     * @param mp
+     * @return
+     */
     @RequestMapping(value = "/")
     public String userlogin1(ModelMap mp) {
-        //mp.addAttribute("sysUser", new SysUser());
-        System.out.println("startup ..........");
-        return "login";
-    }
-    @RequestMapping(value = "/login" ,method = RequestMethod.GET)
-    public String userToLogin(ModelMap mp) {
-        //mp.addAttribute("sysUser", new SysUser());
-        System.out.println("startup ..........");
         return "login";
     }
 
+    /**
+     * 功能描述：当指定路径/login时，实现登录页面跳转
+     * @param mp
+     * @return
+     */
+    @RequestMapping(value = "/login" ,method = RequestMethod.GET)
+    public String userToLogin(ModelMap mp) {
+        return "login";
+    }
+
+    //当注销时，跳转到登录页面
     @RequestMapping(value = "/logout")
     public String userLogout(HttpServletRequest request){
         String sessionId = request.getRequestedSessionId();
@@ -48,16 +45,16 @@ public class SysUserLoginCtrl {
 
     }
 
-    @GetMapping(value = "/login_page")
-    @ResponseBody
-    public Map<String,Object> loginPage() {
-        String result = "needlogin";
-        Integer status = 0;
-        Map<String, Object> mp = new HashMap<>();
-        mp.put("status",status);
-        mp.put("result",result);
-        return mp;
-    }
+//    @GetMapping(value = "/login_page")
+//    @ResponseBody
+//    public Map<String,Object> loginPage() {
+//        String result = "needlogin";
+//        Integer status = 0;
+//        Map<String, Object> mp = new HashMap<>();
+//        mp.put("status",status);
+//        mp.put("result",result);
+//        return mp;
+//    }
 
 //    @GetMapping("/login_page")
 //    @ResponseBody
