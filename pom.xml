@@ -8,11 +8,11 @@
         <version>2.1.9.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>cn.com</groupId>
-    <artifactId>fovsoft</artifactId>
+    <groupId>com.fovsoft</groupId>
+    <artifactId>ym</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>fovsoft</name>
-    <description>Demo project for Spring Boot</description>
+    <name>ym</name>
+    <description>a ym project</description>
 
     <properties>
         <java.version>1.8</java.version>
