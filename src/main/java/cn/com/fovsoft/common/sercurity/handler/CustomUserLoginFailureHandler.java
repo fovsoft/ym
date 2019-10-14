@@ -46,6 +46,13 @@ public class CustomUserLoginFailureHandler extends SimpleUrlAuthenticationFailur
             response.getWriter().write(objectMapper.writeValueAsString(map));
             response.getWriter().flush();
             response.getWriter().close();
+        }else if(exception.getMessage().equals("verifycode error")){
+            response.setContentType("application/json;charset=utf-8");
+            map.put("status",0);
+            map.put("result","nouser");
+            response.getWriter().write(objectMapper.writeValueAsString(map));
+            response.getWriter().flush();
+            response.getWriter().close();
         }
 
 
