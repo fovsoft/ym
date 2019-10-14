@@ -39,6 +39,7 @@ public class CustomUserLoginFailureHandler extends SimpleUrlAuthenticationFailur
 //            out.write("{\"status\":0,\"result\":\"nouser\"}");
 //            out.flush();
 //            out.close();
+            //获取密码错误异常，通过json返回密码错误状态数据
         }else if(exception.getMessage().equals("password error")){
             response.setContentType("application/json;charset=utf-8");
             map.put("status",0);
@@ -46,10 +47,11 @@ public class CustomUserLoginFailureHandler extends SimpleUrlAuthenticationFailur
             response.getWriter().write(objectMapper.writeValueAsString(map));
             response.getWriter().flush();
             response.getWriter().close();
+            //获取验证码错误异常，通过json返回验证码错误状态数据
         }else if(exception.getMessage().equals("verifycode error")){
             response.setContentType("application/json;charset=utf-8");
             map.put("status",0);
-            map.put("result","nouser");
+            map.put("result","codeerror");
             response.getWriter().write(objectMapper.writeValueAsString(map));
             response.getWriter().flush();
             response.getWriter().close();

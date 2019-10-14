@@ -5,6 +5,7 @@ import cn.com.fovsoft.common.sercurity.exception.VerifyCodeAuthenticationExcepti
 import cn.com.fovsoft.common.sercurity.handler.CustomUserLoginFailureHandler;
 import cn.com.fovsoft.common.sercurity.handler.CustomUserLoginSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.ServletRequestUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -19,6 +20,8 @@ import java.io.IOException;
  * @date 2019-10-14 21:14
  * description: 添加图像验证码过滤器
  */
+
+@Component
 public class VerifyCodeFilter extends OncePerRequestFilter {
 
     @Autowired
@@ -26,14 +29,17 @@ public class VerifyCodeFilter extends OncePerRequestFilter {
     //继承父类的方法，进行重写
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+        System.out.println(request.getRequestURI()+"   "+ request.getMethod());
         //判断主页请求
         if(request.getRequestURI().equals("/login")&&request.getMethod().equalsIgnoreCase("post")){
             //进行验证码判断
-            checkVerifyCode(request);
+            validate(request);
         }
+        // 3. 校验通过，就放行
+        filterChain.doFilter(request, response);
     }
 
-    private void checkVerifyCode(HttpServletRequest request){
+    private void validate(HttpServletRequest request){
         //获取输入验证码
         String code = request.getParameter("ccode");
         //获取时间戳

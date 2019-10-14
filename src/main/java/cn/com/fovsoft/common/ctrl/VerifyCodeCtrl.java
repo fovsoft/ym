@@ -3,7 +3,9 @@ package cn.com.fovsoft.common.ctrl;
 import cn.com.fovsoft.common.constant.VarConstant;
 import cn.com.fovsoft.common.util.VerifyCode;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
@@ -18,18 +20,19 @@ import java.io.IOException;
 import java.util.Random;
 
 
-@Controller
+@RestController
 public class VerifyCodeCtrl {
 
 
 
 
-    @RequestMapping("/code")
+    @GetMapping("/code")
     public void generateVerifyCode(HttpServletRequest request,HttpServletResponse response) throws IOException {
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         String code = drawImg(output);
 
+        System.out.println(code);
 //        Subject currentUser = SecurityUtils.getSubject();
 //        Session session = currentUser.getSession();
 //        session.setAttribute(VarConstant.SESSION_VERIFY_CODE, code);

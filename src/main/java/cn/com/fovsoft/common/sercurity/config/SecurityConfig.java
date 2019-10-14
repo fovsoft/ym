@@ -1,6 +1,7 @@
 package cn.com.fovsoft.common.sercurity.config;
 
 import cn.com.fovsoft.common.sercurity.authorization.CustomAuthenticationProvider;
+import cn.com.fovsoft.common.sercurity.filter.VerifyCodeFilter;
 import cn.com.fovsoft.common.sercurity.handler.CustomUserLoginFailureHandler;
 import cn.com.fovsoft.common.sercurity.handler.CustomUserLoginSuccessHandler;
 import cn.com.fovsoft.common.sercurity.verify.UnAuthorizedEntryPoint;
@@ -48,6 +49,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private CustomAuthenticationProvider customAuthenticationProvider;
 
 
+    //验证码过滤器
+    @Autowired
+    private VerifyCodeFilter verifyCodeFilter;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -68,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.exceptionHandling().authenticationEntryPoint(unAuthorizedEntryPoint);
         //http.addFilterAt(CustUsernamePasswordAuthenticationFilterBean(), UsernamePasswordAuthenticationFilter.class);
-
+        http.addFilterBefore(verifyCodeFilter,UsernamePasswordAuthenticationFilter.class).formLogin();
 
         http
                 .logout().permitAll();
