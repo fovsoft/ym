@@ -25,10 +25,14 @@ public class CustomUserDetailsService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+
+        System.out.println("前端需要验证的用户名为："+userName);
         SysUser sysUser = sysUserService.findByUserName(userName);
+
         if(sysUser == null){
-            throw new UsernameNotFoundException("用户名不存在");
+            throw new UsernameNotFoundException("not have this user");
         }
+        System.out.println("数据库取出的用户名为："+sysUser.getUsername());
         CustomUserDetails customUserDetails = new CustomUserDetails(sysUser);
         return customUserDetails;
     }

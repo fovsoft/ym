@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 
 
-@Service("SysUserService")
+@Service
 public class SysUserService {
 
 
@@ -18,8 +18,8 @@ public class SysUserService {
 
     public SysUser findByUserName(String userName) {
 
-        SysUser sysUser = new SysUser();
-        return sysUser;
+
+        return sysUserDao.findByUserName(userName);
 
     }
 

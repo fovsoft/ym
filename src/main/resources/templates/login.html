@@ -384,11 +384,17 @@
 				if(checkValidity()){
 					var username = $("#username").val();
 					var password = $("#password").val();
-					var code = username+","+password+","+$("#code").val();
+					var ccode = $("#code").val();
+					//var code = username+","+password+","+$("#code").val();
 					$.ajax({
 						type: "POST",//请求方式为POST
-						url: 'login',//检验url
-						data: {LOGINDATA:code,tm:new Date().getTime()},//请求数据
+						url: '/login',//检验url
+						data: {
+							"username" : username,
+							"password" : password,
+							"ccode" : ccode,
+							"tm" : new Date().getTime()
+						},//请求数据
 						dataType:'json',//数据类型为JSON类型
 						cache: false,//关闭缓存
 						success: function(data){//响应成功
@@ -410,6 +416,13 @@
 									time : 15
 								});
 								$("#username").focus();
+							}else if("nouser"==data.result){
+								$("#username").tips({
+									side : 1,
+									msg : "用户不存在",
+									bg : '#FF5080',
+									time : 15
+								});
 							}else if("codeerror" == data.result){
 								$("#code").tips({
 									side : 1,

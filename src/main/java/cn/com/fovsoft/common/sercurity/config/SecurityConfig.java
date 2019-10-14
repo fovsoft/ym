@@ -1,5 +1,9 @@
 package cn.com.fovsoft.common.sercurity.config;
 
+import cn.com.fovsoft.common.sercurity.authorization.CustomAuthenticationProvider;
+import cn.com.fovsoft.common.sercurity.handler.CustomUserLoginFailureHandler;
+import cn.com.fovsoft.common.sercurity.handler.CustomUserLoginSuccessHandler;
+import cn.com.fovsoft.common.sercurity.verify.UnAuthorizedEntryPoint;
 import cn.com.fovsoft.common.service.CustomUserDetailsService;
 import cn.com.fovsoft.common.sercurity.handler.CustomAuthenticationFailureHandler;
 import cn.com.fovsoft.common.sercurity.handler.CustomAuthenticationSuccessHandler;
@@ -30,22 +34,40 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private CustomAuthenticationFailureHandler customAuthenticationFailureHandler;
 
+
+    @Autowired
+    private CustomUserLoginSuccessHandler customUserLoginSuccessHandler;
+
+    @Autowired
+    private CustomUserLoginFailureHandler customUserLoginFailureHandler;
+
+    @Autowired
+    private UnAuthorizedEntryPoint unAuthorizedEntryPoint;
+
+    @Autowired
+    private CustomAuthenticationProvider customAuthenticationProvider;
+
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //super.configure(http);
         http
                 .authorizeRequests()
                 .antMatchers("/global/**","/static/**","/templates/**").permitAll()
-                .antMatchers("/login","login_page","/code").permitAll()
+                .antMatchers("/login","/login_page","/code").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login_page")
+                .loginPage("/login")
+                .successHandler(customUserLoginSuccessHandler)
+                .failureHandler(customUserLoginFailureHandler)
                 .loginProcessingUrl("/login")
                 .and()
                 .csrf().disable();
 
-//        http.addFilterAt(CustUsernamePasswordAuthenticationFilterBean(), UsernamePasswordAuthenticationFilter.class);
+        http.exceptionHandling().authenticationEntryPoint(unAuthorizedEntryPoint);
+        //http.addFilterAt(CustUsernamePasswordAuthenticationFilterBean(), UsernamePasswordAuthenticationFilter.class);
 
 
         http
@@ -57,6 +79,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //super.configure(auth);
         //auth.userDetailsService();
+        auth.authenticationProvider(customAuthenticationProvider);
     }
 
     @Autowired
@@ -68,12 +91,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-//    public CustomUsernamePasswordAuthenticationFilter CustUsernamePasswordAuthenticationFilterBean() throws Exception {
-//        CustomUsernamePasswordAuthenticationFilter customUsernamePasswordAuthenticationFilter = new CustomUsernamePasswordAuthenticationFilter();
-//        customUsernamePasswordAuthenticationFilter.setAuthenticationManager(super.authenticationManager());
-//        customUsernamePasswordAuthenticationFilter.setAuthenticationSuccessHandler(customAuthenticationSuccessHandler);
-//        return customUsernamePasswordAuthenticationFilter;
-//    }
+    @Bean
+    public CustomUsernamePasswordAuthenticationFilter CustUsernamePasswordAuthenticationFilterBean() throws Exception {
+        CustomUsernamePasswordAuthenticationFilter customUsernamePasswordAuthenticationFilter = new CustomUsernamePasswordAuthenticationFilter();
+        customUsernamePasswordAuthenticationFilter.setAuthenticationManager(super.authenticationManager());
+        customUsernamePasswordAuthenticationFilter.setAuthenticationSuccessHandler(customAuthenticationSuccessHandler);
+        customUsernamePasswordAuthenticationFilter.setAuthenticationFailureHandler(customAuthenticationFailureHandler);
+        return customUsernamePasswordAuthenticationFilter;
+    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){

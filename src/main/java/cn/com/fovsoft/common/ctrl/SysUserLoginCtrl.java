@@ -1,6 +1,8 @@
 package cn.com.fovsoft.common.ctrl;
 
 import cn.com.fovsoft.common.bean.SysUser;
+import cn.com.fovsoft.common.co.BaseResult;
+import cn.com.fovsoft.common.co.ReturnCode;
 import cn.com.fovsoft.common.constant.VarConstant;
 import cn.com.fovsoft.common.service.CustomUserDetailsService;
 import cn.com.fovsoft.common.service.SysUserService;
@@ -16,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-@RestController
+@Controller
 public class SysUserLoginCtrl {
 
     @Autowired
@@ -34,12 +36,12 @@ public class SysUserLoginCtrl {
         System.out.println("startup ..........");
         return "login";
     }
-//    @RequestMapping(value = "/login")
-//    public String userToLogin(ModelMap mp) {
-//        //mp.addAttribute("sysUser", new SysUser());
-//        System.out.println("startup ..........");
-//        return "login";
-//    }
+    @RequestMapping(value = "/login" ,method = RequestMethod.GET)
+    public String userToLogin(ModelMap mp) {
+        //mp.addAttribute("sysUser", new SysUser());
+        System.out.println("startup ..........");
+        return "login";
+    }
 
     @RequestMapping(value = "/logout")
     public String userLogout(HttpServletRequest request){
@@ -59,6 +61,12 @@ public class SysUserLoginCtrl {
         mp.put("result",result);
         return mp;
     }
+
+//    @GetMapping("/login_page")
+//    @ResponseBody
+//    public Object loginPage() {
+//        return new BaseResult(ReturnCode.FAILED.getCode(), "尚未登录，请登录!");
+//    }
 
 
 
