@@ -26,8 +26,8 @@ public class CustomUserDetails extends SysUser implements UserDetails {
 
     public CustomUserDetails(SysUser sysUser){
         if (sysUser != null){
-            this.setUserId(sysUser.getUserId());
-            this.setUserName(sysUser.getUserName());
+            this.setUserid(sysUser.getUserid());
+            this.setUsername(sysUser.getUsername());
             this.setPassword(sysUser.getPassword());
             this.setDepartment(sysUser.getDepartment());
             this.setSex(sysUser.getSex());
@@ -47,6 +47,8 @@ public class CustomUserDetails extends SysUser implements UserDetails {
             this.setSysRoleSet(sysUser.getSysRoleSet());
         }
     }
+
+
 
     /**
      *功能描述: 重写权限控制方法，把用户角色写入
@@ -70,10 +72,7 @@ public class CustomUserDetails extends SysUser implements UserDetails {
         return authorities;
     }
 
-    @Override
-    public String getUsername() {
-        return null;
-    }
+
 
     @Override
     public boolean isAccountNonExpired() {

@@ -15,8 +15,6 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private SysUserService sysUserService;
 
-    private SysUser sysUser;
-
 
     /**
      *功能描述：通过获取数据的用户信息来判断
@@ -27,18 +25,17 @@ public class CustomUserDetailsService implements UserDetailsService {
      */
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+
+        System.out.println("前端需要验证的用户名为："+userName);
+        SysUser sysUser = sysUserService.findByUserName(userName);
+
+        if(sysUser == null){
+            throw new UsernameNotFoundException("not have this user");
+        }
+        System.out.println("数据库取出的用户名为："+sysUser.getUsername());
         CustomUserDetails customUserDetails = new CustomUserDetails(sysUser);
         return customUserDetails;
     }
 
-    public void setSysUser(SysUser sysUser){
-        if(sysUser == null){
-            throw new UsernameNotFoundException("UserName " + sysUser.getUserName() + " not found");
-        }
-        this.sysUser = sysUser;
-    }
 
-    public SysUser getSysUser(){
-        return sysUser;
-    }
 }

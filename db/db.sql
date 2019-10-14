@@ -19,7 +19,7 @@ create table frm_sysuser(
      gxsj date comment '更新时间') comment '用户信息表';
 
 insert into frm_sysuser values('1000','admin','123456','451229000000','1','1989-08-09','','','','','2020-01-01','2020-01-01','1','','','1',now(),now());
-
+insert into frm_sysuser values('1000','admin','$2a$10$b7FbBNdjQDgQNbBbn.bCLeEntO6WBm3Ail/zOSJvM7nCTSr/ZBosq','451229000000','1','1989-08-09','','','','','2020-01-01','2020-01-01','1','','','1',now(),now());
 create table frm_role(
     roleId int primary key comment '角色id',
     roleName varchar(32) comment '角色名称',
