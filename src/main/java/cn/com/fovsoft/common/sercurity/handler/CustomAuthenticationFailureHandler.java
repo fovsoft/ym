@@ -1,4 +1,4 @@
-package cn.com.fovsoft.common.service.security;
+package cn.com.fovsoft.common.sercurity.handler;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;

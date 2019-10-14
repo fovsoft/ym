@@ -32,7 +32,10 @@ public class CustomUsernamePasswordAuthenticationFilter extends UsernamePassword
     }
 
     private Map<String,String>getBodyParams(HttpServletRequest request)  {
+        System.out.println(threadLocal.get());
         Map<String,String> bodyParams =  threadLocal.get();
+
+        System.out.println(threadLocal.get());
         if(bodyParams == null){
             ObjectMapper objectMapper = new ObjectMapper();
             try {

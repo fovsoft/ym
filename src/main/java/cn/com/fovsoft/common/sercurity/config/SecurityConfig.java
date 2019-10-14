@@ -1,10 +1,8 @@
-package cn.com.fovsoft.common.config;
+package cn.com.fovsoft.common.sercurity.config;
 
-import cn.com.fovsoft.common.bean.SysRole;
 import cn.com.fovsoft.common.service.CustomUserDetailsService;
-import cn.com.fovsoft.common.service.SysUserService;
-import cn.com.fovsoft.common.service.security.CustomAuthenticationFailureHandler;
-import cn.com.fovsoft.common.service.security.CustomAuthenticationSuccessHandler;
+import cn.com.fovsoft.common.sercurity.handler.CustomAuthenticationFailureHandler;
+import cn.com.fovsoft.common.sercurity.handler.CustomAuthenticationSuccessHandler;
 import cn.com.fovsoft.common.service.security.CustomUsernamePasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -36,15 +34,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //super.configure(http);
         http
-                .formLogin().loginPage("/login-page").loginProcessingUrl("/login").failureUrl("/login-error").permitAll()
-                .and()
                 .authorizeRequests()
                 .antMatchers("/global/**","/static/**","/templates/**").permitAll()
-                .antMatchers("/", "/login","/code","/loginCheck").permitAll()
-                .antMatchers("/index").permitAll()
+                .antMatchers("/login","login_page","/code").permitAll()
                 .anyRequest().authenticated()
                 .and()
+                .formLogin()
+                .loginPage("/login_page")
+                .loginProcessingUrl("/login")
+                .and()
                 .csrf().disable();
+
         http.addFilterAt(CustUsernamePasswordAuthenticationFilterBean(), UsernamePasswordAuthenticationFilter.class);
 
 
