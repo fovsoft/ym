@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable();
 
-        http.addFilterAt(CustUsernamePasswordAuthenticationFilterBean(), UsernamePasswordAuthenticationFilter.class);
+//        http.addFilterAt(CustUsernamePasswordAuthenticationFilterBean(), UsernamePasswordAuthenticationFilter.class);
 
 
         http
@@ -68,12 +68,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-    public CustomUsernamePasswordAuthenticationFilter CustUsernamePasswordAuthenticationFilterBean() throws Exception {
-        CustomUsernamePasswordAuthenticationFilter customUsernamePasswordAuthenticationFilter = new CustomUsernamePasswordAuthenticationFilter();
-        customUsernamePasswordAuthenticationFilter.setAuthenticationManager(super.authenticationManager());
-        customUsernamePasswordAuthenticationFilter.setAuthenticationSuccessHandler(customAuthenticationSuccessHandler);
-        return customUsernamePasswordAuthenticationFilter;
-    }
+//    public CustomUsernamePasswordAuthenticationFilter CustUsernamePasswordAuthenticationFilterBean() throws Exception {
+//        CustomUsernamePasswordAuthenticationFilter customUsernamePasswordAuthenticationFilter = new CustomUsernamePasswordAuthenticationFilter();
+//        customUsernamePasswordAuthenticationFilter.setAuthenticationManager(super.authenticationManager());
+//        customUsernamePasswordAuthenticationFilter.setAuthenticationSuccessHandler(customAuthenticationSuccessHandler);
+//        return customUsernamePasswordAuthenticationFilter;
+//    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
