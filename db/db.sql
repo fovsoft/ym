@@ -16,7 +16,7 @@ create table frm_sysuser(
      zjdlip varchar(20) comment '最近登陆地址ip',
      zt char(1) comment '用户状态：0代表删除，1代表正常，2代表锁定（停用）',
      cjsj date comment '创建时间',
-     gxsj date comment '更新时间') comment '用户信息表';
+     gxsj date comment '更新时间')ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '用户信息表';
 
 insert into frm_sysuser values('1000','admin','$2a$10$b7FbBNdjQDgQNbBbn.bCLeEntO6WBm3Ail/zOSJvM7nCTSr/ZBosq','451229000000','1','1989-08-09','','','','','2020-01-01','2020-01-01','1','','','1',now(),now());
 create table frm_role(
@@ -25,7 +25,7 @@ create table frm_role(
     description varchar(60) comment '描述',
     zt char(1) comment '角色状态：0代表删除，1代表正常，2代表停用',
     cjsj date comment '创建时间',
-    gxsj date comment '更新时间') comment '角色表';
+    gxsj date comment '更新时间')ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '角色表';
 
 create table frm_menu(
     menuId int primary key comment '菜单id',
@@ -38,7 +38,7 @@ create table frm_menu(
     sequence int not null comment '排序',
     zt char(1) comment '菜单状态：0代表删除，1代表正常，2代表停用',
     cjsj date comment '创建时间',
-    gxsj date comment '更新时间') comment '菜单表';
+    gxsj date comment '更新时间')ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '菜单表';
 
 create table frm_sysuser_role(
     userId int not null ,
@@ -50,7 +50,7 @@ create table frm_role_menu(
      roleId int not null ,
      menuId int not null,
       primary key (roleId,menuId)
-) comment '用户与角色关联表';
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '用户与角色关联表';
 
 
 create table frm_department(
@@ -63,4 +63,13 @@ create table frm_department(
     zt char(1),
     cjsj date comment '创建时间',
     gxsj date comment '更新时间'
-)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '用户部门表';
+
+
+#存放用户验证token的表
+create table frm_persistent_logins(
+    userName varchar(32) not null comment '验证后的用户名',
+    series varchar(64) not null primary key comment '主键信息',
+    token varchar(64) not null comment '用户token',
+    lastUsed timestamp not null default current_timestamp on update current_timestamp comment '最近使用时间'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '验证用户token存放表';
