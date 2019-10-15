@@ -11,6 +11,7 @@ import cn.com.fovsoft.common.service.security.CustomUsernamePasswordAuthenticati
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.annotation.Persistent;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -19,6 +20,10 @@ import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 
 @Configuration
@@ -45,6 +50,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private VerifyCodeFilter verifyCodeFilter;
 
+
+    //数据源对象
+    @Autowired
+    private DataSource dataSource;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //super.configure(http);
@@ -61,6 +71,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .successHandler(customUserLoginSuccessHandler)
                 .failureHandler(customUserLoginFailureHandler)
                 .loginProcessingUrl("/login")
+                .and()
+                //记住我选项
+                .rememberMe().tokenRepository(persistentTokenRepository()).tokenValiditySeconds(120).userDetailsService(customUserDetailsService)
                 .and()
                 .csrf().disable();
 
@@ -110,9 +123,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return  sessionRegistry;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new BCryptPasswordEncoder().encode("123456"));
+    /**
+     * 功能描述: 把数据源注入到spring security PersistentTokenRepository中
+     * @author by tpc
+     * @date 2019/10/15 10:07
+     * @param
+     * @return org.springframework.security.web.authentication.rememberme.PersistentTokenRepository
+     */
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository(){
+        JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        tokenRepository.setDataSource(dataSource);
+        return tokenRepository;
     }
+
 
 
 
