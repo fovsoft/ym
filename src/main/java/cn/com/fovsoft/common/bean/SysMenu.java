@@ -15,7 +15,6 @@ public class SysMenu implements Serializable {
     private String menuName  ;
     private String css       ;
     private String url       ;
-    private String permission;
     private int sequence     ;
     private String zt        ;
     private Date cjsj        ;
@@ -62,13 +61,6 @@ public class SysMenu implements Serializable {
     }
 
 
-    public String getPermission() {
-        return permission;
-    }
-
-    public void setPermission(String permission) {
-        this.permission = permission;
-    }
 
     public int getSequence() {
         return sequence;

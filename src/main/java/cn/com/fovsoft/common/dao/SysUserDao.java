@@ -74,4 +74,8 @@ public interface SysUserDao {
     @Update(value = "update frm_sysuser u set u.zjdlip =#{zjdlip} where u.userName = #{userName}")
     int updateUserZjdlip(String zjdlip, String userName);
 
+
+
+
+
 }

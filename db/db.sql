@@ -43,15 +43,15 @@ create table frm_menu(
     cjsj date comment '创建时间',
     gxsj date comment '更新时间')ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '菜单表';
 
-insert into frm_menu values(1000,'','系统管理',0,'/admin',1,'1',now(),now());
-insert into frm_menu values(1001,'','用户管理',1000,'/admin/user',2,'1',now(),now());
-insert into frm_menu values(1002,'','部门管理',1000,'/admin/dept',3,'1',now(),now());
-insert into frm_menu values(1003,'','角色管理',1000,'/admin/role',4,'1',now(),now());
-insert into frm_menu values(1004,'','权限管理',1000,'/admin/permit',5,'1',now(),now());
-insert into frm_menu values(2000,'','移民管理',1000,'/ym',11,'1',now(),now());
-insert into frm_menu values(2001,'','移民信息采集',2000,'/ym/add',12,'1',now(),now());
-insert into frm_menu values(2002,'','移民信息管理',2000,'/ym/mgr',13,'1',now(),now());
-insert into frm_menu values(2003,'','影像化采集',2000,'/ym/img',14,'1',now(),now());
+insert into frm_menu(menuId, css, menuName, parentId, url, sequence, zt, cjsj, gxsj) values(1000,'','系统管理',0,'/admin',1,'1',now(),now());
+insert into frm_menu(menuId, css, menuName, parentId, url, sequence, zt, cjsj, gxsj) values(1001,'','用户管理',1000,'/admin/user',2,'1',now(),now());
+insert into frm_menu(menuId, css, menuName, parentId, url, sequence, zt, cjsj, gxsj) values(1002,'','部门管理',1000,'/admin/dept',3,'1',now(),now());
+insert into frm_menu(menuId, css, menuName, parentId, url, sequence, zt, cjsj, gxsj) values(1003,'','角色管理',1000,'/admin/role',4,'1',now(),now());
+insert into frm_menu(menuId, css, menuName, parentId, url, sequence, zt, cjsj, gxsj) values(1004,'','权限管理',1000,'/admin/permit',5,'1',now(),now());
+insert into frm_menu(menuId, css, menuName, parentId, url, sequence, zt, cjsj, gxsj) values(2000,'','移民管理',1000,'/ym',11,'1',now(),now());
+insert into frm_menu(menuId, css, menuName, parentId, url, sequence, zt, cjsj, gxsj) values(2001,'','移民信息采集',2000,'/ym/add',12,'1',now(),now());
+insert into frm_menu(menuId, css, menuName, parentId, url, sequence, zt, cjsj, gxsj) values(2002,'','移民信息管理',2000,'/ym/mgr',13,'1',now(),now());
+insert into frm_menu(menuId, css, menuName, parentId, url, sequence, zt, cjsj, gxsj) values(2003,'','影像化采集',2000,'/ym/img',14,'1',now(),now());
 
 
 drop table frm_permission;
@@ -80,7 +80,7 @@ create table frm_role_menu_permission(
      roleId int not null ,
      menuId int not null,
      permissionId int not null,
-      primary key (roleId,menuId)
+      primary key (roleId,menuId,permissionId)
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '角色-菜单-权限关联表';
 insert into frm_role_menu_permission values(1000,1000,1000);
 insert into frm_role_menu_permission values(1000,1000,1001);

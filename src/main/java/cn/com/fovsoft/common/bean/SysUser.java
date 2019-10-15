@@ -25,6 +25,7 @@ public class SysUser implements Serializable {
     private String zt;
     private Date cjsj;
 
+    //存储用户角色
     private Set<SysRole> sysRoleSet;
 
     public Set<SysRole> getSysRoleSet() {
