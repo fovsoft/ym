@@ -1,5 +1,6 @@
 package cn.com.fovsoft.common.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,7 +8,7 @@ import java.util.Date;
  * @date: 2019-10-11 14:45
  * @description: 对应数据库用户角色表
  **/
-public class SysRole {
+public class SysRole implements Serializable {
 
     private String roleId 	  ;
     private String roleName 	;

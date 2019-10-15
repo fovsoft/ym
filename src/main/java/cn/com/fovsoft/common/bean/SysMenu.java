@@ -1,5 +1,6 @@
 package cn.com.fovsoft.common.bean;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -7,14 +8,13 @@ import java.util.Date;
  * @date: 2019-10-11
  * @description: 对应数据库用户菜单表
  **/
-public class SysMenu {
+public class SysMenu implements Serializable {
 
     private String menuId    ;
     private String parentId  ;
     private String menuName  ;
     private String css       ;
     private String url       ;
-    private String type      ;
     private String permission;
     private int sequence     ;
     private String zt        ;
@@ -61,13 +61,6 @@ public class SysMenu {
         this.url = url;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public String getPermission() {
         return permission;

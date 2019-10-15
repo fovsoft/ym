@@ -1,3 +1,4 @@
+drop table frm_sysuser;
 create table frm_sysuser(
      userId int primary key comment '用户ID',
      userName varchar(32) NOT NULL comment '系统用户名',
@@ -19,6 +20,7 @@ create table frm_sysuser(
      gxsj date comment '更新时间')ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '用户信息表';
 
 insert into frm_sysuser values('1000','admin','$2a$10$b7FbBNdjQDgQNbBbn.bCLeEntO6WBm3Ail/zOSJvM7nCTSr/ZBosq','451229000000','1','1989-08-09','','','','','2020-01-01','2020-01-01','1','','','1',now(),now());
+drop table frm_role;
 create table frm_role(
     roleId int primary key comment '角色id',
     roleName varchar(32) comment '角色名称',
@@ -27,32 +29,97 @@ create table frm_role(
     cjsj date comment '创建时间',
     gxsj date comment '更新时间')ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '角色表';
 
+insert into frm_role values(1000,'系统管理员','系统管理员，拥有所有权限','1',now(),now());
+
+drop table frm_menu;
 create table frm_menu(
     menuId int primary key comment '菜单id',
     parentId int not null comment '上级菜单',
     menuName varchar(32) comment '菜单名称',
     css varchar(30) comment '图标样式',
     url varchar(100) comment '图标url',
-    type char(1) comment '菜单类型 1：菜单 2：按钮',
-    permission varchar(32) comment '按钮权限',
     sequence int not null comment '排序',
     zt char(1) comment '菜单状态：0代表删除，1代表正常，2代表停用',
     cjsj date comment '创建时间',
     gxsj date comment '更新时间')ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '菜单表';
 
+insert into frm_menu values(1000,'','系统管理',0,'/admin',1,'1',now(),now());
+insert into frm_menu values(1001,'','用户管理',1000,'/admin/user',2,'1',now(),now());
+insert into frm_menu values(1002,'','部门管理',1000,'/admin/dept',3,'1',now(),now());
+insert into frm_menu values(1003,'','角色管理',1000,'/admin/role',4,'1',now(),now());
+insert into frm_menu values(1004,'','权限管理',1000,'/admin/permit',5,'1',now(),now());
+insert into frm_menu values(2000,'','移民管理',1000,'/ym',11,'1',now(),now());
+insert into frm_menu values(2001,'','移民信息采集',2000,'/ym/add',12,'1',now(),now());
+insert into frm_menu values(2002,'','移民信息管理',2000,'/ym/mgr',13,'1',now(),now());
+insert into frm_menu values(2003,'','影像化采集',2000,'/ym/img',14,'1',now(),now());
+
+
+drop table frm_permission;
+create table frm_permission(
+    permissionId int auto_increment primary key comment '操作权限id',
+    permissionName varchar(64) comment '操作权限名字',
+    permission char(1) comment '按钮权限 （a,d,u,s 分别代表增删改查）'
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '操作权限表';
+insert into frm_permission values(1000,'新增','a');
+insert into frm_permission values(1001,'删除','d');
+insert into frm_permission values(1002,'修改','u');
+insert into frm_permission values(1003,'查找','');
+
+
+drop table frm_sysuser_role;
 create table frm_sysuser_role(
     userId int not null ,
     roleId int not null,
     primary key (userid,roleid)
 ) comment '用户与角色关联表';
 
-create table frm_role_menu(
+insert into frm_sysuser_role values(1000,1000);
+
+drop table frm_role_menu_permission;
+create table frm_role_menu_permission(
      roleId int not null ,
      menuId int not null,
+     permissionId int not null,
       primary key (roleId,menuId)
-)ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '用户与角色关联表';
+)ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '角色-菜单-权限关联表';
+insert into frm_role_menu_permission values(1000,1000,1000);
+insert into frm_role_menu_permission values(1000,1000,1001);
+insert into frm_role_menu_permission values(1000,1000,1002);
+insert into frm_role_menu_permission values(1000,1000,1003);
+insert into frm_role_menu_permission values(1000,1001,1000);
+insert into frm_role_menu_permission values(1000,1001,1001);
+insert into frm_role_menu_permission values(1000,1001,1002);
+insert into frm_role_menu_permission values(1000,1001,1003);
+insert into frm_role_menu_permission values(1000,1002,1000);
+insert into frm_role_menu_permission values(1000,1002,1001);
+insert into frm_role_menu_permission values(1000,1002,1002);
+insert into frm_role_menu_permission values(1000,1002,1003);
+insert into frm_role_menu_permission values(1000,1003,1000);
+insert into frm_role_menu_permission values(1000,1003,1001);
+insert into frm_role_menu_permission values(1000,1003,1002);
+insert into frm_role_menu_permission values(1000,1003,1003);
+insert into frm_role_menu_permission values(1000,1004,1000);
+insert into frm_role_menu_permission values(1000,1004,1001);
+insert into frm_role_menu_permission values(1000,1004,1002);
+insert into frm_role_menu_permission values(1000,1004,1003);
+insert into frm_role_menu_permission values(1000,2000,1000);
+insert into frm_role_menu_permission values(1000,2000,1001);
+insert into frm_role_menu_permission values(1000,2000,1002);
+insert into frm_role_menu_permission values(1000,2000,1003);
+insert into frm_role_menu_permission values(1000,2001,1000);
+insert into frm_role_menu_permission values(1000,2001,1001);
+insert into frm_role_menu_permission values(1000,2001,1002);
+insert into frm_role_menu_permission values(1000,2001,1003);
+insert into frm_role_menu_permission values(1000,2002,1000);
+insert into frm_role_menu_permission values(1000,2002,1001);
+insert into frm_role_menu_permission values(1000,2002,1002);
+insert into frm_role_menu_permission values(1000,2002,1003);
+insert into frm_role_menu_permission values(1000,2003,1000);
+insert into frm_role_menu_permission values(1000,2003,1001);
+insert into frm_role_menu_permission values(1000,2003,1002);
+insert into frm_role_menu_permission values(1000,2003,1003);
 
-
+drop table frm_department;
 create table frm_department(
     departmentCode int primary key ,
     departmentName varchar(100),
