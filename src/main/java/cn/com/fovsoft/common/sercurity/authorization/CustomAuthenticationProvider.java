@@ -9,6 +9,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -41,18 +42,19 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
         System.out.println(userName+"  "+password);
 
 
-        CustomUserDetails customUserDetails = (CustomUserDetails)customUserDetailsService.loadUserByUsername(userName);
+        User user = (User)customUserDetailsService.loadUserByUsername(userName);
 
-        System.out.println("customUserDetails:"+customUserDetails.getUsername());
+        System.out.println("customUserDetails:"+user.getUsername());
         System.out.println(bCryptPasswordEncoder.encode(password));
-        System.out.println(customUserDetails.getPassword());
+        System.out.println(user.getPassword());
         //这里判断密码是否正确
-        if(!(bCryptPasswordEncoder.matches(password,customUserDetails.getPassword()))){
+        if(!(bCryptPasswordEncoder.matches(password,user.getPassword()))){
             throw new BadCredentialsException("password error");
         }
+        //用户名和密码都正确后，注入自己的权限信息
 
-        Collection<? extends GrantedAuthority> authorities = customUserDetails.getAuthorities();
-        return new UsernamePasswordAuthenticationToken(customUserDetails,password,authorities);
+        Collection<? extends GrantedAuthority> authorities = user.getAuthorities();
+        return new UsernamePasswordAuthenticationToken(user,password,authorities);
     }
 
     @Override

@@ -12,7 +12,19 @@ public class SysUserCtrl {
     @ResponseBody
     private Object whoIm()
     {
+        System.out.println("是否已经验证："+SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
+
         return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
+
+    /*/**
+     * @author: tpc
+     * @date: 2019/10/15
+     * @description: 对应系统管理菜单
+     */
+    public String sysUserAdmin(){
+        return null;
+    }
+
 
 }

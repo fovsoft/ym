@@ -63,7 +63,7 @@ create table frm_permission(
 insert into frm_permission values(1000,'新增','a');
 insert into frm_permission values(1001,'删除','d');
 insert into frm_permission values(1002,'修改','u');
-insert into frm_permission values(1003,'查找','');
+insert into frm_permission values(1003,'查找','s');
 
 
 drop table frm_sysuser_role;

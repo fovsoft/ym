@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  * @author: by tpc
@@ -29,6 +29,6 @@ public interface SysMenuPermissionDao {
             @Result(property = "permissionName", column = "permissionName"),
             @Result(property = "permission", column = "permission")
     })
-    List<SysMenuPermission> findMenuAndPermission(int userId);
+    Set<SysMenuPermission> findMenuAndPermission(int userId);
 
 }

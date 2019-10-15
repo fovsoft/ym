@@ -1,18 +1,29 @@
 package cn.com.fovsoft.common.support;
 
+import cn.com.fovsoft.common.bean.SysMenuPermission;
 import cn.com.fovsoft.common.bean.SysRole;
 import cn.com.fovsoft.common.bean.SysUser;
+import cn.com.fovsoft.common.dao.SysMenuPermissionDao;
+import cn.com.fovsoft.common.service.SysMenuPermissionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
+import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Set;
 
 public class CustomUserDetails extends SysUser implements UserDetails {
 
+
+
+
+
+    @Autowired
+    private SysMenuPermissionService sysMenuPermissionService;
 
 
 
@@ -49,6 +60,10 @@ public class CustomUserDetails extends SysUser implements UserDetails {
     }
 
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
 
     /**
      *功能描述: 重写权限控制方法，把用户角色写入
@@ -57,20 +72,25 @@ public class CustomUserDetails extends SysUser implements UserDetails {
      * @param
      * @return java.util.Collection<? extends org.springframework.security.core.GrantedAuthority>
      */
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//
+//        Collection<GrantedAuthority> authorities = new ArrayList<>();
+//        Set<SysRole> sysRoleSet = this.getSysRoleSet();
+//        if(this.getUsername() !=null){
+//            //根据用户id拿到权限信息
+//            Set<SysMenuPermission> sysMenuPermissionSet = sysMenuPermissionService.findMenuPermissionByUserId(this.getUserid());
+//            //把权限信息写入到权限认证集中
+//            for(SysMenuPermission sysMenuPermission:sysMenuPermissionSet){
+//                //加入格式为url-permission
+//                SimpleGrantedAuthority authority = new SimpleGrantedAuthority(String.format("%s-%s",sysMenuPermission.getUrl(),sysMenuPermission.getPermission()));
+//                authorities.add(authority);
+//            }
+//        }
+//
+//        return authorities;
+//    }
 
-        Collection<GrantedAuthority> authorities = new ArrayList<>();
-        Set<SysRole> sysRoleSet = this.getSysRoleSet();
-        if(sysRoleSet != null){
-            for (SysRole sysRole:sysRoleSet){
-                SimpleGrantedAuthority authority = new SimpleGrantedAuthority(sysRole.getRoleName());
-                authorities.add(authority);
-            }
-        }
-
-        return authorities;
-    }
 
 
 
@@ -81,6 +101,9 @@ public class CustomUserDetails extends SysUser implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
+        if(getZt().equals("2")){
+            return false;
+        }
         return true;
     }
 

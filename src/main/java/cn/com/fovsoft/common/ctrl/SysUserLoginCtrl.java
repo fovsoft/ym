@@ -2,6 +2,9 @@ package cn.com.fovsoft.common.ctrl;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -133,8 +136,29 @@ public class SysUserLoginCtrl {
 //        return mp;
 //    }
 
+    
+    /*
+     * @author: tpc
+     * @date: 2019/10/15
+     * @description: 根据权限信息加载菜单
+     */
     @RequestMapping("/index")
     public String loginToIndex(){
+
+        System.out.println("是否已经验证："+SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
+
+        System.out.println("是否已经验证："+SecurityContextHolder.getContext().getAuthentication().getPrincipal());
+
+        //获取验证信息
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        //首先判断用户有没有验证，验证了，则响应请求进入主页，如果没有验证，则进入登录页面
+        if(authentication.isAuthenticated()){
+            for(GrantedAuthority authority : authentication.getAuthorities()){
+                System.out.println(authority.getAuthority());
+            }
+        }else {
+            return "redirect:/login";
+        }
         return "index";
     }
 
