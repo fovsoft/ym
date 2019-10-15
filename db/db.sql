@@ -66,10 +66,11 @@ create table frm_department(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '用户部门表';
 
 
+drop table persistent_logins;
 #存放用户验证token的表
-create table frm_persistent_logins(
-    userName varchar(32) not null comment '验证后的用户名',
+create table persistent_logins(
+    username varchar(64) not null comment '验证后的用户名',
     series varchar(64) not null primary key comment '主键信息',
     token varchar(64) not null comment '用户token',
-    lastUsed timestamp not null default current_timestamp on update current_timestamp comment '最近使用时间'
+    last_used timestamp not null comment '最近使用时间'
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '验证用户token存放表';

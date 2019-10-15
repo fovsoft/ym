@@ -133,7 +133,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PersistentTokenRepository persistentTokenRepository(){
         JdbcTokenRepositoryImpl tokenRepository = new JdbcTokenRepositoryImpl();
+        System.out.println("datasource"+customUserDetailsService);
         tokenRepository.setDataSource(dataSource);
+        //tokenRepository.setCreateTableOnStartup(true);
         return tokenRepository;
     }
 

@@ -93,7 +93,7 @@
 
 													<div class="clearfix">
 														<label class="inline">
-															<input type="checkbox" class="ace" name="remember-me"/>
+															<input type="checkbox" class="ace" name="remember-me" id="remember-me"/>
 															<span class="lbl"> 记住我</span>
 														</label>
 
@@ -385,7 +385,12 @@
 					var username = $("#username").val();
 					var password = $("#password").val();
 					var ccode = $("#code").val();
+					var rememberme = 0;
+					if($('#remember-me').is(':checked')) {
+						rememberme = 1;
+					}
 					//var code = username+","+password+","+$("#code").val();
+					alert("rember-me is "+rememberme);
 					$.ajax({
 						type: "POST",//请求方式为POST
 						url: '/login',//检验url
@@ -393,6 +398,7 @@
 							"username" : username,
 							"password" : password,
 							"ccode" : ccode,
+							"remember-me" : rememberme,
 							"tm" : new Date().getTime()
 						},//请求数据
 						dataType:'json',//数据类型为JSON类型
@@ -407,14 +413,15 @@
 									bg : '#68B500',
 									time : 10
 								});
-								window.location.href="/index";
-							}else if("uerror" == data.result){
+								window.location.href="/whoim";
+							}else if("errorpwd" == data.result){
 								$("#password").tips({
 									side : 1,
 									msg : "密码错误",
 									bg : '#FF5080',
 									time : 15
 								});
+								changeCode();
 								$("#username").focus();
 							}else if("nouser"==data.result){
 								$("#username").tips({

@@ -32,8 +32,13 @@ public class VerifyCodeFilter extends OncePerRequestFilter {
         System.out.println(request.getRequestURI()+"   "+ request.getMethod());
         //判断主页请求
         if(request.getRequestURI().equals("/login")&&request.getMethod().equalsIgnoreCase("post")){
-            //进行验证码判断
-            validate(request);
+
+            try{
+                //进行验证码判断
+                validate(request);
+            }catch (VerifyCodeAuthenticationException e){
+                customUserLoginFailureHandler.onAuthenticationFailure(request,response,e);
+            }
         }
         // 3. 校验通过，就放行
         filterChain.doFilter(request, response);
