@@ -22,8 +22,8 @@ public interface SysUserDao {
      */
     @Select("select * from frm_sysuser s order by s.userId asc")
     @Results(id="sysUserResultMap",value = {
-            @Result(property = "userid",column = "userId"),
-            @Result(property = "username",column = "userName"),
+            @Result(property = "userId",column = "userId"),
+            @Result(property = "userName",column = "userName"),
             @Result(property = "password",column = "password"),
             @Result(property = "department",column = "department"),
             @Result(property = "sex",column = "sex"),

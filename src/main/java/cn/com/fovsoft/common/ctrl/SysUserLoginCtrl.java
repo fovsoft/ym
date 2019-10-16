@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 
 @Controller
@@ -143,7 +144,8 @@ public class SysUserLoginCtrl {
      * @description: 根据权限信息加载菜单
      */
     @RequestMapping("/index")
-    public String loginToIndex(){
+    @ResponseBody
+    public String loginToIndex(HttpServletResponse response){
 
         System.out.println("是否已经验证："+SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
 
@@ -153,8 +155,11 @@ public class SysUserLoginCtrl {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //首先判断用户有没有验证，验证了，则响应请求进入主页，如果没有验证，则进入登录页面
         if(authentication.isAuthenticated()){
+
             for(GrantedAuthority authority : authentication.getAuthorities()){
                 System.out.println(authority.getAuthority());
+                //获取菜单信息，然后进行后台响应
+                String[] menuStrArray = authority.
             }
         }else {
             return "redirect:/login";

@@ -22,7 +22,7 @@ public interface SysRoleDao {
     @Select("select distinct fr.* from frm_role fr " +
             "inner join frm_sysuser_role fsr  on fr.roleId = frs.roleId " +
             "where fsr.userId = #{userId}")
-    @Results(id="sysUserResultMap",value = {
+    @Results(id="sysRoleResultMap",value = {
             @Result(property = "roleId",column = "roleId"),
             @Result(property = "roleName",column = "roleName"),
             @Result(property = "description",column = "description"),
