@@ -2,6 +2,7 @@ package cn.com.fovsoft.common.bean;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author: tpc
@@ -24,7 +25,16 @@ public class SysMenu implements Serializable {
     private Date cjsj        ;
     private Date gxsj        ;
 
+    //用来存放子菜单的选项
+    private List<SysMenu> childMenuList;
 
+    public List<SysMenu> getChildMenuList() {
+        return childMenuList;
+    }
+
+    public void setChildMenuList(List<SysMenu> childMenuList) {
+        this.childMenuList = childMenuList;
+    }
 
     public String getType() {
         return type;
