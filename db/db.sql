@@ -1,4 +1,4 @@
-drop table frm_sysuser;
+drop table if exists frm_sysuser;
 create table frm_sysuser(
      userId int primary key comment '用户ID',
      userName varchar(32) NOT NULL comment '系统用户名',
@@ -20,7 +20,7 @@ create table frm_sysuser(
      gxsj date comment '更新时间')ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '用户信息表';
 
 insert into frm_sysuser values('1000','admin','$2a$10$b7FbBNdjQDgQNbBbn.bCLeEntO6WBm3Ail/zOSJvM7nCTSr/ZBosq','451229000000','1','1989-08-09','','','','','2020-01-01','2020-01-01','1','','','1',now(),now());
-drop table frm_role;
+drop table if exists frm_role;
 create table frm_role(
     roleId int primary key comment '角色id',
     roleName varchar(32) comment '角色名称',
@@ -31,7 +31,7 @@ create table frm_role(
 
 insert into frm_role values(1000,'系统管理员','系统管理员，拥有所有权限','1',now(),now());
 
-drop table frm_menu;
+drop table if exists frm_menu;
 create table frm_menu(
     menuId int primary key comment '菜单id',
     parentId int not null comment '上级菜单',
@@ -54,7 +54,7 @@ insert into frm_menu(menuId, css, menuName, parentId, url, sequence, zt, cjsj, g
 insert into frm_menu(menuId, css, menuName, parentId, url, sequence, zt, cjsj, gxsj) values(2003,'','影像化采集',2000,'/ym/img',14,'1',now(),now());
 
 
-drop table frm_permission;
+drop table if exists frm_permission;
 create table frm_permission(
     permissionId int auto_increment primary key comment '操作权限id',
     permissionName varchar(64) comment '操作权限名字',
@@ -66,7 +66,7 @@ insert into frm_permission values(1002,'修改','u');
 insert into frm_permission values(1003,'查找','s');
 
 
-drop table frm_sysuser_role;
+drop table if exists frm_sysuser_role;
 create table frm_sysuser_role(
     userId int not null ,
     roleId int not null,
@@ -75,7 +75,7 @@ create table frm_sysuser_role(
 
 insert into frm_sysuser_role values(1000,1000);
 
-drop table frm_role_menu_permission;
+drop table if exists frm_role_menu_permission;
 create table frm_role_menu_permission(
      roleId int not null ,
      menuId int not null,
@@ -119,7 +119,7 @@ insert into frm_role_menu_permission values(1000,2003,1001);
 insert into frm_role_menu_permission values(1000,2003,1002);
 insert into frm_role_menu_permission values(1000,2003,1003);
 
-drop table frm_department;
+drop table if exists frm_department;
 create table frm_department(
     departmentCode int primary key ,
     departmentName varchar(100),
@@ -133,7 +133,7 @@ create table frm_department(
 )ENGINE=InnoDB DEFAULT CHARSET=utf8 comment '用户部门表';
 
 
-drop table persistent_logins;
+drop table if exists persistent_logins;
 #存放用户验证token的表
 create table persistent_logins(
     username varchar(64) not null comment '验证后的用户名',
