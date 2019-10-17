@@ -13,6 +13,7 @@ public class SysUserCtrl {
     private Object whoIm()
     {
         System.out.println("是否已经验证："+SecurityContextHolder.getContext().getAuthentication().isAuthenticated());
+        System.out.println("验证密码为："+ SecurityContextHolder.getContext().getAuthentication().getCredentials());
 
         return SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }

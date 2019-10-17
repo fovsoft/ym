@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <table border="1">
+        <tr>
+            <th>菜单id</th>
+            <th>菜单名字</th>
+            <th>url</th>
+            <th>子菜单list</th>
+        </tr>
+        <tr  th:each="sysMenu : ${rootSysMenuList}" >
+            <td th:text="${sysMenu.menuId}"></td>
+            <td th:text="${sysMenu.menuName}"></td>
+            <td th:text="${sysMenu.url}"></td>
+            <td th:text="${sysMenu.childMenuList}"></td>
+        </tr>
+</table>
+
+</body>
+</html>

@@ -7,12 +7,11 @@ import cn.com.fovsoft.common.sercurity.handler.CustomUserLoginSuccessHandler;
 import cn.com.fovsoft.common.sercurity.verify.UnAuthorizedEntryPoint;
 import cn.com.fovsoft.common.sercurity.verify.CustomUserDetailsService;
 
-import cn.com.fovsoft.common.service.security.CustomUsernamePasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.data.annotation.Persistent;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -81,9 +80,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         //http.addFilterAt(CustUsernamePasswordAuthenticationFilterBean(), UsernamePasswordAuthenticationFilter.class);
         http.addFilterBefore(verifyCodeFilter,UsernamePasswordAuthenticationFilter.class).formLogin();
 
+
         http
                 .logout().permitAll();
     }
+
 
 
     @Override

@@ -1,10 +1,7 @@
 package cn.com.fovsoft.common.dao;
 
 import cn.com.fovsoft.common.bean.SysMenu;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -19,9 +16,10 @@ public interface SysMenuDao {
 
 
     @Select("select distinct m.* from frm_menu m " +
-            "inner join frm_role_menu rm on m.id = rm.menuId " +
+            "inner join frm_role_menu rm on m.menuId = rm.menuId " +
             "inner join frm_sysuser_role ru on ru.roleId = rm.roleId " +
-            "where zt = 1 and ru.userId = #{userId} order by m.sequence")
+            "inner join frm_sysuser fs on fs.userid = ru.userid " +
+            "where fs.zt = 1 and fs.userId = #{userId} order by m.sequence")
     @Results(id="menuResultMap", value = {
             @Result(property = "menuId", column = "menuId"),
             @Result(property = "parentId", column = "parentId"),
@@ -36,5 +34,22 @@ public interface SysMenuDao {
             @Result(property = "gxsj", column = "gxsj"),
 
     })
-    List<SysMenu> listByUserId(int userId);
+    List<SysMenu> findMenuByUserId(int userId);
+
+
+
+    /**
+     * 功能描述:  根据用户名获取菜单
+     * @author by tpc
+     * @date 2019/10/16 9:12
+     * @param userName
+     * @return java.util.List<cn.com.fovsoft.common.bean.SysMenu>
+     */
+    @Select("select distinct m.* from frm_menu m " +
+            "inner join frm_role_menu rm on m.menuId = rm.menuId " +
+            "inner join frm_sysuser_role ru on ru.roleId = rm.roleId " +
+            "inner join frm_sysuser fs on fs.userid = ru.userid " +
+            "where fs.zt = 1 and fs.userName = #{userName} order by m.sequence")
+    @ResultMap(value={"menuResultMap"})
+    List<SysMenu> findMenuByUserName(String userName);
 }

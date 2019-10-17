@@ -318,7 +318,7 @@
 				/**加载页面时获取验证码**/
 				$(document).ready(function() {
 					changeCode();
-					alert("123");
+					//alert("123");
 					$("#codeImg").bind("click", changeCode);
 				});
 			});
@@ -390,7 +390,7 @@
 						rememberme = 1;
 					}
 					//var code = username+","+password+","+$("#code").val();
-					alert("rember-me is "+rememberme);
+					//alert("rember-me is "+rememberme);
 					$.ajax({
 						type: "POST",//请求方式为POST
 						url: '/login',//检验url
@@ -404,8 +404,8 @@
 						dataType:'json',//数据类型为JSON类型
 						cache: false,//关闭缓存
 						success: function(data){//响应成功
-							alert(data.status);
-							alert(data.result);
+							//alert(data.status);
+							//alert(data.result);
 							if(1 == data.status){
 								$("#login").tips({
 									side : 1,
@@ -421,7 +421,6 @@
 									bg : '#FF5080',
 									time : 15
 								});
-								changeCode();
 								$("#username").focus();
 							}else if("nouser"==data.result){
 								$("#username").tips({
@@ -437,7 +436,6 @@
 									bg : '#FF5080',
 									time : 15
 								});
-								changeCode();
 								$("#code").focus();
 							}else if("locked" == data.result){
 								alert('您的账号被锁定了，呜呜');

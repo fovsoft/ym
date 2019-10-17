@@ -22,8 +22,8 @@ public interface SysUserDao {
      */
     @Select("select * from frm_sysuser s order by s.userId asc")
     @Results(id="sysUserResultMap",value = {
-            @Result(property = "userid",column = "userId"),
-            @Result(property = "username",column = "userName"),
+            @Result(property = "userId",column = "userId"),
+            @Result(property = "userName",column = "userName"),
             @Result(property = "password",column = "password"),
             @Result(property = "department",column = "department"),
             @Result(property = "sex",column = "sex"),
@@ -73,6 +73,17 @@ public interface SysUserDao {
      */
     @Update(value = "update frm_sysuser u set u.zjdlip =#{zjdlip} where u.userName = #{userName}")
     int updateUserZjdlip(String zjdlip, String userName);
+
+
+
+
+    /**
+     * @author:  by tpc
+     * @date: 2019/10/17 22:01
+     * @description:  新增用户信息
+     */
+    @Insert("insert into frm_sysuser(userName,password,department,sex,birthday,sfzmhm,email,ipks,ipjs,zhyxq,mmyxq,yhlx,lxdh,zjdlip,zt,cjsj) values(#{userName},#{password},#{department},#{sex},#{birthday},#{sfzmhm},#{email},#{ipks},#{ipjs},#{zhyxq},#{mmyxq},#{yhlx},#{lxdh},#{zjdlip},#{zt},#{cjsj})")
+    int addSysUser(SysUser sysUser);
 
 
 

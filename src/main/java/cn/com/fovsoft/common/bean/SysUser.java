@@ -7,8 +7,8 @@ import java.util.Set;
 
 public class SysUser implements Serializable {
 
-    private int userid;
-    private String username;
+    private int userId;
+    private String userName;
     private String password;
     private String department;
     private String sex;
@@ -81,20 +81,20 @@ public class SysUser implements Serializable {
     }
 
 
-    public int getUserid() {
-        return userid;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {

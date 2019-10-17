@@ -1,6 +1,5 @@
 package cn.com.fovsoft.common.dao;
 
-import cn.com.fovsoft.common.bean.SysMenuPermission;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
@@ -18,17 +17,17 @@ import java.util.Set;
 public interface SysMenuPermissionDao {
 
 
-    @Select("select d.menuId,d.parentId,d.menuName,d.url,e.permissionId,e.permissionName,e.permission from frm_menu d,frm_permission e ,\n" +
-            "(select a.* from frm_role_menu_permission a,frm_sysuser_role b where b.userId=#{userId} and a.roleId=b.roleId) c where d.menuId=c.menuId and c.permissionId=e.permissionId " )
-    @Results(id="menuPermitResultMap", value = {
-            @Result(property = "menuId", column = "menuId"),
-            @Result(property = "parentId", column = "parentId"),
-            @Result(property = "menuName", column = "menuName"),
-            @Result(property = "url", column = "url"),
-            @Result(property = "permissionId", column = "permissionId"),
-            @Result(property = "permissionName", column = "permissionName"),
-            @Result(property = "permission", column = "permission")
-    })
-    Set<SysMenuPermission> findMenuAndPermission(int userId);
+//    @Select("select d.menuId,d.parentId,d.menuName,d.url,e.permissionId,e.permissionName,e.permission from frm_menu d,frm_permission e ,\n" +
+//            "(select a.* from frm_role_menu_permission a,frm_sysuser_role b where b.userId=#{userId} and a.roleId=b.roleId) c where d.menuId=c.menuId and c.permissionId=e.permissionId " )
+//    @Results(id="menuPermitResultMap", value = {
+//            @Result(property = "menuId", column = "menuId"),
+//            @Result(property = "parentId", column = "parentId"),
+//            @Result(property = "menuName", column = "menuName"),
+//            @Result(property = "url", column = "url"),
+//            @Result(property = "permissionId", column = "permissionId"),
+//            @Result(property = "permissionName", column = "permissionName"),
+//            @Result(property = "permission", column = "permission")
+//    })
+//    Set<SysMenuPermission> findMenuAndPermission(int userId);
 
 }

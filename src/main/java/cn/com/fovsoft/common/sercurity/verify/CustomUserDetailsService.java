@@ -1,10 +1,10 @@
 package cn.com.fovsoft.common.sercurity.verify;
 
-import cn.com.fovsoft.common.bean.SysMenuPermission;
+import cn.com.fovsoft.common.bean.SysMenu;
 import cn.com.fovsoft.common.bean.SysUser;
-import cn.com.fovsoft.common.service.SysMenuPermissionService;
+
+import cn.com.fovsoft.common.service.SysMenuService;
 import cn.com.fovsoft.common.service.SysUserService;
-import cn.com.fovsoft.common.support.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 
@@ -25,8 +26,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Autowired
     private SysUserService sysUserService;
 
+
     @Autowired
-    SysMenuPermissionService sysMenuPermissionService;
+    private SysMenuService sysMenuService;
 
 
     /**
@@ -46,18 +48,27 @@ public class CustomUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("not have this user");
         }
         Collection<GrantedAuthority> authorities = new ArrayList<>();
-            //根据用户id拿到权限信息
-        Set<SysMenuPermission> sysMenuPermissionSet = sysMenuPermissionService.findMenuPermissionByUserId(sysUser.getUserid());
+            //根据用户id拿到菜单权限信息
+        //Set<SysMenuPermission> sysMenuPermissionSet = sysMenuPermissionService.findMenuPermissionByUserId(sysUser.getUserid());
+        List<SysMenu> sysMenuList = sysMenuService.findMenuByUserId(sysUser.getUserId());
+
+        //设置一个字符串临时变量，用来拼接存放用户权限信息
+        String menuStr = "";
         //把权限信息写入到权限认证集中
-        for(SysMenuPermission sysMenuPermission:sysMenuPermissionSet){
+        for(SysMenu sysMenu:sysMenuList){
+            if(sysMenu.getCss()==null){
+                sysMenu.setCss("0");
+            }
+            menuStr = sysMenu.getMenuId()+";"+sysMenu.getParentId()+";"+sysMenu.getMenuName()+";"+ sysMenu.getCss()+";"+
+                    sysMenu.getUrl()+";"+sysMenu.getType()+";"+sysMenu.getPermission()+";"+sysMenu.getSequence()+";"+sysMenu.getZt();
             //加入格式为url-permission
-            SimpleGrantedAuthority authority = new SimpleGrantedAuthority(String.format("%s-%s",sysMenuPermission.getUrl(),sysMenuPermission.getPermission()));
+            SimpleGrantedAuthority authority = new SimpleGrantedAuthority(menuStr);
             authorities.add(authority);
         }
 
-        System.out.println("数据库取出的用户名为："+sysUser.getUsername());
-        CustomUserDetails customUserDetails = new CustomUserDetails(sysUser);
-        User user = new User(sysUser.getUsername(),sysUser.getPassword(),true,true,true,true,authorities);
+        System.out.println("数据库取出的用户名为："+sysUser.getUserName());
+        //CustomUserDetails customUserDetails = new CustomUserDetails(sysUser);
+        User user = new User(sysUser.getUserName(),sysUser.getPassword(),true,true,true,true,authorities);
         return user;
     }
 
