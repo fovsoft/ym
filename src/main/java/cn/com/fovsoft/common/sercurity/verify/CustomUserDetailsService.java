@@ -2,7 +2,7 @@ package cn.com.fovsoft.common.sercurity.verify;
 
 import cn.com.fovsoft.common.bean.SysMenu;
 import cn.com.fovsoft.common.bean.SysUser;
-import cn.com.fovsoft.common.service.SysMenuPermissionService;
+
 import cn.com.fovsoft.common.service.SysMenuService;
 import cn.com.fovsoft.common.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +25,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private SysUserService sysUserService;
-
-    @Autowired
-    private SysMenuPermissionService sysMenuPermissionService;
 
 
     @Autowired

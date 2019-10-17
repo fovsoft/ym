@@ -1,7 +1,7 @@
 drop table frm_sysuser;
 create table frm_sysuser
 (
-    userId     int primary key comment '用户ID',
+    userId     int auto_increment =1001 primary key comment '用户ID',
     userName   varchar(32)  NOT NULL comment '系统用户名',
     password   varchar(100) NOT NULL comment '密码',
     department varchar(20)  NOT NULL comment '用户所在部门',
@@ -28,7 +28,7 @@ values ('1000', 'admin', '$2a$10$b7FbBNdjQDgQNbBbn.bCLeEntO6WBm3Ail/zOSJvM7nCTSr
 drop table frm_role;
 create table frm_role
 (
-    roleId      int primary key comment '角色id',
+    roleId      int auto_increment =1001 primary key comment '角色id',
     roleName    varchar(32) comment '角色名称',
     description varchar(60) comment '描述',
     zt          char(1) comment '角色状态：0代表删除，1代表正常，2代表停用',
@@ -148,32 +148,36 @@ drop table ym_person;
 #用来存放移民信息的表
 create table ym_person
 (
-    rybh     int auto_increment primary key comment '人员编号',
-    jtbh     int comment '家庭编号，对应家庭表',
-    xm       varchar(30) not null comment '姓名',
-    sex      char(2) default '1' comment '性别',
-    sfzmhm   varchar(20) comment '身份证明号码',
-    qfjg     varchar(64) comment '身份证签发机关',
-    sfzyxqs  date comment '身份证有效期始',
-    sfzyxqz  date comment '身份证有效期止',
-    yhzgx    varchar(20) comment '与户主关系',
-    mz       varchar(20) comment '民族',
-    csrq     date comment '出生日期',
-    zzmm     varchar(30) comment '政治面貌',
-    whcd     varchar(20) comment '文化程度',
-    zxsqk    varchar(30) comment '在校生情况',
-    jkqk     varchar(20) comment '健康情况',
-    ldjn     varchar(20) comment '劳动技能情况',
-    sfxyjr   char(2) comment '是否现役军人',
-    sfylbx   char(2) comment '是否参加城乡居民基本医疗保险（或商业保险）',
-    sfxsdb   char(2) comment '是否享受低保',
-    sfcjylbx char(2) comment '是否参加城乡居民基本养老保险',
-    lxdh     varchar(20) comment '联系电话'
+    rybh       int auto_increment primary key comment '人员编号',
+    jtbh       int comment '家庭编号，对应家庭表',
+    xm         varchar(30) not null comment '姓名',
+    xb         char(2) comment '性别',
+    sfzmhm     varchar(20) comment '身份证明号码',
+    qfjg       varchar(64) comment '身份证签发机关',
+    sfzyxqs    date comment '身份证有效期始',
+    sfzyxqz    date comment '身份证有效期止',
+    yhzgx      varchar(20) comment '与户主关系',
+    mz         varchar(20) comment '民族',
+    csrq       date comment '出生日期',
+    zzmm       varchar(30) comment '政治面貌',
+    whcd       varchar(20) comment '文化程度',
+    zxsqk      varchar(30) comment '在校生情况',
+    sxhcxyy    varchar(64) comment '失学或辍学原因',
+    jkqk       varchar(20) comment '健康情况',
+    ldjn       varchar(20) comment '劳动技能情况',
+    sfhjpth    char(2) comment '是否会讲普通话',
+    sfxyjr     char(2) comment '是否现役军人',
+    sfcjylbx1  char(2) comment '是否参加城乡居民基本医疗保险',
+    sfcjsybx   char(2) comment '是否参加商业补充医疗保险',
+    sfxsdb     char(2) comment '是否享受低保',
+    sfcjylbx2  char(2) comment '是否参加城乡居民基本养老保险',
+    sfxsywbxbt char(2) comment '是否享受人身意外保险补贴',
+    lxdh       varchar(20) comment '联系电话'
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8 comment '贫困人员信息表';
+  DEFAULT CHARSET = utf8 comment '移民贫困人员信息表';
 
 drop table ym_family;
-#贫困人员家庭信息表
+#移民贫困人员家庭信息表
 create table ym_family
 (
     jtbh      int primary key comment '家庭id',
@@ -184,48 +188,58 @@ create table ym_family
     szjd      varchar(20) comment '所在街道',
     lxdh      varchar(20) comment '联系电话',
     khyh      varchar(32) comment '开户银行（选填）',
-    pkhsx     varchar(30) comment '贫困属性（选填）',
+    yhkh      varchar(20) comment '银行卡号（选填）',
+    pkhsx     varchar(30) comment '贫困户属性',
     sfdnytp   char(2) comment '是否当年预脱贫',
+    jhtpnd    varchar(10) comment '计划脱贫年度',
     fpnd      varchar(10) comment '返贫年度',
     fpyy      varchar(64) comment '返贫原因',
     sfjls     char(2) comment '是否军烈属',
     sfydfpbqh varchar(64) comment '是否异地扶贫搬迁户',
-    bqfs      varchar(64) comment '所在街道'
+    bqfs      varchar(64) comment '搬迁方式',
+    bqdz      varchar(80) comment '搬迁地址'
 ) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8 comment '贫困家庭信息表';
+  DEFAULT CHARSET = utf8 comment '移民贫困家庭信息表';
 
 
 drop table ym_family_status;
 #贫困家庭基本原因和状况
 create table ym_family_status
 (
-    jtzkbh      int primary key comment '家庭状况编号',
-    jtbh        int comment '家庭编号，对应家庭表',
-    zyzpyy      varchar(64) comment '主要致贫原因',
-    qtzpyy      varchar(64) comment '其他致贫原因',
-    ncjtrks     int comment '年初家庭人口数',
-    ndjtrks     int comment '年底家庭人口数',
-    gdmj        float comment '耕地面积（亩）',
-    yxggmj      float comment '有效灌溉面积（亩）',
-    ldmj        float comment '林地面积（亩）',
-    tghlmj      float comment '退耕还林面积（亩）',
-    lgmj        float comment '林果面积（亩）',
-    smmj        float comment '水面面积（亩）',
-    mcdmj       float comment '牧草地面积（亩）',
-    sftscyd     char(2) comment '是否通生产用电',
-    sftshyd     char(2) comment '是否通生活用电',
-    yssfkn      char(2) comment '饮水是否困难',
-    yssfaq      char(2) comment '饮水是否安全',
-    zfmj        float comment '住房面积（平方米）',
-    ywwscs      char(2) comment '有无卫生厕所',
-    sfwfh       char(2) comment '是否危房户',
-    wfdj        varchar(10) comment '危房等级',
-    zfjg        varchar(32) comment '住房结构',
-    sfjrnmzyhzs char(2) comment '是否加入农民专业合作社',
-    yczgljl     float comment '与村主干路距离（公里）',
-    rhllx       varchar(20) comment '入户路类型',
-    zyrllx      varchar(20) comment '主要燃料类型'
-);
+    jtzkbh       int primary key comment '家庭状况编号',
+    jtbh         int comment '家庭编号，对应家庭表',
+    zpyy1        varchar(64) comment '致贫原因1（必填）',
+    zpyy2        varchar(64) comment '致贫原因2（选填）',
+    zpyy3        varchar(64) comment '致贫原因3（选填）',
+    ncjtrks      int comment '年初家庭人口数',
+    ndjtrks      int comment '年底家庭人口数',
+    gdmj         float comment '耕地面积（亩）',
+    yxggmj       float comment '有效灌溉面积（亩）',
+    ldmj         float comment '林地面积（亩）',
+    tghlmj       float comment '退耕还林面积（亩）',
+    lgmj         float comment '林果面积（亩）',
+    smmj         float comment '水面面积（亩）',
+    mcdmj        float comment '牧草地面积（亩）',
+    sfyltqydd    char(2) comment '是否有龙头企业带动',
+    sfycyzfdtrdd char(2) comment '是否有创业致富带头人带动',
+    sftscyd      char(2) comment '是否通生产用电',
+    sftshyd      char(2) comment '是否通生活用电',
+    sftgbds      char(2) comment '是否通广播电视',
+    yssfkn       char(2) comment '饮水是否困难',
+    yssfaq       char(2) comment '饮水是否安全',
+    zfmj         float comment '住房面积（平方米）',
+    ywwscs       char(2) comment '有无卫生厕所',
+    sfwfh        char(2) comment '是否危房户',
+    wfdj         varchar(10) comment '危房等级',
+    wgnd         varchar(10) comment '危改年度',
+    zfjg         varchar(32) comment '住房结构',
+    sfjrnmzyhzs  char(2) comment '是否加入农民专业合作社',
+    yczgljl      float comment '与村主干路距离（公里）',
+    rhllx        varchar(20) comment '入户路类型',
+    zyrllx       varchar(20) comment '主要燃料类型',
+    bgqksm       varchar(256) comment '变更情况说明'
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8 comment '致贫原因及家庭基本条件表';
 
 
 drop table ym_relocate_petition;

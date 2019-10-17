@@ -77,5 +77,16 @@ public interface SysUserDao {
 
 
 
+    /**
+     * @author:  by tpc
+     * @date: 2019/10/17 22:01
+     * @description:  新增用户信息
+     */
+    @Insert("insert into frm_sysuser(userName,password,department,sex,birthday,sfzmhm,email,ipks,ipjs,zhyxq,mmyxq,yhlx,lxdh,zjdlip,zt,cjsj) values(#{userName},#{password},#{department},#{sex},#{birthday},#{sfzmhm},#{email},#{ipks},#{ipjs},#{zhyxq},#{mmyxq},#{yhlx},#{lxdh},#{zjdlip},#{zt},#{cjsj})")
+    int addSysUser(SysUser sysUser);
+
+
+
+
 
 }
