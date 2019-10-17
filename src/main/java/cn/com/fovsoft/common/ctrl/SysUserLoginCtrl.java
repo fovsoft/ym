@@ -196,7 +196,7 @@ public class SysUserLoginCtrl {
 //            }
 
             modelAndView.addObject("rootSysMenuList",rootSysMenuList);
-            modelAndView.setViewName("main");
+            modelAndView.setViewName("index");
         }else {
             modelAndView.setViewName("redirect:/login");
         }
