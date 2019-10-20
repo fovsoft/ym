@@ -176,11 +176,17 @@ create table ym_person
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 comment '移民贫困人员信息表';
 
+insert into ym_person(jtbh,xm,xb,sfzmhm,qfjg,sfzyxqs,sfzyxqz,yhzgx,mz,csrq,zzmm,whcd,zxsqk,sxhcxyy,jkqk,ldjn,sfhjpth,sfxyjr,sfcjylbx1,sfcjsybx,sfxsdb,sfcjylbx2,sfxsywbxbt,lxdh)
+values (1,'韦贞英','男','452731196205123035','大化瑶族自治县公安局','2008-12-22','2099-12-31','本人','汉','1962-05-12','团员','高中','无','无','健康','务农','否','否','否','否','否','否','否','18934943219');
+
+
+
+
 drop table ym_family;
 #移民贫困人员家庭信息表
 create table ym_family
 (
-    jtbh      int primary key comment '家庭id',
+    jtbh      int auto_increment primary key comment '家庭id',
     szs       varchar(10) comment '所在市',
     szx       varchar(20) comment '所在县',
     szc       varchar(20) comment '所在镇',
@@ -200,6 +206,9 @@ create table ym_family
     bqdz      varchar(80) comment '搬迁地址'
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 comment '移民贫困家庭信息表';
+
+insert into ym_family(szs,szx,szc,szz,szjd,lxdh,khyh,yhkh,pkhsx,sfdnytp,jhtpnd,fpnd,fpyy,sfjls,sfydfpbqh,bqfs,bqdz) values
+('河池市','大化县','雅龙乡','竹山村','弄母屯','18200000000','中国农业银行','','','是','2020','2013','受灾','否','否','','');
 
 
 drop table ym_family_status;
@@ -240,6 +249,8 @@ create table ym_family_status
     bgqksm       varchar(256) comment '变更情况说明'
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 comment '致贫原因及家庭基本条件表';
+
+insert into
 
 
 drop table ym_relocate_petition;

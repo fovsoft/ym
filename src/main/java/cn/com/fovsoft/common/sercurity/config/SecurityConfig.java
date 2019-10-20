@@ -60,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/global/**","/static/**","/templates/**").permitAll()
-                .antMatchers("/login","/login_page","/code").permitAll()
+                .antMatchers("/login","/login_page","/code","/ym/add","/ym/all").permitAll()
                 //主页放行
                 .antMatchers("/index").permitAll()
                 .anyRequest().authenticated()
