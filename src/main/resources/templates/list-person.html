@@ -425,7 +425,10 @@
 
                 <b class="arrow"></b>
             </li>
-            <li class="#" th:each="sysMenu : ${rootSysMenuList}">
+
+
+            <!-- 动态生成菜单 -->
+            <li th:class="${sysMenu.menuName == '移民管理'}?'active open'" th:each="sysMenu : ${rootSysMenuList}">  <!-- 这里写死判断了，改进思路：通过对比当前URL与菜单的关系可避免写死 -->
                 <a th:href="@{${sysMenu.url}}" class="dropdown-toggle">
                     <i class="menu-icon fa fa-desktop"></i>
                     <span class="menu-text" th:text="${sysMenu.menuName}">
@@ -435,17 +438,19 @@
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-                    <li class="" th:each="childMenu : ${sysMenu.childMenuList}">
-                        <a th:href="@{${childMenu.url}}" th:text="${childMenu.menuName}">
+                    <li th:class="${childMenu.menuName == '移民信息采集'}?'active'" th:each="childMenu : ${sysMenu.childMenuList}"> <!-- 同上 -->
+                        <a th:href="@{${childMenu.url}}" >
                             <i class="menu-icon fa fa-caret-right"></i>
-
+                            <span th:text="${childMenu.menuName}"></span> <!-- 这里存疑，即如何摆脱强行加入的span标签 -->
                         </a>
 
                         <b class="arrow"></b>
                     </li>
                 </ul>
-
             </li>
+
+
+
 
             <li class="">
                 <a href="#" class="dropdown-toggle">
@@ -645,7 +650,7 @@
                 </ul>
             </li>
 
-            <li class="active open">
+            <li>
                 <a href="#" class="dropdown-toggle">
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text"> Tables </span>
@@ -665,7 +670,7 @@
                         <b class="arrow"></b>
                     </li>
 
-                    <li class="active">
+                    <li>
                         <a href="jqgrid.html">
                             <i class="menu-icon fa fa-caret-right"></i>
                             jqGrid plugin
