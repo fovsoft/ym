@@ -63,7 +63,7 @@
             <a href="index.html" class="navbar-brand">
                 <small>
                     <i class="fa fa-leaf"></i>
-                    Ace Admin
+                    大化县易地搬迁信息管理系统
                 </small>
             </a>
         </div>
@@ -327,7 +327,7 @@
 
                 <li class="light-blue dropdown-modal">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="@{/static/images/avatars/user.jpg" alt="Jason's Photo" />
+                        <img class="nav-user-photo" th:src="@{/static/images/avatars/user.jpg}" alt="Jason's Photo" />
                         <span class="user-info">
 									<small>Welcome,</small>
 									Jason
@@ -414,6 +414,27 @@
                 </a>
 
                 <b class="arrow"></b>
+            </li>
+            <li class="#" th:each="sysMenu : ${rootSysMenuList}">
+                <a th:href="@{${sysMenu.url}}" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-desktop"></i>
+                    <span class="menu-text" th:text="${sysMenu.menuName}">
+							</span>
+
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="" th:each="childMenu : ${sysMenu.childMenuList}">
+                        <a th:href="@{${childMenu.url}}" th:text="${childMenu.menuName}">
+                            <i class="menu-icon fa fa-caret-right"></i>
+
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+
             </li>
 
             <li class="">
@@ -1059,7 +1080,7 @@
 <script src="@{/static/js/jquery-1.11.3.min.js}"></script>
 <![endif]-->
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if('ontouchstart' in document.documentElement) document.write("<script src='/static/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
 <script src="@{/static/js/bootstrap.min.js}"></script>
 
@@ -1160,6 +1181,7 @@
             data: ymPerson_data,
             datatype: "json",//数据封装方式为json
             url: "/ym/all",
+            mtype:"POST",
             height: 250,
             colNames:['人员编号','家庭编号，对应家庭表','姓名','性别','身份证明号码','身份证签发机关','身份证有效期始','身份证有效期止','与户主关系','民族','出生日期','政治面貌','文化程度','在校生情况','失学或辍学原因','健康情况','劳动技能情况','是否会讲普通话','是否现役军人','是否参加城乡居民基本医疗保险','是否参加商业补充医疗保险','是否享受低保','是否参加城乡居民基本养老保险','是否享受人身意外保险补贴','联系电话'],
             colModel:[

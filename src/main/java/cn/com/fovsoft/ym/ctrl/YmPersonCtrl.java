@@ -1,13 +1,17 @@
 package cn.com.fovsoft.ym.ctrl;
 
+import cn.com.fovsoft.common.bean.SysMenu;
+import cn.com.fovsoft.common.constant.VarConstant;
 import cn.com.fovsoft.ym.bean.YmPerson;
 import cn.com.fovsoft.ym.service.YmPersonService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,7 +26,7 @@ import java.util.Map;
  * description: 贫困人员控制类
  **/
 
-@RestController
+@Controller
 public class YmPersonCtrl {
 
 
@@ -41,7 +45,7 @@ public class YmPersonCtrl {
      */
     @RequestMapping(value = "/ym/all",method = RequestMethod.POST)
     @ResponseBody
-    public String FindPerson(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void FindPerson(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //获取到所有用户信息
         List<YmPerson> ymPersonList = ymPersonService.findAllYmPerson();
         //用来序列化json数据的map
@@ -52,11 +56,18 @@ public class YmPersonCtrl {
         response.getWriter().write(objectMapper.writeValueAsString(map));
         response.getWriter().flush();
         response.getWriter().close();
-        return "list-person";
     }
 
     @RequestMapping(value="/ym/add")
-    public String listPersonHtml(){
-        return "list-person";
+    public ModelAndView listPersonHtml(HttpServletRequest request){
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("list-person");
+        modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
+        for(SysMenu sysMenu:(List<SysMenu>) request.getSession().getAttribute("rootSysMenuList")){
+            System.out.println(sysMenu.getMenuName());
+        }
+
+        return modelAndView;
     }
 }

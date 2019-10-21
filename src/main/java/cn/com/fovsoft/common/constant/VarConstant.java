@@ -11,6 +11,9 @@ public interface VarConstant {
     //会话中用户名对于标识
     public static final String SESSION_USER = "sessionUser";
 
+    //session中存放的菜单
+    public static final String SESSION_MENU="rootSysMenuList";
+
     //页面分页数量
     public static final Integer PAGE_SIZE = 6;
     //页面排序数量
