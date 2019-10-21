@@ -33,16 +33,26 @@
     <link rel="stylesheet" th:href="@{/static/css/ace-ie.min.css}"/>
     <![endif]-->
 
+    <style>
+        .ui-jqgrid .ui-jqgrid-bdiv {
+            border-top: 1px solid #E1E1E1;
+            overflow-x: auto;
+        }
+        .frozen-div, .frozen-bdiv {
+            background-color: #E4E6E9;/*与网页背景色一致*/
+        }
+    </style>
+
     <!-- inline styles related to this page -->
 
     <!-- ace settings handler -->
-    <script src="@{/static/js/ace-extra.min.js}"></script>
+    <script th:src="@{/static/js/ace-extra.min.js}"></script>
 
     <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
     <!--[if lte IE 8]>
-    <script src="@{/static/js/html5shiv.min.js}"></script>
-    <script src="@{/static/js/respond.min.js}"></script>
+    <script th:src="@{/static/js/html5shiv.min.js}"></script>
+    <script th:src="@{/static/js/respond.min.js}"></script>
     <![endif]-->
 </head>
 
@@ -63,7 +73,7 @@
             <a href="index.html" class="navbar-brand">
                 <small>
                     <i class="fa fa-leaf"></i>
-                    Ace Admin
+                    大化县易地搬迁信息管理系统
                 </small>
             </a>
         </div>
@@ -231,7 +241,7 @@
                             <ul class="dropdown-menu dropdown-navbar">
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="@{/static/images/avatars/avatar.png}" class="msg-photo" alt="Alex's Avatar" />
+                                        <img th:src="@{/static/images/avatars/avatar.png}" class="msg-photo" alt="Alex's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Alex:</span>
@@ -248,7 +258,7 @@
 
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="@{/static/images/avatars/avatar3.png}" class="msg-photo" alt="Susan's Avatar" />
+                                        <img th:src="@{/static/images/avatars/avatar3.png}" class="msg-photo" alt="Susan's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Susan:</span>
@@ -265,7 +275,7 @@
 
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="@{/static/images/avatars/avatar4.png}" class="msg-photo" alt="Bob's Avatar" />
+                                        <img th:src="@{/static/images/avatars/avatar4.png}" class="msg-photo" alt="Bob's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Bob:</span>
@@ -282,7 +292,7 @@
 
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="@{/static/images/avatars/avatar2.png}" class="msg-photo" alt="Kate's Avatar" />
+                                        <img th:src="@{/static/images/avatars/avatar2.png}" class="msg-photo" alt="Kate's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Kate:</span>
@@ -299,7 +309,7 @@
 
                                 <li>
                                     <a href="#" class="clearfix">
-                                        <img src="@{/static/images/avatars/avatar5.png}" class="msg-photo" alt="Fred's Avatar" />
+                                        <img th:src="@{/static/images/avatars/avatar5.png}" class="msg-photo" alt="Fred's Avatar" />
                                         <span class="msg-body">
 													<span class="msg-title">
 														<span class="blue">Fred:</span>
@@ -327,7 +337,7 @@
 
                 <li class="light-blue dropdown-modal">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-                        <img class="nav-user-photo" src="@{/static/images/avatars/user.jpg" alt="Jason's Photo" />
+                        <img class="nav-user-photo" th:src="@{/static/images/avatars/user.jpg}" alt="Jason's Photo" />
                         <span class="user-info">
 									<small>Welcome,</small>
 									Jason
@@ -414,6 +424,27 @@
                 </a>
 
                 <b class="arrow"></b>
+            </li>
+            <li class="#" th:each="sysMenu : ${rootSysMenuList}">
+                <a th:href="@{${sysMenu.url}}" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-desktop"></i>
+                    <span class="menu-text" th:text="${sysMenu.menuName}">
+							</span>
+
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li class="" th:each="childMenu : ${sysMenu.childMenuList}">
+                        <a th:href="@{${childMenu.url}}" th:text="${childMenu.menuName}">
+                            <i class="menu-icon fa fa-caret-right"></i>
+
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+
             </li>
 
             <li class="">
@@ -1051,41 +1082,30 @@
 <!-- basic scripts -->
 
 <!--[if !IE]> -->
-<script src="@{/static/js/jquery-2.1.4.min.js}"></script>
+<script th:src="@{/static/js/jquery-2.1.4.min.js}"></script>
 
 <!-- <![endif]-->
 
 <!--[if IE]>
-<script src="@{/static/js/jquery-1.11.3.min.js}"></script>
+<script th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
 <![endif]-->
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if('ontouchstart' in document.documentElement) document.write("<script src='/static/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
-<script src="@{/static/js/bootstrap.min.js}"></script>
+<script th:src="@{/static/js/bootstrap.min.js}"></script>
 
 <!-- page specific plugin scripts -->
-<script src="@{/static/js/bootstrap-datepicker.min.js}"></script>
-<script src="@{/static/js/jquery.jqGrid.min.js}"></script>
-<script src="@{/static/js/grid.locale-en.js}"></script>
+<script th:src="@{/static/js/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/static/js/jquery.jqGrid.min.js}"></script>
+<script th:src="@{/static/js/grid.locale-en.js}"></script>
 
 <!-- ace scripts -->
-<script src="@{/static/js/ace-elements.min.js}"></script>
-<script src="@{/static/js/ace.min.js}"></script>
+<script th:src="@{/static/js/ace-elements.min.js}"></script>
+<script th:src="@{/static/js/ace.min.js}"></script>
 
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
 
-    var subgrid_data =
-        [
-            {id:"1", name:"sub grid item 1", qty: 11},
-            {id:"2", name:"sub grid item 2", qty: 3},
-            {id:"3", name:"sub grid item 3", qty: 12},
-            {id:"4", name:"sub grid item 4", qty: 5},
-            {id:"5", name:"sub grid item 5", qty: 2},
-            {id:"6", name:"sub grid item 6", qty: 9},
-            {id:"7", name:"sub grid item 7", qty: 3},
-            {id:"8", name:"sub grid item 8", qty: 8}
-        ];
 
     jQuery(function($) {
         var grid_selector = "#grid-table";
@@ -1128,40 +1148,11 @@
 
 
         jQuery(grid_selector).jqGrid({
-            //direction: "rtl",
-
-            //subgrid options
-            subGrid : true,
-            //subGridModel: [{ name : ['No','Item Name','Qty'], width : [55,200,80] }],
-            //datatype: "xml",
-            subGridOptions : {
-                plusicon : "ace-icon fa fa-plus center bigger-110 blue",
-                minusicon  : "ace-icon fa fa-minus center bigger-110 blue",
-                openicon : "ace-icon fa fa-chevron-right center orange"
-            },
-            //for this example we are using local data
-            subGridRowExpanded: function (subgridDivId, rowId) {
-                var subgridTableId = subgridDivId + "_t";
-                $("#" + subgridDivId).html("<table id='" + subgridTableId + "'></table>");
-                $("#" + subgridTableId).jqGrid({
-                    datatype: 'local',
-                    data: subgrid_data,
-                    colNames: ['No','Item Name','Qty'],
-                    colModel: [
-                        { name: 'id', width: 50 },
-                        { name: 'name', width: 150 },
-                        { name: 'qty', width: 50 }
-                    ]
-                });
-            },
-
-
-
-            data: ymPerson_data,
             datatype: "json",//数据封装方式为json
-            url: "/ym/all",
+            url: '/ym/all',
+            mtype:"POST",
             height: 250,
-            colNames:['人员编号','家庭编号，对应家庭表','姓名','性别','身份证明号码','身份证签发机关','身份证有效期始','身份证有效期止','与户主关系','民族','出生日期','政治面貌','文化程度','在校生情况','失学或辍学原因','健康情况','劳动技能情况','是否会讲普通话','是否现役军人','是否参加城乡居民基本医疗保险','是否参加商业补充医疗保险','是否享受低保','是否参加城乡居民基本养老保险','是否享受人身意外保险补贴','联系电话'],
+            colNames:[' ','人员编号','家庭编号','姓名','性别','身份证明号码','身份证签发机关','身份证有效期始','身份证有效期止','与户主关系','民族','出生日期','政治面貌','文化程度','在校生情况','失学或辍学原因','健康情况','劳动技能情况','是否会讲普通话','是否现役军人','是否参加城乡居民基本医疗保险','是否参加商业补充医疗保险','是否享受低保','是否参加城乡居民基本养老保险','是否享受人身意外保险补贴','联系电话'],
             colModel:[
                 {name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
                     formatter:'actions',
@@ -1173,33 +1164,32 @@
                         //editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
                     }
                 },
-                {name:'rybh',       index:'rybh',       width:20, editable:true, sorttype:"int" },
-                {name:'jtbh',       index:'jtbh',       width:20, editable:true, sorttype:"int" },
-                {name:'xm',         index:'xm',         width:40, editable:true,                 },
-                {name:'sex',        index:'sex',        width:20, editable:true,                 },
-                {name:'sfzmhm',     index:'sfzmhm',     width:60, editable:true,                 },
-                {name:'qfjg',       index:'qfjg',       width:60, editable:true,                 },
-                {name:'sfzyxqs',    index:'sfzyxqs',    width:60, editable:true, sorttype:"date", unformat: pickDate },
-                {name:'sfzyxqz',    index:'sfzyxqz',    width:60, editable:true, sorttype:"date", unformat: pickDate },
-                {name:'yhzgx',      index:'yhzgx',      width:60, editable:true,                 },
-                {name:'mz',         index:'mz',         width:20, editable:true,                 },
-                {name:'csrq',       index:'csrq',       width:60, editable:true, sorttype:"date", unformat: pickDate },
-                {name:'zzmm',       index:'zzmm',       width:60, editable:true,                 },
-                {name:'whcd',       index:'whcd',       width:60, editable:true,                 },
-                {name:'zxsqk',      index:'zxsqk',      width:60, editable:true,                 },
-                {name:'sxhcxyy',    index:'sxhcxyy',    width:60, editable:true,                 },
-                {name:'jkqk',       index:'jkqk',       width:60, editable:true,                 },
-                {name:'ldjn',       index:'ldjn',       width:60, editable:true,                 },
-                {name:'sfhjpth',    index:'sfhjpth',    width:60, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfxyjr',     index:'sfxyjr',     width:60, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfcjylbx1',  index:'sfcjylbx1',  width:60, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfcjsybx',   index:'sfcjsybx',   width:60, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfxsdb',     index:'sfxsdb',     width:60, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfcjylbx2',  index:'sfcjylbx2',  width:60, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfxsywbxbt', index:'sfxsywbxbt', width:60, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'lxdh',       index:'lxdh',       width:60, editable:true                  }
+                {name:'rybh',       index:'rybh',       width:60, fixed:true, editable:true, sorttype:"int" },
+                {name:'jtbh',       index:'jtbh',       width:60, fixed:true, editable:true, sorttype:"int" },
+                {name:'xm',         index:'xm',         width:60, fixed:true, editable:true,                 },
+                {name:'xb',         index:'xb',         width:40, fixed:true, editable:true,                 },
+                {name:'sfzmhm',     index:'sfzmhm',     width:140, fixed:true, editable:true,                 },
+                {name:'qfjg',       index:'qfjg',       width:150, fixed:true, editable:true,                 },
+                {name:'sfzyxqs',    index:'sfzyxqs',    width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'sfzyxqz',    index:'sfzyxqz',    width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'yhzgx',      index:'yhzgx',      width:80, fixed:true, editable:true,                 },
+                {name:'mz',         index:'mz',         width:40, fixed:true, editable:true,                 },
+                {name:'csrq',       index:'csrq',       width:70, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'zzmm',       index:'zzmm',       width:70, fixed:true, editable:true,                 },
+                {name:'whcd',       index:'whcd',       width:70, fixed:true, editable:true,                 },
+                {name:'zxsqk',      index:'zxsqk',      width:80, fixed:true, editable:true,                 },
+                {name:'sxhcxyy',    index:'sxhcxyy',    width:110, fixed:true, editable:true,                 },
+                {name:'jkqk',       index:'jkqk',       width:70, fixed:true, editable:true,                 },
+                {name:'ldjn',       index:'ldjn',       width:90, fixed:true, editable:true,                 },
+                {name:'sfhjpth',    index:'sfhjpth',    width:110, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfxyjr',     index:'sfxyjr',     width:90, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfcjylbx1',  index:'sfcjylbx1',  width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfcjsybx',   index:'sfcjsybx',   width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfxsdb',     index:'sfxsdb',     width:90, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfcjylbx2',  index:'sfcjylbx2',  width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfxsywbxbt', index:'sfxsywbxbt', width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'lxdh',       index:'lxdh',       width:90, fixed:true, editable:true                  }
             ],
-
             viewrecords : true,
             rowNum:10,
             rowList:[10,20,30],
@@ -1208,7 +1198,6 @@
             //toppager: true,
 
             multiselect: true,
-            //multikey: "ctrlKey",
             multiboxonly: true,
 
             loadComplete : function() {
@@ -1223,22 +1212,7 @@
             },
 
             editurl: "./dummy.php",//nothing is saved
-            caption: "jqGrid with inline editing"
-
-            //,autowidth: true,
-
-
-            /**
-             ,
-             grouping:true,
-             groupingView : {
-						 groupField : ['name'],
-						 groupDataSorted : true,
-						 plusicon : 'fa fa-chevron-down bigger-110',
-						 minusicon : 'fa fa-chevron-up bigger-110'
-					},
-             caption: "Grouping"
-             */
+            caption: "贫困人员信息列表"
 
         });
         $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size

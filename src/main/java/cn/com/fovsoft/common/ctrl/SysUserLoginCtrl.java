@@ -150,7 +150,7 @@ public class SysUserLoginCtrl {
      * @description: 根据权限信息加载菜单
      */
     @RequestMapping("/index")
-    public ModelAndView loginToIndex(HttpServletResponse response){
+    public ModelAndView loginToIndex(HttpServletRequest request){
 
         //返回对象
         ModelAndView modelAndView = new ModelAndView();
@@ -195,6 +195,8 @@ public class SysUserLoginCtrl {
 //                e.printStackTrace();
 //            }
 
+            //把菜单信息写入session
+            request.getSession().setAttribute("rootSysMenuList",rootSysMenuList);
             modelAndView.addObject("rootSysMenuList",rootSysMenuList);
             modelAndView.setViewName("index");
         }else {

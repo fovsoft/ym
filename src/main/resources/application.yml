@@ -6,7 +6,8 @@ spring:
   thymeleaf:
     cache: false
     prefix:
-      classpath: /templates
+      classpath: /templates/
+    suffix: .html
   mvc:
     static-path-pattern: /static/**
  #数据源
