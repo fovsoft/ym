@@ -144,6 +144,35 @@ create table persistent_logins
   DEFAULT CHARSET = utf8 comment '验证用户token存放表';
 
 
+drop table ym_family;
+#移民贫困人员家庭信息表
+create table ym_family
+(
+    jtbh      int auto_increment primary key comment '家庭id',
+    szs       varchar(10) comment '所在市',
+    szx       varchar(20) comment '所在县',
+    szc       varchar(20) comment '所在镇',
+    szz       varchar(20) comment '所在村',
+    szjd      varchar(20) comment '所在街道',
+    lxdh      varchar(20) comment '联系电话',
+    khyh      varchar(32) comment '开户银行（选填）',
+    yhkh      varchar(20) comment '银行卡号（选填）',
+    pkhsx     varchar(30) comment '贫困户属性',
+    sfdnytp   char(2) comment '是否当年预脱贫',
+    jhtpnd    varchar(10) comment '计划脱贫年度',
+    fpnd      varchar(10) comment '返贫年度',
+    fpyy      varchar(64) comment '返贫原因',
+    sfjls     char(2) comment '是否军烈属',
+    sfydfpbqh varchar(64) comment '是否异地扶贫搬迁户',
+    bqfs      varchar(64) comment '搬迁方式',
+    bqdz      varchar(80) comment '搬迁地址'
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8 comment '移民贫困家庭信息表';
+
+insert into ym_family(szs,szx,szc,szz,szjd,lxdh,khyh,yhkh,pkhsx,sfdnytp,jhtpnd,fpnd,fpyy,sfjls,sfydfpbqh,bqfs,bqdz) values
+('河池市','大化县','雅龙乡','竹山村','弄母屯','18200000000','中国农业银行','','','是','2020','2013','受灾','否','否','','');
+
+
 drop table ym_person;
 #用来存放移民信息的表
 create table ym_person
@@ -178,37 +207,6 @@ create table ym_person
 
 insert into ym_person(jtbh,xm,xb,sfzmhm,qfjg,sfzyxqs,sfzyxqz,yhzgx,mz,csrq,zzmm,whcd,zxsqk,sxhcxyy,jkqk,ldjn,sfhjpth,sfxyjr,sfcjylbx1,sfcjsybx,sfxsdb,sfcjylbx2,sfxsywbxbt,lxdh)
 values (1,'韦贞英','男','452731196205123035','大化瑶族自治县公安局','2008-12-22','2099-12-31','本人','汉','1962-05-12','团员','高中','无','无','健康','务农','否','否','否','否','否','否','否','18934943219');
-
-
-
-
-drop table ym_family;
-#移民贫困人员家庭信息表
-create table ym_family
-(
-    jtbh      int auto_increment primary key comment '家庭id',
-    szs       varchar(10) comment '所在市',
-    szx       varchar(20) comment '所在县',
-    szc       varchar(20) comment '所在镇',
-    szz       varchar(20) comment '所在村',
-    szjd      varchar(20) comment '所在街道',
-    lxdh      varchar(20) comment '联系电话',
-    khyh      varchar(32) comment '开户银行（选填）',
-    yhkh      varchar(20) comment '银行卡号（选填）',
-    pkhsx     varchar(30) comment '贫困户属性',
-    sfdnytp   char(2) comment '是否当年预脱贫',
-    jhtpnd    varchar(10) comment '计划脱贫年度',
-    fpnd      varchar(10) comment '返贫年度',
-    fpyy      varchar(64) comment '返贫原因',
-    sfjls     char(2) comment '是否军烈属',
-    sfydfpbqh varchar(64) comment '是否异地扶贫搬迁户',
-    bqfs      varchar(64) comment '搬迁方式',
-    bqdz      varchar(80) comment '搬迁地址'
-) ENGINE = InnoDB
-  DEFAULT CHARSET = utf8 comment '移民贫困家庭信息表';
-
-insert into ym_family(szs,szx,szc,szz,szjd,lxdh,khyh,yhkh,pkhsx,sfdnytp,jhtpnd,fpnd,fpyy,sfjls,sfydfpbqh,bqfs,bqdz) values
-('河池市','大化县','雅龙乡','竹山村','弄母屯','18200000000','中国农业银行','','','是','2020','2013','受灾','否','否','','');
 
 
 drop table ym_family_status;
