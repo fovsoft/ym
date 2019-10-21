@@ -6,6 +6,7 @@ import cn.com.fovsoft.ym.bean.YmPerson;
 import cn.com.fovsoft.ym.service.YmPersonService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -45,25 +46,36 @@ public class YmPersonCtrl {
     @RequestMapping(value = "/ym/all",method = RequestMethod.POST)
     @ResponseBody
     public void FindPerson(HttpServletRequest request,HttpServletResponse response) throws IOException {
-        for(Enumeration e= request.getAttributeNames();e.hasMoreElements();){
-            System.out.println(e.nextElement());
-        }
+//        for(Enumeration e= request.getParameterMap();e.hasMoreElements();){
+//            System.out.println(e.nextElement());
+//        }
         //ModelAndView modelAndView = new ModelAndView();
-        int pageNo = (int)request.getAttribute("page");
-        int pageSize = (int)request.getAttribute("rowNum");
-        System.out.print(pageNo+"  "+pageSize);
+//        int pageNo = (int)request.getAttribute("page");
+//        int pageSize = (int)request.getAttribute("rowNum");
+//        System.out.print(pageNo+"  "+pageSize);
         //分页获取到所有用户信息
-        PageHelper.startPage(pageNo,pageSize);
+        System.out.println(request.getParameter("page"));
+        PageHelper.startPage(1,10);
         List<YmPerson> ymPersonList = ymPersonService.findAllYmPerson();
+        PageInfo<YmPerson> pageInfo = new PageInfo<YmPerson>(ymPersonList);
+        //获得总记录数
+        long records = pageInfo.getTotal();
+        //默认当前页码
+        int page = 1;
+        //获得总页数
+        int total = pageInfo.getPages();
         //用来序列化json数据的map
         Map<String,Object> map=new HashMap<>();
         //设置json格式写出
-        map.put("ymPerson_data",ymPersonList);
-        System.out.println(objectMapper.writeValueAsString(ymPersonList));
+        map.put("rows",ymPersonList);
+        map.put("page",page);
+        map.put("total",total);
+        map.put("records",records);
+        System.out.println(objectMapper.writeValueAsString(map));
        // modelAndView.addObject("rows",objectMapper.writeValueAsString(ymPersonList));
         response.setContentType("application/json;charset=utf-8");
-        map.put("ymPerson_data",ymPersonList);
-        response.getWriter().write(objectMapper.writeValueAsString(ymPersonList));
+        //map.put("ymPerson_data",ymPersonList);
+        response.getWriter().write(objectMapper.writeValueAsString(map));
         response.getWriter().flush();
         response.getWriter().close();
 //        return modelAndView;
