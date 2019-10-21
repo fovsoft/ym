@@ -65,7 +65,7 @@ public interface YmPersonDao {
      * @date: 2019/10/20 16:43
      * @description:  获取所有贫困人员信息
      */
-    @Select("select * from ym_person order by id asc")
+    @Select("select * from ym_person order by rybh asc")
     @ResultMap(value = {"ymPersonResultMap"})
     List<YmPerson> findAllYmPerson();
 
