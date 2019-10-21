@@ -413,7 +413,7 @@
 						<b class="arrow"></b>
 					</li>
 					<li class="#" th:each="sysMenu : ${rootSysMenuList}">
-						<a href="#" class="dropdown-toggle">
+						<a th:href="@{${sysMenu.url}}" class="dropdown-toggle">
 							<i class="menu-icon fa fa-desktop"></i>
 							<span class="menu-text" th:text="${sysMenu.menuName}">
 							</span>
@@ -423,7 +423,7 @@
 						<b class="arrow"></b>
 						<ul class="submenu">
 							<li class="" th:each="childMenu : ${sysMenu.childMenuList}">
-								<a href="top-menu.html" th:text="${childMenu.menuName}">
+								<a th:href="@{${childMenu.url}}" th:text="${childMenu.menuName}">
 									<i class="menu-icon fa fa-caret-right"></i>
 
 								</a>
