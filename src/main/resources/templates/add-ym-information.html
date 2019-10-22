@@ -12,6 +12,12 @@
     <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/static/font-awesome/4.5.0/css/font-awesome.min.css}" />
 
+
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" th:href="@{/static/css/jquery-ui.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap-datepicker3.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/ui.jqgrid.min.css}"/>
+
     <!-- page specific plugin styles -->
     <link rel="stylesheet" th:href="@{/static/css/select2.min.css}" />
 
@@ -30,6 +36,16 @@
     <!--[if lte IE 9]>
     <link rel="stylesheet" th:href="@{/static/css/ace-ie.min.css}" />
     <![endif]-->
+
+    <style>
+        .ui-jqgrid .ui-jqgrid-bdiv {
+            border-top: 1px solid #E1E1E1;
+            overflow-x: auto;
+        }
+        .frozen-div, .frozen-bdiv {
+            background-color: #E4E6E9;/*与网页背景色一致*/
+        }
+    </style>
 
     <!-- inline styles related to this page -->
 
@@ -1296,9 +1312,8 @@
                                             </div>
 
                                             <div class="step-pane" data-step="2">
-                                                <div class="col-xs-12">
-                                                    <!-- PAGE CONTENT BEGINS -->
-                                                    <div class="alert alert-info">
+                                                <div class="col-xs-12" id="jqgrid-dev">
+                                                    <div class="alert alert-info" id="alet-dev">
                                                         <button class="close" data-dismiss="alert">
                                                             <i class="ace-icon fa fa-times"></i>
                                                         </button>
@@ -1310,15 +1325,160 @@
                                                     <table id="grid-table"></table>
 
                                                     <div id="grid-pager"></div>
-
-                                                    <!-- PAGE CONTENT ENDS -->
-                                                </div><!-- /.col -->
+                                                </div>
                                             </div>
 
                                             <div class="step-pane" data-step="3">
-                                                <div class="center">
-                                                    <h3 class="blue lighter">This is step 3</h3>
-                                                </div>
+                                                <form class="form-horizontal hide" id="cause-form" method="get">
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="zpyy1">致贫原因1(必填):</label>
+
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <div class="clearfix">
+                                                                <input type="text" name="zpyy1" id="zpyy1" class="col-xs-12 col-sm-5" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="space-2"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="lxdh">致贫原因2(选填):</label>
+
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <div class="clearfix">
+                                                                <input type="text" name="zpyy2" id="zpyy2" class="col-xs-12 col-sm-4" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="space-2"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="zpyy3">致贫原因3(选填):</label>
+
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <div class="clearfix">
+                                                                <input type="text" name="zpyy3" id="zpyy3" class="col-xs-12 col-sm-4" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="hr hr-dotted"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="ncjtrks">年初家庭人口数:</label>
+
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <div class="clearfix">
+                                                                <input type="text" id="ncjtrks" name="ncjtrks" class="col-xs-12 col-sm-5" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="space-2"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="ndjtrks">年底家庭人口数:</label>
+
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <div class="clearfix">
+                                                                <input type="text" id="ndjtrks" name="ndjtrks" class="col-xs-12 col-sm-5" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="space-2"></div>
+                                                    <h3 class="lighter block green">生产生活条件</h3>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="gdmj">耕地面积(亩):</label>
+
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <div class="clearfix">
+                                                                <input type="text" id="gdmj" name="gdmj" class="col-xs-12 col-sm-8" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="hr hr-dotted"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="ldmj">林地面积(亩):</label>
+
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <div class="clearfix">
+                                                                <input type="text" id="ldmj" name="ldmj" class="col-xs-12 col-sm-8" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="space-2"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="tghlmj">退耕还林面积(亩):</label>
+
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <div class="clearfix">
+                                                                <input type="text" id="tghlmj" name="tghlmj" class="col-xs-12 col-sm-12" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="hr hr-dotted"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="sfydbqh">是否异地搬迁户:</label>
+
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <select id="sfydbqh" name="sfydbqh" class="select2" data-placeholder="Click to Choose...">
+                                                                <option value="">&nbsp;</option>
+                                                                <option value="yes">是</option>
+                                                                <option value="no">否</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="space-2"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="bqfs">搬迁方式</label>
+
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <div class="clearfix">
+                                                                <select class="input-medium" id="bqfs" name="bqfs">
+                                                                    <option value="">------------------</option>
+                                                                    <option value="linux">行政村整体搬迁</option>
+                                                                    <option value="windows">自然村整体搬迁</option>
+                                                                    <option value="mac">建档立卡贫困户个别搬迁</option>
+                                                                </select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="space-2"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="bqdz">搬迁地址:</label>
+
+                                                        <div class="col-xs-12 col-sm-9">
+                                                            <div class="clearfix">
+                                                                <input type="url" id="bqdz" name="bqdz" class="col-xs-12 col-sm-12" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="space-8"></div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-xs-12 col-sm-4 col-sm-offset-3">
+                                                            <label>
+                                                                <input name="agree" id="agree" type="checkbox" class="ace" />
+                                                                <span class="lbl"> I accept the policy</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </div>
 
                                             <div class="step-pane" data-step="4">
@@ -1468,7 +1628,7 @@
 <script th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
 <![endif]-->
 <script type="text/javascript">
-    if('ontouchstart' in document.documentElement) document.write("<script src='assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+    if('ontouchstart' in document.documentElement) document.write("<script src='/static/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
 </script>
 <script th:src="@{/static/js/bootstrap.min.js}"></script>
 
@@ -1489,6 +1649,28 @@
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
     jQuery(function($) {
+
+
+        var grid_selector = "#grid-table";
+        var pager_selector = "#grid-pager";
+
+        var parent_column = $(grid_selector).closest("#alert-dev");
+        alert(parent_column.width());
+        //var parent_column = "#alert-dev";
+        //resize to fit page size
+        $(window).on('resize.jqGrid', function () {
+            $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
+        })
+
+        //resize on sidebar collapse/expand
+        $(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
+            if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
+                //setTimeout is for webkit only to give time for DOM changes and then redraw!!!
+                setTimeout(function() {
+                    $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
+                }, 20);
+            }
+        })
 
         $('[data-rel=tooltip]').tooltip();
 
@@ -1679,14 +1861,8 @@
 
 
         <!--jqgrid-->
-        var grid_selector = "#grid-table";
-        var pager_selector = "#grid-pager";
 
-        var parent_column = $(grid_selector).closest('[class*="col-"]');
-        //resize to fit page size
-        $(window).on('resize.jqGrid', function () {
-            $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
-        });
+
         jQuery(grid_selector).jqGrid({
             datatype: "json",//数据封装方式为json
             //url: '/ym/addperson',

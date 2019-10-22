@@ -1124,6 +1124,8 @@
 
 
         var parent_column = $(grid_selector).closest('[class*="col-"]');
+        alert(parent_column.width());
+        //var parent_column = $(grid_selector).closest("div");
         //resize to fit page size
         $(window).on('resize.jqGrid', function () {
             $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
