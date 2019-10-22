@@ -46,22 +46,18 @@ public class YmPersonCtrl {
     @RequestMapping(value = "/ym/all",method = RequestMethod.POST)
     @ResponseBody
     public void FindPerson(HttpServletRequest request,HttpServletResponse response) throws IOException {
-//        for(Enumeration e= request.getParameterMap();e.hasMoreElements();){
-//            System.out.println(e.nextElement());
-//        }
-        //ModelAndView modelAndView = new ModelAndView();
-//        int pageNo = (int)request.getAttribute("page");
-//        int pageSize = (int)request.getAttribute("rowNum");
-//        System.out.print(pageNo+"  "+pageSize);
+        //前端获取到的页码数
+        int pageNum = Integer.parseInt(request.getParameter("page"));
+        //前端获取到的显示每页的数量
+        int pageSize = Integer.parseInt(request.getParameter("rows"));
         //分页获取到所有用户信息
-        System.out.println(request.getParameter("page"));
-        PageHelper.startPage(1,10);
+        PageHelper.startPage(pageNum,pageSize);
         List<YmPerson> ymPersonList = ymPersonService.findAllYmPerson();
         PageInfo<YmPerson> pageInfo = new PageInfo<YmPerson>(ymPersonList);
         //获得总记录数
         long records = pageInfo.getTotal();
         //默认当前页码
-        int page = 1;
+        int page = pageInfo.getPageNum();
         //获得总页数
         int total = pageInfo.getPages();
         //用来序列化json数据的map
@@ -92,6 +88,22 @@ public class YmPersonCtrl {
             System.out.println(sysMenu.getMenuName());
         }
 
+        return modelAndView;
+    }
+
+
+    /*
+     * 功能描述: 用来跳转到贫困人员信息采集界面
+     * @author by tpc
+     * @date 2019/10/22 11:44
+     * @param [request]
+     * @return org.springframework.web.servlet.ModelAndView
+     */
+    @RequestMapping(value="/ym/mgr")
+    public ModelAndView addYmInformation(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("add-ym-information");
+        modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
         return modelAndView;
     }
 }
