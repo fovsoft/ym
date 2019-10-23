@@ -27,6 +27,16 @@
     <!-- ace styles -->
     <link rel="stylesheet" th:href="@{/static/css/ace.min.css}" class="ace-main-stylesheet" id="main-ace-style" />
 
+    <style>
+        .ui-jqgrid .ui-jqgrid-bdiv {
+            border-top: 1px solid #E1E1E1;
+            overflow-x: auto;
+        }
+        .frozen-div, .frozen-bdiv {
+            background-color: #E4E6E9;/*与网页背景色一致*/
+        }
+    </style>
+
     <!--[if lte IE 9]>
     <link rel="stylesheet" th:href="@{/static/css/ace-part2.min.css}" class="ace-main-stylesheet" />
     <![endif]-->
@@ -37,15 +47,7 @@
     <link rel="stylesheet" th:href="@{/static/css/ace-ie.min.css}" />
     <![endif]-->
 
-    <style>
-        .ui-jqgrid .ui-jqgrid-bdiv {
-            border-top: 1px solid #E1E1E1;
-            overflow-x: auto;
-        }
-        .frozen-div, .frozen-bdiv {
-            background-color: #E4E6E9;/*与网页背景色一致*/
-        }
-    </style>
+
 
     <!-- inline styles related to this page -->
 
