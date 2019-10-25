@@ -1901,6 +1901,20 @@
 
 
 
+        var parent_column = $(grid_selector).closest('[class="widget-body"]');
+        alert(parent_column.width());
+        $(window).on('resize.jqGrid', function () {
+            $(grid_selector).jqGrid( 'setGridWidth', parent_column.width()-40 );
+        })
+
+        $(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
+            if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
+                //setTimeout is for webkit only to give time for DOM changes and then redraw!!!
+                setTimeout(function() {
+                    $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
+                }, 20);
+            }
+        })
 
         $('[data-rel=tooltip]').tooltip();
 
@@ -1910,36 +1924,155 @@
             });
 
 
+
+        function addYmInformation() {
+            //获取家庭基本信息表单数值
+            var szs       = $("#szs").val();       // '所在市',
+            var szx       = $("#szx").val();       // '所在县',
+            var szc       = $("#szc").val();       // '所在镇',
+            var szz       = $("#szz").val();       // '所在村',
+            var szjd      = $("#szjd").val();      // '所在街道',
+            var lxdh      = $("#lxdh").val();      // '联系电话',
+            var khyh      = $("#khyh").val();      // '开户银行（选填）',
+            var yhkh      = $("#yhkh").val();      // '银行卡号（选填）',
+            var pkhsx     = $("#pkhsx").val();     // '贫困户属性',
+            var sfdnytp   = $("#sfdnytp").val();   // '是否当年预脱贫',
+            var jhtpnd    = $("#jhtpnd").val();    // '计划脱贫年度',
+            var fpnd      = $("#fpnd").val();      // '返贫年度',
+            var fpyy      = $("#fpyy").val();      // '返贫原因',
+            var sfjls     = $("#sfjls").val();     // '是否军烈属',
+            var sfydfpbqh = $("#sfydfpbqh").val(); // '是否异地扶贫搬迁户',
+            var bqfs      = $("#bqfs").val();      // '搬迁方式',
+            var bqdz      = $("#bqdz").val();      // '搬迁地址'
+            //拼凑成json格式
+            var ym_result_json = {
+                "szs"      :szs       ,
+                "szx"      :szx       ,
+                "szc"      :szc       ,
+                "szz"      :szz       ,
+                "szjd"     :szjd      ,
+                "lxdh"     :lxdh      ,
+                "khyh"     :khyh      ,
+                "yhkh"     :yhkh      ,
+                "pkhsx"    :pkhsx     ,
+                "sfdnytp"  :sfdnytp   ,
+                "jhtpnd"   :jhtpnd    ,
+                "fpnd"     :fpnd      ,
+                "fpyy"     :fpyy      ,
+                "sfjls"    :sfjls     ,
+                "sfydfpbqh":sfydfpbqh ,
+                "bqfs"     :bqfs      ,
+                "bqdz"     :bqdz
+            };
+
+            alert(ym_result_json.toString());
+            //获取家庭人员信息,进行拼凑
+            var ym_person_array = new Array();
+            //获取grid表中所有的rowid值
+            var rowIds = $(grid_selector).getDataIDs();
+            if(rowIds.length>0){
+                for (var i = 0; i < rowIds.length; i++) {
+                    //rowData=obj.getRowData(rowid);//这里rowid=rowIds[i];
+                    ym_person_json.push($(grid_selector).getRowData(rowIds[i]));
+                }
+            }
+            ym_result_json["ym_person"] = ym_person_array;
+
+            //alert(Json.stringify(ym_result_json));
+            //获取家庭条件信息情况
+            var zpyy1        = $("#zpyy1").val();            // '致贫原因1（必填）',
+            var zpyy2        = $("#zpyy2").val();            // '致贫原因2（选填）',
+            var zpyy3        = $("#zpyy3").val();            // '致贫原因3（选填）',
+            var ncjtrks      = $("#ncjtrks").val();               // '年初家庭人口数',
+            var ndjtrks      = $("#ndjtrks").val();               // '年底家庭人口数',
+            var gdmj         = $("#gdmj").val();                  // '耕地面积（亩）',
+            var yxggmj       = $("#yxggmj").val();                // '有效灌溉面积（亩）',
+            var ldmj         = $("#ldmj").val();                  // '林地面积（亩）',
+            var tghlmj       = $("#tghlmj").val();                // '退耕还林面积（亩）',
+            var lgmj         = $("#lgmj").val();                  // '林果面积（亩）',
+            var smmj         = $("#smmj").val();                  // '水面面积（亩）',
+            var mcdmj        = $("#mcdmj").val();                 // '牧草地面积（亩）',
+            var sfyltqydd    = $("#sfyltqydd").val();            // '是否有龙头企业带动',
+            var sfycyzfdtrdd = $("#sfycyzfdtrdd").val();         // '是否有创业致富带头人带动',
+            var sftscyd      = $("#sftscyd").val();              // '是否通生产用电',
+            var sftshyd      = $("#sftshyd").val();              // '是否通生活用电',
+            var sftgbds      = $("#sftgbds").val();              // '是否通广播电视',
+            var yssfkn       = $("#yssfkn").val();               // '饮水是否困难',
+            var yssfaq       = $("#yssfaq").val();               // '饮水是否安全',
+            var zfmj         = $("#zfmj").val();                  // '住房面积（平方米）',
+            var ywwscs       = $("#ywwscs").val();               // '有无卫生厕所',
+            var sfwfh        = $("#sfwfh").val();                // '是否危房户',
+            var wfdj         = $("#wfdj").val();             // '危房等级',
+            var wgnd         = $("#wgnd").val();             // '危改年度',
+            var zfjg         = $("#zfjg").val();             // '住房结构',
+            var sfjrnmzyhzs  = $("#sfjrnmzyhzs").val();         // '是否加入农民专业合作社',
+            var yczgljl      = $("#yczgljl").val();               // '与村主干路距离（公里）',
+            var rhllx        = $("#rhllx").val();            // '入户路类型',
+            var zyrllx       = $("#zyrllx").val();           // '主要燃料类型',
+            var bgqksm       = $("#bgqksm").val();          // '变更情况说明'
+
+
+            ym_result_json["zpyy1"]           = zpyy1               ;
+            ym_result_json["zpyy2"]           = zpyy2               ;
+            ym_result_json["zpyy3"]           = zpyy3               ;
+            ym_result_json["ncjtrks"]         = ncjtrks             ;
+            ym_result_json["ndjtrks"]         = ndjtrks             ;
+            ym_result_json["gdmj"]            = gdmj                ;
+            ym_result_json["yxggmj"]          = yxggmj              ;
+            ym_result_json["ldmj"]            = ldmj                ;
+            ym_result_json["tghlmj"]          = tghlmj              ;
+            ym_result_json["lgmj"]            = lgmj                ;
+            ym_result_json["smmj"]            = smmj                ;
+            ym_result_json["mcdmj"]           = mcdmj               ;
+            ym_result_json["sfyltqydd"]       = sfyltqydd           ;
+            ym_result_json["sfycyzfdtrdd"]    = sfycyzfdtrdd        ;
+            ym_result_json["sftscyd"]         = sftscyd             ;
+            ym_result_json["sftshyd"]         = sftshyd             ;
+            ym_result_json["sftgbds"]         = sftgbds             ;
+            ym_result_json["yssfkn"]          = yssfkn              ;
+            ym_result_json["yssfaq"]          = yssfaq              ;
+            ym_result_json["zfmj"]            = zfmj                ;
+            ym_result_json["ywwscs"]          = ywwscs              ;
+            ym_result_json["sfwfh"]           = sfwfh               ;
+            ym_result_json["wfdj"]            = wfdj                ;
+            ym_result_json["wgnd"]            = wgnd                ;
+            ym_result_json["zfjg"]            = zfjg                ;
+            ym_result_json["sfjrnmzyhzs"]     = sfjrnmzyhzs         ;
+            ym_result_json["yczgljl"]         = yczgljl             ;
+            ym_result_json["rhllx"]           = rhllx               ;
+            ym_result_json["zyrllx"]          = zyrllx              ;
+            ym_result_json["bgqksm"]          = bgqksm              ;
+
+            //alert(Json.stringify(ym_result_json));
+            $.ajax({
+                type:"POST",
+                url:"/ym/add1",
+                data: ym_result_json,
+                datatype:'json',
+                cache:false
+            });
+        }
+        
         var $validation = false;
+        var final_bol = false;
         $('#fuelux-wizard-container')
             .ace_wizard({
                 //step: 2 //optional argument. wizard will jump to step "2" at first
                 //buttons: '.wizard-actions:eq(0)'
             })
+            .on('changed.fu.wizard' , function (e,data) {
+            
+        })
             .on('actionclicked.fu.wizard' , function(e, info){
                 if(info.step == 1 && $validation) {
                     if(!$('#validation-form').valid()) e.preventDefault();
-                }
-                if(info.step==2){
-                    var parent_column = $(grid_selector).closest('div');
-                    alert(parent_column.width());
-                    $(window).on('resize.jqGrid', function () {
-                        $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
-                    })
-
-                    $(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
-                        if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
-                            //setTimeout is for webkit only to give time for DOM changes and then redraw!!!
-                            setTimeout(function() {
-                                $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
-                            }, 20);
-                        }
-                    })
                 }
             })
             //.on('changed.fu.wizard', function() {
             //})
             .on('finished.fu.wizard', function(e) {
+                final_bol = true;
+                addYmInformation();
                 bootbox.dialog({
                     message: "Thank you! Your information was successfully saved!",
                     buttons: {
@@ -2362,6 +2495,35 @@
             form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
             style_edit_form(form);
         }
+
+        //replace icons with FontAwesome icons like above
+        function updatePagerIcons(table) {
+            var replacement =
+                {
+                    'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
+                    'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
+                    'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
+                    'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
+                };
+            $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+                var icon = $(this);
+                var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+
+                if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+            })
+        }
+
+        function enableTooltips(table) {
+            $('.navtable .ui-pg-button').tooltip({container:'body'});
+            $(table).find('.ui-pg-div').tooltip({container:'body'});
+        }
+
+        //var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
+
+        $(document).one('ajaxloadstart.page', function(e) {
+            $.jgrid.gridDestroy(grid_selector);
+            $('.ui-jqdialog').remove();
+        });
 
         <!--end jqgrid-->
 
