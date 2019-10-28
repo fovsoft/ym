@@ -1251,8 +1251,193 @@
                                             </div>
 
                                             <div class="step-pane" data-step="2">
-                                                <h3 class="lighter block green">请输入家庭信息</h3>
+                                                <h3 class="lighter block green center">请输入家庭人员信息</h3>
                                                 <form class="form-horizontal" id="person-form" method="get">
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-2 no-padding-right" for="xm">姓名:</label>
+                                                        <div class="col-md-4">
+                                                            <input type="text" id="xm" name="xm" class="col-xs-12" />
+                                                        </div>
+
+                                                        <label class="control-label col-sm-2 no-padding-right" for="xb">性别:</label>
+                                                        <div class="col-md-4">
+                                                            <input type="text" id="xb" name="xb" class="col-xs-12" />
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-2 no-padding-right" for="sfzmhm">身份证明号码:</label>
+                                                        <div class="col-md-4">
+                                                            <input type="text" id="sfzmhm" name="sfzmhm" class="col-xs-12" />
+                                                        </div>
+
+                                                        <label class="control-label col-sm-2 no-padding-right" for="qfjg">身份证签发机关:</label>
+                                                        <div class="col-md-4">
+                                                            <input type="text" id="qfjg" name="qfjg" class="col-xs-12" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-2 no-padding-right" for="sfzyxqs">身份证有效期始:</label>
+                                                        <div class="col-md-4">
+                                                            <input type="text" id="sfzyxqs" name="sfzyxqs" class="col-xs-12" />
+                                                        </div>
+
+                                                        <label class="control-label col-sm-2 no-padding-right" for="sfzyxqz">身份证有效期止:</label>
+                                                        <div class="col-md-4">
+                                                            <input type="text" id="sfzyxqz" name="sfzyxqz" class="col-xs-12" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-2 no-padding-right" for="yhzgx">与户主关系:</label>
+                                                        <div class="col-md-4">
+                                                            <input type="text" id="yhzgx" name="yhzgx" class="col-xs-12" />
+                                                        </div>
+
+                                                        <label class="control-label col-sm-2 no-padding-right" for="mz">民族:</label>
+                                                        <div class="col-md-4">
+                                                            <input type="text" id="mz" name="mz" class="col-xs-12" />
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-2 no-padding-right" for="csrq">出生日期:</label>
+                                                        <div class="col-md-4">
+                                                            <input type="text" id="csrq" name="csrq" class="col-xs-12" />
+                                                        </div>
+
+                                                        <label class="control-label col-sm-2 no-padding-right" for="zzmm">政治面貌:</label>
+                                                        <div class="col-md-4">
+                                                            <input type="text" id="zzmm" name="zzmm" class="col-xs-12" />
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-2 no-padding-right" for="zxsqk">在校生情况:</label>
+                                                        <div class="col-md-4">
+                                                            <input type="text" id="zxsqk" name="zxsqk" class="col-xs-12" />
+                                                        </div>
+
+                                                        <label class="control-label col-sm-2 no-padding-right" for="sxhcxyy">失学或辍学原因:</label>
+                                                        <div class="col-md-4">
+                                                            <input type="text" id="sxhcxyy" name="sxhcxyy" class="col-xs-12" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-2 no-padding-right" for="jkqk">健康情况:</label>
+                                                        <div class="col-md-4">
+                                                            <input type="text" id="jkqk" name="jkqk" class="col-xs-12" />
+                                                        </div>
+
+                                                        <label class="control-label col-sm-2 no-padding-right" for="ldjn">劳动技能情况:</label>
+                                                        <div class="col-md-4">
+                                                            <input type="text" id="ldjn" name="ldjn" class="col-xs-12" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-2 no-padding-right" for="sfhjpth">是否会讲普通话:</label>
+                                                        <div class="col-md-4">
+                                                            <select id="sfhjpth" name="sfhjpth" class="select2" data-placeholder="Click to Choose...">
+                                                                <option value="">&nbsp;</option>
+                                                                <option value="yes">是</option>
+                                                                <option value="no">否</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <label class="control-label col-sm-2 no-padding-right" for="sfxyjr">是否现役军人:</label>
+                                                        <div class="col-md-4">
+                                                            <select id="sfxyjr" name="sfxyjr" class="select2" data-placeholder="Click to Choose...">
+                                                                <option value="">&nbsp;</option>
+                                                                <option value="yes">是</option>
+                                                                <option value="no">否</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-2 no-padding-right" for="sfcjylbx1">是否参加城乡居民基本医疗保险:</label>
+                                                        <div class="col-md-4">
+                                                            <select id="sfcjylbx1" name="sfcjylbx1" class="select2" data-placeholder="Click to Choose...">
+                                                                <option value="">&nbsp;</option>
+                                                                <option value="yes">是</option>
+                                                                <option value="no">否</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <label class="control-label col-sm-2 no-padding-right" for="sfcjsybx">是否参加商业补充医疗保险:</label>
+                                                        <div class="col-md-4">
+                                                            <select id="sfcjsybx" name="sfcjsybx" class="select2" data-placeholder="Click to Choose...">
+                                                                <option value="">&nbsp;</option>
+                                                                <option value="yes">是</option>
+                                                                <option value="no">否</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-2 no-padding-right" for="sfxsdb">是否享受低保:</label>
+                                                        <div class="col-md-4">
+                                                            <select id="sfxsdb" name="sfxsdb" class="select2" data-placeholder="Click to Choose...">
+                                                                <option value="">&nbsp;</option>
+                                                                <option value="yes">是</option>
+                                                                <option value="no">否</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <label class="control-label col-sm-2 no-padding-right" for="sfcjylbx2">是否参加城乡居民基本养老保险:</label>
+                                                        <div class="col-md-4">
+                                                            <select id="sfcjylbx2" name="sfcjylbx2" class="select2" data-placeholder="Click to Choose...">
+                                                                <option value="">&nbsp;</option>
+                                                                <option value="yes">是</option>
+                                                                <option value="no">否</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-2 no-padding-right" for="sfxsywbxbt">是否享受人身意外保险补贴:</label>
+                                                        <div class="col-md-4">
+                                                            <select id="sfxsywbxbt" name="sfxsywbxbt" class="select2" data-placeholder="Click to Choose...">
+                                                                <option value="">&nbsp;</option>
+                                                                <option value="yes">是</option>
+                                                                <option value="no">否</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <label class="control-label col-sm-2 no-padding-right" for="lxdh2">联系电话:</label>
+                                                        <div class="col-md-4">
+                                                            <select id="lxdh2" name="lxdh2" class="select2" data-placeholder="Click to Choose...">
+                                                                <option value="">&nbsp;</option>
+                                                                <option value="yes">是</option>
+                                                                <option value="no">否</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-sm-2 no-padding-right" for="whcd">文化程度:</label>
+                                                        <div class="col-md-4">
+                                                            <input type="text" id="whcd" name="whcd" class="col-xs-12" />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div class="col-sm-offset-4 col-sm-10">
+                                                            <button class="btn btn-success">添加</button>
+                                                        </div>
+                                                    </div>
+
                                                     <div class="col-xs-12" id="jqgrid-dev">
                                                         <div class="alert alert-info" id="alert-div">
                                                             <button class="close" data-dismiss="alert">
@@ -1267,6 +1452,9 @@
 
                                                         <div id="grid-pager"></div>
                                                     </div>
+
+
+
                                                 </form>
                                             </div>
 
