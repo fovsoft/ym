@@ -1089,76 +1089,13 @@
 
                                         <div class="step-content pos-rel">
                                             <div class="step-pane active" data-step="1">
-                                                <h3 class="lighter block green">Enter the following information</h3>
-
-<!--                                                <form class="form-horizontal" id="sample-form">-->
-<!--                                                    <div class="form-group has-warning">-->
-<!--                                                        <label for="inputWarning" class="col-xs-12 col-sm-3 control-label no-padding-right">Input with warning</label>-->
-
-<!--                                                        <div class="col-xs-12 col-sm-5">-->
-<!--																	<span class="block input-icon input-icon-right">-->
-<!--																		<input type="text" id="inputWarning" class="width-100" />-->
-<!--																		<i class="ace-icon fa fa-leaf"></i>-->
-<!--																	</span>-->
-<!--                                                        </div>-->
-<!--                                                        <div class="help-block col-xs-12 col-sm-reset inline"> Warning tip help! </div>-->
-<!--                                                    </div>-->
-
-<!--                                                    <div class="form-group has-error">-->
-<!--                                                        <label for="inputError" class="col-xs-12 col-sm-3 col-md-3 control-label no-padding-right">Input with error</label>-->
-
-<!--                                                        <div class="col-xs-12 col-sm-5">-->
-<!--																	<span class="block input-icon input-icon-right">-->
-<!--																		<input type="text" id="inputError" class="width-100" />-->
-<!--																		<i class="ace-icon fa fa-times-circle"></i>-->
-<!--																	</span>-->
-<!--                                                        </div>-->
-<!--                                                        <div class="help-block col-xs-12 col-sm-reset inline"> Error tip help! </div>-->
-<!--                                                    </div>-->
-
-<!--                                                    <div class="form-group has-success">-->
-<!--                                                        <label for="inputSuccess" class="col-xs-12 col-sm-3 control-label no-padding-right">Input with success</label>-->
-
-<!--                                                        <div class="col-xs-12 col-sm-5">-->
-<!--																	<span class="block input-icon input-icon-right">-->
-<!--																		<input type="text" id="inputSuccess" class="width-100" />-->
-<!--																		<i class="ace-icon fa fa-check-circle"></i>-->
-<!--																	</span>-->
-<!--                                                        </div>-->
-<!--                                                        <div class="help-block col-xs-12 col-sm-reset inline"> Success tip help! </div>-->
-<!--                                                    </div>-->
-
-<!--                                                    <div class="form-group has-info">-->
-<!--                                                        <label for="inputInfo" class="col-xs-12 col-sm-3 control-label no-padding-right">Input with info</label>-->
-
-<!--                                                        <div class="col-xs-12 col-sm-5">-->
-<!--																	<span class="block input-icon input-icon-right">-->
-<!--																		<input type="text" id="inputInfo" class="width-100" />-->
-<!--																		<i class="ace-icon fa fa-info-circle"></i>-->
-<!--																	</span>-->
-<!--                                                        </div>-->
-<!--                                                        <div class="help-block col-xs-12 col-sm-reset inline"> Info tip help! </div>-->
-<!--                                                    </div>-->
-
-<!--                                                    <div class="form-group">-->
-<!--                                                        <label for="inputError2" class="col-xs-12 col-sm-3 control-label no-padding-right">Input with error</label>-->
-
-<!--                                                        <div class="col-xs-12 col-sm-5">-->
-<!--																	<span class="input-icon block">-->
-<!--																		<input type="text" id="inputError2" class="width-100" />-->
-<!--																		<i class="ace-icon fa fa-times-circle red"></i>-->
-<!--																	</span>-->
-<!--                                                        </div>-->
-<!--                                                        <div class="help-block col-xs-12 col-sm-reset inline"> Error tip help! </div>-->
-<!--                                                    </div>-->
-<!--                                                </form>-->
-
+                                                <h3 class="lighter block green">请输入家庭信息</h3>
                                                 <form class="form-horizontal" id="validation-form" method="get">
                                                     <div class="form-group">
                                                         <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="szs">家庭地址:</label>
 
                                                         <div class="col-xs-12 col-sm-9">
-                                                            <div class="clearfix">
+                                                            <div class="clearfix inline">
                                                                 <input type="text" name="szs" id="szs" class="col-xs-12 col-sm-1" />
                                                                 <span class="col-xs-12" style="width:5%;text-align:center;padding-top:5px;">市</span>
                                                                 <input type="text" name="szx" id="szx" class="col-xs-12 col-sm-1" />
@@ -1314,20 +1251,23 @@
                                             </div>
 
                                             <div class="step-pane" data-step="2">
-                                                <div class="col-xs-12" id="jqgrid-dev">
-                                                    <div class="alert alert-info" id="alert-div">
-                                                        <button class="close" data-dismiss="alert">
-                                                            <i class="ace-icon fa fa-times"></i>
-                                                        </button>
+                                                <h3 class="lighter block green">请输入家庭信息</h3>
+                                                <form class="form-horizontal" id="person-form" method="get">
+                                                    <div class="col-xs-12" id="jqgrid-dev">
+                                                        <div class="alert alert-info" id="alert-div">
+                                                            <button class="close" data-dismiss="alert">
+                                                                <i class="ace-icon fa fa-times"></i>
+                                                            </button>
 
-                                                        <i class="ace-icon fa fa-hand-o-right"></i>
-                                                        Please note that demo server is not configured to save the changes, therefore you may see an error message.
+                                                            <i class="ace-icon fa fa-hand-o-right"></i>
+                                                            Please note that demo server is not configured to save the changes, therefore you may see an error message.
+                                                        </div>
+
+                                                        <table id="grid-table" class="col-sm-12"></table>
+
+                                                        <div id="grid-pager"></div>
                                                     </div>
-
-                                                    <table id="grid-table" class="col-sm-12"></table>
-
-                                                    <div id="grid-pager"></div>
-                                                </div>
+                                                </form>
                                             </div>
 
                                             <div class="step-pane" data-step="3">
