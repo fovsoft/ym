@@ -148,7 +148,7 @@ drop table ym_family;
 #移民贫困人员家庭信息表
 create table ym_family
 (
-    jtbh      int auto_increment primary key comment '家庭id',
+    jtbh      varchar(20) primary key comment '家庭id',
     szs       varchar(10) comment '所在市',
     szx       varchar(20) comment '所在县',
     szz       varchar(20) comment '所在镇',
@@ -169,8 +169,8 @@ create table ym_family
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 comment '移民贫困家庭信息表';
 
-insert into ym_family(szs,szx,szc,szz,szjd,lxdh,khyh,yhkh,pkhsx,sfdnytp,jhtpnd,fpnd,fpyy,sfjls,sfydfpbqh,bqfs,bqdz) values
-('河池市','大化县','雅龙乡','竹山村','弄母屯','18200000000','中国农业银行','','','是','2020','2013','受灾','否','否','','');
+insert into ym_family(jtbh,szs,szx,szc,szz,szjd,lxdh,khyh,yhkh,pkhsx,sfdnytp,jhtpnd,fpnd,fpyy,sfjls,sfydfpbqh,bqfs,bqdz) values
+('b4aa05cfd980','河池市','大化县','雅龙乡','竹山村','弄母屯','18200000000','中国农业银行','','','是','2020','2013','受灾','否','否','','');
 
 
 drop table ym_person;
@@ -178,7 +178,7 @@ drop table ym_person;
 create table ym_person
 (
     rybh       int auto_increment primary key comment '人员编号',
-    jtbh       int comment '家庭编号，对应家庭表',
+    jtbh       varchar(20) comment '家庭编号，对应家庭表',
     xm         varchar(30) not null comment '姓名',
     xb         char(2) comment '性别',
     sfzmhm     varchar(20) comment '身份证明号码',
@@ -206,7 +206,7 @@ create table ym_person
   DEFAULT CHARSET = utf8 comment '移民贫困人员信息表';
 
 insert into ym_person(jtbh,xm,xb,sfzmhm,qfjg,sfzyxqs,sfzyxqz,yhzgx,mz,csrq,zzmm,whcd,zxsqk,sxhcxyy,jkqk,ldjn,sfhjpth,sfxyjr,sfcjylbx1,sfcjsybx,sfxsdb,sfcjylbx2,sfxsywbxbt,lxdh)
-values (1,'韦贞英','男','452731196205123035','大化瑶族自治县公安局','2008-12-22','2099-12-31','本人','汉','1962-05-12','团员','高中','无','无','健康','务农','否','否','否','否','否','否','否','18934943219');
+values ('b4aa05cfd980','韦贞英','男','452731196205123035','大化瑶族自治县公安局','2008-12-22','2099-12-31','本人','汉','1962-05-12','团员','高中','无','无','健康','务农','否','否','否','否','否','否','否','18934943219');
 
 
 drop table ym_family_status;
@@ -214,7 +214,7 @@ drop table ym_family_status;
 create table ym_family_status
 (
     jtzkbh       int primary key comment '家庭状况编号',
-    jtbh         int comment '家庭编号，对应家庭表',
+    jtbh         varchar(20) comment '家庭编号，对应家庭表',
     zpyy1        varchar(64) comment '致贫原因1（必填）',
     zpyy2        varchar(64) comment '致贫原因2（选填）',
     zpyy3        varchar(64) comment '致贫原因3（选填）',

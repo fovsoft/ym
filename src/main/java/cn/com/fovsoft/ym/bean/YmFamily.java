@@ -10,7 +10,8 @@ import java.io.Serializable;
 
 public class YmFamily implements Serializable {
 
-    private int       jtbh           ;// '家庭id',
+
+    private String    jtbh           ;// '家庭id',
     private String    szs            ;// '所在市',
     private String    szx            ;// '所在县',
     private String    szc            ;// '所在镇',
@@ -30,11 +31,12 @@ public class YmFamily implements Serializable {
     private String    bqdz           ;// '搬迁地址'
 
 
-    public int getJtbh() {
+
+    public String getJtbh() {
         return jtbh;
     }
 
-    public void setJtbh(int jtbh) {
+    public void setJtbh(String jtbh) {
         this.jtbh = jtbh;
     }
 

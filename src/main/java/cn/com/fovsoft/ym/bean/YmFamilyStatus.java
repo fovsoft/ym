@@ -11,7 +11,7 @@ import java.io.Serializable;
 public class YmFamilyStatus implements Serializable {
 
     private int        jtzkbh       ;          // '家庭状况编号',
-    private int        jtbh         ;          // '家庭编号，对应家庭表',
+    private String     jtbh         ;          // '家庭编号，对应家庭表',
     private String     zpyy1        ;     // '致贫原因1（必填）',
     private String     zpyy2        ;     // '致贫原因2（选填）',
     private String     zpyy3        ;     // '致贫原因3（选填）',
@@ -52,11 +52,11 @@ public class YmFamilyStatus implements Serializable {
         this.jtzkbh = jtzkbh;
     }
 
-    public int getJtbh() {
+    public String getJtbh() {
         return jtbh;
     }
 
-    public void setJtbh(int jtbh) {
+    public void setJtbh(String jtbh) {
         this.jtbh = jtbh;
     }
 

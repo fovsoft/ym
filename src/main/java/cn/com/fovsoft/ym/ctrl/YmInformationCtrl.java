@@ -23,5 +23,29 @@ public class YmInformationCtrl {
     public void addYmInformation(HttpServletRequest request){
 
         System.out.println(request.getParameter("szs"));
+
+        String szs       = request.getParameter("szs");            // '所在市',
+        String szx       = request.getParameter("szx");            // '所在县',
+        String szc       = request.getParameter("szc");            // '所在镇',
+        String szz       = request.getParameter("szz");            // '所在村',
+        String szjd      = request.getParameter("szjd");           // '所在街道',
+        String lxdh      = request.getParameter("lxdh");           // '联系电话',
+        String khyh      = request.getParameter("khyh");           // '开户银行（选填）',
+        String yhkh      = request.getParameter("yhkh");           // '银行卡号（选填）',
+        String pkhsx     = request.getParameter("pkhsx");          // '贫困户属性',
+        String sfdnytp   = request.getParameter("sfdnytp");        // '是否当年预脱贫',
+        String jhtpnd    = request.getParameter("jhtpnd");         // '计划脱贫年度',
+        String fpnd      = request.getParameter("fpnd");           // '返贫年度',
+        String fpyy      = request.getParameter("fpyy");           // '返贫原因',
+        String sfjls     = request.getParameter("sfjls");          // '是否军烈属',
+        String sfydfpbqh = request.getParameter("sfydfpbqh");      // '是否异地扶贫搬迁户',
+        String bqfs      = request.getParameter("bqfs");           // '搬迁方式',
+        String bqdz      = request.getParameter("bqdz");            // '搬迁地址'
+
+        String ymPerson = request.getParameter("ym_person");
+        String ymPersonNum = request.getParameter("ym_person_num");
+        System.out.println(ymPerson);
+        System.out.println(ymPersonNum);
+
     }
 }

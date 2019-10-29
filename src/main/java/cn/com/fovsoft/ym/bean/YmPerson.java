@@ -11,7 +11,7 @@ import java.util.Date;
 
 public class YmPerson implements Serializable {
     private int       rybh    ;//人员编号
-    private int       jtbh    ;//'家庭编号，对应家庭表',
+    private String    jtbh    ;//'家庭编号，对应家庭表',
     private String    xm      ;//'姓名',
     private String    sex     ;//'性别',
     private String    sfzmhm  ;//'身份证明号码',
@@ -45,11 +45,11 @@ public class YmPerson implements Serializable {
         this.rybh = rybh;
     }
 
-    public int getJtbh() {
+    public String getJtbh() {
         return jtbh;
     }
 
-    public void setJtbh(int jtbh) {
+    public void setJtbh(String jtbh) {
         this.jtbh = jtbh;
     }
 
