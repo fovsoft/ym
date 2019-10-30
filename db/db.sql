@@ -248,7 +248,81 @@ create table ym_family_status
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 comment '致贫原因及家庭基本条件表';
 
-insert into
+
+drop table ym_produce_income;
+#移民贫困人员生产收入情况调查表
+create table ym_produce_income(
+    ryscsrbh int auto_increment primary key comment '人员生产收入编号',
+    jtbh varchar(20) comment '家庭编号，对应家庭表',
+    xtdl char(2) comment '类别大类：01为生产经营性收入,02为生产经营支出',
+    xtxl1 char(2) comment '类别小类：01为种植业，02为林业，03为养殖业，04为其他',
+    xtxl2 char(2) comment '类别小类：01为品种，02为数量，03为金额，04为其他',
+    nf  varchar(10) comment '年份',
+    yf13 varchar(40) comment '1-3月的收入或者其他信息',
+    yf46 varchar(40) comment '4-6月的收入或者其他信息',
+    yf79 varchar(40) comment '7-9月的收入或者其他信息',
+    yf10 varchar(40) comment '10月的收入或者其他信息',
+    yf11 varchar(40) comment '11月的收入或者其他信息',
+    yf12 varchar(40) comment '12月的收入或者其他信息'
+);
+
+drop table ym_salary_income;
+#工资性收入表
+create table ym_salary_income(
+    rygzsrbh int auto_increment primary key comment '人员工资收入编号',
+    jtbh varchar(20) comment '家庭编号，对应家庭表',
+    xm varchar(20) comment '姓名',
+    wggz varchar(20) comment '务工工种',
+    wgdz varchar(60) comment '务工省、市、县',
+    wgljsj varchar(10) comment '务工累计时间（月）',
+    wgqymc varchar(60) comment '务工企业名称',
+    sa_nf  varchar(10) comment '年份',
+    sa_yf13 varchar(40) comment '1-3月的收入或者其他信息',
+    sa_yf46 varchar(40) comment '4-6月的收入或者其他信息',
+    sa_yf79 varchar(40) comment '7-9月的收入或者其他信息',
+    sa_yf10 varchar(40) comment '10月的收入或者其他信息',
+    sa_yf11 varchar(40) comment '11月的收入或者其他信息',
+    sa_yf12 varchar(40) comment '12月的收入或者其他信息'
+);
+
+drop table ym_property_income;
+#财产收入表
+create table ym_property_income(
+    pro_bh int auto_increment primary key comment '财产性收入编号',
+    jtbh varchar(20) comment '家庭编号，对应家庭表',
+    pro_xtlb char(2) comment '财产收入类别：01，财产收益扶贫分红收入，02，其他',
+    pro_nf  varchar(10) comment '年份',
+    pro_yf13 varchar(40) comment '1-3月的收入或者其他信息',
+    pro_yf46 varchar(40) comment '4-6月的收入或者其他信息',
+    pro_yf79 varchar(40) comment '7-9月的收入或者其他信息',
+    pro_yf10 varchar(40) comment '10月的收入或者其他信息',
+    pro_yf11 varchar(40) comment '11月的收入或者其他信息',
+    pro_yf12 varchar(40) comment '12月的收入或者其他信息'
+);
+
+
+
+drop table ym_transfer_income;
+#转移性收入表
+create table ym_transfer_income(
+    tra_bh int auto_increment primary key comment '转移性收入编号',
+    jtbh varchar(20) comment '家庭编号，对应家庭表',
+    tra_xtlb char(4) comment '转移性财产类别:01，计划生育金；0201，低保金A；0202，低保金B；0203，低保金C；03,特困供养金；04，养老保险金；05，生态补偿金（林业补贴）；06，困难残疾人生活补贴和重度残疾人护理补贴；07，农业补贴；08，高龄补贴；09，水库移民补贴；10，其他长期性的政策性补贴',
+    tra_nf  varchar(10) comment '年份',
+    tra_yf13 varchar(40) comment '1-3月的收入或者其他信息',
+    tra_yf46 varchar(40) comment '4-6月的收入或者其他信息',
+    tra_yf79 varchar(40) comment '7-9月的收入或者其他信息',
+    tra_yf10 varchar(40) comment '10月的收入或者其他信息',
+    tra_yf11 varchar(40) comment '11月的收入或者其他信息',
+    tra_yf12 varchar(40) comment '12月的收入或者其他信息'
+);
+
+
+create table ym_out_poverty_income(
+    pov_bh int auto_increment primary key comment ''
+);
+
+
 
 
 drop table ym_relocate_petition;
