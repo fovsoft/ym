@@ -4,6 +4,7 @@ import cn.com.fovsoft.common.sercurity.authorization.CustomAuthenticationProvide
 import cn.com.fovsoft.common.sercurity.filter.VerifyCodeFilter;
 import cn.com.fovsoft.common.sercurity.handler.CustomUserLoginFailureHandler;
 import cn.com.fovsoft.common.sercurity.handler.CustomUserLoginSuccessHandler;
+import cn.com.fovsoft.common.sercurity.session.CustomSessionInformationExpiredStrategy;
 import cn.com.fovsoft.common.sercurity.verify.UnAuthorizedEntryPoint;
 import cn.com.fovsoft.common.sercurity.verify.CustomUserDetailsService;
 
@@ -74,6 +75,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //记住我选项
                 .rememberMe().tokenRepository(persistentTokenRepository()).tokenValiditySeconds(120).userDetailsService(customUserDetailsService)
                 .and()
+
+                .sessionManagement()
+                //设置session失效的跳转页面
+                .invalidSessionUrl("/login")
+                //设置最大session数为1
+                .maximumSessions(1)
+                //设置过期策略
+                .expiredSessionStrategy(getCustomSessionInformationExpiredStrategy())
+                .and()
+                .and()
                 .csrf().disable();
 
         http.exceptionHandling().authenticationEntryPoint(unAuthorizedEntryPoint);
@@ -117,6 +128,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+
+    @Bean
+    public CustomSessionInformationExpiredStrategy getCustomSessionInformationExpiredStrategy(){
+        return new CustomSessionInformationExpiredStrategy();
+    }
 
     @Bean
     public SessionRegistry getSessionRegistry(){
