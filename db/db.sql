@@ -68,6 +68,8 @@ values (1003, '', '角色管理', 1000, '/admin/role', '1', 'a,d,u,s', 4, '1', n
 insert into frm_menu(menuId, css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
 values (1004, '', '权限管理', 1000, '/admin/permit', '1', 'a,d,u,s', 5, '1', now(), now());
 insert into frm_menu(menuId, css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
+values (1005, '', '权限管理', 1000, '/admin/sysMenu', '1', 'a,d,u,s', 6, '1', now(), now());
+insert into frm_menu(menuId, css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
 values (2000, '', '移民管理', 0, '/ym', '1', 'a,d,u,s', 11, '1', now(), now());
 insert into frm_menu(menuId, css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
 values (2001, '', '移民信息采集', 2000, '/ym/add', '1', 'a,d,u,s', 12, '1', now(), now());
@@ -107,6 +109,8 @@ insert into frm_role_menu
 values (1000, 1003);
 insert into frm_role_menu
 values (1000, 1004);
+insert into frm_role_menu
+values (1000, 1005);
 insert into frm_role_menu
 values (1000, 2000);
 insert into frm_role_menu
