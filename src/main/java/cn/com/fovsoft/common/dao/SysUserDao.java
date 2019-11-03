@@ -65,6 +65,17 @@ public interface SysUserDao {
 
 
     /**
+     * @author: tpc
+     * @date: 2019/11/2 12:41
+     * @description:  获取所有用户信息
+     */
+
+    @Select("select * from frm_sysuser order by userId")
+    @ResultMap(value = {"sysUserResultMap"})
+    List<SysUser> findAllSysUser();
+
+
+    /**
      *功能描述:记录用户登陆ip地址
      * @author tpc
      * @date 2019/10/12

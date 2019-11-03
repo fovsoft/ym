@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 
 @Service
@@ -31,5 +32,11 @@ public class SysUserService {
     public int updateUserZjdlip(String zjdlip, String userName){
         return sysUserDao.updateUserZjdlip(zjdlip,userName);
     }
+
+
+    public List<SysUser> findAllSysUser(){
+        return sysUserDao.findAllSysUser();
+    }
+
 
 }
