@@ -894,119 +894,137 @@
 
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
-    jQuery(function ($) {
 
-        /**客户端校验**/
-        function checkValidity() {
+    /**客户端校验**/
+    function checkValidity() {
 
-            if ($("#userName").val() == "") {
+        if ($("#userName").val() == "") {
 
-                $("#userName").tips({
-                    side : 2,
-                    msg : '用户名不得为空',
-                    bg : '#AE81FF',
-                    time : 3
-                });
+            $("#userName").tips({
+                side : 2,
+                msg : '用户名不得为空',
+                bg : '#AE81FF',
+                time : 3
+            });
 
-                $("#username").focus();
-                return false;
-            }
-
-            if ($("#zhyxq").val() == "") {
-                $("#zhyxq").tips({
-                    side : 2,
-                    msg : '账号有效期不得为空',
-                    bg : '#AE81FF',
-                    time : 3
-                });
-
-                $("#password").focus();
-                return false;
-            }
-            if ($("#mmyxq").val() == "") {
-
-                $("#mmyxq").tips({
-                    side : 1,
-                    msg : '密码有效期不得为空',
-                    bg : '#AE81FF',
-                    time : 3
-                });
-
-                $("#code").focus();
-                return false;
-            }
-
-            return true;
+            $("#username").focus();
+            return false;
         }
 
+        if ($("#zhyxq").val() == "") {
+            $("#zhyxq").tips({
+                side : 2,
+                msg : '账号有效期不得为空',
+                bg : '#AE81FF',
+                time : 3
+            });
 
-        //新增用户方法
-        function addSysUser() {
-            var userName  = $("#userName").val()       ;
-            var department= $("#department").val()     ;
-            var sex       = $("#sex").val()            ;
-            var birthday  = $("#birthday").val()       ;
-            var sfzmhm    = $("#sfzmhm").val()         ;
-            var email     = $("#email").val()          ;
-            var ipks      = $("#ipks").val()           ;
-            var ipjs      = $("#ipjs").val()           ;
-            var zhyxq     = $("#zhyxq").val()          ;
-            var mmyxq     = $("#mmyxq").val()          ;
-            var yhlx      = $("#yhlx").val()           ;
-            var lxdh      = $("#lxdh").val()           ;
-            var zt        = $("#zt").val()             ;
+            $("#zhyxq").focus();
+            return false;
+        }
+        if ($("#mmyxq").val() == "") {
+
+            $("#mmyxq").tips({
+                side : 1,
+                msg : '密码有效期不得为空',
+                bg : '#AE81FF',
+                time : 3
+            });
+
+            $("#mmyxq").focus();
+            return false;
+        }
+
+        return true;
+    }
+
+
+    //新增用户方法
+    function addSysUser() {
+        if(checkValidity()) {
+            var userName = $("#userName").val();
+            var department = $("#department").val();
+            var sex = $("#sex").val();
+            var birthday = $("#birthday").val();
+            var sfzmhm = $("#sfzmhm").val();
+            var email = $("#email").val();
+            var ipks = $("#ipks").val();
+            var ipjs = $("#ipjs").val();
+            var zhyxq = $("#zhyxq").val();
+            var mmyxq = $("#mmyxq").val();
+            var yhlx = $("#yhlx").val();
+            var lxdh = $("#lxdh").val();
+            var zt = $("#zt").val();
 
             $.ajax({
                 type: "POST",//请求方式为POST
                 url: '/user/add',//检验url
                 data: {
-                    "userName"   : userName  ,
-                    "department" : department,
-                    "sex"        : sex       ,
-                    "birthday"   : birthday  ,
-                    "sfzmhm"     : sfzmhm    ,
-                    "email"      : email     ,
-                    "ipks"       : ipks      ,
-                    "ipjs"       : ipjs      ,
-                    "zhyxq"      : zhyxq     ,
-                    "mmyxq"      : mmyxq     ,
-                    "yhlx"       : yhlx      ,
-                    "lxdh"       : lxdh      ,
-                    "zt"         : zt
+                    "userName": userName,
+                    "department": department,
+                    "sex": sex,
+                    "birthday": birthday,
+                    "sfzmhm": sfzmhm,
+                    "email": email,
+                    "ipks": ipks,
+                    "ipjs": ipjs,
+                    "zhyxq": zhyxq,
+                    "mmyxq": mmyxq,
+                    "yhlx": yhlx,
+                    "lxdh": lxdh,
+                    "zt": zt
                 },//请求数据
-                dataType:'json',//数据类型为JSON类型
+                dataType: 'json',//数据类型为JSON类型
                 cache: false,//关闭缓存
-                success: function(data){//响应成功
+                success: function (data) {//响应成功
                     //alert(data.status);
                     //alert(data.result);
-                    if(1 == data.status){
+                    if (1 == data.status) {
                         $("#addSysUserBtn").tips({
-                            side : 1,
-                            msg : '新增用户成功！',
-                            bg : '#68B500',
-                            time : 10
+                            side: 1,
+                            msg: '新增用户成功！',
+                            bg: '#68B500',
+                            time: 10
                         });
                         //window.location.href="/index";
-                    }else if("havedUser" == data.result){
-                        $("#password").tips({
-                            side : 1,
-                            msg : "该用户已经存在",
-                            bg : '#FF5080',
-                            time : 15
+                    } else if ("havedUser" == data.result) {
+                        $("#userName").tips({
+                            side: 1,
+                            msg: "该用户已经存在",
+                            bg: '#FF5080',
+                            time: 15
                         });
                         $("#username").focus();
-                    }else{
+                    } else if ("isNull" == data.result) {
+                        $("#addSysUserBtn").tips({
+                            side: 1,
+                            msg: '用户不能为空格！',
+                            bg: '#68B500',
+                            time: 10
+                        });
+                    } else if ("error" == data.result) {
+                        $("#userName").tips({
+                            side: 1,
+                            msg: '数据库存入数据失败！',
+                            bg: '#68B500',
+                            time: 10
+                        });
+                    } else {
                         $("#username").tips({
-                            side : 1,
-                            msg : "程序存在异常，请联系管理员！",
-                            bg : '#FF5080',
-                            time : 15
+                            side: 1,
+                            msg: "程序存在异常，请联系管理员！",
+                            bg: '#FF5080',
+                            time: 15
                         });
                         $("#username").focus();
                     }
                 }
             });
         }
+    }
+
+
+    jQuery(function ($) {
 
         var grid_selector = "#grid-table";
         var pager_selector = "#grid-pager";

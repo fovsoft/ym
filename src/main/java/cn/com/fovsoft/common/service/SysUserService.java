@@ -39,4 +39,9 @@ public class SysUserService {
     }
 
 
+    public int addSysUser(SysUser sysUser){
+        return sysUserDao.addSysUser(sysUser);
+    }
+
+
 }

@@ -3,12 +3,14 @@ package cn.com.fovsoft.common.ctrl;
 import cn.com.fovsoft.common.bean.SysUser;
 import cn.com.fovsoft.common.constant.VarConstant;
 import cn.com.fovsoft.common.service.SysUserService;
+import cn.com.fovsoft.common.util.DateUtil;
 import cn.com.fovsoft.ym.bean.YmPerson;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +35,8 @@ public class SysUserCtrl {
 
     @Autowired
     private SysUserService sysUserService;
+
+
 
 
     @Autowired
@@ -107,7 +112,7 @@ public class SysUserCtrl {
 
     @RequestMapping(value = "/user/add")
     @ResponseBody
-    public void addSysUser(HttpServletRequest request,HttpServletResponse response){
+    public Map<String,Object> addSysUser(HttpServletRequest request){
         //获取新增用户提交过来的数据信息
         String userName  = request.getParameter("userName"  );
         String department= request.getParameter("department");
@@ -125,18 +130,59 @@ public class SysUserCtrl {
 
         //用来返回信息的封装对象
         Map<String,Object> map=new HashMap<>();
+        //用来返回前端的信息
+        int status = 0;
+        String result = "";
+
+        //为空的参数初始化
+        if(birthday ==null){
+            birthday="0000-00-00";
+        }
+        //如果账号为空格字符,返回报错
+        if(userName.trim().equals("")){
+            status = 0;
+            result = "isNull";
+        }
 
 
         //先根据用户名去查找数据库，比对是否存在相同用户
         SysUser sysUser = sysUserService.findByUserName(userName);
         if(sysUser!=null){
             //如果存在用户，则返回错误信息
-            map.put("status",0);
-            map.put("result","havedUser");
+            status = 0;
+            result = "havedUser";
         }else {
             //不存在，则写入新增用户信息
-        }
+            sysUser = new SysUser();
+            sysUser.setUserName(userName);
+            sysUser.setDepartment(department);
+            sysUser.setBirthday(DateUtil.strToDate(birthday));
+            sysUser.setCjsj(DateUtil.getNowDate());
+            sysUser.setEmail(email);
+            sysUser.setGxsj(DateUtil.getNowDate());
+            sysUser.setIpks(ipks);
+            sysUser.setIpjs(ipjs);
+            sysUser.setLxdh(lxdh);
+            sysUser.setYhlx(yhlx);
+            sysUser.setMmyxq(DateUtil.strToDate(mmyxq));
+            sysUser.setZhyxq(DateUtil.strToDate(zhyxq));
+            sysUser.setZjdlip("0.0.0.0");
+            sysUser.setSex(sex);
+            sysUser.setSfzmhm(sfzmhm);
+            String password = new BCryptPasswordEncoder().encode("888888");
+            sysUser.setPassword(password);
 
+            int returnInt = sysUserService.addSysUser(sysUser);
+            if(returnInt<1) {
+                status = 0;
+                result = "error";
+            }else {
+                status = 1;
+                result = "success";
+            }
+
+        }
+        return map;
     }
 
 

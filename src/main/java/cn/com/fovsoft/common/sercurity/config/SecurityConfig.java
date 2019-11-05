@@ -102,16 +102,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //super.configure(auth);
         //auth.userDetailsService();
-        auth.authenticationProvider(customAuthenticationProvider);
-    }
-
-    @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         //指定密码加密所使用的加密器为passwordEncoder()
         //需要将密码加密后写入数据库
+        auth.authenticationProvider(customAuthenticationProvider);
         auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
         auth.eraseCredentials(false);
     }
+
+//    @Autowired
+//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+//
+//        auth.userDetailsService(customUserDetailsService).passwordEncoder(passwordEncoder());
+//        auth.eraseCredentials(false);
+//    }
 
 
 //    @Bean
