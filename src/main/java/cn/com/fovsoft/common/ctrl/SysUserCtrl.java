@@ -105,6 +105,41 @@ public class SysUserCtrl {
     }
 
 
+    @RequestMapping(value = "/user/add")
+    @ResponseBody
+    public void addSysUser(HttpServletRequest request,HttpServletResponse response){
+        //获取新增用户提交过来的数据信息
+        String userName  = request.getParameter("userName"  );
+        String department= request.getParameter("department");
+        String sex       = request.getParameter("sex"       );
+        String birthday  = request.getParameter("birthday"  );
+        String sfzmhm    = request.getParameter("sfzmhm"    );
+        String email     = request.getParameter("email"     );
+        String ipks      = request.getParameter("ipks"      );
+        String ipjs      = request.getParameter("ipjs"      );
+        String zhyxq     = request.getParameter("zhyxq"     );
+        String mmyxq     = request.getParameter("mmyxq"     );
+        String yhlx      = request.getParameter("yhlx"      );
+        String lxdh      = request.getParameter("lxdh"      );
+        String zt        = request.getParameter("zt"        );
+
+        //用来返回信息的封装对象
+        Map<String,Object> map=new HashMap<>();
+
+
+        //先根据用户名去查找数据库，比对是否存在相同用户
+        SysUser sysUser = sysUserService.findByUserName(userName);
+        if(sysUser!=null){
+            //如果存在用户，则返回错误信息
+            map.put("status",0);
+            map.put("result","havedUser");
+        }else {
+            //不存在，则写入新增用户信息
+        }
+
+    }
+
+
 
 
 }
