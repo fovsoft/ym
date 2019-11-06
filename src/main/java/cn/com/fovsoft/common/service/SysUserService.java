@@ -67,4 +67,15 @@ public class SysUserService {
     }
 
 
+
+    /**
+     * @author: tpc
+     * @date: 2019/11/6 21:27
+     * @description: 根据用户id删除数据信息
+     */
+    public int deleteSysUser(int userId){
+        return sysUserDao.deleteSysUser(userId);
+    }
+
+
 }

@@ -138,5 +138,13 @@ public interface SysUserDao {
     @Insert("insert into frm_sysuser(userName,password,department,sex,birthday,sfzmhm,email,ipks,ipjs,zhyxq,mmyxq,yhlx,lxdh,zjdlip,zt,cjsj) values(#{userName},#{password},#{department},#{sex},#{birthday},#{sfzmhm},#{email},#{ipks},#{ipjs},#{zhyxq},#{mmyxq},#{yhlx},#{lxdh},#{zjdlip},#{zt},#{cjsj})")
     int addSysUser(SysUser sysUser);
 
+    /**
+     * @author: tpc
+     * @date: 2019/11/6 21:24
+     * @description: 根据id删除用户
+     */
+    @Delete("delete from frm_sysuser where userId=#{userId}")
+    int deleteSysUser(int userId);
+
 
 }

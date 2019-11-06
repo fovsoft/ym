@@ -109,6 +109,46 @@ public class SysUserCtrl {
 //        return modelAndView;
     }
 
+
+
+    /**
+     * @author: tpc
+     * @date: 2019/11/6 20:47
+     * @description: 删除选定用户
+     */
+    @RequestMapping(value = "/user/delete")
+    @ResponseBody
+    public Map<String,Object> deleteSysUser(HttpServletRequest request){
+        //获取封装的用户id信息
+        String idArray = request.getParameter("idArr");
+        idArray = idArray.substring(0,idArray.length()-1);
+
+        Map<String,Object> map = new HashMap<>();
+        int status = 0;
+        String result = "error";
+
+        //获取选中行的所有id，存入数组中
+        if(idArray.length()==1){
+            int resultInt = sysUserService.deleteSysUser(Integer.parseInt(idArray));
+            status = 1;
+            result = "success";
+        }else {
+            String[] userIdArray = idArray.split(",");
+            for(String str:userIdArray){
+                sysUserService.deleteSysUser(Integer.parseInt(idArray));
+            }
+            status = 1;
+            result = "success";
+        }
+        map.put("status",status);
+        map.put("result",result);
+
+        return map;
+
+    }
+
+
+
     /*
      * 功能描述: 修改用户实现
      * @author by tpc
