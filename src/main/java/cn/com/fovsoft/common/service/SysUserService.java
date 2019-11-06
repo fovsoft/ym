@@ -44,4 +44,27 @@ public class SysUserService {
     }
 
 
+    /*
+     * 功能描述: 通过用户名或者身份证明号码或者联系电话或者邮箱查找
+     * @author by tpc
+     * @date 2019/11/6 11:26
+     * @param [userName, sfzmhm, lxdh, email]
+     * @return java.util.List<cn.com.fovsoft.common.bean.SysUser>
+     */
+    public List<SysUser> findByUserNameOrOther(String userName,String sfzmhm,String lxdh,String email){
+        return sysUserDao.findByUserNameOrOther(userName,sfzmhm,lxdh,email);
+    }
+
+    /*
+     * 功能描述: 修改用户信息
+     * @author by tpc
+     * @date 2019/11/6 17:45
+     * @param [sysUser]
+     * @return int
+     */
+    public int updateSysUserInfo(SysUser sysUser){
+        return sysUserDao.updateSysUserInfo(sysUser);
+    }
+
+
 }

@@ -109,7 +109,86 @@ public class SysUserCtrl {
 //        return modelAndView;
     }
 
+    /*
+     * 功能描述: 修改用户实现
+     * @author by tpc
+     * @date 2019/11/6 17:28
+     * @param [request]
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
+    @RequestMapping(value = "/user/edit")
+    @ResponseBody
+    public Map<String,Object> editSysUser(HttpServletRequest request){
 
+        //获取新增用户提交过来的数据信息
+        String userId    = request.getParameter("userId");
+        String userName  = request.getParameter("userName"  );
+        String department= request.getParameter("department");
+        String sex       = request.getParameter("sex"       );
+        String birthday  = request.getParameter("birthday"  );
+        String sfzmhm    = request.getParameter("sfzmhm"    );
+        String email     = request.getParameter("email"     );
+        String ipks      = request.getParameter("ipks"      );
+        String ipjs      = request.getParameter("ipjs"      );
+        String zhyxq     = request.getParameter("zhyxq"     );
+        String mmyxq     = request.getParameter("mmyxq"     );
+        String yhlx      = request.getParameter("yhlx"      );
+        String lxdh      = request.getParameter("lxdh"      );
+        String zt        = request.getParameter("zt"        );
+
+        //用来返回信息的封装对象
+        Map<String,Object> map=new HashMap<>();
+        //用来返回前端的信息
+        int status = 0;
+        String result = "";
+
+        //为空的参数初始化
+        if(birthday ==null){
+            birthday="0000-00-00";
+        }
+
+        //写入修改用户信息
+        SysUser sysUser = new SysUser();
+        sysUser.setUserId(Integer.parseInt(userId));
+        sysUser.setUserName(userName);
+        sysUser.setDepartment(department);
+        sysUser.setBirthday(DateUtil.strToDate(birthday));
+        sysUser.setCjsj(DateUtil.getNowDate());
+        sysUser.setEmail(email);
+        sysUser.setGxsj(DateUtil.getNowDate());
+        sysUser.setIpks(ipks);
+        sysUser.setIpjs(ipjs);
+        sysUser.setLxdh(lxdh);
+        sysUser.setYhlx(yhlx);
+        sysUser.setMmyxq(DateUtil.strToDate(mmyxq));
+        sysUser.setZhyxq(DateUtil.strToDate(zhyxq));
+        sysUser.setZjdlip("0.0.0.0");
+        sysUser.setSex(sex);
+        sysUser.setSfzmhm(sfzmhm);
+
+        int returnInt = sysUserService.updateSysUserInfo(sysUser);
+        if(returnInt<1) {
+            status = 0;
+            result = "inerror";
+        }else {
+            status = 2;
+            result = "success";
+        }
+
+
+        map.put("status",status);
+        map.put("result",result);
+        return map;
+    }
+
+
+    /*
+     * 功能描述:  新增用户实现
+     * @author by tpc
+     * @date 2019/11/6 17:27
+     * @param [request]
+     * @return java.util.Map<java.lang.String,java.lang.Object>
+     */
     @RequestMapping(value = "/user/add")
     @ResponseBody
     public Map<String,Object> addSysUser(HttpServletRequest request){
@@ -182,7 +261,50 @@ public class SysUserCtrl {
             }
 
         }
+        map.put("status",status);
+        map.put("result",result);
         return map;
+    }
+
+    @RequestMapping("/user/search")
+    @ResponseBody
+    public void searchSysUserByUserNameOrOther(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        //获取新增用户提交过来的数据信息
+        String userName  = request.getParameter("userName"  );
+        String sfzmhm    = request.getParameter("sfzmhm"    );
+        String email     = request.getParameter("email"     );
+        String lxdh      = request.getParameter("lxdh"      );
+
+        //前端获取到的页码数
+        int pageNum = Integer.parseInt(request.getParameter("page"));
+        //前端获取到的显示每页的数量
+        int pageSize = Integer.parseInt(request.getParameter("rows"));
+        //分页获取到所有用户信息
+        PageHelper.startPage(pageNum,pageSize);
+        List<SysUser> sysUserList = sysUserService.findByUserNameOrOther(userName,sfzmhm,lxdh,email);
+        PageInfo<SysUser> pageInfo = new PageInfo<SysUser>(sysUserList);
+        //获得总记录数
+        long records = pageInfo.getTotal();
+        //默认当前页码
+        int page = pageInfo.getPageNum();
+        //获得总页数
+        int total = pageInfo.getPages();
+        //用来序列化json数据的map
+        Map<String,Object> map=new HashMap<>();
+        //设置json格式写出
+        map.put("rows",sysUserList);
+        map.put("page",page);
+        map.put("total",total);
+        map.put("records",records);
+        System.out.println(objectMapper.writeValueAsString(map));
+        // modelAndView.addObject("rows",objectMapper.writeValueAsString(ymPersonList));
+        response.setContentType("application/json;charset=utf-8");
+        //map.put("ymPerson_data",ymPersonList);
+        response.getWriter().write(objectMapper.writeValueAsString(map));
+        response.getWriter().flush();
+        response.getWriter().close();
+
+
     }
 
 

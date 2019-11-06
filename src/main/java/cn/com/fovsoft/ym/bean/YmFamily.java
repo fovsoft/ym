@@ -11,6 +11,7 @@ import java.io.Serializable;
 public class YmFamily implements Serializable {
 
 
+    private int       jtId           ;
     private String    jtbh           ;// '家庭id',
     private String    szs            ;// '所在市',
     private String    szx            ;// '所在县',
@@ -31,6 +32,13 @@ public class YmFamily implements Serializable {
     private String    bqdz           ;// '搬迁地址'
 
 
+    public int getJtId() {
+        return jtId;
+    }
+
+    public void setJtId(int jtId) {
+        this.jtId = jtId;
+    }
 
     public String getJtbh() {
         return jtbh;
