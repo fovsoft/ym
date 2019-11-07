@@ -67,4 +67,14 @@ public interface SysRoleDao {
     @ResultMap(value = {"sysRoleResultMap"})
     List<SysRole> findAllSysRole();
 
+
+    /**
+     * @author: tpc
+     * @date: 2019/11/6 22:07
+     * @description: 获取所有角色信息
+     */
+    @Select("select * from frm_role where roleName like #{roleName}")
+    @ResultMap(value = {"sysRoleResultMap"})
+    List<SysRole> findSysRoleByRoleName(String roleName);
+
 }

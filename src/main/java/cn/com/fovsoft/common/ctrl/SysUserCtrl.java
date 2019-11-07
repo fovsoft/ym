@@ -77,7 +77,7 @@ public class SysUserCtrl {
 
     @RequestMapping(value = "/user/list",method = RequestMethod.POST)
     @ResponseBody
-    public void listSysUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void listAllSysUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //前端获取到的页码数
         int pageNum = Integer.parseInt(request.getParameter("page"));
         //前端获取到的显示每页的数量

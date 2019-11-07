@@ -54,4 +54,16 @@ public class SysMenuService {
     public List<SysMenu> findAllMenu(){
         return sysMenuDao.findAllMenu();
     }
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/7 18:33
+     * Param: [menuId]
+     * Return: java.util.List<cn.com.fovsoft.common.bean.SysMenu>
+     * 功能描述: 根据菜单id查找所有子菜单
+     */
+    public List<SysMenu> findChildMenu(String menuId){
+        return sysMenuDao.findChildMenu(menuId);
+    }
 }

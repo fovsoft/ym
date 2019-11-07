@@ -597,7 +597,7 @@
                         <form class="form-inline" role="form">
                             <div class="form-group">
                                 <label class="sr-only control-label">角色名:</label>
-                                <input type="text" id="s-userName" name="s-userName" class="form-control" placeholder="角色名">
+                                <input type="text" id="s-roleName" name="s-roleName" class="form-control" placeholder="角色名">
                                 <button type="button" class="btn btn-purple btn-sm" id="searchBtn" onclick="querySysRole();">
                                     <span class="ace-icon fa fa-search icon-on-right"></span>
                                     查询
@@ -885,7 +885,7 @@
             //     return JSON.stringify(postData);
             // },
             height: 450,
-            colNames:[' ','角色ID','角色描述','状态','角色创建时间','角色更新时间'],
+            colNames:[' ','角色ID','角色名','角色描述','状态','角色创建时间','角色更新时间'],
             colModel:[
                 {name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
                     formatter:'actions',
@@ -961,10 +961,10 @@
 
         //选中全部父节点
         function checkAllParent(node) {
-            $('#searchTree').treeview('checkNode', node.nodeId, {
+            $('#permit-tree').treeview('checkNode', node.nodeId, {
                 silent: true
             });
-            var parentNode = $('#searchTree').treeview('getParent', node.nodeId);
+            var parentNode = $('#permit-tree').treeview('getParent', node.nodeId);
             if (!("nodeId" in parentNode)) {
                 return;
             } else {
@@ -973,11 +973,11 @@
         }
         //取消全部父节点
         function uncheckAllParent(node) {
-            $('#searchTree').treeview('uncheckNode', node.nodeId, {
+            $('#permit-tree').treeview('uncheckNode', node.nodeId, {
                 silent: true
             });
-            var siblings = $('#searchTree').treeview('getSiblings', node.nodeId);
-            var parentNode = $('#searchTree').treeview('getParent', node.nodeId);
+            var siblings = $('#permit-tree').treeview('getSiblings', node.nodeId);
+            var parentNode = $('#permit-tree').treeview('getParent', node.nodeId);
             if (!("nodeId" in parentNode)) {
                 return;
             }
@@ -996,7 +996,7 @@
 
         //级联选中所有子节点
         function checkAllSon(node) {
-            $('#searchTree').treeview('checkNode', node.nodeId, {
+            $('#permit-tree').treeview('checkNode', node.nodeId, {
                 silent: true
             });
             if (node.nodes != null && node.nodes.length > 0) {
@@ -1007,7 +1007,7 @@
         }
         //级联取消所有子节点
         function uncheckAllSon(node) {
-            $('#searchTree').treeview('uncheckNode', node.nodeId, {
+            $('#permit-tree').treeview('uncheckNode', node.nodeId, {
                 silent: true
             });
             if (node.nodes != null && node.nodes.length > 0) {
@@ -1016,13 +1016,46 @@
                 }
             }
         }
-        $('#permit-tree').treeview({
-            showCheckbox: true,
-            data: "",
-            onNodeChecked: nodeChecked,
-            onNodeUnchecked: nodeUnchecked
-        });
 
+        function addNote() {
+            //得到选择的节点
+            var nodeData = $('#permit-tree').treeview('getSelected')[0];
+            //获取数据，添加到树中
+            $.getJSON("treeAddData.json", function (data) {
+                $('#permit-tree').treeview("addNode", [nodeData.nodeId, {node: data}]);
+            });
+        }
+
+        /**
+         * 删除节点,如果该节点如果是根节点，不能删除
+         */
+        function deleteNode() {
+            var nodeData = $('#permit-tree').treeview('getSelected')[0];
+            $('#permit-tree').treeview("deleteNode", nodeData.nodeId);
+        }
+
+        /**
+         * 删除全部子节点
+         */
+        function deleteChildrenNode() {
+            var nodeData = $('#permit-tree').treeview('getSelected')[0];
+            $('#permit-tree').treeview("deleteChildrenNode", nodeData.nodeId);
+        }
+
+        /**
+         * 一个节点被展开 惰性加载
+         */
+        function addNextNode(event, node) {
+            console.log(node);
+            var myData = {
+                id:node.nodeid
+            };
+            alert($('#permit-tree').treeview('getNode', node.nodeId).id);
+            $.getJSON("/role/getChild",myData, function (data) {
+                $('#permit-tree').treeview("deleteChildrenNode", node.nodeId);
+                $('#permit-tree').treeview("addNode", [node.nodeId, {node: data.childNodes}]);
+            });
+        }
 
         //当点击新增按钮时，显示模态框
         $("#addBtn").on("click",function () {
@@ -1034,21 +1067,22 @@
 
             $.ajax({
                 type: "POST",//请求方式为POST
-                url: "/role/permission",//检验url
+                url: "/role/rootPermission",//检验url
                 dataType: 'json',//数据类型为JSON类型
                 cache: false,//关闭缓存
                 success: function (data) {
-                    alert(data.rootMenuList);
-                    //for(var i=0;i<data.rootMenuList;i++)
+                    alert(data.rootNodes);
+                    $('#permit-tree').treeview({
+                        showCheckbox: true,
+                        data: data.rootNodes,
+                        onNodeChecked: nodeChecked,
+                        onNodeUnchecked: nodeUnchecked,
+                        onNodeExpanded: addNextNode
+                    });
                 }
             })
 
-            $('#permit-tree').treeview({
-                showCheckbox: true,
-                data: "",
-                onNodeChecked: nodeChecked,
-                onNodeUnchecked: nodeUnchecked
-            });
+
 
         });
 
@@ -1398,22 +1432,19 @@
 
     //查询用户的方法
     function querySysRole() {
-        var userName = $("#s-userName").val();
-        var sfzmhm = $("#s-sfzmhm").val();
-        var lxdh = $("#s-lxdh").val();
-        var email = $("#s-email").val();
-        if(userName==""&&sfzmhm==""&&lxdh==""&&email==""){
+        var roleName = $("#s-roleName").val();
+        if(roleName==""){
 
             $("#searchBtn").tips({
                 side: 3,
-                msg: '将进行全部用户查询！',
+                msg: '将进行全部角色查询！',
                 bg: '#68B500',
                 time: 3
             });
             $("#grid-table").jqGrid('clearGridData');
             $("#grid-table").jqGrid('setGridParam', {
                 datatype:"json",
-                url:"/user/list"
+                url:"/role/list"
             }).trigger("reloadGrid");
         }else {
             $("#grid-table").jqGrid('clearGridData');
@@ -1421,12 +1452,9 @@
                 datatype:"json",
                 mtype:"POST",
                 page:1,
-                url:"/user/search",
+                url:"/role/search",
                 postData:{
-                    "userName": userName,
-                    "sfzmhm": sfzmhm,
-                    "email": email,
-                    "lxdh": lxdh
+                    "roleName": roleName
                 }
             }).trigger("reloadGrid");
         }

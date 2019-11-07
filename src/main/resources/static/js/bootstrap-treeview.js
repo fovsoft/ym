@@ -1,4 +1,4 @@
-/* =========================================================
+	/* =========================================================
  * bootstrap-treeview.js v1.2.0
  * =========================================================
  * Copyright 2013 Jonathan Miles
@@ -142,7 +142,13 @@
 
 			// Search methods
 			search: $.proxy(this.search, this),
-			clearSearch: $.proxy(this.clearSearch, this)
+			clearSearch: $.proxy(this.clearSearch, this),
+
+			// 添加节点方法--自己添加
+			addNode: $.proxy(this.addNode, this),
+			// 删除节点方法--自己添加
+			deleteNode: $.proxy(this.deleteNode, this),
+			deleteChildrenNode: $.proxy(this.deleteChildrenNode, this),
 		};
 	};
 
@@ -265,6 +271,8 @@
 
 			// nodeId : unique, incremental identifier
 			node.nodeId = _this.nodes.length;
+			//修改源码，调整nodeId为自己的数据库id
+			node.Id = Number(node.nodeid);
 
 			// parentId : transversing up the tree
 			node.parentId = parent.nodeId;
@@ -518,6 +526,7 @@
 				.addClass(node.state.selected ? 'node-selected' : '')
 				.addClass(node.searchResult ? 'search-result' : '') 
 				.attr('data-nodeid', node.nodeId)
+				.attr('id',node.Id)//添加自己的id属性
 				.attr('style', _this.buildStyleOverride(node));
 
 			// Add indent/spacer to mimic tree structure
@@ -1206,6 +1215,72 @@
 			}
 		}
 	};
+
+		/**
+		 给节点添加子节点
+		 */
+		Tree.prototype.addNode = function (identifiers, options) {
+			this.forEachIdentifier(identifiers, options, $.proxy(function (node, options) {
+				this.setAddNode(node, options);
+			}, this));
+
+			this.setInitialStates({ nodes: this.tree }, 0);
+			this.render();
+		};
+
+		/**
+		 *  添加子节点
+		 */
+		Tree.prototype.setAddNode = function (node, options) {
+			if (node.nodes == null) node.nodes = [];
+			if (options.node) {
+				$.each(options.node,function (index,option) {
+					node.nodes.push(option);
+				})
+			}
+		};
+		/**
+		 * 删除节点，若是根节点不能删除
+		 * 获取节点的父节点,
+		 * 根据Id删除父节点nodes集合中的自己
+		 * 刷新父节点
+		 * @param identifiers
+		 * @param options
+		 */
+		Tree.prototype.deleteNode = function (identifiers, options) {
+			this.forEachIdentifier(identifiers, options, $.proxy(function (node, options) {
+
+				var parentNode = this.getParent(node);
+
+				if(parentNode && parentNode.nodes != null ){
+					for(var i = parentNode.nodes.length-1; i >= 0; i--){
+						if(parentNode.nodes[i].nodeId == node.nodeId){
+							parentNode.nodes.splice(i, 1);
+						}
+					}
+					this.setInitialStates({ nodes: this.tree }, 0);
+					this.render();
+
+				}else{
+					console.log('根节点不能删除');
+				}
+			}, this));
+		};
+		/**
+		 * 删除子节点
+		 * 置空子节点 刷新节点
+		 * @param node
+		 * @param options
+		 */
+		Tree.prototype.deleteChildrenNode = function (identifiers, options) {
+			this.forEachIdentifier(identifiers, options, $.proxy(function (node, options) {
+				if ( node.nodes != null){
+					node.nodes = null;
+					this.setInitialStates({ nodes: this.tree }, 0);
+					this.render();
+				}
+			}, this));
+		};
 
 	var logError = function (message) {
 		if (window.console) {

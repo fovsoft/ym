@@ -64,4 +64,19 @@ public interface SysMenuDao {
     @Select("select * from frm_menu order by menuId asc")
     @ResultMap(value={"menuResultMap"})
     List<SysMenu> findAllMenu();
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/7 18:22
+     * Param: [menuId]
+     * Return: java.util.List<cn.com.fovsoft.common.bean.SysMenu>
+     * 功能描述: 根据
+     */
+    @Select("select * from frm_menu where parentId=#{menuId}")
+    @ResultMap(value={"menuResultMap"})
+    List<SysMenu> findChildMenu(String menuId);
+
+
+
 }
