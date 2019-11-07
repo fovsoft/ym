@@ -13,27 +13,29 @@ import java.util.List;
 public class MenuTreeUtil {
 
 
-    private static List getChilds(int menuId, List<SysMenu> MenuList){
+    public static List getChilds(String menuId, List<SysMenu> MenuList){
 
         //子菜单
         List<SysMenu> childList = new ArrayList<SysMenu>();
 
-        while (MenuList.size()>0){
+        if (MenuList.size()>0){
             for(SysMenu sysMenu:MenuList){
-                if(sysMenu.getParentId().equals(Integer.toString(menuId))){
+                if(sysMenu.getParentId().equals(menuId)){
                     childList.add(sysMenu);
                 }
             }
         }
 
-        for(SysMenu sysMenu:childList){
-            //递归
-            sysMenu.setChildMenuList(getChilds(Integer.parseInt(sysMenu.getMenuId()),MenuList));
-        }
-
         if(childList.size()<1){
             return null;
         }
+
+        for(SysMenu sysMenu:childList){
+            //递归
+            sysMenu.setChildMenuList(getChilds(sysMenu.getMenuId(),MenuList));
+        }
+
+
 
         return childList;
 

@@ -43,4 +43,15 @@ public class SysMenuService {
     public List<SysMenu> findMenuByUserName(String userName){
         return sysMenuDao.findMenuByUserName(userName);
     }
+
+    /*
+     * 功能描述: 查找所有的菜单权限信息服务类
+     * @author by tpc
+     * @date 2019/11/7 13:13
+     * @param []
+     * @return java.util.List<cn.com.fovsoft.common.bean.SysMenu>
+     */
+    public List<SysMenu> findAllMenu(){
+        return sysMenuDao.findAllMenu();
+    }
 }

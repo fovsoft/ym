@@ -52,4 +52,16 @@ public interface SysMenuDao {
             "where fs.zt = 1 and fs.userName = #{userName} order by m.sequence")
     @ResultMap(value={"menuResultMap"})
     List<SysMenu> findMenuByUserName(String userName);
+
+
+    /*
+     * 功能描述: 查找所有的菜单权限信息
+     * @author by tpc
+     * @date 2019/11/7 13:12
+     * @param []
+     * @return java.util.List<cn.com.fovsoft.common.bean.SysMenu>
+     */
+    @Select("select * from frm_menu order by menuId asc")
+    @ResultMap(value={"menuResultMap"})
+    List<SysMenu> findAllMenu();
 }
