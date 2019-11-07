@@ -1037,9 +1037,10 @@
         /**
          * 删除全部子节点
          */
-        function deleteChildrenNode() {
-            var nodeData = $('#permit-tree').treeview('getSelected')[0];
-            $('#permit-tree').treeview("deleteChildrenNode", nodeData.nodeId);
+        function deleteChildrenNode(event,node) {
+            var node1 = {};
+            $('#permit-tree').treeview("deleteChildrenNode", node.nodeId);
+            $('#permit-tree').treeview("addNode", [node.nodeId, {node: node1}]);
         }
 
         /**
@@ -1077,7 +1078,8 @@
                         data: data.rootNodes,
                         onNodeChecked: nodeChecked,
                         onNodeUnchecked: nodeUnchecked,
-                        onNodeExpanded: addNextNode
+                        onNodeExpanded: addNextNode,
+                        onNodeCollapsed: deleteChildrenNode
                     });
                 }
             })
@@ -1304,43 +1306,20 @@
     /**客户端校验**/
     function checkValidity() {
 
-        alert($("#userName").val()+'111');
-        if ($("#userName").val() == "") {
+        alert($("#roleName").val()+'111');
+        var nodeArray = $("#permit-tree").treeview('getChecked');
+        console.log(nodeArray);
+        if ($("#roleName").val() == "") {
 
-            $("#userName").focus();
-            $("#userName").tips({
-                side : 3,
-                msg : '用户名不得为空',
-                bg : '#AE81FF',
-                time : 5
+            $("#roleName").focus();
+            $("#roleName").tips({
+                side: 3,
+                msg: '角色名不得为空',
+                bg: '#ff1a96',
+                time: 5
             });
             return false;
         }
-
-        if ($("#zhyxq").val() == "") {
-            $("#zhyxq").tips({
-                side : 3,
-                msg : '账号有效期不得为空',
-                bg : '#AE81FF',
-                time : 5
-            });
-
-            $("#zhyxq").focus();
-            return false;
-        }
-        if ($("#mmyxq").val() == "") {
-
-            $("#mmyxq").tips({
-                side : 3,
-                msg : '密码有效期不得为空',
-                bg : '#AE81FF',
-                time : 3
-            });
-
-            $("#mmyxq").focus();
-            return false;
-        }
-
         return true;
     }
 
@@ -1364,19 +1343,9 @@
                 type: "POST",//请求方式为POST
                 url: url,//检验url
                 data: {
-                    "userId": userId,
-                    "userName": userName,
-                    "department": department,
-                    "sex": sex,
-                    "birthday": birthday,
-                    "sfzmhm": sfzmhm,
-                    "email": email,
-                    "ipks": ipks,
-                    "ipjs": ipjs,
-                    "zhyxq": zhyxq,
-                    "mmyxq": mmyxq,
-                    "yhlx": yhlx,
-                    "lxdh": lxdh,
+                    "roleId": userId,
+                    "roleName": userName,
+                    "description": department,
                     "zt": zt
                 },//请求数据
                 dataType: 'json',//数据类型为JSON类型
@@ -1385,37 +1354,37 @@
                     alert(data.status);
                     alert(data.result);
                     if (1 == data.status) {
-                        confirm("新增用户成功！")
+                        confirm("新增角色成功！")
                         //window.location.href="/index";
                     } else if(2 == data.status){
-                        confirm("修改用户成功！")
+                        confirm("修改角色成功！")
                     }else if ("havedUser" == data.result) {
-                        $("#userName").focus();
-                        $("#userName").tips({
+                        $("#roleName").focus();
+                        $("#roleName").tips({
                             side: 3,
-                            msg: "该用户已经存在",
+                            msg: "该角色已经存在",
                             bg: '#FF5080',
                             time: 15
                         });
                     } else if ("isNull" == data.result) {
-                        $("#userName").focus();
-                        $("#userName").tips({
+                        $("#roleName").focus();
+                        $("#roleName").tips({
                             side: 3,
-                            msg: '用户不能为空格！',
-                            bg: '#68B500',
+                            msg: '角色名不能为空格！',
+                            bg: '#b5161f',
                             time: 5
                         });
                     } else if ("error" == data.result) {
-                        $("#userName").focus();
-                        $("#userName").tips({
+                        $("#roleName").focus();
+                        $("#roleName").tips({
                             side: 3,
                             msg: '数据库存入数据失败！',
-                            bg: '#68B500',
+                            bg: '#2a0ab5',
                             time: 10
                         });
                     } else if ("inerror" == data.result) {
-                        $("#userName").focus();
-                        $("#userName").tips({
+                        $("#roleName").focus();
+                        $("#roleName").tips({
                             side: 3,
                             msg: '数据库修改数据失败！',
                             bg: '#68B500',
@@ -1423,7 +1392,7 @@
                         });
                     } else {
                         confirm("程序存在异常，请联系管理员！");
-                        $("#userName").focus();
+                        $("#roleName").focus();
                     }
                 }
             });
