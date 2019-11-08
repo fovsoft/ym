@@ -2,11 +2,15 @@ package cn.com.fovsoft.common.ctrl;
 
 import cn.com.fovsoft.common.bean.SysMenu;
 import cn.com.fovsoft.common.bean.SysRole;
+import cn.com.fovsoft.common.bean.SysRoleMenu;
 import cn.com.fovsoft.common.bean.SysUser;
 import cn.com.fovsoft.common.constant.VarConstant;
 import cn.com.fovsoft.common.dto.MenuTreeDto;
 import cn.com.fovsoft.common.service.SysMenuService;
+import cn.com.fovsoft.common.service.SysRoleMenuService;
 import cn.com.fovsoft.common.service.SysRoleService;
+import cn.com.fovsoft.common.util.CollectionUtil;
+import cn.com.fovsoft.common.util.DateUtil;
 import cn.com.fovsoft.common.util.MenuTreeUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
@@ -39,6 +43,9 @@ public class SysRoleCtrl {
 
     @Autowired
     private SysRoleService sysRoleService;
+
+    @Autowired
+    private SysRoleMenuService sysRoleMenuService;
 
 
     @Autowired
@@ -189,7 +196,7 @@ public class SysRoleCtrl {
         int pageSize = Integer.parseInt(request.getParameter("rows"));
         //分页获取到所有用户信息
         PageHelper.startPage(pageNum,pageSize);
-        List<SysRole> sysRoleList = sysRoleService.findSysRoleByRoleName(roleName);
+        List<SysRole> sysRoleList = sysRoleService.findSysRoleLikeRoleName(roleName);
         PageInfo<SysRole> pageInfo = new PageInfo<>(sysRoleList);
         //获得总记录数
         long records = pageInfo.getTotal();
@@ -211,6 +218,95 @@ public class SysRoleCtrl {
         response.getWriter().write(objectMapper.writeValueAsString(map));
         response.getWriter().flush();
         response.getWriter().close();
+    }
+
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/8 19:42
+     * Param:
+     * Return:
+     * 功能描述: 添加角色功能实现
+     */
+
+    @RequestMapping(value = "/role/add")
+    @ResponseBody
+    public Map<String,Object> addSysRole(HttpServletRequest request){
+
+        //获取提交过来的角色信息
+        String roleId  = request.getParameter("roleId"  );
+        String roleName = request.getParameter("roleName");
+        String description   = request.getParameter("description"       );
+        String zt  = request.getParameter("zt"  );
+        String idArray    = request.getParameter("idArray" );
+
+        System.out.println(idArray.substring(0,idArray.length()-1));
+        //获取菜单id
+        String[] roleIdArray = CollectionUtil.StrArrayDuplicateRemoval(idArray.substring(0,idArray.length()-1).split(","));
+
+
+
+        //用来返回信息的封装对象
+        Map<String,Object> map=new HashMap<>();
+        //用来返回前端的信息
+        int status = 0;
+        String result = "";
+
+        //如果账号为空格字符,返回报错
+        if(roleName.trim().equals("")){
+            status = 0;
+            result = "isNull";
+        }
+
+
+        //先根据用户名去查找数据库，比对是否存在相同用户
+        SysRole sysRole = sysRoleService.findSysRoleByRoleName(roleName);
+
+        if(sysRole!=null){
+            //如果存在用户，则返回错误信息
+            status = 0;
+            result = "havedRole";
+        }else {
+            //不存在的话，写入数据库
+            sysRole = new SysRole();
+            sysRole.setRoleName(roleName);
+            sysRole.setDescription(description);
+            sysRole.setZt(zt);
+            sysRole.setCjsj(DateUtil.getNowDate());
+            sysRole.setGxsj(DateUtil.getNowDate());
+
+            //写入角色信息
+            int resultInt = sysRoleService.addSysRole(sysRole);
+
+
+            //获取写入角色id
+            sysRole = sysRoleService.findSysRoleByRoleName(roleName);
+            String newRoleId = sysRole.getRoleId();
+
+            for(String str:roleIdArray){
+                SysRoleMenu sysRoleMenu = new SysRoleMenu();
+                sysRoleMenu.setRoleId(newRoleId);
+                sysRoleMenu.setRoleId(str);
+                //写入角色权限
+                sysRoleMenuService.addSysRoleMenu(sysRoleMenu);
+            }
+
+            if(resultInt<1) {
+                status = 0;
+                result = "error";
+            }else {
+                status = 1;
+                result = "success";
+            }
+
+        }
+
+        map.put("status",status);
+        map.put("result",result);
+
+        return map;
+
     }
 
 

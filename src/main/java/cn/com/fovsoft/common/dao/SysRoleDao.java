@@ -45,7 +45,7 @@ public interface SysRoleDao {
      * @date: 2019/11/6 21:54
      * @description: 新增用户角色
      */
-    @Insert("insert into frm_role(roleName,description,zt,cjsj,gxsj) values(#{roleName},#{description},#{zt},#{cjsj},#{gxsj}")
+    @Insert("insert into frm_role(roleName,description,zt,cjsj,gxsj) values(#{roleName},#{description},#{zt},#{cjsj},#{gxsj})")
     int addSysRole(SysRole sysRole);
 
 
@@ -71,10 +71,22 @@ public interface SysRoleDao {
     /**
      * @author: tpc
      * @date: 2019/11/6 22:07
-     * @description: 获取所有角色信息
+     * @description: 获取所有相似角色信息
      */
     @Select("select * from frm_role where roleName like #{roleName}")
     @ResultMap(value = {"sysRoleResultMap"})
-    List<SysRole> findSysRoleByRoleName(String roleName);
+    List<SysRole> findSysRoleLikeRoleName(String roleName);
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/8 13:10
+     * Param: [roleName]
+     * Return: java.util.List<cn.com.fovsoft.common.bean.SysRole>
+     * 功能描述: 通过角色名准确查找角色
+     */
+    @Select("select * from frm_role where roleName = #{roleName}")
+    @ResultMap(value = {"sysRoleResultMap"})
+    SysRole findSysRoleByRoleName(String roleName);
 
 }

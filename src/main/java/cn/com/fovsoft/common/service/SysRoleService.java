@@ -68,10 +68,22 @@ public class SysRoleService {
      * Return: java.util.List<cn.com.fovsoft.common.bean.SysRole>
      * 功能描述: 封装一下参数roleName，用来匹配后端的like方法
      */
-    public List<SysRole> findSysRoleByRoleName(String roleName){
+    public List<SysRole> findSysRoleLikeRoleName(String roleName){
         roleName = "%"+roleName+"%";
-        return sysRoleDao.findSysRoleByRoleName(roleName);
+        return sysRoleDao.findSysRoleLikeRoleName(roleName);
     }
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/8 13:11
+     * Param: [roleName]
+     * Return: java.util.List<cn.com.fovsoft.common.bean.SysRole>
+     * 功能描述: 通过角色名准确查找roleName
+     */
+    public SysRole findSysRoleByRoleName(String roleName){
+        return sysRoleDao.findSysRoleByRoleName(roleName);
+    };
 
 
 }

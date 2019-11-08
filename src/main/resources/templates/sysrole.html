@@ -615,7 +615,7 @@
                         </form>
 
                         <div>
-                            <!--新增用户的窗口-->
+                            <!--新增角色的窗口-->
                             <div class="modal fade" id="roleAddModal" tabindex="-1" role="dialog" aria-labelledby="roleAddModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -1101,7 +1101,6 @@
                     time : 5
                 });
             }else{
-                var rowData = $("#grid-table").jqGrid('getRowData',rowid);
 
                 $("#roleAddModal").modal("show");
                 $("#editSysRoleBtn").removeClass("hide");
@@ -1305,21 +1304,23 @@
 
     /**客户端校验**/
     function checkValidity() {
-
-        alert($("#roleName").val()+'111');
         var nodeArray = $("#permit-tree").treeview('getChecked');
-        console.log(nodeArray);
-        if ($("#roleName").val() == "") {
 
+        if ($("#roleName").val() == "") {
+            $('#myTab a[href="#home"]').tab('show');
             $("#roleName").focus();
             $("#roleName").tips({
                 side: 3,
                 msg: '角色名不得为空',
                 bg: '#ff1a96',
-                time: 5
+                time: 3
             });
             return false;
+        }else if(nodeArray.length==0){
+            confirm("角色权限不能为空！");
+            return  false;
         }
+
         return true;
     }
 
@@ -1331,6 +1332,13 @@
             var roleName = $("#roleName").val();
             var description = $("#description").val();
             var zt = $("#zt").val();
+            var checkedNode = $("#permit-tree").treeview("getChecked");
+
+            var returnIdStr = "";
+            //获取菜单id
+            for(var i=0;i<checkedNode.length;i++){
+                returnIdStr = returnIdStr + checkedNode[i].nodeid + ",";
+            }
 
             //设置返回执行的方法
             var url = "";
@@ -1343,10 +1351,11 @@
                 type: "POST",//请求方式为POST
                 url: url,//检验url
                 data: {
-                    "roleId": userId,
-                    "roleName": userName,
-                    "description": department,
-                    "zt": zt
+                    "roleId": roleId,
+                    "roleName": roleName,
+                    "description": description,
+                    "zt": zt,
+                    "idArray":returnIdStr
                 },//请求数据
                 dataType: 'json',//数据类型为JSON类型
                 cache: false,//关闭缓存
