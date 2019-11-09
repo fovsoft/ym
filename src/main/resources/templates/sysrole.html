@@ -678,10 +678,10 @@
                                                                     <div class="hr hr-dotted"></div>
 
                                                                     <div class="form-group">
-                                                                        <label for="department" class="col-xs-12 col-sm-3 control-label no-padding-right">状态</label>
+                                                                        <label for="zt" class="col-xs-12 col-sm-3 control-label no-padding-right">状态</label>
                                                                         <div class="col-xs-12 col-sm-9">
                                                                             <div class="clearfix">
-                                                                                <input type="text" class="col-xs-12 col-sm-8 form-control" id="department" name="department" placeholder="用户名长度在5-18字符之间" />
+                                                                                <input type="text" class="col-xs-12 col-sm-8 form-control" id="zt" name="zt" placeholder="用户名长度在5-18字符之间" />
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -897,7 +897,7 @@
                         //editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
                     }
                 },
-                {name:'roleID',       index:'roleId',       width:60, fixed:true, editable:false, sorttype:"int" },
+                {name:'roleId',       index:'roleId',       width:60, fixed:true, editable:false, sorttype:"int" },
                 {name:'roleName',       index:'roleName',       width:60, fixed:true, editable:true },
                 {name:'description',         index:'description',         width:120, fixed:true, editable:true},
                 {name:'zt',         index:'zt',         width:40, fixed:true, editable:true,unformat:aceSwitch },
@@ -1073,6 +1073,7 @@
                 cache: false,//关闭缓存
                 success: function (data) {
                     alert(data.rootNodes);
+                    $('#permit-tree').treeview('remove');
                     $('#permit-tree').treeview({
                         showCheckbox: true,
                         data: data.rootNodes,
@@ -1081,6 +1082,7 @@
                         onNodeExpanded: addNextNode,
                         onNodeCollapsed: deleteChildrenNode
                     });
+
                 }
             })
 
@@ -1101,7 +1103,7 @@
                     time : 5
                 });
             }else{
-
+                var rowData = $("#grid-table").jqGrid('getRowData',rowid);
                 $("#roleAddModal").modal("show");
                 $("#editSysRoleBtn").removeClass("hide");
                 $("#addSysRoleBtn").addClass("hide");
@@ -1112,6 +1114,30 @@
                 $("#roleName").attr("value",    rowData.roleName  );
                 $("#description").attr("value",  rowData.description);
                 $("#zt").attr("value",         rowData.zt       );
+                //修改数据交互
+                $.ajax({
+                    type: "POST",//请求方式为POST
+                    url: "/role/listSelfPermission",//检验url
+                    dataType: 'json',//数据类型为JSON类型
+                    cache: false,//关闭缓存
+                    data:{
+                        "roleId":rowData.roleId
+                    },
+                    success: function (data) {
+                        console.log(data.treeNodes);
+                        $('#permit-tree').treeview('remove');
+                        $('#permit-tree').treeview({
+                            showCheckbox: true,
+                            data: data.treeNodes,
+                            onNodeChecked: nodeChecked,
+                            onNodeUnchecked: nodeUnchecked,
+                            onNodeExpanded: addNextNode,
+                            onNodeCollapsed: deleteChildrenNode
+                        });
+                        console.log($('#permit-tree').treeview('getNode'));
+                    }
+
+                })
             }
 
 
@@ -1137,7 +1163,12 @@
                         dataType: 'json',//数据类型为JSON类型
                         cache: false,//关闭缓存
                         success: function (data) {
-
+                            alert("角色删除成功！");
+                            $("#grid-table").jqGrid('clearGridData');
+                            $("#grid-table").jqGrid('setGridParam', {
+                                datatype:"json",
+                                url:"/role/list"
+                            }).trigger("reloadGrid");
                         }//响应成功
                     })
 
@@ -1325,7 +1356,7 @@
     }
 
 
-    //新增用户方法
+    //新增和修改角色方法
     function addSysRole(id) {
         if(checkValidity()) {
             var roleId = $("#roleId").val();

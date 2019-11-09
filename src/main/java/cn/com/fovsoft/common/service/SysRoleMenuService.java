@@ -45,4 +45,14 @@ public class SysRoleMenuService {
     };
 
 
+    /**
+     * @author: tpc
+     * @date: 2019/11/9 16:33
+     * @description: 根据角色id删除所有权限
+     */
+    public int deleteSysRoleMenuByRoleId(String roleId){
+        return sysRoleMenuDao.deleteSysRoleMenuByRoleId(roleId);
+    }
+
+
 }

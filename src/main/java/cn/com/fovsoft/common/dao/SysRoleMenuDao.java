@@ -35,4 +35,13 @@ public interface SysRoleMenuDao {
     int deleteSysRoleMenu(SysRoleMenu sysRoleMenu);
 
 
+    /**
+     * @author: tpc
+     * @date: 2019/11/9 16:32
+     * @description: 根据角色id删除所有权限
+     */
+    @Delete("delete from frm_role_menu where roleId=#{roleId}")
+    int deleteSysRoleMenuByRoleId(String roleId);
+
+
 }

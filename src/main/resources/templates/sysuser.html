@@ -1093,7 +1093,12 @@
                         dataType: 'json',//数据类型为JSON类型
                         cache: false,//关闭缓存
                         success: function (data) {
-
+                            alert("用户删除成功！");
+                            $("#grid-table").jqGrid('clearGridData');
+                            $("#grid-table").jqGrid('setGridParam', {
+                                datatype:"json",
+                                url:"/user/list"
+                            }).trigger("reloadGrid");
                         }//响应成功
                     })
 

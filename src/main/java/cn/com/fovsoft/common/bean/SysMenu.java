@@ -1,5 +1,7 @@
 package cn.com.fovsoft.common.bean;
 
+import cn.com.fovsoft.common.dto.MenuTreeDto;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +29,7 @@ public class SysMenu implements Serializable {
 
     //用来存放子菜单的选项
     private List<SysMenu> childMenuList;
+
 
     public List<SysMenu> getChildMenuList() {
         return childMenuList;

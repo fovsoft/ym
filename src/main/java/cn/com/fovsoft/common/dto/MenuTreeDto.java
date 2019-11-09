@@ -5,12 +5,19 @@ package cn.com.fovsoft.common.dto;/*
  * version:
  */
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MenuTreeDto {
+
+
+
     private String nodeid;
     private String text;
+    private Map<String,Object> state;
     private List<MenuTreeDto> nodes;
+
 
     public String getNodeid() {
         return nodeid;
@@ -34,5 +41,13 @@ public class MenuTreeDto {
 
     public void setNodes(List<MenuTreeDto> nodes) {
         this.nodes = nodes;
+    }
+
+    public Map<String, Object> getState() {
+        return state;
+    }
+
+    public void setState(Map<String, Object> state) {
+        this.state = state;
     }
 }

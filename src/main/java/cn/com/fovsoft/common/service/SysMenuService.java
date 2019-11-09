@@ -66,4 +66,15 @@ public class SysMenuService {
     public List<SysMenu> findChildMenu(String menuId){
         return sysMenuDao.findChildMenu(menuId);
     }
+
+
+
+    /**
+     * @author: tpc
+     * @date: 2019/11/9 11:39
+     * @description: 通过角色id获取到对应的菜单权限信息
+     */
+    public List<SysMenu> findMenuByRoleId(String roleId){
+        return sysMenuDao.findMenuByRoleId(roleId);
+    };
 }

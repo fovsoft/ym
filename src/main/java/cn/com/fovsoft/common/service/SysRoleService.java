@@ -86,4 +86,14 @@ public class SysRoleService {
     };
 
 
+    /**
+     * @author: tpc
+     * @date: 2019/11/9 10:25
+     * @description: 通过角色id准确查找角色
+     */
+    public SysRole findSysRoleByRoleId(String roleId){
+        return sysRoleDao.findSysRoleByRoleId(roleId);
+    }
+
+
 }

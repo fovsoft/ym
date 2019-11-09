@@ -71,12 +71,21 @@ public interface SysMenuDao {
      * Date: 2019/11/7 18:22
      * Param: [menuId]
      * Return: java.util.List<cn.com.fovsoft.common.bean.SysMenu>
-     * 功能描述: 根据
+     * 功能描述: 根据菜单id查找子菜单
      */
     @Select("select * from frm_menu where parentId=#{menuId}")
     @ResultMap(value={"menuResultMap"})
     List<SysMenu> findChildMenu(String menuId);
 
 
+
+    /**
+     * @author: tpc
+     * @date: 2019/11/9 11:37
+     * @description: 通过关联中间表，获取到角色对应的菜单权限信息
+     */
+    @Select("select fm.* from frm_menu fm,frm_role_menu frm where fm.menuId=frm.menuId and frm.roleId=#{roleId}")
+    @ResultMap(value={"menuResultMap"})
+    List<SysMenu> findMenuByRoleId(String roleId);
 
 }

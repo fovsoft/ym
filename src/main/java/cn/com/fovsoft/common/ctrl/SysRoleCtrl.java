@@ -17,6 +17,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -116,12 +117,18 @@ public class SysRoleCtrl {
         List<SysMenu> childMenuList = sysMenuService.findChildMenu(menuId);
 
         List<MenuTreeDto> menuTreeDtoList = new ArrayList<>();
+
+
+        //用来指定菜单复选指定状态的map
+        Map<String,Object> nodeStatMap = new HashMap<>();
+        nodeStatMap.put("checked",false);
         //封装菜单树对象
         for(SysMenu sysMenu:childMenuList){
             MenuTreeDto menuTreeDto = new MenuTreeDto();
             menuTreeDto.setNodeid(sysMenu.getMenuId());
             menuTreeDto.setText(sysMenu.getMenuName());
             menuTreeDto.setNodes(new ArrayList<>());
+            menuTreeDto.setState(nodeStatMap);
             menuTreeDtoList.add(menuTreeDto);
         }
 
@@ -243,7 +250,7 @@ public class SysRoleCtrl {
 
         System.out.println(idArray.substring(0,idArray.length()-1));
         //获取菜单id
-        String[] roleIdArray = CollectionUtil.StrArrayDuplicateRemoval(idArray.substring(0,idArray.length()-1).split(","));
+        String[] menuIdArray = CollectionUtil.StrArrayDuplicateRemoval(idArray.substring(0,idArray.length()-1).split(","));
 
 
 
@@ -284,10 +291,10 @@ public class SysRoleCtrl {
             sysRole = sysRoleService.findSysRoleByRoleName(roleName);
             String newRoleId = sysRole.getRoleId();
 
-            for(String str:roleIdArray){
+            for(String str:menuIdArray){
                 SysRoleMenu sysRoleMenu = new SysRoleMenu();
                 sysRoleMenu.setRoleId(newRoleId);
-                sysRoleMenu.setRoleId(str);
+                sysRoleMenu.setMenuId(str);
                 //写入角色权限
                 sysRoleMenuService.addSysRoleMenu(sysRoleMenu);
             }
@@ -307,6 +314,191 @@ public class SysRoleCtrl {
 
         return map;
 
+    }
+
+
+    /**
+     * @author: tpc
+     * @date: 2019/11/9 12:26
+     * @description: 点击修改按钮，响应菜单树信息，把拥有的菜单设置为选中的
+     */
+    @RequestMapping(value = "/role/listSelfPermission")
+    @ResponseBody
+    public void listSelfPermission(HttpServletRequest request,HttpServletResponse response) throws IOException{
+
+        //获取提交过来的角色信息
+        String roleId  = request.getParameter("roleId"  );
+        String roleName = request.getParameter("roleName");
+        String description   = request.getParameter("description"       );
+        String zt  = request.getParameter("zt"  );
+        //用来返回信息的封装对象
+        Map<String,Object> map=new HashMap<>();
+        //用来返回前端的信息
+        int status = 0;
+        String result = "";
+
+        //根据角色id查找到角色对应的菜单权限信息
+        List<SysMenu> privsMenuList = sysMenuService.findMenuByRoleId(roleId);
+        //拿到所有的菜单权限信息
+        List<SysMenu> sysMenuList = sysMenuService.findAllMenu();
+        //首先获取根菜单信息
+        List<SysMenu> rootMenuList = new ArrayList<>();
+        for(SysMenu sysMenu:sysMenuList){
+            if(sysMenu.getParentId().equals("0")){
+                rootMenuList.add(sysMenu);
+            }
+        }
+
+        //用来封装节点树的list
+        List<MenuTreeDto> menuTreeDtoList = new ArrayList<>();
+
+        //用来记录是否包含关系的
+        boolean containTree = false;
+
+        //封装菜单树对象
+        for(SysMenu sysMenu:rootMenuList){
+            MenuTreeDto menuTreeDto = new MenuTreeDto();
+            menuTreeDto.setNodeid(sysMenu.getMenuId());
+            menuTreeDto.setText(sysMenu.getMenuName());
+
+            for(SysMenu sysMenu1:privsMenuList){
+                if (sysMenu.getMenuId().equals(sysMenu1.getMenuId())){
+                    containTree = true;
+                }
+            }
+            //用来封装是否选中的map
+            Map<String,Object> checkedMap = new HashMap<>();
+            if(containTree){
+
+                checkedMap.put("checked",true);
+                checkedMap.put("expanded",true);
+            }else {
+
+                checkedMap.put("checked",false);
+                checkedMap.put("expanded",false);
+
+            }
+            menuTreeDto.setState(checkedMap);
+            containTree = false;
+            //封装子菜单
+            menuTreeDto.setNodes(MenuTreeUtil.getChildNodes(sysMenu.getMenuId(),sysMenuList,privsMenuList));
+            menuTreeDtoList.add(menuTreeDto);
+        }
+
+        map.put("treeNodes",menuTreeDtoList);
+
+        map.put("result","success");
+
+        response.setContentType("application/json;charset=utf-8");
+        //map.put("ymPerson_data",ymPersonList);
+        response.getWriter().write(objectMapper.writeValueAsString(map));
+        System.out.println(objectMapper.writeValueAsString(map));
+        response.getWriter().flush();
+        response.getWriter().close();
+        response.getWriter().close();
+
+    }
+
+
+
+
+
+    @RequestMapping(value = "/role/edit")
+    @ResponseBody
+    public Map<String,Object> editSysRole(HttpServletRequest request){
+        //获取提交过来的角色信息
+        String roleId  = request.getParameter("roleId"  );
+        String roleName = request.getParameter("roleName");
+        String description   = request.getParameter("description"       );
+        String zt  = request.getParameter("zt"  );
+        String idArray    = request.getParameter("idArray" );
+
+        System.out.println(idArray.substring(0,idArray.length()-1));
+        //获取菜单id
+        String[] menuIdArray = CollectionUtil.StrArrayDuplicateRemoval(idArray.substring(0,idArray.length()-1).split(","));
+
+
+
+        //用来返回信息的封装对象
+        Map<String,Object> map=new HashMap<>();
+        //用来返回前端的信息
+        int status = 0;
+        String result = "";
+
+        //如果账号为空格字符,返回报错
+        if(roleName.trim().equals("")){
+            status = 0;
+            result = "isNull";
+        }
+
+        //提交修改的角色信息
+        SysRole sysRole = new SysRole();
+        sysRole.setRoleId(roleId);
+        sysRole.setRoleName(roleName);
+        sysRole.setDescription(description);
+        sysRole.setZt(zt);
+        sysRole.setGxsj(DateUtil.getNowDate());
+        sysRoleService.updateSysRole(sysRole);
+
+        //删除角色原有权限信息
+        sysRoleMenuService.deleteSysRoleMenuByRoleId(roleId);
+        //再写入新的角色权限信息
+        SysRoleMenu sysRoleMenu = new SysRoleMenu();
+        for(String str:menuIdArray){
+            sysRoleMenu.setRoleId(roleId);
+            sysRoleMenu.setMenuId(str);
+            //写入角色权限
+            sysRoleMenuService.addSysRoleMenu(sysRoleMenu);
+        }
+
+        status = 2;
+        result = "success";
+
+        map.put("status",status);
+        map.put("result",result);
+
+        return map;
+
+
+    }
+
+
+    @RequestMapping(value = "/role/delete")
+    @ResponseBody
+    public Map<String,Object> deleteSysRole(HttpServletRequest request){
+
+
+        //获取封装的角色id信息
+        String idArray = request.getParameter("idArr");
+        idArray = idArray.substring(0,idArray.length()-1);
+
+        Map<String,Object> map = new HashMap<>();
+        int status = 0;
+        String result = "error";
+
+        //获取选中行的所有id，存入数组中
+        if(idArray.length()==1){
+            //先删权限信息
+            sysRoleMenuService.deleteSysRoleMenuByRoleId(idArray);
+            //再删角色信息
+            int resultInt = sysRoleService.deleteSysRole(idArray);
+            status = 1;
+            result = "success";
+        }else {
+            String[] userIdArray = idArray.split(",");
+            for(String str:userIdArray){
+                //先删权限信息
+                sysRoleMenuService.deleteSysRoleMenuByRoleId(str);
+                //再删角色信息
+                int resultInt = sysRoleService.deleteSysRole(str);
+            }
+            status = 1;
+            result = "success";
+        }
+        map.put("status",status);
+        map.put("result",result);
+
+        return map;
     }
 
 

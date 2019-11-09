@@ -1,9 +1,12 @@
 package cn.com.fovsoft.common.util;
 
 import cn.com.fovsoft.common.bean.SysMenu;
+import cn.com.fovsoft.common.dto.MenuTreeDto;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author: by tpc
@@ -21,13 +24,13 @@ public class MenuTreeUtil {
      * Return:
      * 功能描述: 迭代获取所有菜单
      */
-    public static List getChilds(String menuId, List<SysMenu> MenuList){
+    public static List getChilds(String menuId, List<SysMenu> menuList){
 
         //子菜单
         List<SysMenu> childList = new ArrayList<SysMenu>();
 
-        if (MenuList.size()>0){
-            for(SysMenu sysMenu:MenuList){
+        if (menuList.size()>0){
+            for(SysMenu sysMenu:menuList){
                 if(sysMenu.getParentId().equals(menuId)){
                     childList.add(sysMenu);
                 }
@@ -40,11 +43,61 @@ public class MenuTreeUtil {
 
         for(SysMenu sysMenu:childList){
             //递归
-            sysMenu.setChildMenuList(getChilds(sysMenu.getMenuId(),MenuList));
+            sysMenu.setChildMenuList(getChilds(sysMenu.getMenuId(),menuList));
         }
 
         return childList;
 
+    }
+
+
+
+    public static List getChildNodes(String menuId, List<SysMenu> menuList,List<SysMenu> checkedMenuList){
+        //用来存放菜单树节点的list
+        List<MenuTreeDto> childNodeList = new ArrayList<>();
+
+
+
+        //用来记录是否包含关系的
+        boolean containTree = false;
+
+        if (menuList.size()>0){
+            for(SysMenu sysMenu:menuList){
+                if(sysMenu.getParentId().equals(menuId)){
+                    MenuTreeDto menuTreeDto= new MenuTreeDto();
+                    menuTreeDto.setText(sysMenu.getMenuName());
+                    menuTreeDto.setNodeid(sysMenu.getMenuId());
+                    for(SysMenu sysMenu1:checkedMenuList){
+                        if (sysMenu.getMenuId().equals(sysMenu1.getMenuId())){
+                            containTree = true;
+                        }
+                    }
+                    //用来封装是否选中的map
+                    Map<String,Object> checkedMap = new HashMap<>();
+                    if(containTree){
+                        checkedMap.put("checked",true);
+                        checkedMap.put("expanded",true);
+                    }else {
+                        checkedMap.put("checked",false);
+                        checkedMap.put("expanded",false);
+
+                    }
+                    menuTreeDto.setState(checkedMap);
+                    childNodeList.add(menuTreeDto);
+                }
+            }
+        }
+
+        if(childNodeList.size()<1){
+            return null;
+        }
+
+        for(MenuTreeDto menuTreeDto:childNodeList){
+            //递归
+            menuTreeDto.setNodes(getChildNodes(menuTreeDto.getNodeid(),menuList,checkedMenuList));
+        }
+
+        return childNodeList;
     }
 
 
