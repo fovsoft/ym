@@ -136,6 +136,21 @@ create table frm_department
   DEFAULT CHARSET = utf8 comment '用户部门表';
 
 
+create table frm_administrative_division(
+    id int auto_increment primary key,
+    xzqhdm varchar(20) comment '行政区划代码',
+    xzqhmz varchar(80) comment '行政区划名字',
+    sjxzqhdm varchar(20) comment '上级行政区划代码',
+    fzjg varchar(10) comment '发证机关',
+    xzqhlb varchar(20) comment '类别',
+    yzbm varchar(20) comment '邮政编码',
+    cjsj           datetime comment '创建时间',
+    gxsj           datetime comment '更新时间'
+);
+insert into frm_administrative_division(xzqhdm,xzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('008600000000','中华人民共和国','0','','国家','008600','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhdm,xzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('450100000000','广西省','008600000000','桂','省','530000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+
+
 drop table persistent_logins;
 #存放用户验证token的表
 create table persistent_logins

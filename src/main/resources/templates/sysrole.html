@@ -1148,11 +1148,12 @@
             var input = confirm("确定删除选定数据吗？");
             if(input){
                 var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
+                console.log(rowids);
                 if(rowids !=""){
                     var idArr = "";
                     for(var i=0;i<rowids.length;i++){
                         var rowData = $("#grid-table").jqGrid('getRowData',rowids[i]);
-                        idArr = idArr + rowData.userId + ",";
+                        idArr = idArr + rowData.roleId + ",";
                     }
                     $.ajax({
                         type: "POST",//请求方式为POST
@@ -1175,7 +1176,7 @@
                 }else {
                     $("#deleteBtn").tips({
                         side : 3,
-                        msg : '请至少勾选一个用户！',
+                        msg : '请至少勾选一个角色！',
                         bg : '#AE81FF',
                         time : 5
                     });

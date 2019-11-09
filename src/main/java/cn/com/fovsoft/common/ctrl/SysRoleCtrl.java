@@ -476,6 +476,9 @@ public class SysRoleCtrl {
         int status = 0;
         String result = "error";
 
+
+        System.out.println("角色id"+idArray);
+
         //获取选中行的所有id，存入数组中
         if(idArray.length()==1){
             //先删权限信息
