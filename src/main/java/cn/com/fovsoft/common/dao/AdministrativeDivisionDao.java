@@ -66,4 +66,27 @@ public interface AdministrativeDivisionDao {
     List<AdministrativeDivision> findChildAdministrativeDivisionById(String id);
 
 
+    /*
+     * Author:tpc
+     * Date: 2019/11/11 16:47
+     * Param: [id]
+     * Return: java.util.List<cn.com.fovsoft.common.bean.AdministrativeDivision>
+     * 功能描述: 根据id查找当前树的子节点
+     */
+    @Select("select * from frm_administrative_division where id=#{id} ")
+    @ResultMap(value = {"AdResultMap"})
+    AdministrativeDivision findAdministrativeDivisionById(String id);
+
+
+    
+
+    /**
+     * @author: tpc
+     * @date: 2019/11/11 22:15
+     * @description: 写入行政区划信息
+     */
+    @Insert("insert into frm_administrative_division(xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,xzqhcj,fzjg,xzqhlb,yzbm,cjsj,gxsj) values(#{xzqhdm},#{xzqhmz},#{xxxzqhmz},#{sjxzqhdm},#{xzqhcj},#{fzjg},#{xzqhlb},#{yzbm},#{cjsj},#{gxsj})")
+    int addAdministrativeDivision(AdministrativeDivision administrativeDivision);
+
+
 }

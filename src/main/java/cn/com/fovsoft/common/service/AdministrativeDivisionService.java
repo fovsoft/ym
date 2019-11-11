@@ -54,4 +54,23 @@ public class AdministrativeDivisionService {
     public List<AdministrativeDivision> findChildAdministrativeDivisionById(String id){
         return administrativeDivisionDao.findChildAdministrativeDivisionById(id);
     };
+
+
+    /**
+     * @author: tpc
+     * @date: 2019/11/11 21:17
+     * @description: 通过主键id查找行政区划信息
+     */
+    public AdministrativeDivision findAdministrativeDivisionById(String id){
+        return administrativeDivisionDao.findAdministrativeDivisionById(id);
+    }
+
+    /**
+     * @author: tpc
+     * @date: 2019/11/11 22:16
+     * @description:写入行政区划信息
+     */
+    public int addAdministrativeDivision(AdministrativeDivision administrativeDivision){
+        return administrativeDivisionDao.addAdministrativeDivision(administrativeDivision);
+    }
 }

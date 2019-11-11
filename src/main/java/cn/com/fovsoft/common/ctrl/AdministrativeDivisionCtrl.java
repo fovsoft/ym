@@ -9,6 +9,7 @@ import cn.com.fovsoft.common.bean.AdministrativeDivision;
 import cn.com.fovsoft.common.constant.VarConstant;
 import cn.com.fovsoft.common.dto.AdminDivisionTreeDto;
 import cn.com.fovsoft.common.service.AdministrativeDivisionService;
+import cn.com.fovsoft.common.util.DateUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -136,6 +137,94 @@ public class AdministrativeDivisionCtrl {
         response.getWriter().flush();
         response.getWriter().close();
 
+    }
+
+
+
+    /**
+     * @author: tpc
+     * @date: 2019/11/11 21:12
+     * @description: 当点击一个区划节点时，后台返回数据，填充右边表单
+     */
+    @RequestMapping(value = "/dept/oneAdminDivision")
+    @ResponseBody
+    public Map<String,Object> getOneAdminDivision(HttpServletRequest request){
+
+        //获取前台传过来的id
+        String id = request.getParameter("id");
+
+
+        //用来返回前端的信息
+        Map<String,Object> map = new HashMap<>();
+        int status = 0;
+        String result = "error";
+
+        //后台取取到相应节点信息
+        AdministrativeDivision administrativeDivision = administrativeDivisionService.findAdministrativeDivisionById(id);
+        if(administrativeDivision !=null){
+            status = 1;
+            result = "success";
+        }
+        map.put("adminDivision",administrativeDivision);
+        map.put("status",status);
+        map.put("result",result);
+
+        return map;
+    }
+
+
+    @RequestMapping("/dept/add")
+    @ResponseBody
+    public Map<String,Object> addAdminDivision(HttpServletRequest request){
+        //获取前端参数
+        String xzqhdm   = request.getParameter("xzqhdm");
+        String xzqhmz   = request.getParameter("xzqhmz");
+        String xxxzqhmz = request.getParameter("xxxzqhmz");
+        String xxxzqhmz1 = request.getParameter("xxxzqhmz1");
+        String sjxzqhdm = request.getParameter("sjxzqhdm");
+        String xzqhcj   = request.getParameter("xzqhcj");
+        String fzjg     = request.getParameter("fzjg");
+        String xzqhlb   = request.getParameter("xzqhlb");
+        String yzbm     = request.getParameter("yzbm");
+
+
+        System.out.println("xzqhdm    "+xzqhdm     );
+        System.out.println("xzqhmz    "+xzqhmz     );
+        System.out.println("xxxzqhmz1  "+xxxzqhmz1   );
+        System.out.println("xxxzqhmz  "+xxxzqhmz   );
+        System.out.println("sjxzqhdm  "+sjxzqhdm   );
+        System.out.println("xzqhcj    "+xzqhcj     );
+        System.out.println("fzjg      "+fzjg       );
+        System.out.println("xzqhlb    "+xzqhlb     );
+        System.out.println("yzbm      "+yzbm       );
+
+        //封装参数，写入数据库
+        AdministrativeDivision administrativeDivision = new AdministrativeDivision();
+        administrativeDivision.setXzqhdm(xzqhdm);
+        administrativeDivision.setXzqhmz(xzqhmz);
+        administrativeDivision.setXxxzqhmz(xxxzqhmz1+xxxzqhmz);
+        administrativeDivision.setSjxzqhdm(sjxzqhdm);
+        administrativeDivision.setXzqhcj(xzqhcj);
+        administrativeDivision.setFzjg(fzjg);
+        administrativeDivision.setXzqhlb(xzqhlb);
+        administrativeDivision.setYzbm(yzbm);
+        administrativeDivision.setCjsj(DateUtil.getNowDate());
+        administrativeDivision.setGxsj(DateUtil.getNowDate());
+
+        //返回前端的参数
+        Map<String,Object> map = new HashMap<>();
+
+        //写入信息
+        int status = administrativeDivisionService.addAdministrativeDivision(administrativeDivision);
+        if(status<1){
+            map.put("status",0);
+            map.put("result","error");
+        }else {
+            map.put("status",1);
+            map.put("result","success");
+        }
+
+        return map;
     }
 
 

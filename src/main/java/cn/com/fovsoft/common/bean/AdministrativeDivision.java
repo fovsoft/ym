@@ -16,6 +16,7 @@ public class AdministrativeDivision {
     private String xzqhmz     ;   //'行政区划名字',
     private String xxxzqhmz   ;   //'详细行政区划名字',
     private String sjxzqhdm   ;   //'上级行政区划代码',
+    private String xzqhcj     ;   //行政区划层级
     private String fzjg       ;   //'发证机关',
     private String xzqhlb     ;   //'类别',
     private String yzbm       ;   //'邮政编码',
@@ -104,6 +105,14 @@ public class AdministrativeDivision {
 
     public void setGxsj(Date gxsj) {
         this.gxsj = gxsj;
+    }
+
+    public String getXzqhcj() {
+        return xzqhcj;
+    }
+
+    public void setXzqhcj(String xzqhcj) {
+        this.xzqhcj = xzqhcj;
     }
 
     public List<AdministrativeDivision> getAdministrativeDivisionChildList() {

@@ -140,7 +140,7 @@ create table frm_administrative_division
     xzqhmz   varchar(80) comment '行政区划名字',
     xxxzqhmz varchar(80) comment '详细行政区划名字',
     sjxzqhdm varchar(20) comment '上级行政区划代码',
-    level    varchar(10) comment '层级',
+    xzqhcj   varchar(10) comment '层级',
     fzjg     varchar(10) comment '发证机关',
     xzqhlb   varchar(20) comment '类别',
     yzbm     varchar(20) comment '邮政编码',
