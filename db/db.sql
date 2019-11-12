@@ -75,6 +75,8 @@ insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, 
 values ('', '移民信息管理', 6, '/ym/mgr', '1', 'a,d,u,s', 13, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
 values ('', '影像化采集', 6, '/ym/img', '1', 'a,d,u,s', 14, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
+values ('', '收入信息采集', 6, '/ym/income', '1', 'a,d,u,s', 15, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 
 
 
@@ -115,6 +117,8 @@ insert into frm_role_menu
 values (1, 8);
 insert into frm_role_menu
 values (1, 9);
+insert into frm_role_menu
+values (1, 10);
 
 drop table frm_department;
 create table frm_department
