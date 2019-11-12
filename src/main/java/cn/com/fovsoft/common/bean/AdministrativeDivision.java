@@ -20,8 +20,8 @@ public class AdministrativeDivision {
     private String fzjg       ;   //'发证机关',
     private String xzqhlb     ;   //'类别',
     private String yzbm       ;   //'邮政编码',
-    private Date cjsj       ;   // '创建时间',
-    private Date gxsj       ;   // '更新时间'
+    private String cjsj       ;   // '创建时间',
+    private String gxsj       ;   // '更新时间'
 
 
     private List<AdministrativeDivision> administrativeDivisionChildList; //用来存放子行政区划的列表
@@ -91,19 +91,19 @@ public class AdministrativeDivision {
         this.yzbm = yzbm;
     }
 
-    public Date getCjsj() {
+    public String getCjsj() {
         return cjsj;
     }
 
-    public void setCjsj(Date cjsj) {
+    public void setCjsj(String cjsj) {
         this.cjsj = cjsj;
     }
 
-    public Date getGxsj() {
+    public String getGxsj() {
         return gxsj;
     }
 
-    public void setGxsj(Date gxsj) {
+    public void setGxsj(String gxsj) {
         this.gxsj = gxsj;
     }
 

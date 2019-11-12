@@ -193,9 +193,9 @@ public class SysUserCtrl {
         sysUser.setUserName(userName);
         sysUser.setDepartment(department);
         sysUser.setBirthday(DateUtil.strToDate(birthday));
-        sysUser.setCjsj(DateUtil.getNowDate());
+        sysUser.setCjsj(DateUtil.getStringDate());
         sysUser.setEmail(email);
-        sysUser.setGxsj(DateUtil.getNowDate());
+        sysUser.setGxsj(DateUtil.getStringDate());
         sysUser.setIpks(ipks);
         sysUser.setIpjs(ipjs);
         sysUser.setLxdh(lxdh);
@@ -276,9 +276,9 @@ public class SysUserCtrl {
             sysUser.setUserName(userName);
             sysUser.setDepartment(department);
             sysUser.setBirthday(DateUtil.strToDate(birthday));
-            sysUser.setCjsj(DateUtil.getNowDate());
+            sysUser.setCjsj(DateUtil.getStringDate());
             sysUser.setEmail(email);
-            sysUser.setGxsj(DateUtil.getNowDate());
+            sysUser.setGxsj(DateUtil.getStringDate());
             sysUser.setIpks(ipks);
             sysUser.setIpjs(ipjs);
             sysUser.setLxdh(lxdh);

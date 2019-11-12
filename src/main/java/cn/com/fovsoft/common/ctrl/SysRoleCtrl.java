@@ -280,8 +280,8 @@ public class SysRoleCtrl {
             sysRole.setRoleName(roleName);
             sysRole.setDescription(description);
             sysRole.setZt(zt);
-            sysRole.setCjsj(DateUtil.getNowDate());
-            sysRole.setGxsj(DateUtil.getNowDate());
+            sysRole.setCjsj(DateUtil.getStringDate());
+            sysRole.setGxsj(DateUtil.getStringDate());
 
             //写入角色信息
             int resultInt = sysRoleService.addSysRole(sysRole);
@@ -437,7 +437,7 @@ public class SysRoleCtrl {
         sysRole.setRoleName(roleName);
         sysRole.setDescription(description);
         sysRole.setZt(zt);
-        sysRole.setGxsj(DateUtil.getNowDate());
+        sysRole.setGxsj(DateUtil.getStringDate());
         sysRoleService.updateSysRole(sysRole);
 
         //删除角色原有权限信息

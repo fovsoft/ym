@@ -31,8 +31,10 @@ public class DateUtil {
     public static Date getNowDate() {
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateString = formatter.format(new Date());
-        ParsePosition pos = new ParsePosition(8);
-        Date currentTime_2 = formatter.parse(dateString, pos);
+        System.out.println(dateString);
+        ParsePosition pos = new ParsePosition(0);
+        Date currentTime_2 = formatter.parse(dateString,pos);
+
         return currentTime_2;
     }
 
@@ -828,5 +830,9 @@ public class DateUtil {
             reStr = getStringDateShort();
         }
         return reStr;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getNowDate());
     }
 }

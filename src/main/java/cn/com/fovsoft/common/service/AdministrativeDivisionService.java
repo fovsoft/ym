@@ -73,4 +73,29 @@ public class AdministrativeDivisionService {
     public int addAdministrativeDivision(AdministrativeDivision administrativeDivision){
         return administrativeDivisionDao.addAdministrativeDivision(administrativeDivision);
     }
+
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/12 9:27
+     * Param: [administrativeDivision]
+     * Return: int
+     * 功能描述: 修改对应的行政区划信息
+     */
+    public int updateAdministrativeDivisionById(AdministrativeDivision administrativeDivision){
+        return administrativeDivisionDao.updateAdministrativeDivisionById(administrativeDivision);
+    }
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/12 11:39
+     * Param: [id]
+     * Return: int
+     * 功能描述: 功能描述: 通过行政区划id删除其及其子行政区划
+     */
+    public int deleteAdministrativeDivisionById(String id){
+        return administrativeDivisionDao.deleteAdministrativeDivisionById(id);
+    }
 }

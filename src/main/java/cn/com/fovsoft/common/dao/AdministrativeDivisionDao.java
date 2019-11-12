@@ -89,4 +89,68 @@ public interface AdministrativeDivisionDao {
     int addAdministrativeDivision(AdministrativeDivision administrativeDivision);
 
 
+    /*
+     * Author:tpc
+     * Date: 2019/11/12 9:26
+     * Param: [administrativeDivision]
+     * Return: int
+     * 功能描述: 修改对应的行政区划信息
+     */
+    @Update("update frm_administrative_division set xzqhdm=#{xzqhdm},xzqhmz=#{xzqhmz},xxxzqhmz=#{xxxzqhmz},sjxzqhdm=#{sjxzqhdm},xzqhcj=#{xzqhcj},fzjg=#{fzjg},xzqhlb=#{xzqhlb},yzbm=#{yzbm},gxsj=#{gxsj} where id=#{id} ")
+    int updateAdministrativeDivisionById(AdministrativeDivision administrativeDivision);
+
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/12 11:38
+     * Param: [id]
+     * Return: int
+     * 功能描述: 通过行政区划id删除其及其子行政区划
+     */
+    @Delete("delete from frm_administrative_division where id in (  " +
+            "select a.id from ( " +
+            "select id from frm_administrative_division where id=#{id}                             "+
+            "union all                                                                                                                                   "+
+            " select id from frm_administrative_division where sjxzqhdm in (select xzqhdm from frm_administrative_division where id=#{id})                "+
+            " union all                                                                                                                                   "+
+            " select id from frm_administrative_division where sjxzqhdm in (                                                                              "+
+            " select xzqhdm from frm_administrative_division where sjxzqhdm in (select xzqhdm from frm_administrative_division where id=#{id})            "+
+            " )                                                                                                                                           "+
+            " union all                                                                                                                                   "+
+            " select id from frm_administrative_division where sjxzqhdm in (                                                                              "+
+            " select xzqhdm from frm_administrative_division where sjxzqhdm in (                                                                          "+
+            " select xzqhdm from frm_administrative_division where sjxzqhdm in (select xzqhdm from frm_administrative_division where id=#{id}) )          "+
+            " )                                                                                                                                           "+
+            " union all                                                                                                                                   "+
+            " select id from frm_administrative_division where sjxzqhdm in (                                                                              "+
+            " select xzqhdm from frm_administrative_division where sjxzqhdm in (                                                                          "+
+            " select xzqhdm from frm_administrative_division where sjxzqhdm in (                                                                          "+
+            " select xzqhdm from frm_administrative_division where sjxzqhdm in (select xzqhdm from frm_administrative_division where id=#{id}) )          "+
+            " )                                                                                                                                           "+
+            " )                                                                                                                                           "+
+            " union all                                                                                                                                   "+
+            " select id from frm_administrative_division where sjxzqhdm in (                                                                              "+
+            " select xzqhdm from frm_administrative_division where sjxzqhdm in (                                                                          "+
+            " select xzqhdm from frm_administrative_division where sjxzqhdm in (                                                                          "+
+            " select xzqhdm from frm_administrative_division where sjxzqhdm in (                                                                          "+
+            " select xzqhdm from frm_administrative_division where sjxzqhdm in (select xzqhdm from frm_administrative_division where id=#{id}) )          "+
+            " )                                                                                                                                           "+
+            " )                                                                                                                                           "+
+            " )                                                                                                                                           "+
+            " union all                                                                                                                                   "+
+            " select id from frm_administrative_division where sjxzqhdm in (                                                                              "+
+            " select xzqhdm from frm_administrative_division where sjxzqhdm in (                                                                          "+
+            " select xzqhdm from frm_administrative_division where sjxzqhdm in (                                                                          "+
+            " select xzqhdm from frm_administrative_division where sjxzqhdm in (                                                                          "+
+            " select xzqhdm from frm_administrative_division where sjxzqhdm in (                                                                          "+
+            " select xzqhdm from frm_administrative_division where sjxzqhdm in (select xzqhdm from frm_administrative_division where id=#{id}) )          "+
+            " )                                                                                                                                           "+
+            " )                                                                                                                                           "+
+            " )                                                                                                                                           "+
+            "                                                                                                                                             "+
+            " )                                                                                                                                           "+
+            " ) a" +
+            " )                                                                                                                                           ")
+    int deleteAdministrativeDivisionById(String id);
 }

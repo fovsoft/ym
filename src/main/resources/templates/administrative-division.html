@@ -750,7 +750,7 @@
                                                         </div>
                                                         <!--行政区划名字-->
                                                         <div class="form-group">
-                                                            <label for="xzqhmz" class="col-xs-12 col-sm-3 control-label no-padding-right">行政区划名字</label>
+                                                            <label for="xzqhmz1" class="col-xs-12 col-sm-3 control-label no-padding-right">行政区划名字</label>
                                                             <div class="col-xs-12 col-sm-9">
                                                                 <div class="clearfix">
                                                                     <input type="text" class="col-xs-12 col-sm-8 form-control" id="xzqhmz1" name="xzqhmz1" placeholder="角色名长度在2-16字符之间" />
@@ -763,8 +763,8 @@
                                                             <label for="xxxzqhmz1" class="col-xs-12 col-sm-3 control-label no-padding-right">详细行政区划名字</label>
                                                             <div class="col-xs-12 col-sm-9">
                                                                 <div class="clearfix form-inline">
-                                                                    <input type="text" class="col-xs-12 col-sm-4 form-control" id="xxxzqhmz11" name="xxxzqhmz" placeholder="角色名长度在2-16字符之间" />
-                                                                    <input type="text" class="col-xs-12 col-sm-4 form-control" id="xxxzqhmz1" name="xxxzqhmz" placeholder="角色名长度在2-16字符之间" />
+                                                                    <input type="text" class="col-xs-12 col-sm-4 form-control" id="xxxzqhmz11" name="xxxzqhmz11" placeholder="角色名长度在2-16字符之间" />
+                                                                    <input type="text" class="col-xs-12 col-sm-4 form-control" id="xxxzqhmz1" name="xxxzqhmz1" placeholder="角色名长度在2-16字符之间" />
                                                                 </div>
                                                                 <div class="clearfix">
 
@@ -831,7 +831,7 @@
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-danger" data-dismiss="modal">关闭
                                                 </button>
-                                                <button type="button" class="btn btn-pink" onclick="addAdminDivision();" id="addAdminDivisionBtn">
+                                                <button type="button" class="btn btn-pink" id="addAdminDivisionBtn">
                                                     提交
                                                 </button>
                                             </div>
@@ -1048,9 +1048,15 @@
                 id:node.nodeid
             };
             $.getJSON("/dept/oneAdminDivision",myData, function (data) {
+                console.log(data.adminDivision);
+                $("#id").attr("value", data.adminDivision.id);
                 $("#xzqhdm").attr("value", data.adminDivision.xzqhdm);
                 $("#xzqhcj").attr("value", data.adminDivision.xzqhcj);
                 $("#xxxzqhmz").attr("value", data.adminDivision.xxxzqhmz);
+                $("#xzqhmz").attr("value", data.adminDivision.xzqhmz);
+                $("#fzjg").attr("value", data.adminDivision.fzjg);
+                $("#xzqhlb").attr("value", data.adminDivision.xzqhlb);
+                $("#yzbm").attr("value", data.adminDivision.yzbm);
                 $("#xzqhcj").attr("value",data.adminDivision.xzqhcj);
                 $("#sjxzqhdm").attr("value",data.adminDivision.sjxzqhdm);
                 $("#xxxzqhmz11").attr("value",data.adminDivision.xxxzqhmz);
@@ -1114,12 +1120,26 @@
 
         //右边行政区划名字修改时，详细行政区划名字进行改变
         $("#xzqhmz1").change(function () {
-            var val = $("#xzqhmz").val();
-            $("#xxxzqhmz11").attr("value", val);
+            var val = $("#xzqhmz1").val();
+            $("#xxxzqhmz1").attr("value", val);
         })
 
-        //判断右边行政区划列表的信息
-        function checkValidity() {
+
+
+
+        //当点击新增按钮时，显示模态框
+        $("#addBtn").on("click",function () {
+
+
+            $("#adAddModal").modal("show");
+
+
+
+        });
+
+
+        //判断修改行政区划列表的信息
+        function checkValidity1() {
 
             if ($("#xzqhdm").val() == "") {
                 $("#xzqhdm").focus();
@@ -1156,8 +1176,161 @@
         }
 
 
-        //当点击新增按钮时，显示模态框
-        $("#addBtn").on("click",function () {
+        //当点击修改按钮时，显示模态框
+        $("#editBtn").on("click",function () {
+            //获取选中节点的信息
+            var selectedNodes = $('#admin-divs-tree').treeview('getSelected');
+            if (selectedNodes.length == 0) {
+                alert("请在左边树选择一个节点！");
+            } else {
+                if (checkValidity1()) {
+                    var id = $("#id").val();
+                    var xzqhdm = $("#xzqhdm").val();
+                    var xzqhmz = $("#xzqhmz").val();
+                    var xxxzqhmz = $("#xxxzqhmz").val();
+                    var xxxzqhmz1 = $("#xxxzqhmz1").val();
+                    var sjxzqhdm = $("#sjxzqhdm").val();
+                    var xzqhcj = $("#xzqhcj").val();
+                    var fzjg = $("#fzjg").val();
+                    var xzqhlb = $("#xzqhlb").val();
+                    var yzbm = $("#yzbm").val();
+
+
+                    $.ajax({
+                        type: "POST",//请求方式为POST
+                        url: "/dept/edit",//检验url
+                        data: {
+                            "id":id,
+                            "xzqhdm": xzqhdm,
+                            "xzqhmz": xzqhmz,
+                            "xxxzqhmz": xxxzqhmz,
+                            "xxxzqhmz1": xxxzqhmz1,
+                            "sjxzqhdm": sjxzqhdm,
+                            "xzqhcj": xzqhcj,
+                            "fzjg": fzjg,
+                            "xzqhlb": xzqhlb,
+                            "yzbm": yzbm
+                        },//请求数据
+                        dataType: 'json',//数据类型为JSON类型
+                        cache: false,//关闭缓存
+                        success: function (data) {
+                            if (data.status == 1) {
+                                alert("行政区划修改成功！");
+                                $('#admin-divs-tree').treeview("remove");
+                                //刷新树
+                                $.getJSON("/dept/rootAdminDivision",function (data) {
+                                    $('#admin-divs-tree').treeview({
+                                        data: data.rootNodes,
+                                        onNodeChecked: nodeChecked,
+                                        onNodeUnchecked: nodeUnchecked,
+                                        onNodeExpanded: addNextNode,
+                                        onNodeCollapsed: deleteChildrenNode,
+                                        onNodeSelected:nodeSelected
+                                    });
+                                });
+                            }
+
+                        }//响应成功
+                    })
+                }
+            }
+
+        })
+
+
+        //级联获取所有子节点
+        function getMySon(node,myIdArr) {
+            myIdArr = myIdArr + node.nodeid + ",";
+            if (node.nodes != null && node.nodes.length > 0) {
+                for (var i in node.nodes) {
+                    myIdArr = myIdArr + uncheckAllSon(node.nodes[i],myIdArr);
+                }
+            }
+            return myIdArr;
+        }
+
+        //当点击删除按钮时，执行操作
+        $("#deleteBtn").on("click",function () {
+            //获取选中节点的信息
+            var selectedNodes = $('#admin-divs-tree').treeview('getSelected');
+            if (selectedNodes.length == 0) {
+                alert("请在左边树选择一个节点！");
+            } else {
+                var input = confirm("确定删除当前节点吗？，该操作将删除当前节点及下属所有节点！");
+                if(input){
+                    var id = $("#id").val();
+                    $.ajax({
+                        type: "POST",//请求方式为POST
+                        url: "/dept/delete",//检验url
+                        data: {
+                            "id":id
+                        },//请求数据
+                        dataType: 'json',//数据类型为JSON类型
+                        cache: false,//关闭缓存
+                        success: function (data) {
+                            if (data.status == 1) {
+                                alert("行政区划删除成功！");
+                                $('#admin-divs-tree').treeview("remove");
+                                //刷新树
+                                $.getJSON("/dept/rootAdminDivision",function (data) {
+                                    $('#admin-divs-tree').treeview({
+                                        data: data.rootNodes,
+                                        onNodeChecked: nodeChecked,
+                                        onNodeUnchecked: nodeUnchecked,
+                                        onNodeExpanded: addNextNode,
+                                        onNodeCollapsed: deleteChildrenNode,
+                                        onNodeSelected:nodeSelected
+                                    });
+                                });
+                            }
+
+                        }//响应成功
+                    })
+                }
+            }
+
+
+        });
+
+        //判断新增行政区划列表的信息
+        function checkValidity() {
+
+            if ($("#xzqhdm1").val() == "") {
+                $("#xzqhdm1").focus();
+                $("#xzqhdm1").tips({
+                    side: 3,
+                    msg: '行政区划代码不得为空',
+                    bg: '#ff1a96',
+                    time: 3
+                });
+                return false;
+            }else if($("#xzqhdm1").val().length!=12){
+                $("#xzqhdm1").focus();
+                $("#xzqhdm1").tips({
+                    side: 3,
+                    msg: '行政区划代码长度必须为12位',
+                    bg: '#ff1521',
+                    time: 3
+                });
+                return false;
+            }
+
+            if ($("#xzqhmz1").val() == "") {
+                $("#xzqhmz1").focus();
+                $("#xzqhmz1").tips({
+                    side: 3,
+                    msg: '行政区划名字不得为空',
+                    bg: '#23ffaa',
+                    time: 3
+                });
+                return false;
+            }
+
+            return true;
+        }
+
+        //新增框中提交按钮事件
+        $("#addAdminDivisionBtn").on("click",function () {
             //获取选中节点的信息
             var selectedNodes =  $('#admin-divs-tree').treeview('getSelected');
             if(selectedNodes.length ==0 ) {
@@ -1165,15 +1338,15 @@
             }else{
                 if(checkValidity()){
                     var id       = $("#id").val();
-                    var xzqhdm   = $("#xzqhdm").val();
-                    var xzqhmz   = $("#xzqhmz").val();
-                    var xxxzqhmz = $("#xxxzqhmz").val();
-                    var xxxzqhmz1 = $("#xxxzqhmz1").val();
-                    var sjxzqhdm = $("#sjxzqhdm").val();
-                    var xzqhcj   = $("#xzqhcj").val();
-                    var fzjg     = $("#fzjg").val();
-                    var xzqhlb   = $("#xzqhlb").val();
-                    var yzbm     = $("#yzbm").val();
+                    var xzqhdm   = $("#xzqhdm1").val();
+                    var xzqhmz   = $("#xzqhmz1").val();
+                    var xxxzqhmz = $("#xxxzqhmz1").val();
+                    var xxxzqhmz1 = $("#xxxzqhmz11").val();
+                    var sjxzqhdm = $("#sjxzqhdm1").val();
+                    var xzqhcj   = $("#xzqhcj1").val();
+                    var fzjg     = $("#fzjg1").val();
+                    var xzqhlb   = $("#xzqhlb1").val();
+                    var yzbm     = $("#yzbm1").val();
 
 
                     $.ajax({
@@ -1195,6 +1368,18 @@
                         success: function (data) {
                             if(data.status==1){
                                 alert("行政区划新增成功！");
+                                $('#admin-divs-tree').treeview("remove");
+                                //刷新树
+                                $.getJSON("/dept/rootAdminDivision",function (data) {
+                                    $('#admin-divs-tree').treeview({
+                                        data: data.rootNodes,
+                                        onNodeChecked: nodeChecked,
+                                        onNodeUnchecked: nodeUnchecked,
+                                        onNodeExpanded: addNextNode,
+                                        onNodeCollapsed: deleteChildrenNode,
+                                        onNodeSelected:nodeSelected
+                                    });
+                                });
                             }
 
                         }//响应成功
@@ -1202,101 +1387,6 @@
                 }
 
             }
-
-
-
-        });
-
-
-
-        //当点击修改按钮时，显示模态框
-        $("#editBtn").on("click",function () {
-            //获取选中节点的信息
-            var selectedNodes = $('#admin-divs-tree').treeview('getSelected');
-            if (selectedNodes.length == 0) {
-                alert("请在左边树选择一个节点！");
-            } else {
-                if (checkValidity()) {
-                    var id = $("#id").val();
-                    var xzqhdm = $("#xzqhdm").val();
-                    var xzqhmz = $("#xzqhmz").val();
-                    var xxxzqhmz = $("#xxxzqhmz").val();
-                    var xxxzqhmz1 = $("#xxxzqhmz1").val();
-                    var sjxzqhdm = $("#sjxzqhdm").val();
-                    var xzqhcj = $("#xzqhcj").val();
-                    var fzjg = $("#fzjg").val();
-                    var xzqhlb = $("#xzqhlb").val();
-                    var yzbm = $("#yzbm").val();
-
-
-                    $.ajax({
-                        type: "POST",//请求方式为POST
-                        url: "/dept/add",//检验url
-                        data: {
-                            "xzqhdm": xzqhdm,
-                            "xzqhmz": xzqhmz,
-                            "xxxzqhmz": xxxzqhmz,
-                            "xxxzqhmz1": xxxzqhmz1,
-                            "sjxzqhdm": sjxzqhdm,
-                            "xzqhcj": xzqhcj,
-                            "fzjg": fzjg,
-                            "xzqhlb": xzqhlb,
-                            "yzbm": yzbm
-                        },//请求数据
-                        dataType: 'json',//数据类型为JSON类型
-                        cache: false,//关闭缓存
-                        success: function (data) {
-                            if (data.status == 1) {
-                                alert("行政区划新增成功！");
-                            }
-
-                        }//响应成功
-                    })
-                }
-            }
-
-        })
-
-        //当点击删除按钮时，执行操作
-        $("#deleteBtn").on("click",function () {
-            var input = confirm("确定删除选定数据吗？");
-            if(input){
-                var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
-                console.log(rowids);
-                if(rowids !=""){
-                    var idArr = "";
-                    for(var i=0;i<rowids.length;i++){
-                        var rowData = $("#grid-table").jqGrid('getRowData',rowids[i]);
-                        idArr = idArr + rowData.roleId + ",";
-                    }
-                    $.ajax({
-                        type: "POST",//请求方式为POST
-                        url: "/role/delete",//检验url
-                        data: {
-                            "idArr": idArr
-                        },//请求数据
-                        dataType: 'json',//数据类型为JSON类型
-                        cache: false,//关闭缓存
-                        success: function (data) {
-                            alert("角色删除成功！");
-                            $("#grid-table").jqGrid('clearGridData');
-                            $("#grid-table").jqGrid('setGridParam', {
-                                datatype:"json",
-                                url:"/role/list"
-                            }).trigger("reloadGrid");
-                        }//响应成功
-                    })
-
-                }else {
-                    $("#deleteBtn").tips({
-                        side : 3,
-                        msg : '请至少勾选一个角色！',
-                        bg : '#AE81FF',
-                        time : 5
-                    });
-                }
-            }
-
         });
 
 
@@ -1367,116 +1457,6 @@
 
 
 
-
-
-
-
-
-    /**客户端校验**/
-    function checkValidity() {
-        var nodeArray = $("#permit-tree").treeview('getChecked');
-
-        if ($("#roleName").val() == "") {
-            $('#myTab a[href="#home"]').tab('show');
-            $("#roleName").focus();
-            $("#roleName").tips({
-                side: 3,
-                msg: '角色名不得为空',
-                bg: '#ff1a96',
-                time: 3
-            });
-            return false;
-        }else if(nodeArray.length==0){
-            confirm("角色权限不能为空！");
-            return  false;
-        }
-
-        return true;
-    }
-
-
-    //新增和修改角色方法
-    function addSysRole(id) {
-        if(checkValidity()) {
-            var roleId = $("#roleId").val();
-            var roleName = $("#roleName").val();
-            var description = $("#description").val();
-            var zt = $("#zt").val();
-            var checkedNode = $("#permit-tree").treeview("getChecked");
-
-            var returnIdStr = "";
-            //获取菜单id
-            for(var i=0;i<checkedNode.length;i++){
-                returnIdStr = returnIdStr + checkedNode[i].nodeid + ",";
-            }
-
-            //设置返回执行的方法
-            var url = "";
-            if(id==1){
-                url="/role/add";
-            }else if(id==2){
-                url="/role/edit";
-            }
-            $.ajax({
-                type: "POST",//请求方式为POST
-                url: url,//检验url
-                data: {
-                    "roleId": roleId,
-                    "roleName": roleName,
-                    "description": description,
-                    "zt": zt,
-                    "idArray":returnIdStr
-                },//请求数据
-                dataType: 'json',//数据类型为JSON类型
-                cache: false,//关闭缓存
-                success: function (data) {//响应成功
-                    alert(data.status);
-                    alert(data.result);
-                    if (1 == data.status) {
-                        confirm("新增角色成功！")
-                        //window.location.href="/index";
-                    } else if(2 == data.status){
-                        confirm("修改角色成功！")
-                    }else if ("havedUser" == data.result) {
-                        $("#roleName").focus();
-                        $("#roleName").tips({
-                            side: 3,
-                            msg: "该角色已经存在",
-                            bg: '#FF5080',
-                            time: 15
-                        });
-                    } else if ("isNull" == data.result) {
-                        $("#roleName").focus();
-                        $("#roleName").tips({
-                            side: 3,
-                            msg: '角色名不能为空格！',
-                            bg: '#b5161f',
-                            time: 5
-                        });
-                    } else if ("error" == data.result) {
-                        $("#roleName").focus();
-                        $("#roleName").tips({
-                            side: 3,
-                            msg: '数据库存入数据失败！',
-                            bg: '#2a0ab5',
-                            time: 10
-                        });
-                    } else if ("inerror" == data.result) {
-                        $("#roleName").focus();
-                        $("#roleName").tips({
-                            side: 3,
-                            msg: '数据库修改数据失败！',
-                            bg: '#68B500',
-                            time: 10
-                        });
-                    } else {
-                        confirm("程序存在异常，请联系管理员！");
-                        $("#roleName").focus();
-                    }
-                }
-            });
-        }
-    }
 
     //查询用户的方法
     function querySysRole() {

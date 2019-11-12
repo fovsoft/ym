@@ -208,8 +208,8 @@ public class AdministrativeDivisionCtrl {
         administrativeDivision.setFzjg(fzjg);
         administrativeDivision.setXzqhlb(xzqhlb);
         administrativeDivision.setYzbm(yzbm);
-        administrativeDivision.setCjsj(DateUtil.getNowDate());
-        administrativeDivision.setGxsj(DateUtil.getNowDate());
+        administrativeDivision.setCjsj(DateUtil.getStringDate());
+        administrativeDivision.setGxsj(DateUtil.getStringDate());
 
         //返回前端的参数
         Map<String,Object> map = new HashMap<>();
@@ -226,6 +226,94 @@ public class AdministrativeDivisionCtrl {
 
         return map;
     }
+
+
+    @RequestMapping("/dept/edit")
+    @ResponseBody
+    public Map<String,Object> editAdminDivision(HttpServletRequest request){
+        //获取前端参数
+        String id       = request.getParameter("id");
+        String xzqhdm   = request.getParameter("xzqhdm");
+        String xzqhmz   = request.getParameter("xzqhmz");
+        String xxxzqhmz = request.getParameter("xxxzqhmz");
+        String xxxzqhmz1 = request.getParameter("xxxzqhmz1");
+        String sjxzqhdm = request.getParameter("sjxzqhdm");
+        String xzqhcj   = request.getParameter("xzqhcj");
+        String fzjg     = request.getParameter("fzjg");
+        String xzqhlb   = request.getParameter("xzqhlb");
+        String yzbm     = request.getParameter("yzbm");
+
+
+        System.out.println("xzqhdm    "+xzqhdm     );
+        System.out.println("xzqhmz    "+xzqhmz     );
+        System.out.println("xxxzqhmz1  "+xxxzqhmz1   );
+        System.out.println("xxxzqhmz  "+xxxzqhmz   );
+        System.out.println("sjxzqhdm  "+sjxzqhdm   );
+        System.out.println("xzqhcj    "+xzqhcj     );
+        System.out.println("fzjg      "+fzjg       );
+        System.out.println("xzqhlb    "+xzqhlb     );
+        System.out.println("yzbm      "+yzbm       );
+
+        //封装参数，写入数据库
+        AdministrativeDivision administrativeDivision = new AdministrativeDivision();
+        administrativeDivision.setId(id);
+        administrativeDivision.setXzqhdm(xzqhdm);
+        administrativeDivision.setXzqhmz(xzqhmz);
+        administrativeDivision.setXxxzqhmz(xxxzqhmz1+xxxzqhmz);
+        administrativeDivision.setSjxzqhdm(sjxzqhdm);
+        administrativeDivision.setXzqhcj(xzqhcj);
+        administrativeDivision.setFzjg(fzjg);
+        administrativeDivision.setXzqhlb(xzqhlb);
+        administrativeDivision.setYzbm(yzbm);
+        administrativeDivision.setGxsj(DateUtil.getStringDate());
+
+        //返回前端的参数
+        Map<String,Object> map = new HashMap<>();
+
+        //写入信息
+        int status = administrativeDivisionService.updateAdministrativeDivisionById(administrativeDivision);
+        if(status<1){
+            map.put("status",0);
+            map.put("result","error");
+        }else {
+            map.put("status",1);
+            map.put("result","success");
+        }
+
+        return map;
+    }
+
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/12 10:56
+     * Param: [request]
+     * Return: java.util.Map<java.lang.String,java.lang.Object>
+     * 功能描述: 删除行政区划，并删除及子行政区划
+     */
+    @RequestMapping("/dept/delete")
+    @ResponseBody
+    public Map<String,Object> deleteAdminDivision(HttpServletRequest request){
+        //获取前端参数
+        String id       = request.getParameter("id");
+
+        //返回前端的参数
+        Map<String,Object> map = new HashMap<>();
+
+        //写入信息
+        int status = administrativeDivisionService.deleteAdministrativeDivisionById(id);
+        if(status<1){
+            map.put("status",0);
+            map.put("result","error");
+        }else {
+            map.put("status",1);
+            map.put("result","success");
+        }
+
+        return map;
+    }
+
 
 
 }

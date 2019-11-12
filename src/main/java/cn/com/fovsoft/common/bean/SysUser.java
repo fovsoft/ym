@@ -23,7 +23,7 @@ public class SysUser implements Serializable {
     private String lxdh;
     private String zjdlip;
     private String zt;
-    private Date cjsj;
+    private String cjsj;
 
     //存储用户角色
     private Set<SysRole> sysRoleSet;
@@ -60,15 +60,8 @@ public class SysUser implements Serializable {
         this.email = email;
     }
 
-    public Date getCjsj() {
-        return cjsj;
-    }
 
-    public void setCjsj(Date cjsj) {
-        this.cjsj = cjsj;
-    }
-
-    private Date gxsj;
+    private String gxsj;
     //获取用户菜单列表
     private List sysMenuList;
 
@@ -185,11 +178,19 @@ public class SysUser implements Serializable {
         this.zt = zt;
     }
 
-    public Date getGxsj() {
+    public String getCjsj() {
+        return cjsj;
+    }
+
+    public void setCjsj(String cjsj) {
+        this.cjsj = cjsj;
+    }
+
+    public String getGxsj() {
         return gxsj;
     }
 
-    public void setGxsj(Date gxsj) {
+    public void setGxsj(String gxsj) {
         this.gxsj = gxsj;
     }
 }

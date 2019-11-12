@@ -24,8 +24,8 @@ public class SysMenu implements Serializable {
 
     private int sequence     ;
     private String zt        ;
-    private Date cjsj        ;
-    private Date gxsj        ;
+    private String cjsj        ;
+    private String gxsj        ;
 
     //用来存放子菜单的选项
     private List<SysMenu> childMenuList;
@@ -114,19 +114,19 @@ public class SysMenu implements Serializable {
         this.zt = zt;
     }
 
-    public Date getCjsj() {
+    public String getCjsj() {
         return cjsj;
     }
 
-    public void setCjsj(Date cjsj) {
+    public void setCjsj(String cjsj) {
         this.cjsj = cjsj;
     }
 
-    public Date getGxsj() {
+    public String getGxsj() {
         return gxsj;
     }
 
-    public void setGxsj(Date gxsj) {
+    public void setGxsj(String gxsj) {
         this.gxsj = gxsj;
     }
 }
