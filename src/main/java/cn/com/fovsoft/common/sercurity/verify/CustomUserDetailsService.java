@@ -45,6 +45,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         SysUser sysUser = sysUserService.findByUserName(userName);
 
         if(sysUser == null){
+            System.out.println("没有该用户");
             throw new UsernameNotFoundException("not have this user");
         }
         Collection<GrantedAuthority> authorities = new ArrayList<>();

@@ -199,7 +199,7 @@ public class SysUserLoginCtrl {
             //把菜单信息写入session
             request.getSession().setAttribute("rootSysMenuList",rootSysMenuList);
             User user = (User)authentication.getPrincipal();
-            request.getSession().setAttribute("sysUser",user.getUsername());
+            request.getSession().setAttribute("sessionUser",user.getUsername());
             modelAndView.addObject("sessionUser",user.getUsername());
             modelAndView.addObject("rootSysMenuList",rootSysMenuList);
             modelAndView.setViewName("index");

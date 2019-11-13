@@ -339,8 +339,8 @@
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                         <img class="nav-user-photo" th:src="@{/static/images/avatars/user.jpg}" alt="Jason's Photo" />
                         <span class="user-info">
-									<small>Welcome,</small>
-									Jason
+									<small>欢迎你,</small>
+									[(${sessionUser.userName})]
 								</span>
 
                         <i class="ace-icon fa fa-caret-down"></i>
@@ -592,7 +592,7 @@
                                                             <div class="hr hr-dotted"></div>
 
                                                             <div class="form-group">
-                                                                <label for="newPassword" class="col-xs-12 col-sm-3 control-label no-padding-right">状态</label>
+                                                                <label for="newPassword" class="col-xs-12 col-sm-3 control-label no-padding-right">新密码</label>
                                                                 <div class="col-xs-12 col-sm-9">
                                                                     <div class="clearfix">
                                                                         <input type="password" class="col-xs-12 col-sm-8 form-control" id="newPassword" name="newPassword" placeholder="请输入新密码" />
@@ -603,7 +603,7 @@
                                                             <div class="hr hr-dotted"></div>
 
                                                             <div class="form-group">
-                                                                <label for="newPassword1" class="col-xs-12 col-sm-3 control-label no-padding-right">状态</label>
+                                                                <label for="newPassword1" class="col-xs-12 col-sm-3 control-label no-padding-right">确认新密码</label>
                                                                 <div class="col-xs-12 col-sm-9">
                                                                     <div class="clearfix">
                                                                         <input type="password" class="col-xs-12 col-sm-8 form-control" id="newPassword1" name="newPassword1" placeholder="请确认新密码" />
@@ -700,6 +700,9 @@
 <script th:src="@{/static/js/jquery.jqGrid.min.js}"></script>
 <script th:src="@{/static/js/grid.locale-en.js}"></script>
 
+<!-- 引入JQuery提示库 start-->
+<script th:src="@{/static/js/jquery.tips.js}"></script>
+
 <script type="text/javascript">
 
     jQuery.jgrid.useJSON = true;
@@ -715,6 +718,59 @@
 
 
     jQuery(function($) {
+
+
+        //修改密码方法
+        $("#updatePasswordBtn").on("click",function () {
+            if($("#newPassword").val()!=$("#newPassword1").val()){
+                $("#newPassword1").tips({
+                    side : 3,
+                    msg : '两次输入的密码不一致！',
+                    bg : '#ff1642',
+                    time : 3
+                });
+            }else if($("#newPassword").val().length<6){
+                $("#newPassword1").tips({
+                    side : 3,
+                    msg : '密码长度必须大于等于6位！',
+                    bg : '#ff1642',
+                    time : 3
+                });
+            } else{
+                var oldPassword = $("#oldPassword").val();
+                var newPassword = $("#newPassword").val();
+                $.ajax({
+                    type: "POST",//请求方式为POST
+                    url: "/user/password",//检验url
+                    data:{
+                        "oldPassword":oldPassword,
+                        "newPassword":newPassword
+                    },
+                    dataType: 'json',//数据类型为JSON类型
+                    cache: false,//关闭缓存
+                    success: function (data) {
+                        if(data.status==1){
+                            alert("密码修改成功！");
+                        }else if(data.result=="errorPw"){
+                            $("#oldPassword").focus();
+                            $("#oldPassword").tips({
+                                side : 3,
+                                msg : '原密码输入错误！',
+                                bg : '#ff1642',
+                                time : 3
+                            });
+                        }else {
+                            alert("发生不可预测的错误，请联系管理员！");
+                        }
+                    }//响应成功
+                })
+            }
+        });
+
+
+
+
+
         var grid_selector = "#grid-table";
         var pager_selector = "#grid-pager";
 

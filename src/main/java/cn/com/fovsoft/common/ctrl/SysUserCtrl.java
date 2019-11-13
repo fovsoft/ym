@@ -83,6 +83,52 @@ public class SysUserCtrl {
 
 
 
+
+    /**
+     * @author: tpc
+     * @date: 2019/11/13 21:09
+     * @description: 修改密码实现方法
+     */
+
+    @RequestMapping("/user/password")
+    @ResponseBody
+    public Map<String,Object> updatePassword(HttpServletRequest request){
+        //获取用户名
+        String userName = (String)request.getSession().getAttribute(VarConstant.SESSION_USER);
+        //通过用户名查找用户
+        SysUser sysUser = sysUserService.findByUserName(userName);
+
+        String oldPassword = request.getParameter("oldPassword");
+        String newPassword = request.getParameter("newPassword");
+
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+
+
+
+        //返回给前端的对象
+        Map<String,Object> map = new HashMap<>();
+        int status = 0;
+        String result = "";
+
+        System.out.println(oldPassword);
+        System.out.println(sysUser.getPassword());
+
+        if(!bCryptPasswordEncoder.matches(oldPassword,sysUser.getPassword())){
+            result = "errorPw";
+        }else {
+            sysUserService.updatePasswordByUserId(sysUser.getUserId(),bCryptPasswordEncoder.encode(newPassword));
+            status = 1;
+            result = "success";
+        }
+
+        map.put("status",status);
+        map.put("result",result);
+
+        return map;
+    }
+
+
+
     /*
      * Author:tpc
      * Date: 2019/11/13 14:01

@@ -130,6 +130,16 @@ public interface SysUserDao {
     int updateSysUserInfo(SysUser sysUser);
 
 
+
+    /**
+     * @author: tpc
+     * @date: 2019/11/13 21:05
+     * @description: 通过用户id修改密码
+     */
+    @Update(value = "update frm_sysuser set password=#{password} where userId=#{userId} ")
+    int updatePasswordByUserId(int userId,String password);
+
+
     /**
      * @author: by tpc
      * @date: 2019/10/17 22:01

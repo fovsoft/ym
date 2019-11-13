@@ -78,4 +78,14 @@ public class SysUserService {
     }
 
 
+    /**
+     * @author: tpc
+     * @date: 2019/11/13 21:06
+     * @description: 通过用户id修改密码
+     */
+    public int updatePasswordByUserId(int userId,String password){
+        return sysUserDao.updatePasswordByUserId(userId,password);
+    }
+
+
 }
