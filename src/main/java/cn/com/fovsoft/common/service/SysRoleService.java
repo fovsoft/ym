@@ -60,6 +60,16 @@ public class SysRoleService {
     }
 
 
+    /*
+     * Author:tpc
+     * Date: 2019/11/13 13:59
+     * Param: [userId]
+     * Return: java.util.List<cn.com.fovsoft.common.bean.SysRole>
+     * 功能描述: 通过用户id查找用户角色信息
+     */
+    public List<SysRole> findSysRoleBySysUserId(String userId){
+        return sysRoleDao.findSysRoleBySysUserId(userId);
+    }
 
     /*
      * Author:tpc

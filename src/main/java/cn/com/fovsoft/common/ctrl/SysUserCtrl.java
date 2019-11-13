@@ -1,7 +1,11 @@
 package cn.com.fovsoft.common.ctrl;
 
+import cn.com.fovsoft.common.bean.SysRole;
 import cn.com.fovsoft.common.bean.SysUser;
+import cn.com.fovsoft.common.bean.SysUserRole;
 import cn.com.fovsoft.common.constant.VarConstant;
+import cn.com.fovsoft.common.service.SysRoleService;
+import cn.com.fovsoft.common.service.SysUserRoleService;
 import cn.com.fovsoft.common.service.SysUserService;
 import cn.com.fovsoft.common.util.DateUtil;
 import cn.com.fovsoft.ym.bean.YmPerson;
@@ -38,6 +42,12 @@ public class SysUserCtrl {
 
 
 
+    @Autowired
+    private SysRoleService sysRoleService;
+
+    @Autowired
+    private SysUserRoleService sysUserRoleService;
+
 
     @Autowired
     private ObjectMapper objectMapper;
@@ -64,10 +74,33 @@ public class SysUserCtrl {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sysuser");
         modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
-
+        //获取所有角色信息，并返回前端
+        List<SysRole> sysRoleList = sysRoleService.findAllSysRole();
+        modelAndView.addObject("sysRoleList",sysRoleList);
+        modelAndView.addObject("sysUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
         return modelAndView;
     }
 
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/13 14:01
+     * Param: [request]
+     * Return: java.util.Map<java.lang.String,java.lang.Object>
+     * 功能描述: 获取用户拥有角色信息
+     */
+    @RequestMapping(value = "/user/getRole")
+    @ResponseBody
+    public Map<String,Object> getSysUserRole(HttpServletRequest request){
+        String userId    = request.getParameter("userId");
+        List<SysRole> sysRoleList = sysRoleService.findSysRoleBySysUserId(userId);
+
+        Map<String,Object> map = new HashMap<>();
+
+        map.put("sysRoleList",sysRoleList);
+        return map;
+    }
 
     /**
      * @author: tpc
@@ -130,12 +163,16 @@ public class SysUserCtrl {
         //获取选中行的所有id，存入数组中
         if(idArray.length()==1){
             int resultInt = sysUserService.deleteSysUser(Integer.parseInt(idArray));
+            sysUserRoleService.deleteSysUserRoleByUserId(idArray);
             status = 1;
             result = "success";
         }else {
             String[] userIdArray = idArray.split(",");
             for(String str:userIdArray){
-                sysUserService.deleteSysUser(Integer.parseInt(idArray));
+                //删除角色信息
+                sysUserRoleService.deleteSysUserRoleByUserId(str);
+                //删除用户信息
+                sysUserService.deleteSysUser(Integer.parseInt(str));
             }
             status = 1;
             result = "success";
@@ -175,6 +212,7 @@ public class SysUserCtrl {
         String yhlx      = request.getParameter("yhlx"      );
         String lxdh      = request.getParameter("lxdh"      );
         String zt        = request.getParameter("zt"        );
+        String roleIdArr = request.getParameter("roleIdArr"        );
 
         //用来返回信息的封装对象
         Map<String,Object> map=new HashMap<>();
@@ -206,6 +244,17 @@ public class SysUserCtrl {
         sysUser.setSex(sex);
         sysUser.setSfzmhm(sfzmhm);
 
+        String[] roleIdArray = roleIdArr.substring(0,roleIdArr.length()-1).split(",");
+        //先删除原先拥有的角色信息
+        sysUserRoleService.deleteSysUserRoleByUserId(userId);
+        //再写入修改后的角色信息
+        for(String str:roleIdArray){
+            SysUserRole sysUserRole = new SysUserRole();
+            sysUserRole.setUserId(userId);
+            sysUserRole.setRoleId(str);
+            sysUserRoleService.addSysUserRole(sysUserRole);
+        }
+        //再写入修改后的用户信息
         int returnInt = sysUserService.updateSysUserInfo(sysUser);
         if(returnInt<1) {
             status = 0;
@@ -214,7 +263,6 @@ public class SysUserCtrl {
             status = 2;
             result = "success";
         }
-
 
         map.put("status",status);
         map.put("result",result);
@@ -246,6 +294,7 @@ public class SysUserCtrl {
         String yhlx      = request.getParameter("yhlx"      );
         String lxdh      = request.getParameter("lxdh"      );
         String zt        = request.getParameter("zt"        );
+        String roleIdArr = request.getParameter("roleIdArr"        );
 
         //用来返回信息的封装对象
         Map<String,Object> map=new HashMap<>();
@@ -291,7 +340,19 @@ public class SysUserCtrl {
             String password = new BCryptPasswordEncoder().encode("888888");
             sysUser.setPassword(password);
 
+            //获取授权角色id
+            String[] roleIdArray = roleIdArr.substring(0,roleIdArr.length()-1).split(",");
+            //写入用户信息
             int returnInt = sysUserService.addSysUser(sysUser);
+            //获取写入信息
+            sysUser = sysUserService.findByUserName(userName);
+            //再写入修改后的角色信息
+            for(String str:roleIdArray){
+                SysUserRole sysUserRole = new SysUserRole();
+                sysUserRole.setUserId(Integer.toString(sysUser.getUserId()));
+                sysUserRole.setRoleId(str);
+                sysUserRoleService.addSysUserRole(sysUserRole);
+            }
             if(returnInt<1) {
                 status = 0;
                 result = "error";

@@ -39,6 +39,11 @@
         .frozen-div, .frozen-bdiv {
             background-color: #E4E6E9; /*与网页背景色一致*/
         }
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+
     </style>
 
     <!--[if lte IE 9]>
@@ -354,7 +359,7 @@
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                         <img class="nav-user-photo" th:src="@{/static/images/avatars/user.jpg}" alt="Jason's Photo"/>
                         <span class="user-info">
-									<small>Welcome,</small>
+									<small>欢迎您,</small>
 									Jason
 								</span>
 
@@ -363,25 +368,18 @@
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="#">
+                            <a href="#" data-toggle="modal" data-target="#updatePasswordModal">
                                 <i class="ace-icon fa fa-cog"></i>
-                                Settings
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="profile.html">
-                                <i class="ace-icon fa fa-user"></i>
-                                Profile
+                                修改密码
                             </a>
                         </li>
 
                         <li class="divider"></li>
 
                         <li>
-                            <a href="#">
+                            <a href="/logout">
                                 <i class="ace-icon fa fa-power-off"></i>
-                                Logout
+                                注销
                             </a>
                         </li>
                     </ul>
@@ -595,6 +593,81 @@
                 <div class="row">
                     <div class="col-xs-12">
 
+                        <!-- 修改密码的窗口 -->
+                        <div>
+                            <!--新增角色的窗口-->
+                            <div class="modal fade" id="updatePasswordModal" tabindex="-1" role="dialog" aria-labelledby="updatePasswordModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title red" id="updatePasswordModalLabel">
+                                                <label id="addTitle">修改</label>
+                                            </h4>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <div class="widget-box widget-color-green2">
+                                                <div class="widget-header">
+                                                    <h4 class="widget-title lighter smaller">
+                                                        <span class="smaller-80"></span>
+                                                    </h4>
+                                                </div>
+
+                                                <div class="widget-body">
+                                                    <div class="widget-main padding-8">
+                                                        <form class="form-horizontal">
+                                                            <div class="form-group">
+                                                                <label for="oldPassword" class="col-xs-12 col-xs-3 control-label no-padding-right">原密码</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="password" class="col-xs-12 col-xs-8 form-control" id="oldPassword" name="oldPassword" placeholder="请输入原密码" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="newPassword" class="col-xs-12 col-sm-3 control-label no-padding-right">状态</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="password" class="col-xs-12 col-sm-8 form-control" id="newPassword" name="newPassword" placeholder="请输入新密码" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="newPassword1" class="col-xs-12 col-sm-3 control-label no-padding-right">状态</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="password" class="col-xs-12 col-sm-8 form-control" id="newPassword1" name="newPassword1" placeholder="请确认新密码" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-info" data-dismiss="modal">关闭
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="updatePasswordBtn">
+                                                确定
+                                            </button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="tabbable tabs-left">
                                 <ul class="nav nav-tabs" id="myTab">
@@ -637,9 +710,9 @@
 
                                 <div class="tab-content">
                                     <div id="produce" class="tab-pane fade in active">
-                                        <div class="widget-box widget-color-green2">
-                                            <div class="widget-header">
-                                                <h4 class="widget-title lighter smaller">
+                                        <div class="widget-box widget-color-green2 table-responsive">
+                                            <div class="widget-header width-auto">
+                                                <h4 class="widget-title width-auto lighter smaller">
                                                     生产收入信息
                                                     <span class="smaller-80"></span>
                                                 </h4>
@@ -648,7 +721,298 @@
                                             <div class="widget-body">
                                                 <div class="widget-main padding-8">
                                                     <table class="table table-striped table-bordered table-hover">
-
+                                                        <thead class="danger">
+                                                        <tr>
+                                                            <th class="center" colspan="3" rowspan="2">类别</th>
+                                                            <th class="center" colspan="3">2018年</th>
+                                                            <th class="center" rowspan="2">2019年1-3月</th>
+                                                            <th class="center" rowspan="2">2019年4-6月</th>
+                                                            <th class="center" rowspan="2">2019年7-9月</th>
+                                                            <th class="center" colspan="3" >2019年</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="center">10月</th>
+                                                            <th class="center">11月</th>
+                                                            <th class="center">12月</th>
+                                                            <th class="center">10月</th>
+                                                            <th class="center">11月</th>
+                                                            <th class="center">12月</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td class="center" rowspan="11">一、生产经营性收入</td>
+                                                            <td class="center" rowspan="3">种植业</td>
+                                                            <td class="center">品种</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">数量</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">金额</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" rowspan="3">林业</td>
+                                                            <td class="center">品种</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">数量</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">金额</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" rowspan="3">养殖业</td>
+                                                            <td class="center">品种</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">数量</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">金额</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" colspan="2">其他</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" colspan="2">小计</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" rowspan="11">二、生产经营性支出</td>
+                                                            <td class="center" rowspan="3">种植业</td>
+                                                            <td class="center">品种</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">数量</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">金额</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" rowspan="3">林业</td>
+                                                            <td class="center">品种</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">数量</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">金额</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" rowspan="3">养殖业</td>
+                                                            <td class="center">品种</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">数量</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">金额</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" colspan="2">其他</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" colspan="2">小计</td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-small"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                            <td><input type="text" class="input-mini"></input></td>
+                                                        </tr>
+                                                        </tbody>
                                                     </table>
                                                 </div>
                                             </div>
@@ -660,7 +1024,12 @@
                                         <table class="table table-striped table-bordered table-hover">
                                             <thead>
                                             <tr>
-                                                <th class="center" colspan="3" rowspan="2">类别</th>
+                                                <th class="center" rowspan="2">类别</th>
+                                                <th class="center" rowspan="2">姓名</th>
+                                                <th class="center" rowspan="2">务工工种</th>
+                                                <th class="center" rowspan="2">务工省/市/县/乡</th>
+                                                <th class="center" rowspan="2">务工累计时间(月)</th>
+                                                <th class="center" rowspan="2">务工企业(单位)名称</th>
                                                 <th class="center" colspan="3">2018年</th>
                                                 <th class="center" rowspan="2">2019年1-3月</th>
                                                 <th class="center" rowspan="2">2019年4-6月</th>
@@ -675,7 +1044,115 @@
                                                 <th class="center">11月</th>
                                                 <th class="center">12月</th>
                                             </tr>
+
                                             </thead>
+                                            <tbody>
+                                            <tr>
+                                                <td rowspan="7">三、工资性收入(劳务收入)</td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                            </tr>
+                                            <tr>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5">其他</td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="5">小计</td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-small"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                                <td><input type="text" class="input-mini"></input></td>
+                                            </tr>
+                                            </tbody>
                                         </table>
                                     </div>
 
@@ -788,7 +1265,7 @@
 
     jQuery(function ($) {
 
-        //新增用户按钮方法
+
 
 
         //resize on sidebar collapse/expand

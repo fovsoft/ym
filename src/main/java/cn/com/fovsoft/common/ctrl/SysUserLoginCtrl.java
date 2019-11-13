@@ -8,6 +8,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.session.SessionRegistry;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -51,7 +52,7 @@ public class SysUserLoginCtrl {
     public String userLogout(HttpServletRequest request){
         String sessionId = request.getRequestedSessionId();
         sessionRegistry.removeSessionInformation(sessionId);
-        return"redirect:/login";
+        return "redirect:/login";
 
     }
 
@@ -197,6 +198,9 @@ public class SysUserLoginCtrl {
 
             //把菜单信息写入session
             request.getSession().setAttribute("rootSysMenuList",rootSysMenuList);
+            User user = (User)authentication.getPrincipal();
+            request.getSession().setAttribute("sysUser",user.getUsername());
+            modelAndView.addObject("sessionUser",user.getUsername());
             modelAndView.addObject("rootSysMenuList",rootSysMenuList);
             modelAndView.setViewName("index");
         }else {

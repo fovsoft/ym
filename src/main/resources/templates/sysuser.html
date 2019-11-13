@@ -363,25 +363,18 @@
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="#">
+                            <a href="#" data-toggle="modal" data-target="#updatePasswordModal">
                                 <i class="ace-icon fa fa-cog"></i>
-                                Settings
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="profile.html">
-                                <i class="ace-icon fa fa-user"></i>
-                                Profile
+                                修改密码
                             </a>
                         </li>
 
                         <li class="divider"></li>
 
                         <li>
-                            <a href="#">
+                            <a href="/logout">
                                 <i class="ace-icon fa fa-power-off"></i>
-                                Logout
+                                注销
                             </a>
                         </li>
                     </ul>
@@ -635,166 +628,213 @@
                                             </h4>
                                         </div>
                                         <div class="modal-body">
-                                            <div class="row hide">
-                                                <input type="hidden" id="userId" name="userId" value=""/>
-                                            </div>
-                                            <form class="form-horizontal">
-                                                <div class="form-group">
-                                                    <label for="userName" class="col-xs-12 col-xs-3 control-label no-padding-right">用户名</label>
-                                                    <div class="col-xs-12 col-sm-9">
-                                                        <div class="clearfix">
-                                                            <input type="text" class="col-xs-12 col-xs-8 form-control" id="userName" name="userName" placeholder="用户名长度在5-18字符之间" />
+                                            <div class="tabbable">
+                                                <ul class="nav nav-tabs" id="myTab">
+                                                    <li class="active">
+                                                        <a data-toggle="tab" href="#home">
+                                                            <i class="green ace-icon fa fa-cog bigger-120"></i>
+                                                            用户信息
+                                                        </a>
+                                                    </li>
+
+                                                    <li>
+                                                        <a data-toggle="tab" href="#messages">
+                                                            <i class="red ace-icon fa fa-cogs bigger-120"></i>
+                                                            角色授权
+                                                        </a>
+                                                    </li>
+
+                                                </ul>
+
+                                                <div class="tab-content">
+                                                    <div id="home" class="tab-pane fade in active">
+                                                        <div class="row hide">
+                                                            <input type="hidden" id="userId" name="userId" value=""/>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </form>
+                                                        <form class="form-horizontal">
+                                                            <div class="form-group">
+                                                                <label for="userName" class="col-xs-12 col-xs-3 control-label no-padding-right">用户名</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-xs-8 form-control" id="userName" name="userName" placeholder="用户名长度在5-18字符之间" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                            <div class="hr hr-dotted"></div>
+                                                            <div class="hr hr-dotted"></div>
 
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <label for="department" class="col-xs-12 col-sm-3 control-label no-padding-right">部门</label>
-                                                    <div class="col-xs-12 col-sm-9">
-                                                        <div class="clearfix">
-                                                            <input type="text" class="col-xs-12 col-sm-8 form-control" id="department" name="department" placeholder="用户名长度在5-18字符之间" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="department" class="col-xs-12 col-sm-3 control-label no-padding-right">部门</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="department" name="department" placeholder="用户名长度在5-18字符之间" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                            <div class="hr hr-dotted"></div>
+                                                            <div class="hr hr-dotted"></div>
 
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <label for="sex" class="col-xs-12 col-sm-3 control-label no-padding-right">性别</label>
-                                                    <div class="col-xs-12 col-sm-9">
-                                                        <div class="clearfix">
-                                                            <input type="text" class="col-xs-12 col-sm-8 form-control" id="sex" name="sex" placeholder="用户名长度在5-18字符之间" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="sex" class="col-xs-12 col-sm-3 control-label no-padding-right">性别</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="sex" name="sex" placeholder="用户名长度在5-18字符之间" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                            <div class="hr hr-dotted"></div>
+                                                            <div class="hr hr-dotted"></div>
 
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <label for="csrq" class="col-xs-12 col-sm-3 control-label no-padding-right">出生日期</label>
-                                                    <div class="col-xs-12 col-sm-9">
-                                                        <div class="input-group">
-                                                            <input class="form-control date-picker" id="csrq" name="csrq" type="text" data-date-format="yyyy-mm-dd" />
-                                                            <span class="input-group-addon">
+                                                            <div class="form-group">
+                                                                <label for="csrq" class="col-xs-12 col-sm-3 control-label no-padding-right">出生日期</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="input-group">
+                                                                        <input class="form-control date-picker" id="csrq" name="csrq" type="text" data-date-format="yyyy-mm-dd" />
+                                                                        <span class="input-group-addon">
 																		<i class="fa fa-calendar bigger-110"></i>
                                                                 </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="hr hr-dotted"></div>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <label for="sfzmhm" class="col-xs-12 col-sm-3 control-label no-padding-right">身份证明号码</label>
-                                                    <div class="col-xs-12 col-sm-9">
-                                                        <div class="clearfix">
-                                                            <input type="text" class="col-xs-12 col-sm-8 form-control" id="sfzmhm" name="sfzmhm" placeholder="用户名长度在5-18字符之间" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="hr hr-dotted"></div>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <label for="email" class="col-xs-12 col-sm-3 control-label no-padding-right">邮箱</label>
-                                                    <div class="col-xs-12 col-sm-9">
-                                                        <div class="clearfix">
-                                                            <input type="text" class="col-xs-12 col-sm-8 form-control" id="email" name="email" placeholder="用户名长度在5-18字符之间" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="hr hr-dotted"></div>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <label for="ipks" class="col-xs-12 col-sm-3 control-label no-padding-right">ip开始地址</label>
-                                                    <div class="col-xs-12 col-sm-9">
-                                                        <div class="clearfix">
-                                                            <input type="text" class="col-xs-12 col-sm-8 form-control" id="ipks" name="ipks" placeholder="用户名长度在5-18字符之间" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="hr hr-dotted"></div>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <label for="ipjs" class="col-xs-12 col-sm-3 control-label no-padding-right">ip结束地址</label>
-                                                    <div class="col-xs-12 col-sm-9">
-                                                        <div class="clearfix">
-                                                            <input type="text" class="col-xs-12 col-sm-8 form-control" id="ipjs" name="ipjs" placeholder="用户名长度在5-18字符之间" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="hr hr-dotted"></div>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <label for="zhyxq" class="col-xs-12 col-sm-3 control-label no-padding-right">账号有效期</label>
-                                                    <div class="col-xs-12 col-sm-9">
-                                                        <div class="input-group ">
-                                                            <input class="form-control date-picker" id="zhyxq" name="zhyxq" type="text" data-date-format="yyyy-mm-dd" />
-                                                            <span class="input-group-addon">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="sfzmhm" class="col-xs-12 col-sm-3 control-label no-padding-right">身份证明号码</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="sfzmhm" name="sfzmhm" placeholder="用户名长度在5-18字符之间" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="email" class="col-xs-12 col-sm-3 control-label no-padding-right">邮箱</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="email" name="email" placeholder="用户名长度在5-18字符之间" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="ipks" class="col-xs-12 col-sm-3 control-label no-padding-right">ip开始地址</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="ipks" name="ipks" placeholder="用户名长度在5-18字符之间" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="ipjs" class="col-xs-12 col-sm-3 control-label no-padding-right">ip结束地址</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="ipjs" name="ipjs" placeholder="用户名长度在5-18字符之间" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="zhyxq" class="col-xs-12 col-sm-3 control-label no-padding-right">账号有效期</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="input-group ">
+                                                                        <input class="form-control date-picker" id="zhyxq" name="zhyxq" type="text" data-date-format="yyyy-mm-dd" />
+                                                                        <span class="input-group-addon">
 																		<i class="fa fa-calendar bigger-110"></i>
                                                                 </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="hr hr-dotted"></div>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <label for="mmyxq" class="col-xs-12 col-sm-3 control-label no-padding-right">密码有效期</label>
-                                                    <div class="col-xs-12 col-sm-9">
-                                                        <div class="input-group">
-                                                            <input class="form-control date-picker" id="mmyxq" name="mmyxq" type="text" data-date-format="yyyy-mm-dd" />
-                                                            <span class="input-group-addon">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="mmyxq" class="col-xs-12 col-sm-3 control-label no-padding-right">密码有效期</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="input-group">
+                                                                        <input class="form-control date-picker" id="mmyxq" name="mmyxq" type="text" data-date-format="yyyy-mm-dd" />
+                                                                        <span class="input-group-addon">
 																		<i class="fa fa-calendar bigger-110"></i>
                                                                 </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="yhlx" class="col-xs-12 col-sm-3 control-label no-padding-right">用户类型</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="yhlx" name="yhlx" placeholder="用户名长度在5-18字符之间" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="lxdh" class="col-xs-12 col-sm-3 control-label no-padding-right">联系电话</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="lxdh" name="lxdh" placeholder="用户名长度在5-18字符之间" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="zt" class="col-xs-12 col-sm-3 control-label no-padding-right">状态</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="zt" name="zt" placeholder="用户名长度在5-18字符之间" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+
+                                                    <div id="messages" class="tab-pane fade">
+                                                        <div class="row">
+                                                            <div class="widget-box widget-color-green2">
+                                                                <div class="widget-header">
+                                                                    <h4 class="widget-title lighter smaller">
+                                                                        角色列表
+                                                                        <span class="smaller-80"></span>
+                                                                    </h4>
+                                                                </div>
+
+                                                                <div class="widget-body">
+                                                                    <div class="widget-main padding-8">
+                                                                        <div class="row">
+                                                                            <div class="col-xs-12 col-sm-4" th:each="sysRole:${sysRoleList}">
+                                                                                <div class="checkbox">
+                                                                                    <label>
+                                                                                        <input name="sys-role-checkbox" type="checkbox" th:id="${sysRole.roleId}"/>
+                                                                                        <span class="lbl" th:text="${sysRole.roleName}"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="hr hr-dotted"></div>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <label for="yhlx" class="col-xs-12 col-sm-3 control-label no-padding-right">用户类型</label>
-                                                    <div class="col-xs-12 col-sm-9">
-                                                        <div class="clearfix">
-                                                            <input type="text" class="col-xs-12 col-sm-8 form-control" id="yhlx" name="yhlx" placeholder="用户名长度在5-18字符之间" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="hr hr-dotted"></div>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <label for="lxdh" class="col-xs-12 col-sm-3 control-label no-padding-right">联系电话</label>
-                                                    <div class="col-xs-12 col-sm-9">
-                                                        <div class="clearfix">
-                                                            <input type="text" class="col-xs-12 col-sm-8 form-control" id="lxdh" name="lxdh" placeholder="用户名长度在5-18字符之间" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="hr hr-dotted"></div>
-                                            <div class="row">
-                                                <div class="form-group">
-                                                    <label for="zt" class="col-xs-12 col-sm-3 control-label no-padding-right">状态</label>
-                                                    <div class="col-xs-12 col-sm-9">
-                                                        <div class="clearfix">
-                                                            <input type="text" class="col-xs-12 col-sm-8 form-control" id="zt" name="zt" placeholder="用户名长度在5-18字符之间" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+
                                         </div>
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-info" data-dismiss="modal">关闭
@@ -905,7 +945,33 @@
 
     jQuery(function ($) {
 
-        //新增用户按钮方法
+        //修改密码方法
+        $("#updatePasswordBtn").on("click",function () {
+            if($("#newPassword").val()!=$("#newPassword1")){
+                $("#newPassword1").tips({
+                    side : 3,
+                    msg : '两次输入的密码不一致！',
+                    bg : '#ff1642',
+                    time : 3
+                });
+            }else{
+                $.ajax({
+                    type: "POST",//请求方式为POST
+                    url: "/user/password",//检验url
+
+                    dataType: 'json',//数据类型为JSON类型
+                    cache: false,//关闭缓存
+                    success: function (data) {
+                        alert("用户删除成功！");
+                        $("#grid-table").jqGrid('clearGridData');
+                        $("#grid-table").jqGrid('setGridParam', {
+                            datatype:"json",
+                            url:"/user/list"
+                        }).trigger("reloadGrid");
+                    }//响应成功
+                })
+            }
+        })
 
 
 
@@ -1024,6 +1090,7 @@
         $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
 
 
+
         //当点击新增按钮时，显示模态框
         $("#addBtn").on("click",function () {
             $("#userAddModal").modal("show");
@@ -1031,6 +1098,9 @@
             $("#editSysUserBtn").addClass("hide");
             $("#addTitle").removeClass("hide");
             $("#editTitle").addClass("hide");
+            //先把所有角色不选中
+            $("input[name='sys-role-checkbox']").prop("checked",false);
+
 
         });
 
@@ -1068,6 +1138,26 @@
                 $("#yhlx").attr("value",        rowData.yhlx      );
                 $("#lxdh").attr("value",        rowData.lxdh      );
                 $("#zt").attr("value",          rowData.zt        );
+                //先把所有角色不选中
+                $("input[name='sys-role-checkbox']").prop("checked",false);
+                //拿到id后，与前端交互获取角色id，然后把角色选中
+                var myData = {
+                    "userId":rowData.userId
+                };
+                $.getJSON("/user/getRole",myData,function (data) {
+
+                    var checkBoxRole = $("input[name='sys-role-checkbox']");
+                    var sysRole = data.sysRoleList;
+                    for(var i=0;i<checkBoxRole.length;i++){
+                        for(var j=0;j<sysRole.length;j++){
+                            if(checkBoxRole[i].id==sysRole[j].roleId){
+                                $(checkBoxRole[i]).prop("checked",true);
+                            }
+
+                        }
+                    }
+
+                })
             }
 
 
@@ -1331,74 +1421,87 @@
             }else if(id==2){
                 url="/user/edit";
             }
-
-            $.ajax({
-                type: "POST",//请求方式为POST
-                url: url,//检验url
-                data: {
-                    "userId": userId,
-                    "userName": userName,
-                    "department": department,
-                    "sex": sex,
-                    "birthday": birthday,
-                    "sfzmhm": sfzmhm,
-                    "email": email,
-                    "ipks": ipks,
-                    "ipjs": ipjs,
-                    "zhyxq": zhyxq,
-                    "mmyxq": mmyxq,
-                    "yhlx": yhlx,
-                    "lxdh": lxdh,
-                    "zt": zt
-                },//请求数据
-                dataType: 'json',//数据类型为JSON类型
-                cache: false,//关闭缓存
-                success: function (data) {//响应成功
-                    alert(data.status);
-                    alert(data.result);
-                    if (1 == data.status) {
-                        confirm("新增用户成功！")
-                        //window.location.href="/index";
-                    } else if(2 == data.status){
-                        confirm("修改用户成功！")
-                    }else if ("havedUser" == data.result) {
-                        $("#userName").focus();
-                        $("#userName").tips({
-                            side: 3,
-                            msg: "该用户已经存在",
-                            bg: '#FF5080',
-                            time: 15
-                        });
-                    } else if ("isNull" == data.result) {
-                        $("#userName").focus();
-                        $("#userName").tips({
-                            side: 3,
-                            msg: '用户不能为空格！',
-                            bg: '#68B500',
-                            time: 5
-                        });
-                    } else if ("error" == data.result) {
-                        $("#userName").focus();
-                        $("#userName").tips({
-                            side: 3,
-                            msg: '数据库存入数据失败！',
-                            bg: '#68B500',
-                            time: 10
-                        });
-                    } else if ("inerror" == data.result) {
-                        $("#userName").focus();
-                        $("#userName").tips({
-                            side: 3,
-                            msg: '数据库修改数据失败！',
-                            bg: '#68B500',
-                            time: 10
-                        });
-                    } else {
-                        confirm("程序存在异常，请联系管理员！");
-                        $("#userName").focus();
-                    }
+            //获取选中的角色id
+            var checkboxArr = $("input[name='sys-role-checkbox']:checked");
+            var roleIdArr = "";
+            console.log(checkboxArr);
+            if(checkboxArr.length<1){
+                alert("请为用户至少选择一个角色！");
+            }else{
+                for(var i=0;i<checkboxArr.length;i++){
+                    roleIdArr = roleIdArr + checkboxArr[i].id + ",";
                 }
-            });
+                $.ajax({
+                    type: "POST",//请求方式为POST
+                    url: url,//检验url
+                    data: {
+                        "userId": userId,
+                        "userName": userName,
+                        "department": department,
+                        "sex": sex,
+                        "birthday": birthday,
+                        "sfzmhm": sfzmhm,
+                        "email": email,
+                        "ipks": ipks,
+                        "ipjs": ipjs,
+                        "zhyxq": zhyxq,
+                        "mmyxq": mmyxq,
+                        "yhlx": yhlx,
+                        "lxdh": lxdh,
+                        "zt": zt,
+                        "roleIdArr":roleIdArr
+                    },//请求数据
+                    dataType: 'json',//数据类型为JSON类型
+                    cache: false,//关闭缓存
+                    success: function (data) {//响应成功
+                        alert(data.status);
+                        alert(data.result);
+                        if (1 == data.status) {
+                            confirm("新增用户成功！")
+                            //window.location.href="/index";
+                        } else if(2 == data.status){
+                            confirm("修改用户成功！")
+                        }else if ("havedUser" == data.result) {
+                            $("#userName").focus();
+                            $("#userName").tips({
+                                side: 3,
+                                msg: "该用户已经存在",
+                                bg: '#FF5080',
+                                time: 15
+                            });
+                        } else if ("isNull" == data.result) {
+                            $("#userName").focus();
+                            $("#userName").tips({
+                                side: 3,
+                                msg: '用户不能为空格！',
+                                bg: '#68B500',
+                                time: 5
+                            });
+                        } else if ("error" == data.result) {
+                            $("#userName").focus();
+                            $("#userName").tips({
+                                side: 3,
+                                msg: '数据库存入数据失败！',
+                                bg: '#68B500',
+                                time: 10
+                            });
+                        } else if ("inerror" == data.result) {
+                            $("#userName").focus();
+                            $("#userName").tips({
+                                side: 3,
+                                msg: '数据库修改数据失败！',
+                                bg: '#68B500',
+                                time: 10
+                            });
+                        } else {
+                            confirm("程序存在异常，请联系管理员！");
+                            $("#userName").focus();
+                        }
+                    }
+                });
+            }
+
+
         }
     }
     

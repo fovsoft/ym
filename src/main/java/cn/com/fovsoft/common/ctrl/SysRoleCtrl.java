@@ -63,7 +63,7 @@ public class SysRoleCtrl {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("sysrole");
         modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
-
+        modelAndView.addObject("sysUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
         return modelAndView;
     }
 

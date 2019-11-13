@@ -99,4 +99,17 @@ public interface SysRoleDao {
     @ResultMap(value = {"sysRoleResultMap"})
     SysRole findSysRoleByRoleId(String roleId);
 
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/13 13:58
+     * Param: [userId]
+     * Return: java.util.List<cn.com.fovsoft.common.bean.SysRole>
+     * 功能描述: 通过用户id查找用户角色信息
+     */
+    @Select("select * from frm_role fr inner join frm_sysuser_role fsr on fr.roleId=fsr.roleId " +
+            " where fsr.userId=#{userId} ")
+    @ResultMap(value = {"sysRoleResultMap"})
+    List<SysRole> findSysRoleBySysUserId(String userId);
+
 }

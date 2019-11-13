@@ -363,25 +363,18 @@
 
                     <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                         <li>
-                            <a href="#">
+                            <a href="#" data-toggle="modal" data-target="#updatePasswordModal">
                                 <i class="ace-icon fa fa-cog"></i>
-                                Settings
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="profile.html">
-                                <i class="ace-icon fa fa-user"></i>
-                                Profile
+                                修改密码
                             </a>
                         </li>
 
                         <li class="divider"></li>
 
                         <li>
-                            <a href="#">
+                            <a href="/logout">
                                 <i class="ace-icon fa fa-power-off"></i>
-                                Logout
+                                注销
                             </a>
                         </li>
                     </ul>
@@ -594,6 +587,82 @@
 
                 <div class="row">
                     <div class="col-xs-12">
+
+                        <!-- 修改密码的窗口 -->
+                        <div>
+                            <!--新增角色的窗口-->
+                            <div class="modal fade" id="updatePasswordModal" tabindex="-1" role="dialog" aria-labelledby="updatePasswordModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title red" id="updatePasswordModalLabel">
+                                                <label id="addTitle3">修改</label>
+                                            </h4>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <div class="widget-box widget-color-green2">
+                                                <div class="widget-header">
+                                                    <h4 class="widget-title lighter smaller">
+                                                        <span class="smaller-80"></span>
+                                                    </h4>
+                                                </div>
+
+                                                <div class="widget-body">
+                                                    <div class="widget-main padding-8">
+                                                        <form class="form-horizontal">
+                                                            <div class="form-group">
+                                                                <label for="oldPassword" class="col-xs-12 col-xs-3 control-label no-padding-right">原密码</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="password" class="col-xs-12 col-xs-8 form-control" id="oldPassword" name="oldPassword" placeholder="请输入原密码" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="newPassword" class="col-xs-12 col-sm-3 control-label no-padding-right">状态</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="password" class="col-xs-12 col-sm-8 form-control" id="newPassword" name="newPassword" placeholder="请输入新密码" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="newPassword1" class="col-xs-12 col-sm-3 control-label no-padding-right">状态</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="password" class="col-xs-12 col-sm-8 form-control" id="newPassword1" name="newPassword1" placeholder="请确认新密码" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-info" data-dismiss="modal">关闭
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="updatePasswordBtn">
+                                                确定
+                                            </button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+
+                            </div>
+                        </div>
+
                         <form class="form-inline" role="form">
                             <div class="form-group">
                                 <label class="sr-only control-label">角色名:</label>
