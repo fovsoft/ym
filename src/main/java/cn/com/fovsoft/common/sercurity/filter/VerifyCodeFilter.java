@@ -51,10 +51,14 @@ public class VerifyCodeFilter extends OncePerRequestFilter {
         String tm = request.getParameter("tm");
         //获取session中的验证码
         String sessionVerifyCode = (String)request.getSession().getAttribute(VarConstant.SESSION_VERIFY_CODE);
+
+        System.out.println("表单提交的验证码："+code);
+
+        System.out.println("会话中的验证码："+sessionVerifyCode);
         //判断是否相等
         if(!code.equalsIgnoreCase(sessionVerifyCode)){
             throw new VerifyCodeAuthenticationException("verifycode error");
         }
-        request.getSession().removeAttribute(VarConstant.SESSION_VERIFY_CODE);
+        //request.getSession().removeAttribute(VarConstant.SESSION_VERIFY_CODE);
     }
 }

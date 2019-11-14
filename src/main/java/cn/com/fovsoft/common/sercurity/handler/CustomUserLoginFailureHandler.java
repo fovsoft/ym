@@ -1,5 +1,6 @@
 package cn.com.fovsoft.common.sercurity.handler;
 
+import cn.com.fovsoft.common.constant.VarConstant;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.AuthenticationException;
@@ -49,12 +50,14 @@ public class CustomUserLoginFailureHandler extends SimpleUrlAuthenticationFailur
             response.getWriter().close();
             //获取验证码错误异常，通过json返回验证码错误状态数据
         }else if(exception.getMessage().equals("verifycode error")){
+            String sessionCode = (String)request.getSession().getAttribute(VarConstant.SESSION_VERIFY_CODE);
             response.setContentType("application/json;charset=utf-8");
             map.put("status",0);
             map.put("result","codeerror");
             response.getWriter().write(objectMapper.writeValueAsString(map));
             response.getWriter().flush();
             response.getWriter().close();
+            sessionCode = (String)request.getSession().getAttribute(VarConstant.SESSION_VERIFY_CODE);
         }
 
 

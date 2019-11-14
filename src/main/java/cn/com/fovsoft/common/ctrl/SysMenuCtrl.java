@@ -21,7 +21,7 @@ public class SysMenuCtrl {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("menu");
         modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
-        modelAndView.addObject("sysUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
+        modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
         return modelAndView;
     }
 }

@@ -6,7 +6,9 @@ package cn.com.fovsoft.common.bean;/*
  */
 
 
-public class SysUserRole {
+import java.io.Serializable;
+
+public class SysUserRole  implements Serializable {
     private String userId;
     private String roleId;
 

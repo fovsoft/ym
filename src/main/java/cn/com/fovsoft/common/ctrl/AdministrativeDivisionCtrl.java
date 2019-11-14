@@ -51,7 +51,7 @@ public class AdministrativeDivisionCtrl {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("administrative-division");
         modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
-        modelAndView.addObject("sysUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
+        modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
         return modelAndView;
 
     }

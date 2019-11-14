@@ -2,9 +2,12 @@ package cn.com.fovsoft.common.ctrl;
 
 import cn.com.fovsoft.common.constant.VarConstant;
 import cn.com.fovsoft.common.util.VerifyCode;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.imageio.ImageIO;
@@ -20,19 +23,23 @@ import java.io.IOException;
 import java.util.Random;
 
 
-@RestController
+@Controller
 public class VerifyCodeCtrl {
 
 
+    @Autowired
+    private SessionRegistry sessionRegistry;
 
 
-    @GetMapping("/code")
+
+    @RequestMapping("/code")
+    @ResponseBody
     public void generateVerifyCode(HttpServletRequest request,HttpServletResponse response) throws IOException {
 
         ByteArrayOutputStream output = new ByteArrayOutputStream();
         String code = drawImg(output);
 
-        System.out.println(code);
+        System.out.println("code:11111"+code);
 //        Subject currentUser = SecurityUtils.getSubject();
 //        Session session = currentUser.getSession();
 //        session.setAttribute(VarConstant.SESSION_VERIFY_CODE, code);

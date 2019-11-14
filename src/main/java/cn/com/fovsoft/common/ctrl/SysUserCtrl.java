@@ -77,7 +77,7 @@ public class SysUserCtrl {
         //获取所有角色信息，并返回前端
         List<SysRole> sysRoleList = sysRoleService.findAllSysRole();
         modelAndView.addObject("sysRoleList",sysRoleList);
-        modelAndView.addObject("sysUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
+        modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
         return modelAndView;
     }
 

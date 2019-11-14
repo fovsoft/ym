@@ -5,10 +5,11 @@ package cn.com.fovsoft.common.bean;/*
  * version:
  */
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class AdministrativeDivision {
+public class AdministrativeDivision implements Serializable {
 
 
     private String id         ;   // 主键信息

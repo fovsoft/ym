@@ -84,7 +84,7 @@ public class YmPersonCtrl {
         modelAndView.setViewName("list-person");
         modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
 
-        modelAndView.addObject("sysUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
+        modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
         for(SysMenu sysMenu:(List<SysMenu>) request.getSession().getAttribute("rootSysMenuList")){
             System.out.println(sysMenu.getMenuName());
         }
@@ -105,6 +105,8 @@ public class YmPersonCtrl {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("add-ym-information");
         modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
+        modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
+
         return modelAndView;
     }
 }

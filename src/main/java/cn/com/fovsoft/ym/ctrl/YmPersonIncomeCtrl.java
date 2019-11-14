@@ -33,7 +33,7 @@ public class YmPersonIncomeCtrl {
         modelAndView.setViewName("person-income");
         modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
 
-        modelAndView.addObject("sysUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
+        modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
 
         for(SysMenu sysMenu:(List<SysMenu>) request.getSession().getAttribute("rootSysMenuList")){
             System.out.println(sysMenu.getMenuName());

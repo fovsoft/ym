@@ -5,7 +5,9 @@ package cn.com.fovsoft.common.bean;/*
  * version:
  */
 
-public class SysRoleMenu {
+import java.io.Serializable;
+
+public class SysRoleMenu  implements Serializable {
 
     private String roleId;
     private String menuId;
