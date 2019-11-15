@@ -442,7 +442,7 @@
             </li>
 
             <!-- 动态生成菜单 -->
-            <li th:class="${sysMenu.menuName == '移民管理'}?'active open'" th:each="sysMenu : ${rootSysMenuList}">
+            <li th:each="sysMenu : ${rootSysMenuList}">
                 <!-- 这里写死判断了，改进思路：通过对比当前URL与菜单的层级关系可避免写死 -->
                 <a th:href="@{${sysMenu.url}}" class="dropdown-toggle">
                     <i class="menu-icon fa fa-desktop"></i>
@@ -453,8 +453,7 @@
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-                    <li th:class="${childMenu.menuName == '移民信息采集'}?'active'"
-                        th:each="childMenu : ${sysMenu.childMenuList}"> <!-- 同上 -->
+                    <li th:each="childMenu : ${sysMenu.childMenuList}"> <!-- 同上 -->
                         <a th:href="@{${childMenu.url}}">
                             <i class="menu-icon fa fa-caret-right"></i>
                             [(${childMenu.menuName})]  <!-- 行内写法 -->
@@ -736,7 +735,7 @@
                                                                     <div class="hr hr-dotted"></div>
 
                                                                     <div class="form-group">
-                                                                        <label for="description" class="col-xs-12 col-sm-3 control-label no-padding-right">状态</label>
+                                                                        <label for="description" class="col-xs-12 col-sm-3 control-label no-padding-right">角色描述</label>
                                                                         <div class="col-xs-12 col-sm-9">
                                                                             <div class="clearfix">
                                                                                 <input type="text" class="col-xs-12 col-sm-8 form-control" id="description" name="description" placeholder="角色描述在2-30字符之间" />
@@ -750,7 +749,10 @@
                                                                         <label for="zt" class="col-xs-12 col-sm-3 control-label no-padding-right">状态</label>
                                                                         <div class="col-xs-12 col-sm-9">
                                                                             <div class="clearfix">
-                                                                                <input type="text" class="col-xs-12 col-sm-8 form-control" id="zt" name="zt" placeholder="用户名长度在5-18字符之间" />
+                                                                                <label>
+                                                                                    <input type="checkbox" class="col-xs-12 col-sm-8 form-control ace ace-switch btn-rotate" id="zt" name="zt" />
+                                                                                    <span class="lbl" data-lbl="启&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;停"></span>
+                                                                                </label>
                                                                             </div>
                                                                         </div>
                                                                     </div>

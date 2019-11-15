@@ -429,7 +429,7 @@
 
         <ul class="nav nav-list">
             <li class="">
-                <a href="index.html">
+                <a href="/index">
                     <i class="menu-icon fa fa-tachometer"></i>
                     <span class="menu-text"> Dashboard </span>
                 </a>
@@ -438,7 +438,7 @@
             </li>
 
             <!-- 动态生成菜单 -->
-            <li th:class="${sysMenu.menuName == '移民管理'}?'active open'" th:each="sysMenu : ${rootSysMenuList}">
+            <li th:each="sysMenu : ${rootSysMenuList}">
                 <!-- 这里写死判断了，改进思路：通过对比当前URL与菜单的层级关系可避免写死 -->
                 <a th:href="@{${sysMenu.url}}" class="dropdown-toggle">
                     <i class="menu-icon fa fa-desktop"></i>
@@ -449,8 +449,7 @@
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-                    <li th:class="${childMenu.menuName == '移民信息采集'}?'active'"
-                        th:each="childMenu : ${sysMenu.childMenuList}"> <!-- 同上 -->
+                    <li th:each="childMenu : ${sysMenu.childMenuList}"> <!-- 同上 -->
                         <a th:href="@{${childMenu.url}}">
                             <i class="menu-icon fa fa-caret-right"></i>
                             [(${childMenu.menuName})]  <!-- 行内写法 -->
@@ -675,14 +674,12 @@
 
                             <i class="ace-icon fa fa-check green"></i>
 
-                            Welcome to
+                            欢迎使用
                             <strong class="green">
-                                Ace
+                                钦州市异地搬迁扶贫管理信息系统
                                 <small>(v1.4)</small>
                             </strong>,
-                            лёгкий, многофункциональный и простой в использовании шаблон для админки на bootstrap 3.3.6.
-                            Загрузить исходники с <a href="https://github.com/bopoda/ace">github</a> (with minified ace
-                            js/css files).
+                            获取更多广西壮族自治区钦州市新闻，请访问 <a href="http://www.gxqzxw.com">广西钦州新闻网</a> 进行获取。
                         </div>
 
                         <div class="row">
@@ -695,8 +692,8 @@
                                     </div>
 
                                     <div class="infobox-data">
-                                        <span class="infobox-data-number">32</span>
-                                        <div class="infobox-content">comments + 2 reviews</div>
+                                        <span class="infobox-data-number">1.55亿</span>
+                                        <div class="infobox-content">1 万多户 & 5 万名蔗农</div>
                                     </div>
 
                                     <div class="stat stat-success">8%</div>

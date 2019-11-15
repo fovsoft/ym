@@ -442,7 +442,7 @@
             </li>
 
             <!-- 动态生成菜单 -->
-            <li th:class="${sysMenu.menuName == '移民管理'}?'active open'" th:each="sysMenu : ${rootSysMenuList}">
+            <li th:each="sysMenu : ${rootSysMenuList}">
                 <!-- 这里写死判断了，改进思路：通过对比当前URL与菜单的层级关系可避免写死 -->
                 <a th:href="@{${sysMenu.url}}" class="dropdown-toggle">
                     <i class="menu-icon fa fa-desktop"></i>
@@ -453,8 +453,7 @@
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-                    <li th:class="${childMenu.menuName == '移民信息采集'}?'active'"
-                        th:each="childMenu : ${sysMenu.childMenuList}"> <!-- 同上 -->
+                    <li th:each="childMenu : ${sysMenu.childMenuList}"> <!-- 同上 -->
                         <a th:href="@{${childMenu.url}}">
                             <i class="menu-icon fa fa-caret-right"></i>
                             [(${childMenu.menuName})]  <!-- 行内写法 -->
