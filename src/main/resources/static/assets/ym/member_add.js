@@ -17,9 +17,9 @@ let member_add = (function () {
                 data: JSON.stringify(data.field),
                 contentType: "application/json",
                 dataType: 'JSON',
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader($("meta[name='_csrf_header']").attr("content"), $("meta[name='_csrf']").attr("content"));
-                },
+                // beforeSend: function (xhr) {
+                //     xhr.setRequestHeader($("meta[name='_csrf_header']").attr("content"), $("meta[name='_csrf']").attr("content"));
+                // },
                 success: function (res) {
                     if (res.code = '0') {
                         $("#memberid").val(res.data);

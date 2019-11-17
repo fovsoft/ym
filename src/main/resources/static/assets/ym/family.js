@@ -86,9 +86,9 @@ let family = (function () {
                             method: "POST",
                             contentType: 'application/json',
                             dataType: 'JSON',
-                            beforeSend: function (xhr) {
-                                xhr.setRequestHeader($("meta[name='_csrf_header']").attr("content"), $("meta[name='_csrf']").attr("content"));
-                            },
+                            // beforeSend: function (xhr) {
+                            //     xhr.setRequestHeader($("meta[name='_csrf_header']").attr("content"), $("meta[name='_csrf']").attr("content"));
+                            // },
                             success: function (res) {
                                 if (res.code == 0) {
                                     layer.msg("✔ 删除成功!", {shift: -1, time: 2000}, function () {

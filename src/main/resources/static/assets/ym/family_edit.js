@@ -48,9 +48,9 @@ let family_add = (function () {
                 data: JSON.stringify(data.field),
                 contentType: "application/json",
                 dataType: 'JSON',
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader($("meta[name='_csrf_header']").attr("content"), $("meta[name='_csrf']").attr("content"));
-                },
+                // beforeSend: function (xhr) {
+                //     xhr.setRequestHeader($("meta[name='_csrf_header']").attr("content"), $("meta[name='_csrf']").attr("content"));
+                // },
                 success: function (res) {
                     if (res.code == 0) {
                         if (res.data) {
@@ -78,9 +78,9 @@ let family_add = (function () {
                 data: JSON.stringify(data.field),
                 contentType: "application/json",
                 dataType: 'JSON',
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader($("meta[name='_csrf_header']").attr("content"), $("meta[name='_csrf']").attr("content"));
-                },
+                // beforeSend: function (xhr) {
+                //     xhr.setRequestHeader($("meta[name='_csrf_header']").attr("content"), $("meta[name='_csrf']").attr("content"));
+                // },
                 success: function (res) {
                     if (res.code = '0') {
                         console.log(res.data);
@@ -107,9 +107,9 @@ let family_add = (function () {
                 data: JSON.stringify(data.field),
                 contentType: "application/json",
                 dataType: 'JSON',
-                beforeSend: function (xhr) {
-                    xhr.setRequestHeader($("meta[name='_csrf_header']").attr("content"), $("meta[name='_csrf']").attr("content"));
-                },
+                // beforeSend: function (xhr) {
+                //     xhr.setRequestHeader($("meta[name='_csrf_header']").attr("content"), $("meta[name='_csrf']").attr("content"));
+                // },
                 success: function (res) {
                     if (res.code = '0') {
                         $("#conditionid").val(res.data);
