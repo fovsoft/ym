@@ -9,10 +9,10 @@
     <!--<meta name="_csrf" th:content="${_csrf.token}"/>-->
     <!--<meta name="_csrf_header" th:content="${_csrf.headerName}"/>-->
     <!-- layui css -->
-    <link rel="stylesheet" href="/assets/layui/dist/css/layui.css" media="all">
-    <script src="/assets/js/jquery-1.11.3.min.js"></script>
-    <script src="/assets/layui/dist/layui.js" charset="utf-8"></script>
-    <script src="/assets/ym/member_add.js"></script>
+    <link rel="stylesheet" th:href="@{/static/layui/dist/css/layui.css}" media="all">
+    <script th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
+    <script th:src="@{/static/layui/dist/layui.js}" charset="utf-8"></script>
+    <script th:src="@{/static/ym/member_add.js}"></script>
 </head>
 
 <body>
