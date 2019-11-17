@@ -1788,7 +1788,8 @@
 
 
         var parent_column = $(grid_selector).closest('[class="widget-body"]');
-        alert(parent_column.width());
+
+
         $(window).on('resize.jqGrid', function () {
             $(grid_selector).jqGrid( 'setGridWidth', parent_column.width()-60 );
         })
