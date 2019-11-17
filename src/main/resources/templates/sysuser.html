@@ -1086,7 +1086,7 @@
         var pager_selector = "#grid-pager";
 
         var parent_column = $(grid_selector).closest('[class*="col-"]');
-        alert(parent_column.width());
+
         //var parent_column = $(grid_selector).closest("div");
         //resize to fit page size
         $(window).on('resize.jqGrid', function () {
@@ -1531,7 +1531,6 @@
             //获取选中的角色id
             var checkboxArr = $("input[name='sys-role-checkbox']:checked");
             var roleIdArr = "";
-            console.log(checkboxArr);
             if(checkboxArr.length<1){
                 alert("请为用户至少选择一个角色！");
             }else{
@@ -1561,8 +1560,8 @@
                     dataType: 'json',//数据类型为JSON类型
                     cache: false,//关闭缓存
                     success: function (data) {//响应成功
-                        alert(data.status);
-                        alert(data.result);
+
+
                         if (1 == data.status) {
                             confirm("新增用户成功！")
                             //window.location.href="/index";

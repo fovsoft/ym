@@ -955,7 +955,7 @@
         var pager_selector = "#grid-pager";
 
         var parent_column = $(grid_selector).closest('[class*="col-"]');
-        alert(parent_column.width());
+
         //var parent_column = $(grid_selector).closest("div");
         //resize to fit page size
         $(window).on('resize.jqGrid', function () {
@@ -1169,11 +1169,11 @@
          * 一个节点被展开 惰性加载
          */
         function addNextNode(event, node) {
-            console.log(node);
+
             var myData = {
                 id:node.nodeid
             };
-            alert($('#permit-tree').treeview('getNode', node.nodeId).id);
+
             $.getJSON("/role/getChild",myData, function (data) {
                 $('#permit-tree').treeview("deleteChildrenNode", node.nodeId);
                 $('#permit-tree').treeview("addNode", [node.nodeId, {node: data.childNodes}]);
@@ -1270,7 +1270,7 @@
             var input = confirm("确定删除选定数据吗？");
             if(input){
                 var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
-                console.log(rowids);
+
                 if(rowids !=""){
                     var idArr = "";
                     for(var i=0;i<rowids.length;i++){

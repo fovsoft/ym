@@ -1214,11 +1214,11 @@
          * 一个节点被展开 惰性加载
          */
         function addNextNode(event, node) {
-            console.log(node);
+
             var myData = {
                 id:node.nodeid
             };
-            alert($('#admin-divs-tree').treeview('getNode', node.nodeId).id);
+
             $.getJSON("/dept/childAdminDivision",myData, function (data) {
                 $('#admin-divs-tree').treeview("deleteChildrenNode", node.nodeId);
                 $('#admin-divs-tree').treeview("addNode", [node.nodeId, {node: data.childNodes}]);
