@@ -101,12 +101,13 @@ public class YmPersonCtrl {
      * @return org.springframework.web.servlet.ModelAndView
      */
     @RequestMapping(value="/ym/mgr")
-    public ModelAndView addYmInformation(HttpServletRequest request){
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("add-ym-information");
-        modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
-        modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
+    public String addYmInformation(HttpServletRequest request){
+//        ModelAndView modelAndView = new ModelAndView();
+//        modelAndView.setViewName("add-ym-information");
+//        modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
+//        modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
 
-        return modelAndView;
+//        return modelAndView;
+        return "family";
     }
 }
