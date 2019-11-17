@@ -2,7 +2,9 @@ package cn.com.fovsoft.common.ctrl;
 
 
 import cn.com.fovsoft.common.bean.SysMenu;
+import cn.com.fovsoft.common.bean.SysRole;
 import cn.com.fovsoft.common.bean.SysUser;
+import cn.com.fovsoft.common.constant.VarConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -166,6 +168,17 @@ public class SysUserLoginCtrl {
 
     {
         return "error-404";
+    }
+
+
+
+    @RequestMapping("/toIndex")
+    public ModelAndView toIndex(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("index");
+        modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
+        modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
+        return modelAndView;
     }
 
 

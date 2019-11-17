@@ -429,9 +429,9 @@
 
         <ul class="nav nav-list">
             <li class="">
-                <a href="/index">
+                <a href="#" id="toIndex">
                     <i class="menu-icon fa fa-tachometer"></i>
-                    <span class="menu-text"> Dashboard </span>
+                    <span class="menu-text"> 首页 </span>
                 </a>
 
                 <b class="arrow"></b>
@@ -520,31 +520,31 @@
                                         <option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
                                     </select>
                                 </div>
-                                <span>&nbsp; Choose Skin</span>
+                                <span>&nbsp; 选择 皮肤</span>
                             </div>
 
                             <div class="ace-settings-item">
                                 <input type="checkbox" class="ace ace-checkbox-2 ace-save-state"
                                        id="ace-settings-navbar" autocomplete="off"/>
-                                <label class="lbl" for="ace-settings-navbar"> Fixed Navbar</label>
+                                <label class="lbl" for="ace-settings-navbar"> 固定导航栏</label>
                             </div>
 
                             <div class="ace-settings-item">
                                 <input type="checkbox" class="ace ace-checkbox-2 ace-save-state"
                                        id="ace-settings-sidebar" autocomplete="off"/>
-                                <label class="lbl" for="ace-settings-sidebar"> Fixed Sidebar</label>
+                                <label class="lbl" for="ace-settings-sidebar"> 固定菜单栏</label>
                             </div>
 
                             <div class="ace-settings-item">
                                 <input type="checkbox" class="ace ace-checkbox-2 ace-save-state"
                                        id="ace-settings-breadcrumbs" autocomplete="off"/>
-                                <label class="lbl" for="ace-settings-breadcrumbs"> Fixed Breadcrumbs</label>
+                                <label class="lbl" for="ace-settings-breadcrumbs"> 固定面包屑</label>
                             </div>
 
                             <div class="ace-settings-item">
                                 <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl"
                                        autocomplete="off"/>
-                                <label class="lbl" for="ace-settings-rtl"> Right To Left (rtl)</label>
+                                <label class="lbl" for="ace-settings-rtl"> 菜单靠右(左)</label>
                             </div>
 
                             <div class="ace-settings-item">
@@ -1921,6 +1921,12 @@
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
     jQuery(function ($) {
+
+
+        //去首页方法
+        $("#toIndex").on("click",function () {
+            window.location.href="/toIndex";
+        });
 
         //修改密码方法
         $("#updatePasswordBtn").on("click",function () {

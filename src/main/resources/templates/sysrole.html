@@ -433,9 +433,9 @@
 
         <ul class="nav nav-list">
             <li class="">
-                <a href="index.html">
+                <a href="#" id="toIndex">
                     <i class="menu-icon fa fa-tachometer"></i>
-                    <span class="menu-text"> Dashboard </span>
+                    <span class="menu-text"> 首页 </span>
                 </a>
 
                 <b class="arrow"></b>
@@ -895,6 +895,12 @@
 
 
     jQuery(function ($) {
+
+
+        //去首页方法
+        $("#toIndex").on("click",function () {
+            window.location.href="/toIndex";
+        });
 
         //修改密码方法
         $("#updatePasswordBtn").on("click",function () {
