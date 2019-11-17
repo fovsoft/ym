@@ -570,6 +570,14 @@ x
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>
 <script th:src="@{/static/ym/family.js}"></script>
+<script type="text/javascript">
+    jQuery(function($) {
 
+        //去首页方法
+        $("#toIndex").on("click", function () {
+            window.location.href = "/toIndex";
+        })
+    }
+</script>
 </body>
 </html>
