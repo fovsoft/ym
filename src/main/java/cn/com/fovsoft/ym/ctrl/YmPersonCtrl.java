@@ -103,7 +103,7 @@ public class YmPersonCtrl {
     @RequestMapping(value="/ym/mgr")
     public ModelAndView addYmInformation(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("add-ym-information");
+        modelAndView.setViewName("family");
         modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
         modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
 
