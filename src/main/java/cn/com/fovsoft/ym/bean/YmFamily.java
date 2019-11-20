@@ -13,11 +13,8 @@ public class YmFamily implements Serializable {
 
     private int       jtId           ;
     private String    jtbh           ;// '家庭id',
-    private String    szs            ;// '所在市',
-    private String    szx            ;// '所在县',
-    private String    szc            ;// '所在镇',
-    private String    szz            ;// '所在村',
-    private String    szjd           ;// '所在街道',
+    private String    xzqhdm         ;// 行政区划代码
+    private String    xxxzqhmz       ;// 详细行政区划名字，对应家庭地址
     private String    lxdh           ;// '联系电话',
     private String    khyh           ;// '开户银行（选填）',
     private String    yhkh           ;// '银行卡号（选填）',
@@ -48,44 +45,20 @@ public class YmFamily implements Serializable {
         this.jtbh = jtbh;
     }
 
-    public String getSzs() {
-        return szs;
+    public String getXzqhdm() {
+        return xzqhdm;
     }
 
-    public void setSzs(String szs) {
-        this.szs = szs;
+    public void setXzqhdm(String xzqhdm) {
+        this.xzqhdm = xzqhdm;
     }
 
-    public String getSzx() {
-        return szx;
+    public String getXxxzqhmz() {
+        return xxxzqhmz;
     }
 
-    public void setSzx(String szx) {
-        this.szx = szx;
-    }
-
-    public String getSzc() {
-        return szc;
-    }
-
-    public void setSzc(String szc) {
-        this.szc = szc;
-    }
-
-    public String getSzz() {
-        return szz;
-    }
-
-    public void setSzz(String szz) {
-        this.szz = szz;
-    }
-
-    public String getSzjd() {
-        return szjd;
-    }
-
-    public void setSzjd(String szjd) {
-        this.szjd = szjd;
+    public void setXxxzqhmz(String xxxzqhmz) {
+        this.xxxzqhmz = xxxzqhmz;
     }
 
     public String getLxdh() {

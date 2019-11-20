@@ -427,11 +427,8 @@ create table ym_family
 (
     jtId      int auto_increment primary key comment '家庭信息表id',
     jtbh      varchar(20) unique comment '家庭编号',
-    szs       varchar(10) comment '所在市',
-    szx       varchar(20) comment '所在县',
-    szz       varchar(20) comment '所在镇',
-    szc       varchar(20) comment '所在村',
-    szjd      varchar(20) comment '所在街道',
+    xzqhdm    varchar(20) comment '家庭地址（对应行政区划表）',
+    xxxzqhmz  varchar(80) comment '详细行政区划名字',
     lxdh      varchar(20) comment '联系电话',
     khyh      varchar(32) comment '开户银行（选填）',
     yhkh      varchar(20) comment '银行卡号（选填）',
@@ -447,8 +444,8 @@ create table ym_family
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 comment '移民贫困家庭信息表';
 
-insert into ym_family(jtbh,szs,szx,szc,szz,szjd,lxdh,khyh,yhkh,pkhsx,sfdnytp,jhtpnd,fpnd,fpyy,sfjls,sfydfpbqh,bqfs,bqdz) values
-('b4aa05cfd980','河池市','大化县','雅龙乡','竹山村','弄母屯','18200000000','中国农业银行','','','是','2020','2013','受灾','否','否','','');
+insert into ym_family(jtbh,xzqhdm,xxxzqhmz,lxdh,khyh,yhkh,pkhsx,sfdnytp,jhtpnd,fpnd,fpyy,sfjls,sfydfpbqh,bqfs,bqdz) values
+('b4aa05cfd980','450702404498','广西壮族自治区钦州市钦南区中马钦州产业园区虚拟社区','18200000000','中国农业银行','','','是','2020','2013','受灾','否','否','','');
 
 
 drop table ym_person;
@@ -483,7 +480,7 @@ create table ym_person
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 comment '移民贫困人员信息表';
 
-insert into ym_person(jtbh,xm,xb,sfzmhm,qfjg,sfzyxqs,sfzyxqz,yhzgx,mz,csrq,zzmm,whcd,zxsqk,sxhcxyy,jkqk,ldjn,sfhjpth,sfxyjr,sfcjylbx1,sfcjsybx,sfxsdb,sfcjylbx2,sfxsywbxbt,lxdh)
+insert into ym_person(jtbh,xzqhdm,xm,xb,sfzmhm,qfjg,sfzyxqs,sfzyxqz,yhzgx,mz,csrq,zzmm,whcd,zxsqk,sxhcxyy,jkqk,ldjn,sfhjpth,sfxyjr,sfcjylbx1,sfcjsybx,sfxsdb,sfcjylbx2,sfxsywbxbt,lxdh)
 values ('b4aa05cfd980','韦贞英','男','452731196205123035','大化瑶族自治县公安局','2008-12-22','2099-12-31','本人','汉','1962-05-12','团员','高中','无','无','健康','务农','否','否','否','否','否','否','否','18934943219');
 
 

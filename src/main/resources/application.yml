@@ -1,5 +1,5 @@
 server:
-  port: 8080 #端口号
+  port: 8088 #端口号
 
 
 spring:
@@ -19,12 +19,12 @@ spring:
     #url: jdbc:mysql://localhost/ym?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=UTC
     url: jdbc:mysql://localhost:3306/ym?useUnicode=true&characterEncoding=utf-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2b8
     username: root
-    password: qmxx2019_fc
+    password: 123456
     druid:
       domestic1:  #国外1
         url: jdbc:mysql://localhost/ym?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
-        password: qmxx2019_fc
+        password: 123456
 
       #初始大小
       initial-size: 1

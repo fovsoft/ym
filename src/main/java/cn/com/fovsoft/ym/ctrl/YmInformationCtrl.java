@@ -22,13 +22,8 @@ public class YmInformationCtrl {
     @ResponseBody
     public void addYmInformation(HttpServletRequest request){
 
-        System.out.println(request.getParameter("szs"));
-
-        String szs       = request.getParameter("szs");            // '所在市',
-        String szx       = request.getParameter("szx");            // '所在县',
-        String szc       = request.getParameter("szc");            // '所在镇',
-        String szz       = request.getParameter("szz");            // '所在村',
-        String szjd      = request.getParameter("szjd");           // '所在街道',
+        String xzqhdm       = request.getParameter("xzqhdm");            // '家庭地址代码，对应行政区划表',
+        String xxxzqhmz      = request.getParameter("xxxzqhmz");           // '家庭地址，对应行政区划表',
         String lxdh      = request.getParameter("lxdh");           // '联系电话',
         String khyh      = request.getParameter("khyh");           // '开户银行（选填）',
         String yhkh      = request.getParameter("yhkh");           // '银行卡号（选填）',
