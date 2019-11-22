@@ -10,10 +10,10 @@ import java.util.Date;
  **/
 
 public class YmPerson implements Serializable {
-    private int       rybh    ;//人员编号
+    private String    rybh    ;//人员编号
     private String    jtbh    ;//'家庭编号，对应家庭表',
     private String    xm      ;//'姓名',
-    private String    sex     ;//'性别',
+    private String    xb      ;//'性别',
     private String    sfzmhm  ;//'身份证明号码',
     private String    qfjg    ;//'身份证签发机关',
     private Date      sfzyxqs ;//身份证有效期始',
@@ -37,11 +37,11 @@ public class YmPerson implements Serializable {
     private String    lxdh    ;//'联系电话'
 
 
-    public int getRybh() {
+    public String getRybh() {
         return rybh;
     }
 
-    public void setRybh(int rybh) {
+    public void setRybh(String rybh) {
         this.rybh = rybh;
     }
 
@@ -61,12 +61,12 @@ public class YmPerson implements Serializable {
         this.xm = xm;
     }
 
-    public String getSex() {
-        return sex;
+    public String getXb() {
+        return xb;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setXb(String xb) {
+        this.xb = xb;
     }
 
     public String getSfzmhm() {

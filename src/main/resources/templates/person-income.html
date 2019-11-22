@@ -668,6 +668,86 @@
                         </div>
 
 
+                        <!-- 选取家庭窗口 -->
+                        <div>
+                            <!-- 选取家庭窗口-->
+                            <div class="modal fade" id="getFamilyModal" tabindex="-1" role="dialog" aria-labelledby="getFamilyModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title red" id="getFamilyModalLabel">
+                                                <label id="addTitle5">获取家庭地址</label>
+                                            </h4>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <div class="widget-box widget-color-green2">
+                                                <div class="widget-header">
+                                                    <h4 class="widget-title lighter smaller">
+                                                        <span class="smaller-80"></span>
+                                                    </h4>
+                                                </div>
+
+                                                <div class="widget-body">
+                                                    <div class="widget-main padding-8">
+                                                        <div class="row">
+                                                            <form class="form-inline" role="form">
+                                                                <div class="form-group col-xs-12">
+                                                                    <label class="sr-only control-label">姓名:</label>
+                                                                    <input type="text" id="s-userName" name="s-userName" class="form-control" placeholder="姓名">
+                                                                    <label class="sr-only control-label">身份证明号码:</label>
+                                                                    <input type="text" id="s-sfzmhm" name="s-sfzmhm" class=" form-control" placeholder="身份证明号码">
+                                                                    <label class="sr-only control-label">联系电话:</label>
+                                                                    <input type="text" id="s-lxdh" name="s-lxdh" class="form-control" placeholder="联系电话">
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="hr hr-dotted"></div>
+                                                        <div class="row">
+                                                            <form class="form-inline" role="form">
+                                                                <div class="form-group col-xs-12">
+                                                                    <label class="sr-only control-label">出生日期:</label>
+                                                                    <div class="input-group">
+                                                                        <input class="form-control date-picker" id="csrq" name="csrq" type="text" data-date-format="yyyy-mm-dd" placeholder="出生日期"/>
+                                                                        <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar bigger-110"></i>
+                                                                    </span>
+                                                                    </div>
+                                                                    <button type="button" class="btn btn-purple btn-sm" id="searchBtn">
+                                                                        <span class="ace-icon fa fa-search icon-on-right"></span>
+                                                                        查询
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+
+                                                        <div class="hr hr-double dotted"></div>
+
+                                                        <table id="grid-table"></table>
+                                                        <div id="grid-pager"></div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-info" data-dismiss="modal">关闭
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="getXzqhBtn">
+                                                确定
+                                            </button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+
+                            </div>
+                        </div>
+
+
 
                         <div class="row">
                             <div class="input-group">
@@ -676,7 +756,7 @@
                                 </span>
                                 <input type="text" class="form-control search-query" placeholder="请点击获取按钮获取家庭编号信息" />
                                 <span class="input-group-btn">
-                                    <button type="button" class="btn btn-purple btn-sm" id="getFamilyBtn">
+                                    <button type="button" class="btn btn-purple btn-sm" id="getFamilyBtn" data-toggle="modal" data-target="#getFamilyModal">
                                         <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
                                         获取
                                     </button>
@@ -1650,14 +1730,6 @@
                         </div>
                         <div class="hr hr-double dotted"></div>
 
-                        <div>
-                            <table id="grid-table"></table>
-                            <div id="grid-pager"></div>
-                        </div>
-
-
-
-
 
                         <!-- PAGE CONTENT BEGINS -->
 
@@ -1798,8 +1870,16 @@
             }
         });
 
+        var grid_selector = "#grid-table";
+        var pager_selector = "#grid-pager";
 
 
+        var parent_column = $(grid_selector).closest('[class*="widget-main"]');
+        //var parent_column = $(grid_selector).closest("div");
+        //resize to fit page size
+        $(window).on('resize.jqGrid', function () {
+            $(grid_selector).jqGrid( 'setGridWidth', parent_column.width()-10 );
+        });
 
         //resize on sidebar collapse/expand
         $(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
@@ -1809,7 +1889,317 @@
                     $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
                 }, 20);
             }
-        })
+        });
+
+        jQuery(grid_selector).jqGrid({
+            datatype: "json",//数据封装方式为json
+            url: '/ym/all',
+            mtype:"POST",
+            // ajaxGridOptions: { contentType: 'application/json; charset=utf-8' },
+            // serializeGridData: function (postData)
+            // {
+            //     if (postData.searchField === undefined) postData.searchField = null;
+            //     if (postData.searchString === undefined) postData.searchString = null;
+            //     if (postData.searchOper === undefined) postData.searchOper = null;
+            //     alert(JSON.stringify(postData));
+            //     return JSON.stringify(postData);
+            // },
+            height: 250,
+            shrinkToFit:true,
+            colNames:[' ','人员编号','家庭编号','姓名','性别','身份证明号码','身份证签发机关','身份证有效期始','身份证有效期止','与户主关系','民族','出生日期','政治面貌','文化程度','在校生情况','失学或辍学原因','健康情况','劳动技能情况','是否会讲普通话','是否现役军人','是否参加城乡居民基本医疗保险','是否参加商业补充医疗保险','是否享受低保','是否参加城乡居民基本养老保险','是否享受人身意外保险补贴','联系电话'],
+            colModel:[
+                {name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
+                    formatter:'actions',
+                    formatoptions:{
+                        keys:true,
+                        //delbutton: false,//disable delete button
+
+                        delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
+                        //editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
+                    }
+                },
+                {name:'rybh',       index:'rybh',       width:60, fixed:true, editable:true, sorttype:"int" },
+                {name:'jtbh',       index:'jtbh',       width:60, fixed:true, editable:true, sorttype:"int" },
+                {name:'xm',         index:'xm',         width:60, fixed:true, editable:true,                 },
+                {name:'xb',         index:'xb',         width:40, fixed:true, editable:true,                 },
+                {name:'sfzmhm',     index:'sfzmhm',     width:140, fixed:true, editable:true,                 },
+                {name:'qfjg',       index:'qfjg',       width:150, fixed:true, editable:true,                 },
+                {name:'sfzyxqs',    index:'sfzyxqs',    width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'sfzyxqz',    index:'sfzyxqz',    width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'yhzgx',      index:'yhzgx',      width:80, fixed:true, editable:true,                 },
+                {name:'mz',         index:'mz',         width:40, fixed:true, editable:true,                 },
+                {name:'csrq',       index:'csrq',       width:70, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'zzmm',       index:'zzmm',       width:70, fixed:true, editable:true,                 },
+                {name:'whcd',       index:'whcd',       width:70, fixed:true, editable:true,                 },
+                {name:'zxsqk',      index:'zxsqk',      width:80, fixed:true, editable:true,                 },
+                {name:'sxhcxyy',    index:'sxhcxyy',    width:110, fixed:true, editable:true,                 },
+                {name:'jkqk',       index:'jkqk',       width:70, fixed:true, editable:true,                 },
+                {name:'ldjn',       index:'ldjn',       width:90, fixed:true, editable:true,                 },
+                {name:'sfhjpth',    index:'sfhjpth',    width:110, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfxyjr',     index:'sfxyjr',     width:90, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfcjylbx1',  index:'sfcjylbx1',  width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfcjsybx',   index:'sfcjsybx',   width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfxsdb',     index:'sfxsdb',     width:90, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfcjylbx2',  index:'sfcjylbx2',  width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfxsywbxbt', index:'sfxsywbxbt', width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'lxdh',       index:'lxdh',       width:90, fixed:true, editable:true                  }
+            ],
+            viewrecords : true,
+            rowNum:10,
+            rowList:[10,20,30],
+            pager : pager_selector,
+            altRows: true,
+            //toppager: true,
+
+            multiselect: true,
+            multiboxonly: true,
+
+            loadComplete : function() {
+                var table = this;
+                setTimeout(function(){
+                    styleCheckbox(table);
+
+                    updateActionIcons(table);
+                    updatePagerIcons(table);
+                    enableTooltips(table);
+                }, 0);
+            },
+
+            editurl: "./dummy.php",//nothing is saved
+            caption: "贫困人员信息列表"
+
+        });
+        $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
+
+
+
+        //enable search/filter toolbar
+        //jQuery(grid_selector).jqGrid('filterToolbar',{defaultSearch:true,stringResult:true})
+        //jQuery(grid_selector).filterToolbar({});
+
+
+        //switch element when editing inline
+        function aceSwitch( cellvalue, options, cell ) {
+            setTimeout(function(){
+                $(cell) .find('input[type=checkbox]')
+                    .addClass('ace ace-switch ace-switch-5')
+                    .after('<span class="lbl"></span>');
+            }, 0);
+        }
+        //enable datepicker
+        function pickDate( cellvalue, options, cell ) {
+            setTimeout(function(){
+                $(cell) .find('input[type=text]')
+                    .datepicker({format:'yyyy-mm-dd' , autoclose:true});
+            }, 0);
+        }
+
+
+        //navButtons
+        jQuery(grid_selector).jqGrid('navGrid',pager_selector,
+            { 	//navbar options
+                edit: true,
+                editicon : 'ace-icon fa fa-pencil blue',
+                add: true,
+                addicon : 'ace-icon fa fa-plus-circle purple',
+                del: true,
+                delicon : 'ace-icon fa fa-trash-o red',
+                search: true,
+                searchicon : 'ace-icon fa fa-search orange',
+                refresh: true,
+                refreshicon : 'ace-icon fa fa-refresh green',
+                view: true,
+                viewicon : 'ace-icon fa fa-search-plus grey',
+            },
+            {
+                //edit record form
+                //closeAfterEdit: true,
+                //width: 700,
+                recreateForm: true,
+                beforeShowForm : function(e) {
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                    style_edit_form(form);
+                }
+            },
+            {
+                //new record form
+                //width: 700,
+                closeAfterAdd: true,
+                recreateForm: true,
+                viewPagerButtons: false,
+                beforeShowForm : function(e) {
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar')
+                        .wrapInner('<div class="widget-header" />')
+                    style_edit_form(form);
+                }
+            },
+            {
+                //delete record form
+                recreateForm: true,
+                beforeShowForm : function(e) {
+                    var form = $(e[0]);
+                    if(form.data('styled')) return false;
+
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                    style_delete_form(form);
+
+                    form.data('styled', true);
+                },
+                onClick : function(e) {
+                    //alert(1);
+                }
+            },
+            {
+                //search form
+                recreateForm: true,
+                afterShowSearch: function(e){
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+                    style_search_form(form);
+                },
+                afterRedraw: function(){
+                    style_search_filters($(this));
+                }
+                ,
+                multipleSearch: true,
+                /**
+                 multipleGroup:true,
+                 showQuery: true
+                 */
+            },
+            {
+                //view record form
+                recreateForm: true,
+                beforeShowForm: function(e){
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+                }
+            }
+        )
+
+
+
+        function style_edit_form(form) {
+            //enable datepicker on "sdate" field and switches for "stock" field
+            form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
+
+            form.find('input[name=stock]').addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
+            //don't wrap inside a label element, the checkbox value won't be submitted (POST'ed)
+            //.addClass('ace ace-switch ace-switch-5').wrap('<label class="inline" />').after('<span class="lbl"></span>');
+
+
+            //update buttons classes
+            var buttons = form.next().find('.EditButton .fm-button');
+            buttons.addClass('btn btn-sm').find('[class*="-icon"]').hide();//ui-icon, s-icon
+            buttons.eq(0).addClass('btn-primary').prepend('<i class="ace-icon fa fa-check"></i>');
+            buttons.eq(1).prepend('<i class="ace-icon fa fa-times"></i>')
+
+            buttons = form.next().find('.navButton a');
+            buttons.find('.ui-icon').hide();
+            buttons.eq(0).append('<i class="ace-icon fa fa-chevron-left"></i>');
+            buttons.eq(1).append('<i class="ace-icon fa fa-chevron-right"></i>');
+        }
+
+        function style_delete_form(form) {
+            var buttons = form.next().find('.EditButton .fm-button');
+            buttons.addClass('btn btn-sm btn-white btn-round').find('[class*="-icon"]').hide();//ui-icon, s-icon
+            buttons.eq(0).addClass('btn-danger').prepend('<i class="ace-icon fa fa-trash-o"></i>');
+            buttons.eq(1).addClass('btn-default').prepend('<i class="ace-icon fa fa-times"></i>')
+        }
+
+        function style_search_filters(form) {
+            form.find('.delete-rule').val('X');
+            form.find('.add-rule').addClass('btn btn-xs btn-primary');
+            form.find('.add-group').addClass('btn btn-xs btn-success');
+            form.find('.delete-group').addClass('btn btn-xs btn-danger');
+        }
+        function style_search_form(form) {
+            var dialog = form.closest('.ui-jqdialog');
+            var buttons = dialog.find('.EditTable')
+            buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-sm btn-info').find('.ui-icon').attr('class', 'ace-icon fa fa-retweet');
+            buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-sm btn-inverse').find('.ui-icon').attr('class', 'ace-icon fa fa-comment-o');
+            buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-sm btn-purple').find('.ui-icon').attr('class', 'ace-icon fa fa-search');
+        }
+
+        function beforeDeleteCallback(e) {
+            var form = $(e[0]);
+            if(form.data('styled')) return false;
+
+            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+            style_delete_form(form);
+
+            form.data('styled', true);
+        }
+
+        function beforeEditCallback(e) {
+            var form = $(e[0]);
+            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+            style_edit_form(form);
+        }
+
+
+
+        //it causes some flicker when reloading or navigating grid
+        //it may be possible to have some custom formatter to do this as the grid is being created to prevent this
+        //or go back to default browser checkbox styles for the grid
+        function styleCheckbox(table) {
+            /**
+             $(table).find('input:checkbox').addClass('ace')
+             .wrap('<label />')
+             .after('<span class="lbl align-top" />')
+
+
+             $('.ui-jqgrid-labels th[id*="_cb"]:first-child')
+             .find('input.cbox[type=checkbox]').addClass('ace')
+             .wrap('<label />').after('<span class="lbl align-top" />');
+             */
+        }
+
+
+        //unlike navButtons icons, action icons in rows seem to be hard-coded
+        //you can change them like this in here if you want
+        function updateActionIcons(table) {
+            /**
+             var replacement =
+             {
+						'ui-ace-icon fa fa-pencil' : 'ace-icon fa fa-pencil blue',
+						'ui-ace-icon fa fa-trash-o' : 'ace-icon fa fa-trash-o red',
+						'ui-icon-disk' : 'ace-icon fa fa-check green',
+						'ui-icon-cancel' : 'ace-icon fa fa-times red'
+					};
+             $(table).find('.ui-pg-div span.ui-icon').each(function(){
+						var icon = $(this);
+						var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+						if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+					})
+             */
+        }
+
+        //replace icons with FontAwesome icons like above
+        function updatePagerIcons(table) {
+            var replacement =
+                {
+                    'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
+                    'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
+                    'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
+                    'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
+                };
+            $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+                var icon = $(this);
+                var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+
+                if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+            })
+        }
+
+        function enableTooltips(table) {
+            $('.navtable .ui-pg-button').tooltip({container:'body'});
+            $(table).find('.ui-pg-div').tooltip({container:'body'});
+        }
+
+
 
         //if your grid is inside another element, for example a tab pane, you should use its parent's width:
         /**
@@ -1826,437 +2216,16 @@
 				})
          */
 
-            //行政区划树方法
-            //行政区划的方法
-        var nodeCheckedSilent = false;
-
-        function nodeChecked(event, node) {
-            if (nodeCheckedSilent) {
-                return;
-            }
-            nodeCheckedSilent = true;
-            checkAllParent(node);
-            checkAllSon(node);
-            nodeCheckedSilent = false;
-        }
-
-        var nodeUncheckedSilent = false;
-
-        function nodeUnchecked(event, node) {
-            if (nodeUncheckedSilent)
-                return;
-            nodeUncheckedSilent = true;
-            uncheckAllParent(node);
-            uncheckAllSon(node);
-            nodeUncheckedSilent = false;
-        }
 
 
 
-        //选中全部父节点
-        function checkAllParent(node) {
-            $('#admin-divs-tree').treeview('checkNode', node.nodeId, {
-                silent: true
-            });
-            var parentNode = $('#admin-divs-tree').treeview('getParent', node.nodeId);
-            if (!("nodeId" in parentNode)) {
-                return;
-            } else {
-                checkAllParent(parentNode);
-            }
-        }
-        //取消全部父节点
-        function uncheckAllParent(node) {
-            $('#admin-divs-tree').treeview('uncheckNode', node.nodeId, {
-                silent: true
-            });
-            var siblings = $('#admin-divs-tree').treeview('getSiblings', node.nodeId);
-            var parentNode = $('#admin-divs-tree').treeview('getParent', node.nodeId);
-            if (!("nodeId" in parentNode)) {
-                return;
-            }
-            var isAllUnchecked = true; //是否全部没选中
-            for (var i in siblings) {
-                if (siblings[i].state.checked) {
-                    isAllUnchecked = false;
-                    break;
-                }
-            }
-            if (isAllUnchecked) {
-                uncheckAllParent(parentNode);
-            }
-
-        }
-
-        //级联选中所有子节点
-        function checkAllSon(node) {
-            $('#admin-divs-tree').treeview('checkNode', node.nodeId, {
-                silent: true
-            });
-            if (node.nodes != null && node.nodes.length > 0) {
-                for (var i in node.nodes) {
-                    checkAllSon(node.nodes[i]);
-                }
-            }
-        }
-        //级联取消所有子节点
-        function uncheckAllSon(node) {
-            $('#admin-divs-tree').treeview('uncheckNode', node.nodeId, {
-                silent: true
-            });
-            if (node.nodes != null && node.nodes.length > 0) {
-                for (var i in node.nodes) {
-                    uncheckAllSon(node.nodes[i]);
-                }
-            }
-        }
-
-        //节点被选中事件
-        function nodeSelected(event,node){
-            var myData = {
-                id:node.nodeid
-            };
-            $.getJSON("/dept/oneAdminDivision",myData, function (data) {
-
-                $("#id").attr("value", data.adminDivision.id);
-                $("#xzqhdm").attr("value", data.adminDivision.xzqhdm);
-                $("#xzqhcj").attr("value", data.adminDivision.xzqhcj);
-                $("#xxxzqhmz").attr("value", data.adminDivision.xxxzqhmz);
-                $("#xzqhmz").attr("value", data.adminDivision.xzqhmz);
-                $("#fzjg").attr("value", data.adminDivision.fzjg);
-                $("#xzqhlb").attr("value", data.adminDivision.xzqhlb);
-                $("#yzbm").attr("value", data.adminDivision.yzbm);
-                $("#xzqhcj").attr("value",data.adminDivision.xzqhcj);
-                $("#sjxzqhdm").attr("value",data.adminDivision.sjxzqhdm);
-                $("#xxxzqhmz11").attr("value",data.adminDivision.xxxzqhmz);
-                $("#sjxzqhdm1").attr("value",data.adminDivision.xzqhdm);
-                $("#xzqhcj1").attr("value",parseInt(data.adminDivision.xzqhcj)+1);
-            });
-        }
-
-        function addNote() {
-            //得到选择的节点
-            var nodeData = $('#admin-divs-tree').treeview('getSelected')[0];
-            //获取数据，添加到树中
-            $.getJSON("treeAddData.json", function (data) {
-                $('#admin-divs-tree').treeview("addNode", [nodeData.nodeId, {node: data}]);
-            });
-        }
-
-        /**
-         * 删除节点,如果该节点如果是根节点，不能删除
-         */
-        function deleteNode() {
-            var nodeData = $('#admin-divs-tree').treeview('getSelected')[0];
-            $('#admin-divs-tree').treeview("deleteNode", nodeData.nodeId);
-        }
-
-        /**
-         * 删除全部子节点
-         */
-        function deleteChildrenNode(event,node) {
-            var node1 = {};
-            $('#admin-divs-tree').treeview("deleteChildrenNode", node.nodeId);
-            $('#admin-divs-tree').treeview("addNode", [node.nodeId, {node: node1}]);
-        }
-
-        /**
-         * 一个节点被展开 惰性加载
-         */
-        function addNextNode(event, node) {
-
-            var myData = {
-                id:node.nodeid
-            };
-
-            $.getJSON("/dept/childAdminDivision",myData, function (data) {
-                $('#admin-divs-tree').treeview("deleteChildrenNode", node.nodeId);
-                $('#admin-divs-tree').treeview("addNode", [node.nodeId, {node: data.childNodes}]);
-            });
-        }
-
-        //初始化树
-        $.getJSON("/dept/rootAdminDivision",function (data) {
-            $('#admin-divs-tree').treeview({
-                data: data.rootNodes,
-                onNodeChecked: nodeChecked,
-                onNodeUnchecked: nodeUnchecked,
-                onNodeExpanded: addNextNode,
-                onNodeCollapsed: deleteChildrenNode,
-                onNodeSelected:nodeSelected
-            });
-        });
-
-        //右边行政区划名字修改时，详细行政区划名字进行改变
-        $("#xzqhmz1").change(function () {
-            var val = $("#xzqhmz1").val();
-            $("#xxxzqhmz1").attr("value", val);
-        })
-
-
-
-
-        //当点击新增按钮时，显示模态框
-        $("#addBtn").on("click",function () {
-
-
-            $("#adAddModal").modal("show");
-
-
+        //当模态框显示时候，这种jqgrid宽度
+        $('#getFamilyModal').on('shown.bs.modal',function () {
+            var parent_column = $(grid_selector).closest('[class*="widget-main"]');
+            $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
 
         });
 
-
-        //判断修改行政区划列表的信息
-        function checkValidity1() {
-
-            if ($("#xzqhdm").val() == "") {
-                $("#xzqhdm").focus();
-                $("#xzqhdm").tips({
-                    side: 3,
-                    msg: '行政区划代码不得为空',
-                    bg: '#ff1a96',
-                    time: 3
-                });
-                return false;
-            }else if($("#xzqhdm").val().length!=12){
-                $("#xzqhdm").focus();
-                $("#xzqhdm").tips({
-                    side: 3,
-                    msg: '行政区划代码长度必须为12位',
-                    bg: '#ff1521',
-                    time: 3
-                });
-                return false;
-            }
-
-            if ($("#xzqhmz").val() == "") {
-                $("#xzqhmz").focus();
-                $("#xzqhmz").tips({
-                    side: 3,
-                    msg: '行政区划名字不得为空',
-                    bg: '#23ffaa',
-                    time: 3
-                });
-                return false;
-            }
-
-            return true;
-        }
-
-
-        //当点击修改按钮时，显示模态框
-        $("#editBtn").on("click",function () {
-            //获取选中节点的信息
-            var selectedNodes = $('#admin-divs-tree').treeview('getSelected');
-            if (selectedNodes.length == 0) {
-                alert("请在左边树选择一个节点！");
-            } else {
-                if (checkValidity1()) {
-                    var id = $("#id").val();
-                    var xzqhdm = $("#xzqhdm").val();
-                    var xzqhmz = $("#xzqhmz").val();
-                    var xxxzqhmz = $("#xxxzqhmz").val();
-                    var xxxzqhmz1 = $("#xxxzqhmz1").val();
-                    var sjxzqhdm = $("#sjxzqhdm").val();
-                    var xzqhcj = $("#xzqhcj").val();
-                    var fzjg = $("#fzjg").val();
-                    var xzqhlb = $("#xzqhlb").val();
-                    var yzbm = $("#yzbm").val();
-
-
-                    $.ajax({
-                        type: "POST",//请求方式为POST
-                        url: "/dept/edit",//检验url
-                        data: {
-                            "id":id,
-                            "xzqhdm": xzqhdm,
-                            "xzqhmz": xzqhmz,
-                            "xxxzqhmz": xxxzqhmz,
-                            "xxxzqhmz1": xxxzqhmz1,
-                            "sjxzqhdm": sjxzqhdm,
-                            "xzqhcj": xzqhcj,
-                            "fzjg": fzjg,
-                            "xzqhlb": xzqhlb,
-                            "yzbm": yzbm
-                        },//请求数据
-                        dataType: 'json',//数据类型为JSON类型
-                        cache: false,//关闭缓存
-                        success: function (data) {
-                            if (data.status == 1) {
-                                alert("行政区划修改成功！");
-                                $('#admin-divs-tree').treeview("remove");
-                                //刷新树
-                                $.getJSON("/dept/rootAdminDivision",function (data) {
-                                    $('#admin-divs-tree').treeview({
-                                        data: data.rootNodes,
-                                        onNodeChecked: nodeChecked,
-                                        onNodeUnchecked: nodeUnchecked,
-                                        onNodeExpanded: addNextNode,
-                                        onNodeCollapsed: deleteChildrenNode,
-                                        onNodeSelected:nodeSelected
-                                    });
-                                });
-                            }
-
-                        }//响应成功
-                    })
-                }
-            }
-
-        })
-
-
-        //级联获取所有子节点
-        function getMySon(node,myIdArr) {
-            myIdArr = myIdArr + node.nodeid + ",";
-            if (node.nodes != null && node.nodes.length > 0) {
-                for (var i in node.nodes) {
-                    myIdArr = myIdArr + uncheckAllSon(node.nodes[i],myIdArr);
-                }
-            }
-            return myIdArr;
-        }
-
-        //当点击删除按钮时，执行操作
-        $("#deleteBtn").on("click",function () {
-            //获取选中节点的信息
-            var selectedNodes = $('#admin-divs-tree').treeview('getSelected');
-            if (selectedNodes.length == 0) {
-                alert("请在左边树选择一个节点！");
-            } else {
-                var input = confirm("确定删除当前节点吗？，该操作将删除当前节点及下属所有节点！");
-                if(input){
-                    var id = $("#id").val();
-                    $.ajax({
-                        type: "POST",//请求方式为POST
-                        url: "/dept/delete",//检验url
-                        data: {
-                            "id":id
-                        },//请求数据
-                        dataType: 'json',//数据类型为JSON类型
-                        cache: false,//关闭缓存
-                        success: function (data) {
-                            if (data.status == 1) {
-                                alert("行政区划删除成功！");
-                                $('#admin-divs-tree').treeview("remove");
-                                //刷新树
-                                $.getJSON("/dept/rootAdminDivision",function (data) {
-                                    $('#admin-divs-tree').treeview({
-                                        data: data.rootNodes,
-                                        onNodeChecked: nodeChecked,
-                                        onNodeUnchecked: nodeUnchecked,
-                                        onNodeExpanded: addNextNode,
-                                        onNodeCollapsed: deleteChildrenNode,
-                                        onNodeSelected:nodeSelected
-                                    });
-                                });
-                            }
-
-                        }//响应成功
-                    })
-                }
-            }
-
-
-        });
-
-        //判断新增行政区划列表的信息
-        function checkValidity() {
-
-            if ($("#xzqhdm1").val() == "") {
-                $("#xzqhdm1").focus();
-                $("#xzqhdm1").tips({
-                    side: 3,
-                    msg: '行政区划代码不得为空',
-                    bg: '#ff1a96',
-                    time: 3
-                });
-                return false;
-            }else if($("#xzqhdm1").val().length!=12){
-                $("#xzqhdm1").focus();
-                $("#xzqhdm1").tips({
-                    side: 3,
-                    msg: '行政区划代码长度必须为12位',
-                    bg: '#ff1521',
-                    time: 3
-                });
-                return false;
-            }
-
-            if ($("#xzqhmz1").val() == "") {
-                $("#xzqhmz1").focus();
-                $("#xzqhmz1").tips({
-                    side: 3,
-                    msg: '行政区划名字不得为空',
-                    bg: '#23ffaa',
-                    time: 3
-                });
-                return false;
-            }
-
-            return true;
-        }
-
-        //新增框中提交按钮事件
-        $("#addAdminDivisionBtn").on("click",function () {
-            //获取选中节点的信息
-            var selectedNodes =  $('#admin-divs-tree').treeview('getSelected');
-            if(selectedNodes.length ==0 ) {
-                alert("请在左边树选择一个节点！");
-            }else{
-                if(checkValidity()){
-                    var id       = $("#id").val();
-                    var xzqhdm   = $("#xzqhdm1").val();
-                    var xzqhmz   = $("#xzqhmz1").val();
-                    var xxxzqhmz = $("#xxxzqhmz1").val();
-                    var xxxzqhmz1 = $("#xxxzqhmz11").val();
-                    var sjxzqhdm = $("#sjxzqhdm1").val();
-                    var xzqhcj   = $("#xzqhcj1").val();
-                    var fzjg     = $("#fzjg1").val();
-                    var xzqhlb   = $("#xzqhlb1").val();
-                    var yzbm     = $("#yzbm1").val();
-
-
-                    $.ajax({
-                        type: "POST",//请求方式为POST
-                        url: "/dept/add",//检验url
-                        data: {
-                            "xzqhdm": xzqhdm,
-                            "xzqhmz": xzqhmz,
-                            "xxxzqhmz": xxxzqhmz,
-                            "xxxzqhmz1": xxxzqhmz1,
-                            "sjxzqhdm": sjxzqhdm,
-                            "xzqhcj": xzqhcj,
-                            "fzjg": fzjg,
-                            "xzqhlb": xzqhlb,
-                            "yzbm": yzbm
-                        },//请求数据
-                        dataType: 'json',//数据类型为JSON类型
-                        cache: false,//关闭缓存
-                        success: function (data) {
-                            if(data.status==1){
-                                alert("行政区划新增成功！");
-                                $('#admin-divs-tree').treeview("remove");
-                                //刷新树
-                                $.getJSON("/dept/rootAdminDivision",function (data) {
-                                    $('#admin-divs-tree').treeview({
-                                        data: data.rootNodes,
-                                        onNodeChecked: nodeChecked,
-                                        onNodeUnchecked: nodeUnchecked,
-                                        onNodeExpanded: addNextNode,
-                                        onNodeCollapsed: deleteChildrenNode,
-                                        onNodeSelected:nodeSelected
-                                    });
-                                });
-                            }
-
-                        }//响应成功
-                    })
-                }
-
-            }
-        });
 
 
 

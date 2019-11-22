@@ -777,11 +777,19 @@
 
 
                                                     <div class="form-group">
-                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="xzqhdm">家庭地址编号:</label>
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="xzqhdm">家庭地址编号:</label>
 
-                                                        <div class="col-xs-12 col-sm-9">
+                                                        <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="text" name="xzqhdm" id="xzqhdm" class="col-xs-12 col-sm-4" readonly/>
+                                                                <input type="text" name="xzqhdm" id="xzqhdm" class="col-xs-12 col-sm-4 form-control" readonly/>
+                                                            </div>
+                                                        </div>
+
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="lxdh">联系电话:</label>
+
+                                                        <div class="col-xs-12 col-sm-4">
+                                                            <div class="clearfix">
+                                                                <input type="tel" name="lxdh" id="lxdh" class="col-xs-12 col-sm-4 form-control" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -789,102 +797,47 @@
                                                     <div class="hr hr-dotted"></div>
 
                                                     <div class="form-group">
-                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="lxdh">联系电话:</label>
 
-                                                        <div class="col-xs-12 col-sm-9">
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="khyh">开户银行(选填):</label>
+
+                                                        <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="tel" name="lxdh" id="lxdh" class="col-xs-12 col-sm-4" />
+                                                                <input type="text" name="khyh" id="khyh" class="col-xs-12 col-sm-4 form-control" placeholder="如中国农业银行"/>
+                                                            </div>
+                                                        </div>
+
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="yhkh">银行卡号(选填):</label>
+
+                                                        <div class="col-xs-12 col-sm-4">
+                                                            <div class="clearfix">
+                                                                <input type="text" id="yhkh" name="yhkh" class="col-xs-12 col-sm-5 form-control" />
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="hr hr-dotted"></div>
 
-                                                    <div class="form-group">
-                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="khyh">开户银行(选填):</label>
-
-                                                        <div class="col-xs-12 col-sm-9">
-                                                            <div class="clearfix">
-                                                                <input type="text" name="khyh" id="khyh" class="col-xs-12 col-sm-4" placeholder="如中国农业银行"/>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="hr hr-dotted"></div>
 
                                                     <div class="form-group">
-                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="yhkh">银行卡号(选填):</label>
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="pkhsx">贫困户属性:</label>
 
-                                                        <div class="col-xs-12 col-sm-9">
+                                                        <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="text" id="yhkh" name="yhkh" class="col-xs-12 col-sm-5" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="hr hr-dotted"></div>
-
-                                                    <div class="form-group">
-                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="pkhsx">贫困户属性:</label>
-
-                                                        <div class="col-xs-12 col-sm-9">
-                                                            <div class="clearfix">
-                                                                <select class="input-medium" id="pkhsx" name="pkhsx">
+                                                                <select class="input-medium form-control" id="pkhsx" name="pkhsx">
                                                                     <option value="">------------------</option>
-                                                                    <option value="linux">一般贫困户</option>
-                                                                    <option value="windows">低保贫困户</option>
-                                                                    <option value="mac">特困供养贫困户</option>
+                                                                    <option value="ybpkh">一般贫困户</option>
+                                                                    <option value="dbpkh">低保贫困户</option>
+                                                                    <option value="tkgypkh">特困供养贫困户</option>
                                                                 </select>
                                                             </div>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="hr hr-dotted"></div>
-
-                                                    <div class="form-group">
-                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="jhtpnd">计划脱贫年度:</label>
-
-                                                        <div class="col-xs-12 col-sm-9">
-                                                            <div class="clearfix">
-                                                                <input type="text" id="jhtpnd" name="jhtpnd" class="col-xs-12 col-sm-8" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="hr hr-dotted"></div>
-
-                                                    <div class="form-group">
-                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="fpnd">返贫年度:</label>
-
-                                                        <div class="col-xs-12 col-sm-9">
-                                                            <div class="clearfix">
-                                                                <input type="text" id="fpnd" name="fpnd" class="col-xs-12 col-sm-8" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="hr hr-dotted"></div>
-
-                                                    <div class="form-group">
-                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="fpyy">返贫原因:</label>
-
-                                                        <div class="col-xs-12 col-sm-9">
-                                                            <div class="clearfix">
-                                                                <input type="text" id="fpyy" name="fpyy" class="col-xs-12 col-sm-12" />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="hr hr-dotted"></div>
-
-                                                    <div class="form-group">
-                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="sfydbqh">是否异地搬迁户:</label>
-
-                                                        <div class="col-xs-12 col-sm-9">
-                                                            <select id="sfydbqh" name="sfydbqh" class="select2" data-placeholder="点击选择...">
+                                                        <label class="control-label col-sm-2 no-padding-right" for="sfdnytp">是否当年预脱贫:</label>
+                                                        <div class="col-xs-12 col-sm-4">
+                                                            <select id="sfdnytp" name="sfdnytp" class="select2 form-control" data-placeholder="点击选择...">
                                                                 <option value="">&nbsp;</option>
-                                                                <option value="yes">有搬迁意愿</option>
-                                                                <option value="no">无搬迁意愿</option>
+                                                                <option value="yes">是</option>
+                                                                <option value="no">否</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -892,11 +845,60 @@
                                                     <div class="hr hr-dotted"></div>
 
                                                     <div class="form-group">
-                                                        <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="bqfs">搬迁方式</label>
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="jhtpnd">计划脱贫年度:</label>
 
-                                                        <div class="col-xs-12 col-sm-9">
+                                                        <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <select class="input-medium" id="bqfs" name="bqfs">
+                                                                <input type="text" id="jhtpnd" name="jhtpnd" class="col-xs-12 col-sm-8 form-control" />
+                                                            </div>
+                                                        </div>
+
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="fpnd">返贫年度:</label>
+
+                                                        <div class="col-xs-12 col-sm-4">
+                                                            <div class="clearfix">
+                                                                <input type="text" id="fpnd" name="fpnd" class="col-xs-12 col-sm-8 form-control" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="hr hr-dotted"></div>
+
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="fpyy">返贫原因:</label>
+                                                        <div class="col-xs-12 col-sm-4">
+                                                            <div class="clearfix">
+                                                                <input type="text" id="fpyy" name="fpyy" class="col-xs-12 col-sm-12 form-control" />
+                                                            </div>
+                                                        </div>
+
+                                                        <label class="control-label col-sm-2 no-padding-right" for="sfjls">是否军烈属:</label>
+                                                        <div class="col-xs-12 col-sm-4">
+                                                            <select id="sfjls" name="sfjls" class="select2 form-control" data-placeholder="点击选择...">
+                                                                <option value="">&nbsp;</option>
+                                                                <option value="yes">是</option>
+                                                                <option value="no">否</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="hr hr-dotted"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sfydfpbqh">是否异地扶贫搬迁户:</label>
+                                                        <div class="col-xs-12 col-sm-4">
+                                                            <select id="sfydfpbqh" name="sfydfpbqh" class="select2 form-control" data-placeholder="点击选择...">
+                                                                <option value="">&nbsp;</option>
+                                                                <option value="yes">有搬迁意愿</option>
+                                                                <option value="no">无搬迁意愿</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="bqfs">搬迁方式</label>
+                                                        <div class="col-xs-12 col-sm-4">
+                                                            <div class="clearfix">
+                                                                <select class="input-medium form-control" id="bqfs" name="bqfs">
                                                                     <option value="">------------------</option>
                                                                     <option value="xzcztbq">行政村整体搬迁</option>
                                                                     <option value="zrcztbq">自然村整体搬迁</option>
@@ -908,16 +910,17 @@
 
                                                     <div class="hr hr-dotted"></div>
 
+
                                                     <div class="form-group">
                                                         <label class="control-label col-xs-12 col-sm-3 no-padding-right" for="bqdz">搬迁地址:</label>
 
                                                         <div class="col-xs-12 col-sm-9">
                                                             <div class="clearfix">
-                                                                <input type="text" id="bqdz" name="bqdz" class="col-xs-12 col-sm-12" />
+                                                                <input type="text" id="bqdz" name="bqdz" class="col-xs-12 col-sm-12 form-control" />
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="hr hr-dotted"></div>
+
                                                 </form>
                                             </div>
 
@@ -1296,7 +1299,6 @@
                                                         </div>
 
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ncjtrks">年初家庭人口数:</label>
-
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
                                                                 <input type="number" id="ncjtrks" name="ncjtrks" class="col-xs-12 col-sm-5 form-control" />
@@ -1309,7 +1311,6 @@
                                                     <div class="form-group">
 
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ndjtrks">年底家庭人口数:</label>
-
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
                                                                 <input type="number" id="ndjtrks" name="ndjtrks" class="col-xs-12 col-sm-5 form-control" />
@@ -1323,18 +1324,16 @@
 
                                                     <div class="form-group">
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="gdmj">耕地面积(亩):</label>
-
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
                                                                 <input type="number" id="gdmj" name="gdmj" class="col-xs-12 col-sm-2 form-control" />
                                                             </div>
                                                         </div>
 
-                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ldmj">林地面积(亩):</label>
-
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="yxggmj">有效灌溉面积(亩):</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="number" id="ldmj" name="ldmj" class="col-xs-12 col-sm-2 form-control" />
+                                                                <input type="number" id="yxggmj" name="yxggmj" class="col-xs-12 col-sm-2 form-control" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1342,38 +1341,33 @@
                                                     <div class="hr hr-dotted"></div>
 
                                                     <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ldmj">林地面积(亩):</label>
+                                                        <div class="col-xs-12 col-sm-4">
+                                                            <div class="clearfix">
+                                                                <input type="number" id="ldmj" name="ldmj" class="col-xs-12 col-sm-2 form-control" />
+                                                            </div>
+                                                        </div>
 
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="tghlmj">退耕还林面积(亩):</label>
-
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
                                                                 <input type="number" id="tghlmj" name="tghlmj" class="col-xs-12 col-sm-2 form-control" />
                                                             </div>
                                                         </div>
 
+                                                    </div>
+
+                                                    <div class="blue hr hr-dotted"></div>
+
+                                                    <div class="form-group">
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="lgmj">林果面积(亩):</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
                                                                 <input type="number" id="lgmj" name="lgmj" class="col-xs-12 col-sm-2 form-control" />
                                                             </div>
                                                         </div>
-                                                    </div>
-
-                                                    <div class="blue hr hr-dotted"></div>
-
-                                                    <div class="form-group">
-                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="mcdmj">牧草地面积(亩):</label>
-
-                                                        <div class="col-xs-12 col-sm-4">
-                                                            <div class="clearfix">
-                                                                <div class="clearfix">
-                                                                    <input type="number" id="mcdmj" name="mcdmj" class="col-xs-12 col-sm-2 form-control" />
-                                                                </div>
-                                                            </div>
-                                                        </div>
 
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="smmj">水面面积(亩):</label>
-
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
                                                                 <input type="number" id="smmj" name="smmj" class="col-xs-12 col-sm-2 form-control" />
@@ -1384,8 +1378,16 @@
                                                     <div class="hr hr-dotted"></div>
 
                                                     <div class="form-group">
-                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sfjrnmzyhzs">是否加入农民专业合作社:</label>
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="mcdmj">牧草地面积(亩):</label>
+                                                        <div class="col-xs-12 col-sm-4">
+                                                            <div class="clearfix">
+                                                                <div class="clearfix">
+                                                                    <input type="number" id="mcdmj" name="mcdmj" class="col-xs-12 col-sm-2 form-control" />
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sfjrnmzyhzs">是否加入农民专业合作社:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <select id="sfjrnmzyhzs" name="sfjrnmzyhzs" class="select2 form-control" data-placeholder="点击选择...">
                                                                 <option value="">&nbsp;</option>
@@ -1394,10 +1396,23 @@
                                                             </select>
                                                         </div>
 
-                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sfyltqydd">是否有龙头企业带动:</label>
+                                                    </div>
 
+                                                    <div class="hr hr-dotted"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sfyltqydd">是否有龙头企业带动:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <select id="sfyltqydd" name="sfyltqydd" class="select2 form-control" data-placeholder="点击选择...">
+                                                                <option value="">&nbsp;</option>
+                                                                <option value="yes">是</option>
+                                                                <option value="no">否</option>
+                                                            </select>
+                                                        </div>
+
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sfycyzfdtrdd">是否有创业致富带头人带动:</label>
+                                                        <div class="col-xs-12 col-sm-4">
+                                                            <select id="sfycyzfdtrdd" name="sfycyzfdtrdd" class="select2 form-control" data-placeholder="点击选择...">
                                                                 <option value="">&nbsp;</option>
                                                                 <option value="yes">是</option>
                                                                 <option value="no">否</option>
@@ -1408,10 +1423,9 @@
                                                     <div class="hr hr-dotted"></div>
 
                                                     <div class="form-group">
-                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sfycyzfdtrdd">是否有创业致富带头人带动:</label>
-
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sftscyd">是否通生产用电:</label>
                                                         <div class="col-xs-12 col-sm-4">
-                                                            <select id="sfycyzfdtrdd" name="sfycyzfdtrdd" class="select2 form-control" data-placeholder="点击选择...">
+                                                            <select id="sftscyd" name="sftscyd" class="select2 form-control" data-placeholder="点击选择...">
                                                                 <option value="">&nbsp;</option>
                                                                 <option value="yes">是</option>
                                                                 <option value="no">否</option>
@@ -1419,7 +1433,6 @@
                                                         </div>
 
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sftshyd">是否通生活用电:</label>
-
                                                         <div class="col-xs-12 col-sm-4">
                                                             <select id="sftshyd" name="sftshyd" class="select2 form-control" data-placeholder="点击选择...">
                                                                 <option value="">&nbsp;</option>
@@ -1433,7 +1446,6 @@
 
                                                     <div class="form-group">
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sftgbds">是否通广播电视:</label>
-
                                                         <div class="col-xs-12 col-sm-4">
                                                             <select id="sftgbds" name="sftgbds" class="select2 form-control" data-placeholder="点击选择...">
                                                                 <option value="">&nbsp;</option>
@@ -1442,8 +1454,21 @@
                                                             </select>
                                                         </div>
 
-                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="yssfaq">是否解决安全饮用水:</label>
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sftgbds">饮水是否困难:</label>
+                                                        <div class="col-xs-12 col-sm-4">
+                                                            <select id="yssfkn" name="yssfkn" class="select2 form-control" data-placeholder="点击选择...">
+                                                                <option value="">&nbsp;</option>
+                                                                <option value="yes">是</option>
+                                                                <option value="no">否</option>
+                                                            </select>
+                                                        </div>
 
+                                                    </div>
+
+                                                    <div class="hr hr-dotted"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="yssfaq">饮水是否安全:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <select id="yssfaq" name="yssfaq" class="select2 form-control" data-placeholder="点击选择...">
                                                                 <option value="">&nbsp;</option>
@@ -1451,13 +1476,8 @@
                                                                 <option value="no">否</option>
                                                             </select>
                                                         </div>
-                                                    </div>
 
-                                                    <div class="hr hr-dotted"></div>
-
-                                                    <div class="form-group">
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ywwscs">是否有卫生厕所:</label>
-
                                                         <div class="col-xs-12 col-sm-4">
                                                             <select id="ywwscs" name="ywwscs" class="select2 form-control" data-placeholder="点击选择...">
                                                                 <option value="">&nbsp;</option>
@@ -1466,23 +1486,22 @@
                                                             </select>
                                                         </div>
 
-                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="yczgljl">与村主干路距离(公里):</label>
-
-                                                        <div class="col-xs-12 col-sm-4">
-                                                            <div class="clearfix">
-                                                                <input type="number" id="yczgljl" name="yczgljl" class="col-xs-12 col-sm-2 form-control" />
-                                                            </div>
-                                                        </div>
                                                     </div>
 
                                                     <div class="hr hr-dotted"></div>
 
                                                     <div class="form-group">
-                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="rhlx">入户路类型:</label>
-
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="yczgljl">与村主干路距离(公里):</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <select class="input-medium form-control" id="rhlx" name="rhlx">
+                                                                <input type="number" id="yczgljl" name="yczgljl" class="col-xs-12 col-sm-2 form-control" />
+                                                            </div>
+                                                        </div>
+
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="rhllx">入户路类型:</label>
+                                                        <div class="col-xs-12 col-sm-4">
+                                                            <div class="clearfix">
+                                                                <select class="input-medium form-control" id="rhllx" name="rhllx">
                                                                     <option value="">------------------</option>
                                                                     <option value="nt-road">泥土路</option>
                                                                     <option value="ss-road">沙石路</option>
@@ -1492,42 +1511,52 @@
                                                             </div>
                                                         </div>
 
-                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="zfmj">住房面积(平方米):</label>
-
-                                                        <div class="col-xs-12 col-sm-4">
-                                                            <div class="clearfix">
-                                                                <input type="number" id="zfmj" name="zfmj" class="col-xs-12 col-sm-2 form-control" />
-                                                            </div>
-                                                        </div>
                                                     </div>
 
                                                     <div class="hr hr-dotted"></div>
 
                                                     <div class="form-group">
-                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sfwf">是否危房户:</label>
-
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="zfjg">住房结构:</label>
                                                         <div class="col-xs-12 col-sm-4">
-                                                            <select id="sfwf" name="sfwf" class="select2 form-control" data-placeholder="点击选择...">
+                                                            <div class="clearfix">
+                                                                <input type="text" id="zfjg" name="zfjg" class="col-xs-12 col-sm-2 form-control" />
+                                                            </div>
+                                                        </div>
+
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="zfmj">住房面积(平方米):</label>
+                                                        <div class="col-xs-12 col-sm-4">
+                                                            <div class="clearfix">
+                                                                <input type="number" id="zfmj" name="zfmj" class="col-xs-12 col-sm-2 form-control" />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="hr hr-dotted"></div>
+
+                                                    <div class="form-group">
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sfwfh">是否危房户:</label>
+                                                        <div class="col-xs-12 col-sm-4">
+                                                            <select id="sfwfh" name="sfwfh" class="select2 form-control" data-placeholder="点击选择...">
                                                                 <option value="">&nbsp;</option>
                                                                 <option value="yes">是</option>
                                                                 <option value="no">否</option>
                                                             </select>
                                                         </div>
 
-                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="wfjb">危房级别:</label>
-
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="wfdj">危房等级:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="text" id="wfjb" name="wfjb" class="col-xs-12 col-sm-2 form-control" />
+                                                                <input type="text" id="wfdj" name="wfdj" class="col-xs-12 col-sm-2 form-control" />
                                                             </div>
                                                         </div>
+
                                                     </div>
 
                                                     <div class="hr hr-dotted"></div>
 
                                                     <div class="form-group">
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="wgnd">危改年度:</label>
-
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
                                                                 <input type="text" id="wgnd" name="wgnd" class="col-xs-12 col-sm-2 form-control" />
@@ -1535,26 +1564,25 @@
                                                         </div>
 
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="zyrllx">主要燃料类型:</label>
-
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
                                                                 <select class="input-medium form-control" id="zyrllx" name="zyrllx">
                                                                     <option value="">------------------</option>
-                                                                    <option value="nt-road">柴草</option>
-                                                                    <option value="ss-road">干畜粪</option>
-                                                                    <option value="yh-road">煤炭</option>
-                                                                    <option value="yh-road">清洁能源</option>
+                                                                    <option value="cc">柴草</option>
+                                                                    <option value="gcf">干畜粪</option>
+                                                                    <option value="mt">煤炭</option>
+                                                                    <option value="qjny">清洁能源</option>
                                                                     <option value="other">其他</option>
                                                                 </select>
                                                             </div>
                                                         </div>
+
                                                     </div>
 
                                                     <div class="hr hr-dotted"></div>
 
                                                     <div class="form-group">
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="bgsm">变更说明:</label>
-
                                                         <div class="col-xs-12 col-sm-9">
                                                             <div class="clearfix">
                                                                 <textarea class="input-xlarge" name="bgsm" id="bgsm"></textarea>
@@ -1562,7 +1590,7 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="space-8"></div>
+                                                    <div class="space-3"></div>
                                                 </form>
                                             </div>
 
@@ -1842,11 +1870,8 @@
 
         function addYmInformation() {
             //获取家庭基本信息表单数值
-            var szs       = $("#szs").val();       // '所在市',
-            var szx       = $("#szx").val();       // '所在县',
-            var szc       = $("#szc").val();       // '所在镇',
-            var szz       = $("#szz").val();       // '所在村',
-            var szjd      = $("#szjd").val();      // '所在街道',
+            var xxxzqhmz =  $("#xxxzqhmz").val();  //行政区划地址
+            var xzqhdm    = $("#xzqhdm").val();    // 行政区划代码
             var lxdh      = $("#lxdh").val();      // '联系电话',
             var khyh      = $("#khyh").val();      // '开户银行（选填）',
             var yhkh      = $("#yhkh").val();      // '银行卡号（选填）',
@@ -1861,11 +1886,8 @@
             var bqdz      = $("#bqdz").val();      // '搬迁地址'
             //拼凑成json格式
             var ym_result_json = {
-                "szs"      :szs       ,
-                "szx"      :szx       ,
-                "szc"      :szc       ,
-                "szz"      :szz       ,
-                "szjd"     :szjd      ,
+                "xxxzqhmz" :xxxzqhmz  ,
+                "xzqhdm"   :xzqhdm    ,
                 "lxdh"     :lxdh      ,
                 "khyh"     :khyh      ,
                 "yhkh"     :yhkh      ,
@@ -1964,7 +1986,30 @@
                 url:"/ym/add1",
                 data: ym_result_json,
                 datatype:'json',
-                cache:false
+                cache:false,
+                success:function (data) {
+                    if(data.status==1){
+                        bootbox.dialog({
+                            message: "恭喜你! 你的信息录入成功!",
+                            buttons: {
+                                "success" : {
+                                    "label" : "确定",
+                                    "className" : "btn-sm btn-primary"
+                                }
+                            }
+                        });
+                    }else{
+                        bootbox.dialog({
+                            message: "对不起! 出现异常，信息录入失败!",
+                            buttons: {
+                                "success" : {
+                                    "label" : "确定",
+                                    "className" : "btn-sm btn-danger"
+                                }
+                            }
+                        });
+                    }
+                }
             });
         }
         
@@ -1990,7 +2035,11 @@
         })
             .on('actionclicked.fu.wizard' , function(e, info){
                 if(info.step == 1 ) {
-                    if(!$('#family-form').valid()) e.preventDefault();
+                    if(!checkFamilyForm()) e.preventDefault();
+                }else if(info.step == 2) {
+                    if(!checkPersonForm()) e.preventDefault();
+                }else if(info.step == 3) {
+                    if(!checkCauseForm()) e.preventDefault();
                 }
             })
             //.on('changed.fu.wizard', function() {
@@ -2012,110 +2061,328 @@
                 }else {
                     addYmInformation();
                 }
-
-                final_bol = true;
-
-                bootbox.dialog({
-                    message: "Thank you! Your information was successfully saved!",
-                    buttons: {
-                        "success" : {
-                            "label" : "OK",
-                            "className" : "btn-sm btn-primary"
-                        }
-                    }
-                });
             }).on('stepclick.fu.wizard', function(e){
             //e.preventDefault();//this will prevent clicking and selecting steps
         });
 
 
-
-
-
         //documentation : http://docs.jquery.com/Plugins/Validation/validate
 
-
-        $.mask.definitions['~']='[+-]';
-        $('#phone').mask('99999999999');
-
-        jQuery.validator.addMethod("tel", function (value, element) {
-            return this.optional(element) || /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/.test(value);
-        }, "请输入合法的手机号码.");
-        //家庭基本信息验证
-        $('#family-form').validate({
-            errorElement: 'div',
-            errorClass: 'help-block',
-            focusInvalid: false,
-            ignore: "",
-            rules: {
-                xxxzqhmz: {
-                    required: true
-                },
-                xzqhdm: {
-                    required: true
-                },
-                pkhsx: {
-                    required: true
-                },
-                sfydbqh: {
-                    required: true
-                },
-                bqfs: {
-                    required: true
-                }
-            },
-
-            messages: {
-                xxxzqhmz: {
-                    required: "家庭地址不能为空."
-                },
-                xzqhdm: {
-                    required: "家庭地址代码不能为空."
-                },
-                pkhsx: "请选择一个贫困属性",
-                sfydbqh: "请确认是否为异地搬迁户",
-                bqfs: "请选择搬迁方式",
-                lxdh:{
-                    isTel:"请输入正确的联系方式(手机号码)"
-                }
-            },
-
-
-            highlight: function (e) {
-                $(e).closest('.form-group').removeClass('has-info').addClass('has-error');
-            },
-
-            success: function (e) {
-                $(e).closest('.form-group').removeClass('has-error');//.addClass('has-info');
-                $(e).remove();
-            },
-
-            errorPlacement: function (error, element) {
-                if(element.is('input[type=checkbox]') || element.is('input[type=radio]')) {
-                    var controls = element.closest('div[class*="col-"]');
-                    if(controls.find(':checkbox,:radio').length > 1) controls.append(error);
-                    else error.insertAfter(element.nextAll('.lbl:eq(0)').eq(0));
-                }
-                else if(element.is('.select2')) {
-                    error.insertAfter(element.siblings('[class*="select2-container"]:eq(0)'));
-                }
-                else if(element.is('.chosen-select')) {
-                    error.insertAfter(element.siblings('[class*="chosen-container"]:eq(0)'));
-                }
-                else error.insertAfter(element.parent());
-            },
-
-            submitHandler: function (form) {
-            },
-            invalidHandler: function (form) {
+        //判断家庭输入条件
+        var phone = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
+        function checkFamilyForm(){
+            if($("#xxxzqhmz").val()==""){
+                $("#xxxzqhmz").tips({
+                    side : 3,
+                    msg : '家庭地址不能为空！',
+                    bg : '#ff0bd0',
+                    time : 3
+                });
+                return false;
+            }else if(!phone.test($("#lxdh").val())){
+                $("#lxdh").focus();
+                $("#lxdh").tips({
+                    side : 3,
+                    msg : '联系电话格式不对！',
+                    bg : '#ff0bd0',
+                    time : 3
+                });
+                return false;
+            }else if($("#pkhsx").val()==""){
+                $("#pkhsx").focus();
+                $("#pkhsx").tips({
+                    side : 3,
+                    msg : '请选择一个贫困属性！',
+                    bg : '#ff0bd0',
+                    time : 3
+                });
+                return false;
+            }else if($("#sfydfpbqh").val()==""){
+                $("#sfydfpbqh").focus();
+                $("#sfydfpbqh").tips({
+                    side : 3,
+                    msg : '请确认是否为异地扶贫搬迁户！',
+                    bg : '#ff0bd0',
+                    time : 3
+                });
+                return false;
+            }else if($("#bqfs").val()==""){
+                $("#bqfs").focus();
+                $("#bqfs").tips({
+                    side : 3,
+                    msg : '请选择搬迁方式！',
+                    bg : '#ff0bd0',
+                    time : 3
+                });
+                return false;
             }
-        });
-        //家庭人员信息输入验证
-        $('#person-form').validate({
-
-        });
-
-
+            return true;
+        };
+        //判断贫困人员信息
+        function checkPersonForm(){
+            if($("#xm").val()==""){
+                $("#xm").focus();
+                $("#xm").tips({
+                    side : 3,
+                    msg : '姓名不得为空！',
+                    bg : '#381eff',
+                    time : 3
+                });
+                return false;
+            }else if($("#sfzmhm").val()==""){
+                $("#sfzmhm").focus();
+                $("#sfzmhm").tips({
+                    side : 3,
+                    msg : '身份证明号码不得为空！',
+                    bg : '#381eff',
+                    time : 3
+                });
+                return false;
+            }else if($("#xb").val()==""){
+                $("#xb").focus();
+                $("#xb").tips({
+                    side : 3,
+                    msg : '请选择性别！',
+                    bg : '#381eff',
+                    time : 3
+                });
+                return false;
+            }else if($("#zxsqk").val()==""){
+                $("#zxsqk").focus();
+                $("#zxsqk").tips({
+                    side : 3,
+                    msg : '请选择在校生情况！',
+                    bg : '#381eff',
+                    time : 3
+                });
+                return false;
+            }else if($("#sxhcxyy").val()==""){
+                $("#sxhcxyy").focus();
+                $("#sxhcxyy").tips({
+                    side : 3,
+                    msg : '请选择失学或辍学原因！',
+                    bg : '#381eff',
+                    time : 3
+                });
+                return false;
+            }else if($("#jkqk").val()==""){
+                $("#jkqk").focus();
+                $("#jkqk").tips({
+                    side : 3,
+                    msg : '请选择健康情况！',
+                    bg : '#381eff',
+                    time : 3
+                });
+                return false;
+            }else if($("#ldjn").val()==""){
+                $("#ldjn").focus();
+                $("#ldjn").tips({
+                    side : 3,
+                    msg : '请选择劳动技能！',
+                    bg : '#381eff',
+                    time : 3
+                });
+                return false;
+            }else if($("#sfhjpth").val()==""){
+                $("#sfhjpth").focus();
+                $("#sfhjpth").tips({
+                    side : 3,
+                    msg : '请进行选择！',
+                    bg : '#381eff',
+                    time : 3
+                });
+                return false;
+            }else if($("#sfxyjr").val()==""){
+                $("#sfxyjr").focus();
+                $("#sfxyjr").tips({
+                    side : 3,
+                    msg : '请进行选择！',
+                    bg : '#381eff',
+                    time : 3
+                });
+                return false;
+            }else if($("#sfcjylbx1").val()==""){
+                $("#sfcjylbx1").focus();
+                $("#sfcjylbx1").tips({
+                    side : 3,
+                    msg : '请进行选择',
+                    bg : '#381eff',
+                    time : 3
+                });
+                return false;
+            }else if($("#sfcjsybx").val()==""){
+                $("#sfcjsybx").focus();
+                $("#sfcjsybx").tips({
+                    side : 3,
+                    msg : '请进行选择',
+                    bg : '#381eff',
+                    time : 3
+                });
+                return false;
+            }else if($("#sfxsdb").val()==""){
+                $("#sfxsdb").focus();
+                $("#sfxsdb").tips({
+                    side : 3,
+                    msg : '请进行选择',
+                    bg : '#381eff',
+                    time : 3
+                });
+                return false;
+            }else if($("#sfcjylbx2").val()==""){
+                $("#sfcjylbx2").focus();
+                $("#sfcjylbx2").tips({
+                    side : 3,
+                    msg : '请进行选择',
+                    bg : '#381eff',
+                    time : 3
+                });
+                return false;
+            }else if($("#sfxsywbxbt").val()==""){
+                $("#sfxsywbxbt").focus();
+                $("#sfxsywbxbt").tips({
+                    side : 3,
+                    msg : '请进行选择',
+                    bg : '#381eff',
+                    time : 3
+                });
+                return false;
+            }else if(!phone.test($("#lxdh2").val())){
+                $("#lxdh2").focus();
+                $("#lxdh2").tips({
+                    side : 3,
+                    msg : '联系电话输入格式不正确',
+                    bg : '#381eff',
+                    time : 3
+                });
+                return false;
+            }else if($(grid_selector).getDataIDs().length<1){
+                alert("必须添加至少一个家庭成员！");
+                return false;
+            }
+            return true;
+        };
+        //判断家庭基本情况表
+        function checkCauseForm(){
+            if($("#zpyy1").val()==""){
+                $("#zpyy1").focus();
+                $("#zpyy1").tips({
+                    side : 3,
+                    msg : '请选择一个致贫原因!',
+                    bg : '#ffd317',
+                    time : 3
+                });
+                return false;
+            }else if($("#ncjtrks").val()==""){
+                $("#ncjtrks").focus();
+                $("#ncjtrks").tips({
+                    side : 3,
+                    msg : '年初家庭人口数不能为空!',
+                    bg : '#ffd317',
+                    time : 3
+                });
+                return false;
+            } else if($("#ndjtrks").val()==""){
+                $("#ndjtrks").focus();
+                $("#ndjtrks").tips({
+                    side : 3,
+                    msg : '年底家庭人口数不能为空!',
+                    bg : '#ffd317',
+                    time : 3
+                });
+                return false;
+            } else if($("#sfjrnmzyhzs").val()==""){
+                $("#sfjrnmzyhzs").focus();
+                $("#sfjrnmzyhzs").tips({
+                    side : 3,
+                    msg : '请进行选择确认!',
+                    bg : '#ffd317',
+                    time : 3
+                });
+                return false;
+            } else if($("#sfyltqydd").val()==""){
+                $("#sfyltqydd").focus();
+                $("#sfyltqydd").tips({
+                    side : 3,
+                    msg : '请进行选择确认!',
+                    bg : '#ffd317',
+                    time : 3
+                });
+                return false;
+            } else if($("#sfycyzfdtrdd").val()==""){
+                $("#sfycyzfdtrdd").focus();
+                $("#sfycyzfdtrdd").tips({
+                    side : 3,
+                    msg : '请进行选择确认!',
+                    bg : '#ffd317',
+                    time : 3
+                });
+                return false;
+            } else if($("#sftshyd").val()==""){
+                $("#sftshyd").focus();
+                $("#sftshyd").tips({
+                    side : 3,
+                    msg : '请进行选择确认!',
+                    bg : '#ffd317',
+                    time : 3
+                });
+                return false;
+            } else if($("#sftgbds").val()==""){
+                $("#sftgbds").focus();
+                $("#sftgbds").tips({
+                    side : 3,
+                    msg : '请进行选择确认!',
+                    bg : '#ffd317',
+                    time : 3
+                });
+                return false;
+            } else if($("#yssfaq").val()==""){
+                $("#yssfaq").focus();
+                $("#yssfaq").tips({
+                    side : 3,
+                    msg : '请进行选择确认!',
+                    bg : '#ffd317',
+                    time : 3
+                });
+                return false;
+            } else if($("#ywwscs").val()==""){
+                $("#ywwscs").focus();
+                $("#ywwscs").tips({
+                    side : 3,
+                    msg : '请进行选择确认!',
+                    bg : '#ffd317',
+                    time : 3
+                });
+                return false;
+            } else if($("#rhllx").val()==""){
+                $("#rhllx").focus();
+                $("#rhllx").tips({
+                    side : 3,
+                    msg : '请选择入户路类型!',
+                    bg : '#ffd317',
+                    time : 3
+                });
+                return false;
+            } else if($("#sfwf").val()==""){
+                $("#sfwf").focus();
+                $("#sfwf").tips({
+                    side : 3,
+                    msg : '请进行选择确认!',
+                    bg : '#ffd317',
+                    time : 3
+                });
+                return false;
+            } else if($("#zyrllx").val()==""){
+                $("#zyrllx").focus();
+                $("#zyrllx").tips({
+                    side : 3,
+                    msg : '请选择燃料类型!',
+                    bg : '#ffd317',
+                    time : 3
+                });
+                return false;
+            }
+            return  true;
+        };
 
 
         $('#modal-wizard-container').ace_wizard();
@@ -2498,7 +2765,7 @@
         //点击人员添加按钮，进行事件响应
         $("#add-person").on('click',function (e) {
             var xm        = $("#xm").val();        //'姓名',
-            var sex       = $("#sex").val();       //'性别',
+            var xb        = $("#xb").val();       //'性别',
             var sfzmhm    = $("#sfzmhm").val();    //'身份证明号码',
             var qfjg      = $("#qfjg").val();      //'身份证签发机关',
             var sfzyxqs   = $("#sfzyxqs").val();   //身份证有效期始',
@@ -2523,7 +2790,7 @@
 
             var ym_person_json={
                 "xm"           : xm         ,
-                "sex"          : sex        ,
+                "xb"           : xb         ,
                 "sfzmhm"       : sfzmhm     ,
                 "qfjg"         : qfjg       ,
                 "sfzyxqs"      : sfzyxqs    ,

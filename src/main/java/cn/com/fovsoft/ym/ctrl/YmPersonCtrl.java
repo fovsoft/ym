@@ -109,4 +109,21 @@ public class YmPersonCtrl {
 
         return modelAndView;
     }
+
+
+    @RequestMapping("/ym/search")
+    @ResponseBody
+    public void getPersonByMoreCondition(HttpServletRequest request,HttpServletResponse response) throws IOException{
+
+        String xm = request.getParameter("xm");
+        String sfzmhm = request.getParameter("sfzmhm");
+        String lxdh = request.getParameter("lxdh");
+        String csrq = request.getParameter("csrq");
+        //前端获取到的页码数
+        int pageNum = Integer.parseInt(request.getParameter("page"));
+        //前端获取到的显示每页的数量
+        int pageSize = Integer.parseInt(request.getParameter("rows"));
+        //分页获取到所有用户信息
+        PageHelper.startPage(pageNum,pageSize);
+    }
 }

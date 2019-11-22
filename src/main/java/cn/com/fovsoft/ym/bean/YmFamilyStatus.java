@@ -10,20 +10,20 @@ import java.io.Serializable;
 
 public class YmFamilyStatus implements Serializable {
 
-    private int        jtzkbh       ;          // '家庭状况编号',
+    private String     jtzkbh       ;          // '家庭状况编号',
     private String     jtbh         ;          // '家庭编号，对应家庭表',
     private String     zpyy1        ;     // '致贫原因1（必填）',
     private String     zpyy2        ;     // '致贫原因2（选填）',
     private String     zpyy3        ;     // '致贫原因3（选填）',
-    private int        ncjtrks      ;          // '年初家庭人口数',
-    private int        ndjtrks      ;          // '年底家庭人口数',
-    private float      gdmj         ;          // '耕地面积（亩）',
-    private float      yxggmj       ;          // '有效灌溉面积（亩）',
-    private float      ldmj         ;          // '林地面积（亩）',
-    private float      tghlmj       ;          // '退耕还林面积（亩）',
-    private float      lgmj         ;          // '林果面积（亩）',
-    private float      smmj         ;          // '水面面积（亩）',
-    private float      mcdmj        ;          // '牧草地面积（亩）',
+    private String     ncjtrks      ;          // '年初家庭人口数',
+    private String     ndjtrks      ;          // '年底家庭人口数',
+    private String      gdmj         ;          // '耕地面积（亩）',
+    private String      yxggmj       ;          // '有效灌溉面积（亩）',
+    private String      ldmj         ;          // '林地面积（亩）',
+    private String      tghlmj       ;          // '退耕还林面积（亩）',
+    private String      lgmj         ;          // '林果面积（亩）',
+    private String      smmj         ;          // '水面面积（亩）',
+    private String      mcdmj        ;          // '牧草地面积（亩）',
     private String     sfyltqydd    ;         // '是否有龙头企业带动',
     private String     sfycyzfdtrdd ;         // '是否有创业致富带头人带动',
     private String     sftscyd      ;         // '是否通生产用电',
@@ -31,24 +31,24 @@ public class YmFamilyStatus implements Serializable {
     private String     sftgbds      ;         // '是否通广播电视',
     private String     yssfkn       ;         // '饮水是否困难',
     private String     yssfaq       ;         // '饮水是否安全',
-    private float      zfmj         ;          // '住房面积（平方米）',
+    private String      zfmj         ;          // '住房面积（平方米）',
     private String     ywwscs       ;         // '有无卫生厕所',
     private String     sfwfh        ;         // '是否危房户',
     private String     wfdj         ;     // '危房等级',
     private String     wgnd         ;     // '危改年度',
     private String     zfjg         ;     // '住房结构',
     private String     sfjrnmzyhzs  ;        // '是否加入农民专业合作社',
-    private float      yczgljl      ;          // '与村主干路距离（公里）',
+    private String      yczgljl      ;          // '与村主干路距离（公里）',
     private String     rhllx        ;     // '入户路类型',
     private String     zyrllx       ;     // '主要燃料类型',
     private String     bgqksm       ;    // '变更情况说明'
 
 
-    public int getJtzkbh() {
+    public String getJtzkbh() {
         return jtzkbh;
     }
 
-    public void setJtzkbh(int jtzkbh) {
+    public void setJtzkbh(String jtzkbh) {
         this.jtzkbh = jtzkbh;
     }
 
@@ -84,75 +84,75 @@ public class YmFamilyStatus implements Serializable {
         this.zpyy3 = zpyy3;
     }
 
-    public int getNcjtrks() {
+    public String getNcjtrks() {
         return ncjtrks;
     }
 
-    public void setNcjtrks(int ncjtrks) {
+    public void setNcjtrks(String ncjtrks) {
         this.ncjtrks = ncjtrks;
     }
 
-    public int getNdjtrks() {
+    public String getNdjtrks() {
         return ndjtrks;
     }
 
-    public void setNdjtrks(int ndjtrks) {
+    public void setNdjtrks(String ndjtrks) {
         this.ndjtrks = ndjtrks;
     }
 
-    public float getGdmj() {
+    public String getGdmj() {
         return gdmj;
     }
 
-    public void setGdmj(float gdmj) {
+    public void setGdmj(String gdmj) {
         this.gdmj = gdmj;
     }
 
-    public float getYxggmj() {
+    public String getYxggmj() {
         return yxggmj;
     }
 
-    public void setYxggmj(float yxggmj) {
+    public void setYxggmj(String yxggmj) {
         this.yxggmj = yxggmj;
     }
 
-    public float getLdmj() {
+    public String getLdmj() {
         return ldmj;
     }
 
-    public void setLdmj(float ldmj) {
+    public void setLdmj(String ldmj) {
         this.ldmj = ldmj;
     }
 
-    public float getTghlmj() {
+    public String getTghlmj() {
         return tghlmj;
     }
 
-    public void setTghlmj(float tghlmj) {
+    public void setTghlmj(String tghlmj) {
         this.tghlmj = tghlmj;
     }
 
-    public float getLgmj() {
+    public String getLgmj() {
         return lgmj;
     }
 
-    public void setLgmj(float lgmj) {
+    public void setLgmj(String lgmj) {
         this.lgmj = lgmj;
     }
 
-    public float getSmmj() {
+    public String getSmmj() {
         return smmj;
     }
 
-    public void setSmmj(float smmj) {
+    public void setSmmj(String smmj) {
         this.smmj = smmj;
     }
 
-    public float getMcdmj() {
+    public String getMcdmj() {
         return mcdmj;
     }
 
-    public void setMcdmj(float mcdmj) {
+    public void setMcdmj(String mcdmj) {
         this.mcdmj = mcdmj;
     }
 
@@ -212,11 +212,11 @@ public class YmFamilyStatus implements Serializable {
         this.yssfaq = yssfaq;
     }
 
-    public float getZfmj() {
+    public String getZfmj() {
         return zfmj;
     }
 
-    public void setZfmj(float zfmj) {
+    public void setZfmj(String zfmj) {
         this.zfmj = zfmj;
     }
 
@@ -268,11 +268,11 @@ public class YmFamilyStatus implements Serializable {
         this.sfjrnmzyhzs = sfjrnmzyhzs;
     }
 
-    public float getYczgljl() {
+    public String getYczgljl() {
         return yczgljl;
     }
 
-    public void setYczgljl(float yczgljl) {
+    public void setYczgljl(String yczgljl) {
         this.yczgljl = yczgljl;
     }
 

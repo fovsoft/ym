@@ -13,7 +13,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface YmFamilyStatusDao {
 
 
-    @Insert("insert into fm_family_status(jtbh,zpyy1,zpyy2,zpyy3,ncjtrks,ndjtrks,gdmj,yxggmj,ldmj,tghlmj,lgmj,smmj,mcdmj,sfyltqydd,sfycyzfdtrdd,sftscyd,sftshyd,sftgbds,yssfkn,yssfaq,zfmj,ywwscs,sfwfh,wfdj,wgnd,zfjg,sfjrnmzyhzs,yczgljl,rhllx,zyrllx,bgqksm) values (#{jtbh},#{zpyy1},#{zpyy2},#{zpyy3},#{ncjtrks},#{ndjtrks},#{gdmj},#{yxggmj},#{ldmj},#{tghlmj},#{lgmj},#{smmj},#{mcdmj},#{sfyltqydd},#{sfycyzfdtrdd},#{sftscyd},#{sftshyd},#{sftgbds},#{yssfkn},#{yssfaq},#{zfmj},#{ywwscs},#{sfwfh},#{wfdj},#{wgnd},#{zfjg},#{sfjrnmzyhzs},#{yczgljl},#{rhllx},#{zyrllx},#{bgqksm})")
+    @Insert("insert into ym_family_status(jtbh,zpyy1,zpyy2,zpyy3,ncjtrks,ndjtrks,gdmj,yxggmj,ldmj,tghlmj,lgmj,smmj,mcdmj,sfyltqydd,sfycyzfdtrdd,sftscyd,sftshyd,sftgbds,yssfkn,yssfaq,zfmj,ywwscs,sfwfh,wfdj,wgnd,zfjg,sfjrnmzyhzs,yczgljl,rhllx,zyrllx,bgqksm) values (#{jtbh},#{zpyy1},#{zpyy2},#{zpyy3},#{ncjtrks},#{ndjtrks},#{gdmj},#{yxggmj},#{ldmj},#{tghlmj},#{lgmj},#{smmj},#{mcdmj},#{sfyltqydd},#{sfycyzfdtrdd},#{sftscyd},#{sftshyd},#{sftgbds},#{yssfkn},#{yssfaq},#{zfmj},#{ywwscs},#{sfwfh},#{wfdj},#{wgnd},#{zfjg},#{sfjrnmzyhzs},#{yczgljl},#{rhllx},#{zyrllx},#{bgqksm})")
     int addYmFamilyStatus(YmFamilyStatus ymFamilyStatus);
 
 }

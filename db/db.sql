@@ -480,7 +480,7 @@ create table ym_person
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8 comment '移民贫困人员信息表';
 
-insert into ym_person(jtbh,xzqhdm,xm,xb,sfzmhm,qfjg,sfzyxqs,sfzyxqz,yhzgx,mz,csrq,zzmm,whcd,zxsqk,sxhcxyy,jkqk,ldjn,sfhjpth,sfxyjr,sfcjylbx1,sfcjsybx,sfxsdb,sfcjylbx2,sfxsywbxbt,lxdh)
+insert into ym_person(jtbh,xm,xb,sfzmhm,qfjg,sfzyxqs,sfzyxqz,yhzgx,mz,csrq,zzmm,whcd,zxsqk,sxhcxyy,jkqk,ldjn,sfhjpth,sfxyjr,sfcjylbx1,sfcjsybx,sfxsdb,sfcjylbx2,sfxsywbxbt,lxdh)
 values ('b4aa05cfd980','韦贞英','男','452731196205123035','大化瑶族自治县公安局','2008-12-22','2099-12-31','本人','汉','1962-05-12','团员','高中','无','无','健康','务农','否','否','否','否','否','否','否','18934943219');
 
 
@@ -488,7 +488,7 @@ drop table ym_family_status;
 #贫困家庭基本原因和状况
 create table ym_family_status
 (
-    jtzkbh       int primary key comment '家庭状况编号',
+    jtzkbh       int auto_increment primary key comment '家庭状况编号',
     jtbh         varchar(20) comment '家庭编号，对应家庭表',
     zpyy1        varchar(64) comment '致贫原因1（必填）',
     zpyy2        varchar(64) comment '致贫原因2（选填）',

@@ -48,4 +48,16 @@ public class YmPersonService {
         return ymPersonDao.findAllYmPerson();
     }
 
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/21 15:40
+     * Param: [ymPerson]
+     * Return: int
+     * 功能描述: 新增家庭人员服务方法
+     */
+    public int addYmPerson(YmPerson ymPerson){
+        return ymPersonDao.addYmPerson(ymPerson);
+    }
+
 }

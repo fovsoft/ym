@@ -15,8 +15,8 @@ import java.util.List;
 public interface YmPersonDao {
 
 
-    @Insert(" insert into ym_person(jtbh,xm,sex,sfzmhm,qfjg,sfzyxqs,sfzyxqz,yhzgx,mz,csrq,zzmm,whcd,zxsqk,sxhcxyy,jkqk,ldjn,sfhjpth,sfxyjr,sfcjylbx1,sfcjsybx,sfxsdb,sfcjylbx2,sfxsywbxbt,lxdh) values "+
-            " (#{jtbh},#{xm},#{sex},#{sfzmhm},#{qfjg},#{sfzyxqs},#{sfzyxqz},#{yhzgx},#{mz},#{csrq},#{zzmm},#{whcd},#{zxsqk},#{sxhcxyy},#{jkqk},#{ldjn},#{sfhjpth},#{sfxyjr},#{sfcjylbx1},#{sfcjsybx},#{sfxsdb},#{sfcjylbx2},#{sfxsywbxbt},#{lxdh})")
+    @Insert(" insert into ym_person(jtbh,xm,xb,sfzmhm,qfjg,sfzyxqs,sfzyxqz,yhzgx,mz,csrq,zzmm,whcd,zxsqk,sxhcxyy,jkqk,ldjn,sfhjpth,sfxyjr,sfcjylbx1,sfcjsybx,sfxsdb,sfcjylbx2,sfxsywbxbt,lxdh) values "+
+            " (#{jtbh},#{xm},#{xb},#{sfzmhm},#{qfjg},#{sfzyxqs},#{sfzyxqz},#{yhzgx},#{mz},#{csrq},#{zzmm},#{whcd},#{zxsqk},#{sxhcxyy},#{jkqk},#{ldjn},#{sfhjpth},#{sfxyjr},#{sfcjylbx1},#{sfcjsybx},#{sfxsdb},#{sfcjylbx2},#{sfxsywbxbt},#{lxdh})")
     int addYmPerson(YmPerson ymPerson);
 
 
@@ -25,7 +25,7 @@ public interface YmPersonDao {
             @Result(property="rybh"       , column="rybh"      ),
             @Result(property="jtbh"       , column="jtbh"      ),
             @Result(property="xm"         , column="xm"        ),
-            @Result(property="sex"        , column="sex"       ),
+            @Result(property="xb"        , column="xb"       ),
             @Result(property="sfzmhm"     , column="sfzmhm"    ),
             @Result(property="qfjg"       , column="qfjg"      ),
             @Result(property="sfzyxqs"    , column="sfzyxqs"   ),

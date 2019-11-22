@@ -20,6 +20,6 @@ public interface YmFamilyDao {
      * @param ymFamily
      * @return int
      */
-    @Insert(" insert into ym_family(szs,szx,szc,szz,szjd,lxdh,khyh,yhkh,pkhsx,sfdnytp,jhtpnd,fpnd,fpyy,sfjls,sfydfpbqh,bqfs,bqdz) values (#{szs},#{szx},#{szc},#{szz},#{szjd},#{lxdh},#{khyh},#{yhkh},#{pkhsx},#{sfdnytp},#{jhtpnd},#{fpnd},#{fpyy},#{sfjls},#{sfydfpbqh},#{bqfs},#{bqdz})")
+    @Insert(" insert into ym_family(jtbh,xxxzqhmz,xzqhdm,lxdh,khyh,yhkh,pkhsx,sfdnytp,jhtpnd,fpnd,fpyy,sfjls,sfydfpbqh,bqfs,bqdz) values (#{jtbh},#{xxxzqhmz},#{xzqhdm},#{lxdh},#{khyh},#{yhkh},#{pkhsx},#{sfdnytp},#{jhtpnd},#{fpnd},#{fpyy},#{sfjls},#{sfydfpbqh},#{bqfs},#{bqdz})")
     int addYmFamily(YmFamily ymFamily);
 }
