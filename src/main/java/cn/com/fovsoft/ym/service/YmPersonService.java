@@ -60,4 +60,20 @@ public class YmPersonService {
         return ymPersonDao.addYmPerson(ymPerson);
     }
 
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/25 10:05
+     * Param: [xm, sfzmhm, lxdh, csrq]
+     * Return: java.util.List<cn.com.fovsoft.ym.bean.YmPerson>
+     * 功能描述: 多条件的模糊查询
+     */
+    public List<YmPerson> findYmPersonByMoreCondition(String xm,String sfzmhm,String lxdh,String csrq){
+        xm = xm + "%";
+        sfzmhm = sfzmhm + "%";
+        lxdh = lxdh + "%";
+        csrq = csrq + "%";
+        return ymPersonDao.findYmPersonByMoreCondition(xm,sfzmhm,lxdh,csrq);
+    }
+
 }

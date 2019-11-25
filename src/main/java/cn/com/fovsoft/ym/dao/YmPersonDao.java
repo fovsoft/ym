@@ -69,4 +69,35 @@ public interface YmPersonDao {
     @ResultMap(value = {"ymPersonResultMap"})
     List<YmPerson> findAllYmPerson();
 
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/25 10:03
+     * Param: [xm, sfzmhm, lxdh, csrq]
+     * Return: java.util.List<cn.com.fovsoft.ym.bean.YmPerson>
+     * 功能描述: 模糊条件查询
+     */
+    @SelectProvider(type = YmPersonDaoProvider.class, method = "findYmPersonByMoreCondition")
+    @ResultMap(value = {"ymPersonResultMap"})
+    List<YmPerson> findYmPersonByMoreCondition(String xm,String sfzmhm,String lxdh,String csrq);
+    class YmPersonDaoProvider{
+        public String findYmPersonByMoreCondition(String xm,String sfzmhm,String lxdh,String csrq){
+            String sql = "select * from ym_person where 1=1 ";
+            if(!xm.equals("%")){
+                sql = sql + " and xm like #{xm} ";
+            }
+            if(!sfzmhm.equals("%")){
+                sql = sql + " and sfzmhm like #{sfzmhm} ";
+            }
+            if(!lxdh.equals("%")){
+                sql = sql + " and lxdh like #{lxdh} ";
+            }
+            if(!csrq.equals("%")){
+                sql = sql + " and csrq like #{csrq} ";
+            }
+            return  sql;
+        }
+    }
+
 }

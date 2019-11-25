@@ -696,11 +696,11 @@
                                                         <div class="row">
                                                             <form class="form-inline" role="form">
                                                                 <div class="form-group col-xs-12">
-                                                                    <label class="sr-only control-label">姓名:</label>
-                                                                    <input type="text" id="s-userName" name="s-userName" class="form-control" placeholder="姓名">
-                                                                    <label class="sr-only control-label">身份证明号码:</label>
+                                                                    <label class="sr-only control-label" for="s-xm">姓名:</label>
+                                                                    <input type="text" id="s-xm" name="s-xm" class="form-control" placeholder="姓名">
+                                                                    <label class="sr-only control-label" for="s-sfzmhm">身份证明号码:</label>
                                                                     <input type="text" id="s-sfzmhm" name="s-sfzmhm" class=" form-control" placeholder="身份证明号码">
-                                                                    <label class="sr-only control-label">联系电话:</label>
+                                                                    <label class="sr-only control-label" for="s-lxdh">联系电话:</label>
                                                                     <input type="text" id="s-lxdh" name="s-lxdh" class="form-control" placeholder="联系电话">
                                                                 </div>
                                                             </form>
@@ -709,9 +709,9 @@
                                                         <div class="row">
                                                             <form class="form-inline" role="form">
                                                                 <div class="form-group col-xs-12">
-                                                                    <label class="sr-only control-label">出生日期:</label>
+                                                                    <label class="sr-only control-label" for="s-csrq">出生日期:</label>
                                                                     <div class="input-group">
-                                                                        <input class="form-control date-picker" id="csrq" name="csrq" type="text" data-date-format="yyyy-mm-dd" placeholder="出生日期"/>
+                                                                        <input class="form-control date-picker" id="s-csrq" name="s-csrq" type="text" data-date-format="yyyy-mm-dd" placeholder="出生日期"/>
                                                                         <span class="input-group-addon">
                                                                         <i class="fa fa-calendar bigger-110"></i>
                                                                     </span>
@@ -737,7 +737,7 @@
                                         <div class="modal-footer">
                                             <button type="button" class="btn btn-info" data-dismiss="modal">关闭
                                             </button>
-                                            <button type="button" class="btn btn-primary" id="getXzqhBtn">
+                                            <button type="button" class="btn btn-primary" id="getFamilyResultBtn">
                                                 确定
                                             </button>
                                         </div>
@@ -754,7 +754,7 @@
                                 <span class="input-group-addon">
                                     <i class="red ace-icon fa fa-check"></i>
                                 </span>
-                                <input type="text" class="form-control search-query" placeholder="请点击获取按钮获取家庭编号信息" />
+                                <input type="text" class="form-control search-query" id="jtbh" name="jtbh" placeholder="请点击获取按钮获取家庭编号信息" readonly/>
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-purple btn-sm" id="getFamilyBtn" data-toggle="modal" data-target="#getFamilyModal">
                                         <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
@@ -818,6 +818,7 @@
 
                                             <div class="widget-body">
                                                 <div class="widget-main padding-8">
+                                                    <form id="produceIncomeForm">
                                                     <table class="table table-striped table-bordered table-hover">
                                                         <thead class="success">
                                                         <tr class="success">
@@ -842,261 +843,261 @@
                                                             <td class="center" rowspan="11">一、生产经营性收入</td>
                                                             <td class="center" rowspan="3">种植业</td>
                                                             <td class="center">品种</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-zzy-1810pz" name="sr-zzy-1810pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-zzy-1811pz" name="sr-zzy-1811pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-zzy-1812pz" name="sr-zzy-1811pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-zzy-1913pz" name="sr-zzy-1913pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-zzy-1946pz" name="sr-zzy-1946pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-zzy-1979pz" name="sr-zzy-1979pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-zzy-1910pz" name="sr-zzy-1910pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-zzy-1911pz" name="sr-zzy-1911pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-zzy-1912pz" name="sr-zzy-1912pz"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center">数量</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1810sl" name="sr-zzy-1810sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1811sl" name="sr-zzy-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1812sl" name="sr-zzy-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-zzy-1913sl" name="sr-zzy-1913sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-zzy-1946sl" name="sr-zzy-1946sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-zzy-1979sl" name="sr-zzy-1979sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1910sl" name="sr-zzy-1910sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1911sl" name="sr-zzy-1911sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1912sl" name="sr-zzy-1912sl"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center">金额</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1810je" name="sr-zzy-1810je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1811je" name="sr-zzy-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1812je" name="sr-zzy-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-zzy-1913je" name="sr-zzy-1913je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-zzy-1946je" name="sr-zzy-1946je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-zzy-1979je" name="sr-zzy-1979je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1910je" name="sr-zzy-1910je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1911je" name="sr-zzy-1911je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1912je" name="sr-zzy-1912je"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center" rowspan="3">林业</td>
                                                             <td class="center">品种</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1810pz" name="sr-ly-1810pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1811pz" name="sr-ly-1811pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1812pz" name="sr-ly-1811pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-ly-1913pz" name="sr-ly-1913pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-ly-1946pz" name="sr-ly-1946pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-ly-1979pz" name="sr-ly-1979pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1910pz" name="sr-ly-1910pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1911pz" name="sr-ly-1911pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1912pz" name="sr-ly-1912pz"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center">数量</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-ly-1810sl" name="sr-ly-1810sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-ly-1811sl" name="sr-ly-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-ly-1812sl" name="sr-ly-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-ly-1913sl" name="sr-ly-1913sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-ly-1946sl" name="sr-ly-1946sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-ly-1979sl" name="sr-ly-1979sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-ly-1910sl" name="sr-ly-1910sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-ly-1911sl" name="sr-ly-1911sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-ly-1912sl" name="sr-ly-1912sl"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center">金额</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1810je" name="sr-ly-1810je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1811je" name="sr-ly-1811je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1812je" name="sr-ly-1811je"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-ly-1913je" name="sr-ly-1913je"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-ly-1946je" name="sr-ly-1946je"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-ly-1979je" name="sr-ly-1979je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1910je" name="sr-ly-1910je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1911je" name="sr-ly-1911je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1912je" name="sr-ly-1912je"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center" rowspan="3">养殖业</td>
                                                             <td class="center">品种</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-yzy-1810pz" name="sr-yzy-1810pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-yzy-1811pz" name="sr-yzy-1811pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-yzy-1812pz" name="sr-yzy-1811pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-yzy-1913pz" name="sr-yzy-1913pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-yzy-1946pz" name="sr-yzy-1946pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-yzy-1979pz" name="sr-yzy-1979pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-yzy-1910pz" name="sr-yzy-1910pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-yzy-1911pz" name="sr-yzy-1911pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-yzy-1912pz" name="sr-yzy-1912pz"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center">数量</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1810sl" name="sr-yzy-1810sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1811sl" name="sr-yzy-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1812sl" name="sr-yzy-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-yzy-1913sl" name="sr-yzy-1913sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-yzy-1946sl" name="sr-yzy-1946sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-yzy-1979sl" name="sr-yzy-1979sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1910sl" name="sr-yzy-1910sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1911sl" name="sr-yzy-1911sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1912sl" name="sr-yzy-1912sl"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center">金额</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1810je" name="sr-yzy-1810je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1811je" name="sr-yzy-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1812je" name="sr-yzy-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-yzy-1913je" name="sr-yzy-1913je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-yzy-1946je" name="sr-yzy-1946je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-yzy-1979je" name="sr-yzy-1979je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1910je" name="sr-yzy-1910je"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="sr-yzy-1911je" name="sr-yzy-1911je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1912je" name="sr-yzy-1912je"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center" colspan="2">其他</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-qt-1810je" name="sr-qt-1810je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-qt-1811je" name="sr-qt-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-qt-1812je" name="sr-qt-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-qt-1913je" name="sr-qt-1913je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-qt-1946je" name="sr-qt-1946je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-qt-1979je" name="sr-qt-1979je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-qt-1910je" name="sr-qt-1910je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-qt-1911je" name="sr-qt-1911je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-qt-1912je" name="sr-qt-1912je"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center" colspan="2">小计</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-xj-1810je" name="sr-xj-1810je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-xj-1811je" name="sr-xj-1811je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-xj-1812je" name="sr-xj-1811je"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-xj-1913je" name="sr-xj-1913je"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-xj-1946je" name="sr-xj-1946je"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-xj-1979je" name="sr-xj-1979je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-xj-1910je" name="sr-xj-1910je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-xj-1911je" name="sr-xj-1911je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-xj-1912je" name="sr-xj-1912je"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center" rowspan="11">二、生产经营性支出</td>
                                                             <td class="center" rowspan="3">种植业</td>
                                                             <td class="center">品种</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-zzy-1810pz" name="zc-zzy-1810pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-zzy-1811pz" name="zc-zzy-1811pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-zzy-1812pz" name="zc-zzy-1811pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-zzy-1913pz" name="zc-zzy-1913pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-zzy-1946pz" name="zc-zzy-1946pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-zzy-1979pz" name="zc-zzy-1979pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-zzy-1910pz" name="zc-zzy-1910pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-zzy-1911pz" name="zc-zzy-1911pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-zzy-1912pz" name="zc-zzy-1912pz"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center">数量</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1810sl" name="zc-zzy-1810sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1811sl" name="zc-zzy-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1812sl" name="zc-zzy-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-zzy-1913sl" name="zc-zzy-1913sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-zzy-1946sl" name="zc-zzy-1946sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-zzy-1979sl" name="zc-zzy-1979sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1910sl" name="zc-zzy-1910sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1911sl" name="zc-zzy-1911sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1912sl" name="zc-zzy-1912sl"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center">金额</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1810je" name="zc-zzy-1810je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1811je" name="zc-zzy-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1812je" name="zc-zzy-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-zzy-1913je" name="zc-zzy-1913je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-zzy-1946je" name="zc-zzy-1946je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-zzy-1979je" name="zc-zzy-1979je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1910je" name="zc-zzy-1910je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1911je" name="zc-zzy-1911je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1912je" name="zc-zzy-1912je"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center" rowspan="3">林业</td>
                                                             <td class="center">品种</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-ly-1810pz" name="zc-ly-1810pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-ly-1811pz" name="zc-ly-1811pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-ly-1812pz" name="zc-ly-1811pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-ly-1913pz" name="zc-ly-1913pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-ly-1946pz" name="zc-ly-1946pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-ly-1979pz" name="zc-ly-1979pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-ly-1910pz" name="zc-ly-1910pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-ly-1911pz" name="zc-ly-1911pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-ly-1912pz" name="zc-ly-1912pz"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center">数量</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1810sl" name="zc-ly-1810sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1811sl" name="zc-ly-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1812sl" name="zc-ly-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-ly-1913sl" name="zc-ly-1913sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-ly-1946sl" name="zc-ly-1946sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-ly-1979sl" name="zc-ly-1979sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1910sl" name="zc-ly-1910sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1911sl" name="zc-ly-1911sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1912sl" name="zc-ly-1912sl"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center">金额</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1810je" name="zc-ly-1810je"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="zc-ly-1811je" name="zc-ly-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1812je" name="zc-ly-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-ly-1913je" name="zc-ly-1913je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-ly-1946je" name="zc-ly-1946je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-ly-1979je" name="zc-ly-1979je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1910je" name="zc-ly-1910je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1911je" name="zc-ly-1911je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1912je" name="zc-ly-1912je"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center" rowspan="3">养殖业</td>
                                                             <td class="center">品种</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-yzy-1810pz" name="zc-yzy-1810pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-yzy-1811pz" name="zc-yzy-1811pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-yzy-1812pz" name="zc-yzy-1811pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-yzy-1913pz" name="zc-yzy-1913pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-yzy-1946pz" name="zc-yzy-1946pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-yzy-1979pz" name="zc-yzy-1979pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-yzy-1910pz" name="zc-yzy-1910pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-yzy-1911pz" name="zc-yzy-1911pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-yzy-1912pz" name="zc-yzy-1912pz"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center">数量</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1810sl" name="zc-yzy-1810sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1811sl" name="zc-yzy-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1812sl" name="zc-yzy-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-yzy-1913sl" name="zc-yzy-1913sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-yzy-1946sl" name="zc-yzy-1946sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-yzy-1979sl" name="zc-yzy-1979sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1910sl" name="zc-yzy-1910sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1911sl" name="zc-yzy-1911sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1912sl" name="zc-yzy-1912sl"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center">金额</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="zc-yzy-1810je" name="zc-yzy-1810je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1811je" name="zc-yzy-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1812je" name="zc-yzy-1811je"/></td>
+                                                            <td><input type="number" value="0"class="input-small" id="zc-yzy-1913je" name="zc-yzy-1913je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-yzy-1946je" name="zc-yzy-1946je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-yzy-1979je" name="zc-yzy-1979je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1910je" name="zc-yzy-1910je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1911je" name="zc-yzy-1911je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1912je" name="zc-yzy-1912je"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center" colspan="2">其他</td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-small"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
-                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-xj-1810je" name="zc-xj-1810je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-xj-1811je" name="zc-xj-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-xj-1812je" name="zc-xj-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-xj-1913je" name="zc-xj-1913je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-xj-1946je" name="zc-xj-1946je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-xj-1979je" name="zc-xj-1979je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-xj-1910je" name="zc-xj-1910je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-xj-1911je" name="zc-xj-1911je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-xj-1912je" name="zc-xj-1912je"/></td>
                                                         </tr>
                                                         <tr>
                                                             <td class="center" colspan="2">小计</td>
@@ -1112,6 +1113,12 @@
                                                         </tr>
                                                         </tbody>
                                                     </table>
+                                                    <div class="row">
+                                                        <div class="center">
+                                                            <button  class="btn btn-danger" id="addProduceIncomeBtn" type="button">提交</button>
+                                                        </div>
+                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
@@ -2284,12 +2291,77 @@
             $(this).prev().focus();
         });
 
-
-
         $(document).one('ajaxloadstart.page', function(e) {
             $.jgrid.gridDestroy(grid_selector);
             $('.ui-jqdialog').remove();
         });
+    });
+
+
+
+    //查询按钮
+    $('#searchBtn').on('click',function () {
+        var xm = $('#s-xm').val();
+        var sfzmhm = $('#s-sfzmhm').val();
+        var lxdh = $('#s-lxdh').val();
+        var csrq = $('#s-csrq').val();
+        $("#grid-table").jqGrid('clearGridData');
+        $("#grid-table").jqGrid('setGridParam', {
+            datatype:"json",
+            mtype:"POST",
+            page:1,
+            url:"/person/search",
+            postData:{
+                "xm": xm,
+                "sfzmhm": sfzmhm,
+                "lxdh": lxdh,
+                "csrq": csrq
+            }
+        }).trigger("reloadGrid");
+    });
+    
+    
+    //确定选择家庭按钮
+    $('#getFamilyResultBtn').on('click',function () {
+        var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
+        if(rowids !=""){
+            if(rowids.length==1){
+                var rowData = $("#grid-table").jqGrid('getRowData',rowids[0]);
+                $('#jtbh').attr('value',rowData.jtbh);
+                alert("家庭编号获取成功!")
+            }else {
+                $('#getFamilyResultBtn').tips({
+                    side : 1,
+                    msg : '请选择一个人员(不要超过一个）！',
+                    bg : '#ff2120',
+                    time : 2
+                })
+            }
+        }else {
+            $('#getFamilyResultBtn').tips({
+                side : 1,
+                msg : '请至少选择一个人员！',
+                bg : '#ff2120',
+                time : 2
+            })
+        }
+    });
+
+    //提交生产性收入情况信息
+    $('#addProduceIncomeBtn').on('click',function () {
+        if($('#jtbh').val()==""){
+            alert('家庭编号不能为空，请进行获取!');
+        }else {
+            //生产收入种植业表格数据
+            var postData = $('#produceIncomeForm').serialize();
+            var jtbh = $('#jtbh').val();
+            alert(postData);
+            postData = postData + "&jtbh="+ jtbh;
+            $.post("/produceIncome/add", postData,function (data) {
+                console.log(data);
+            })
+
+        }
     });
 
 

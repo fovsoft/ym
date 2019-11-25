@@ -526,19 +526,20 @@ create table ym_family_status
 
 drop table ym_produce_income;
 #移民贫困人员生产收入情况调查表
-create table ym_produce_income(
+create table ym_produce_income
+(
     ryscsrbh int auto_increment primary key comment '人员生产收入编号',
-    jtbh varchar(20) comment '家庭编号，对应家庭表',
-    xtdl char(2) comment '类别大类：01为生产经营性收入,02为生产经营支出',
-    xtxl1 char(2) comment '类别小类：01为种植业，02为林业，03为养殖业，04为其他',
-    xtxl2 char(2) comment '类别小类：01为品种，02为数量，03为金额，04为其他',
-    nf  varchar(10) comment '年份',
-    yf13 varchar(40) comment '1-3月的收入或者其他信息',
-    yf46 varchar(40) comment '4-6月的收入或者其他信息',
-    yf79 varchar(40) comment '7-9月的收入或者其他信息',
-    yf10 varchar(40) comment '10月的收入或者其他信息',
-    yf11 varchar(40) comment '11月的收入或者其他信息',
-    yf12 varchar(40) comment '12月的收入或者其他信息'
+    jtbh     varchar(20) comment '家庭编号，对应家庭表',
+    xtdl     char(2) comment '类别大类：01为生产经营性收入,02为生产经营支出',
+    xtxl1    char(2) comment '类别小类：01为种植业，02为林业，03为养殖业，04为其他',
+    xtxl2    char(2) comment '类别小类：01为品种，02为数量，03为金额，04为其他',
+    nf       varchar(10) comment '年份',
+    yf13     varchar(40) comment '1-3月的收入或者其他信息',
+    yf46     varchar(40) comment '4-6月的收入或者其他信息',
+    yf79     varchar(40) comment '7-9月的收入或者其他信息',
+    yf10     varchar(40) comment '10月的收入或者其他信息',
+    yf11     varchar(40) comment '11月的收入或者其他信息',
+    yf12     varchar(40) comment '12月的收入或者其他信息'
 );
 
 drop table ym_salary_income;

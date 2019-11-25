@@ -67,7 +67,7 @@ public class YmPersonCtrl {
         map.put("page",page);
         map.put("total",total);
         map.put("records",records);
-        System.out.println(objectMapper.writeValueAsString(map));
+
        // modelAndView.addObject("rows",objectMapper.writeValueAsString(ymPersonList));
         response.setContentType("application/json;charset=utf-8");
         //map.put("ymPerson_data",ymPersonList);
@@ -111,7 +111,15 @@ public class YmPersonCtrl {
     }
 
 
-    @RequestMapping("/ym/search")
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/25 10:08
+     * Param: [request, response]
+     * Return: void
+     * 功能描述: 查找贫困用户的方法
+     */
+    @RequestMapping("/person/search")
     @ResponseBody
     public void getPersonByMoreCondition(HttpServletRequest request,HttpServletResponse response) throws IOException{
 
@@ -125,5 +133,26 @@ public class YmPersonCtrl {
         int pageSize = Integer.parseInt(request.getParameter("rows"));
         //分页获取到所有用户信息
         PageHelper.startPage(pageNum,pageSize);
+        List<YmPerson> ymPersonList = ymPersonService.findYmPersonByMoreCondition(xm,sfzmhm,lxdh,csrq);
+        PageInfo<YmPerson> pageInfo = new PageInfo<YmPerson>(ymPersonList);
+        //获得总记录数
+        long records = pageInfo.getTotal();
+        //默认当前页码
+        int page = pageInfo.getPageNum();
+        //获得总页数
+        int total = pageInfo.getPages();
+        //用来序列化json数据的map
+        Map<String,Object> map=new HashMap<>();
+        //设置json格式写出
+        map.put("rows",ymPersonList);
+        map.put("page",page);
+        map.put("total",total);
+        map.put("records",records);
+
+        response.setContentType("application/json;charset=utf-8");
+        //map.put("ymPerson_data",ymPersonList);
+        response.getWriter().write(objectMapper.writeValueAsString(map));
+        response.getWriter().flush();
+        response.getWriter().close();
     }
 }
