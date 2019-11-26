@@ -563,11 +563,12 @@ create table ym_salary_income(
 
 drop table ym_property_income;
 #财产收入表
-create table ym_property_income(
-    pro_bh int auto_increment primary key comment '财产性收入编号',
-    jtbh varchar(20) comment '家庭编号，对应家庭表',
+create table ym_property_income
+(
+    pro_bh   int auto_increment primary key comment '财产性收入编号',
+    jtbh     varchar(20) comment '家庭编号，对应家庭表',
     pro_xtlb char(2) comment '财产收入类别：01，财产收益扶贫分红收入，02，其他',
-    pro_nf  varchar(10) comment '年份',
+    pro_nf   varchar(10) comment '年份',
     pro_yf13 varchar(40) comment '1-3月的收入或者其他信息',
     pro_yf46 varchar(40) comment '4-6月的收入或者其他信息',
     pro_yf79 varchar(40) comment '7-9月的收入或者其他信息',
@@ -580,11 +581,12 @@ create table ym_property_income(
 
 drop table ym_transfer_income;
 #转移性收入表
-create table ym_transfer_income(
-    tra_bh int auto_increment primary key comment '转移性收入编号',
-    jtbh varchar(20) comment '家庭编号，对应家庭表',
+create table ym_transfer_income
+(
+    tra_bh   int auto_increment primary key comment '转移性收入编号',
+    jtbh     varchar(20) comment '家庭编号，对应家庭表',
     tra_xtlb char(4) comment '转移性财产类别:01，计划生育金；0201，低保金A；0202，低保金B；0203，低保金C；03,特困供养金；04，养老保险金；05，生态补偿金（林业补贴）；06，困难残疾人生活补贴和重度残疾人护理补贴；07，农业补贴；08，高龄补贴；09，水库移民补贴；10，其他长期性的政策性补贴',
-    tra_nf  varchar(10) comment '年份',
+    tra_nf   varchar(10) comment '年份',
     tra_yf13 varchar(40) comment '1-3月的收入或者其他信息',
     tra_yf46 varchar(40) comment '4-6月的收入或者其他信息',
     tra_yf79 varchar(40) comment '7-9月的收入或者其他信息',
@@ -593,9 +595,20 @@ create table ym_transfer_income(
     tra_yf12 varchar(40) comment '12月的收入或者其他信息'
 );
 
-
-create table ym_out_poverty_income(
-    pov_bh int auto_increment primary key comment ''
+drop table ym_out_poverty_income;
+create table ym_out_poverty_income
+(
+    pov_bh   int auto_increment primary key comment '不计入家庭稳定脱贫收入编号',
+    jtbh     varchar(20) comment '家庭编号，对应家庭表',
+    pov_xtlb char(4) comment '转移性财产类别:01，教育保障类(雨露计划补助、"两后生"培训补助、教育助学金等)；02，医疗保障类(城乡居民基本医疗保险、大病保险、医疗救助、财政补助(补充商业医疗保险)等.需注明医疗费用总额及获得的报销和补助金额)；03,住房保障类(易地扶贫搬迁、危房改造等补助)；
+04，产业奖补类；05，金融类(扶贫小额贷款)）；06，社会保障类(临时救助金等)；07，保险赔付金；08，残疾人补贴(除困难残疾人生活补贴和重度残疾人护理补贴)；09，捐赠金、慰问金、短期性赡养金、抚养金等；10，短期性抚恤金、优待金、补助金、保健金、伤残治疗费、护理费、丧葬费；11，其他短期性(3年以下，含3年)的政策性补助',
+    pov_nf   varchar(10) comment '年份',
+    pov_yf13 varchar(40) comment '1-3月的收入或者其他信息',
+    pov_yf46 varchar(40) comment '4-6月的收入或者其他信息',
+    pov_yf79 varchar(40) comment '7-9月的收入或者其他信息',
+    pov_yf10 varchar(40) comment '10月的收入或者其他信息',
+    pov_yf11 varchar(40) comment '11月的收入或者其他信息',
+    pov_yf12 varchar(40) comment '12月的收入或者其他信息'
 );
 
 
