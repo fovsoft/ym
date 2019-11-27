@@ -29,4 +29,16 @@ public class YmSalaryIncomeService {
     public int addYmSalaryIncomeMore(List<YmSalaryIncome> ymSalaryIncomeList){
         return ymSalaryIncomeDao.addYmSalaryIncomeMore(ymSalaryIncomeList);
     }
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/27 15:18
+     * Param: [jtbh]
+     * Return: int
+     * 功能描述: 通过家庭编号删除数据
+     */
+    public int deleteYmSalaryIncomeByJtbh(String jtbh){
+        return ymSalaryIncomeDao.deleteYmSalaryIncomeByJtbh(jtbh);
+    }
 }

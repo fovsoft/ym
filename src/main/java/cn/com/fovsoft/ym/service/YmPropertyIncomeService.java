@@ -28,4 +28,10 @@ public class YmPropertyIncomeService {
     }
 
 
+
+    public int deleteYmPropertyIncomeByJtbh(String jtbh){
+        return ymPropertyIncomeDao.deleteYmPropertyIncomeByJtbh(jtbh);
+    }
+
+
 }

@@ -28,4 +28,10 @@ public class YmProduceIncomeService {
     public int addYmProduceIncomeMore(List<YmProduceIncome> ymProduceIncomeList){
         return ymProduceIncomeDao.addYmProduceIncomeMore(ymProduceIncomeList);
     }
+
+
+
+    public int deleteYmProduceIncomeByJtbh(String jtbh){
+        return ymProduceIncomeDao.deleteYmProduceIncomeByJtbh(jtbh);
+    }
 }

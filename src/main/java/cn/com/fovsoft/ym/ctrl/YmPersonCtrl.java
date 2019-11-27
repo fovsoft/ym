@@ -2,8 +2,10 @@ package cn.com.fovsoft.ym.ctrl;
 
 import cn.com.fovsoft.common.bean.SysMenu;
 import cn.com.fovsoft.common.constant.VarConstant;
+import cn.com.fovsoft.ym.bean.YmFamily;
+import cn.com.fovsoft.ym.bean.YmFamilyStatus;
 import cn.com.fovsoft.ym.bean.YmPerson;
-import cn.com.fovsoft.ym.service.YmPersonService;
+import cn.com.fovsoft.ym.service.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -37,6 +39,24 @@ public class YmPersonCtrl {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @Autowired
+    private YmProduceIncomeService ymProduceIncomeService;
+
+    @Autowired
+    private YmSalaryIncomeService ymSalaryIncomeService;
+
+    @Autowired
+    private YmPropertyIncomeService ymPropertyIncomeService;
+    @Autowired
+    private YmTransferIncomeService ymTransferIncomeService;
+    @Autowired
+    private YmOutPovertyIncomeService ymOutPovertyIncomeService;
+
+    @Autowired
+    private YmFamilyStatusService ymFamilyStatusService;
+    @Autowired
+    private YmFamilyService ymFamilyService;
 
     /*
      * @author: tpc
@@ -155,4 +175,63 @@ public class YmPersonCtrl {
         response.getWriter().flush();
         response.getWriter().close();
     }
+
+    @RequestMapping("/person/delete")
+    @ResponseBody
+    public Map<String,Object> deletePerson(HttpServletRequest request){
+        String idArr = request.getParameter("idArr");
+        String[] personArray = idArr.substring(0,idArr.length()-1).split(",");
+        for(String personStr1:personArray){
+            String[] proArray = personStr1.split("-");
+            //如果是户主，将删除所有家庭信息
+            if(proArray[2].equals("本人")){
+                //先删除收入信息
+                ymProduceIncomeService.deleteYmProduceIncomeByJtbh(proArray[1]);
+                ymSalaryIncomeService.deleteYmSalaryIncomeByJtbh(proArray[1]);
+                ymPropertyIncomeService.deleteYmPropertyIncomeByJtbh(proArray[1]);
+                ymTransferIncomeService.deleteYmTransferIncomeByJtbh(proArray[1]);
+                ymOutPovertyIncomeService.deleteYmOutPovertyIncomeByJtbh(proArray[1]);
+                //删除人员信息
+                ymPersonService.deleteYmPersonByJtbh(proArray[1]);
+                //删除家庭条件信息
+                ymFamilyStatusService.deleteYmFamilyStatusByJtbh(proArray[1]);
+                ymFamilyService.deleteYmFamilyByJtbh(proArray[1]);
+            }else{//不是户主，就只删除人员信息
+                ymPersonService.deleteYmPersonByRybh(proArray[0]);
+            }
+        }
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("status",1);
+        map.put("result","success");
+        return map;
+    }
+
+
+    @RequestMapping("/person/edit")
+    public ModelAndView editPerson(HttpServletRequest request){
+
+        String rybh = request.getParameter("rybh");
+        String jtbh = request.getParameter("jtbh");
+        //获取家庭信息
+        YmFamily ymFamily = ymFamilyService.getYmFamilyByJtbh(jtbh);
+        //获取家庭状况信息
+        YmFamilyStatus ymFamilyStatus  = ymFamilyStatusService.getYmFamilyStatusByJtbh(jtbh);
+
+
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("edit-ym-information");
+
+        modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
+        modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
+
+        //写出对象
+        modelAndView.addObject("ymFamily",ymFamily);
+        modelAndView.addObject("ymFamilyStatus",ymFamilyStatus);
+
+        return modelAndView;
+    }
+
+
 }

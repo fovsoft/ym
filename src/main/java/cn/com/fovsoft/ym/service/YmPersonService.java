@@ -76,4 +76,38 @@ public class YmPersonService {
         return ymPersonDao.findYmPersonByMoreCondition(xm,sfzmhm,lxdh,csrq);
     }
 
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/27 16:42
+     * Param: [jtbh]
+     * Return: java.util.List<cn.com.fovsoft.ym.bean.YmPerson>
+     * 功能描述: 通过家庭编号获取家庭成员信息
+     */
+    List<YmPerson> getYmPersonByJtbh(String jtbh){
+        return ymPersonDao.getYmPersonByJtbh(jtbh);
+    }
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/27 15:27
+     * Param: [jtbh]
+     * Return: int
+     * 功能描述: 通过家庭编号删除所有家庭人员信息
+     */
+    public int deleteYmPersonByJtbh(String jtbh){
+        return ymPersonDao.deleteYmPersonByJtbh(jtbh);
+    }
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/27 15:30
+     * Param: [rybh]
+     * Return: int
+     * 功能描述: 通过人员编号删除人员信息
+     */
+    public int deleteYmPersonByRybh(String rybh){
+        return ymPersonDao.deleteYmPersonByRybh(rybh);
+    }
+
 }

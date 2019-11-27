@@ -7,6 +7,7 @@ package cn.com.fovsoft.ym.dao;
  */
 
 import cn.com.fovsoft.ym.bean.YmPropertyIncome;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -27,4 +28,15 @@ public interface YmPropertyIncomeDao {
             "</script>"
     })
     int addYmPropertyIncomeMore(@Param(value = "ymPropertyIncomeList") List<YmPropertyIncome> ymPropertyIncomeList);
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/27 15:14
+     * Param: [jbth]
+     * Return: int
+     * 功能描述: 根据家庭编号删除收入信息
+     */
+    @Delete("delete from ym_property_income where jtbh=#{jtbh} ")
+    int deleteYmPropertyIncomeByJtbh(String jtbh);
 }

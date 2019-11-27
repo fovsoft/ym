@@ -838,6 +838,7 @@
 
 
 
+
         var grid_selector = "#grid-table";
         var pager_selector = "#grid-pager";
 
@@ -1182,6 +1183,104 @@
             $('.navtable .ui-pg-button').tooltip({container:'body'});
             $(table).find('.ui-pg-div').tooltip({container:'body'});
         }
+
+
+        //编辑按钮操作
+        $('#editBtn').on('click',function () {
+            var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
+            if(rowids !=""){
+                if(rowids.length>2){
+                    alert("请不要勾选超过一个人员!")
+                }else {
+                    var rowData = $("#grid-table").jqGrid('getRowData',rowids[0]);
+                    var idArr = "jtbh=" + rowData.jtbh +"&rybh=" + rowData.rybh;
+
+                    window.location.href="/person/edit?"+idArr;
+                    // $.getJSON("/person/edit",idArr,function (data) {
+                    //
+                    // });
+                }
+            }else {
+                    $("#editBtn").tips({
+                        side : 3,
+                        msg : '请至少勾选一个人员！',
+                        bg : '#ce1fff',
+                        time : 5
+                    });
+            }
+
+
+        });
+
+
+
+        //删除按钮操作
+        $('#deleteBtn').on('click',function () {
+            var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
+            if(rowids !=""){
+                var input = confirm("确定删除选定数据吗，如果本人是户主，将删除整个家庭信息？");
+                if(input){
+                    var idArr = "";
+                    for(var i=0;i<rowids.length;i++){
+                        var rowData = $("#grid-table").jqGrid('getRowData',rowids[i]);
+                        idArr = idArr + rowData.rybh + "-"+rowData.jtbh+ "-"+ rowData.yhzgx + ",";
+                    }
+                    $.ajax({
+                        type: "POST",//请求方式为POST
+                        url: "/person/delete",//检验url
+                        data: {
+                            "idArr": idArr
+                        },//请求数据
+                        dataType: 'json',//数据类型为JSON类型
+                        cache: false,//关闭缓存
+                        success: function (data) {
+                            alert("人员删除成功！");
+                            $("#grid-table").jqGrid('clearGridData');
+                            $("#grid-table").jqGrid('setGridParam', {
+                                datatype:"json",
+                                url:"/ym/all"
+                            }).trigger("reloadGrid");
+                        }//响应成功
+                    })
+                }
+            }else {
+                $("#deleteBtn").tips({
+                    side : 3,
+                    msg : '请至少勾选一个人员！',
+                    bg : '#ce1fff',
+                    time : 5
+                });
+            }
+        });
+
+
+        //日期插件
+        $('.date-picker').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        })
+        //show datepicker when clicking on the icon
+            .next().on(ace.click_event, function(){
+            $(this).prev().focus();
+        });
+
+        //or change it into a date range picker
+        $('.input-daterange').datepicker({autoclose:true});
+
+        // $('#timepicker1').timepicker({
+        //     minuteStep: 1,
+        //     showSeconds: true,
+        //     showMeridian: false,
+        //     disableFocus: true,
+        //     icons: {
+        //         up: 'fa fa-chevron-up',
+        //         down: 'fa fa-chevron-down'
+        //     }
+        // }).on('focus', function() {
+        //     $('#timepicker1').timepicker('showWidget');
+        // }).next().on(ace.click_event, function(){
+        //     $(this).prev().focus();
+        // });
 
         //var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
 

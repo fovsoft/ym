@@ -28,4 +28,28 @@ public class YmFamilyStatusService {
     public int addYmFamilyStatus(YmFamilyStatus ymFamilyStatus){
         return ymFamilyStatusDao.addYmFamilyStatus(ymFamilyStatus);
     }
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/27 15:36
+     * Param: [jtbh]
+     * Return: int
+     * 功能描述: 通过家庭编号删除数据
+     */
+    public int deleteYmFamilyStatusByJtbh(String jtbh){
+        return ymFamilyStatusDao.deleteYmFamilyStatusByJtbh(jtbh);
+    }
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/27 16:38
+     * Param: [jtbh]
+     * Return: cn.com.fovsoft.ym.bean.YmFamilyStatus
+     * 功能描述: 通过家庭编号获取信息
+     */
+    public YmFamilyStatus getYmFamilyStatusByJtbh(String jtbh){
+        return ymFamilyStatusDao.getYmFamilyStatusByJtbh(jtbh);
+    }
 }

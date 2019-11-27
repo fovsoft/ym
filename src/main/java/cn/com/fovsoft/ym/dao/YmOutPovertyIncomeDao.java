@@ -1,6 +1,7 @@
 package cn.com.fovsoft.ym.dao;
 
 import cn.com.fovsoft.ym.bean.YmOutPovertyIncome;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -33,4 +34,16 @@ public interface YmOutPovertyIncomeDao {
             "</script>"
     })
     int addYmOutPovertyIncomeMore(@Param(value="ymOutPovertyIncomeList") List<YmOutPovertyIncome> ymOutPovertyIncomeList);
+
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/27 15:11
+     * Param: [jbth]
+     * Return: int
+     * 功能描述: 根据家庭编号删除收入信息
+     */
+    @Delete("delete from ym_out_poverty_income where jtbh=#{jtbh} ")
+    int deleteYmOutPovertyIncomeByJtbh(String jtbh);
 }

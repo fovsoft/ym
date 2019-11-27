@@ -118,6 +118,8 @@ public class YmInformationCtrl {
         for(int i=0;i<personNum;i++){
             YmPerson ymPerson = new YmPerson();
             //获取对象属性
+            String rybh      = request.getParameter("ym_person["+i+"][rybh]");
+            String jtbh1     = request.getParameter("ym_person["+i+"][jtbh]");
             String xm        = request.getParameter("ym_person["+i+"][xm]");
             String xb        = request.getParameter("ym_person["+i+"][xb]");
             String sfzmhm    = request.getParameter("ym_person["+i+"][sfzmhm]");
@@ -501,5 +503,8 @@ public class YmInformationCtrl {
         }
         return mj;
     }
+
+
+
 
 }

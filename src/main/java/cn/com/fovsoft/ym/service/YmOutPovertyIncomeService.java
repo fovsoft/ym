@@ -28,4 +28,15 @@ public class YmOutPovertyIncomeService {
     public int addYmOutPovertyIncomeMore(List<YmOutPovertyIncome> ymOutPovertyIncomeList){
         return ymOutPovertyIncomeDao.addYmOutPovertyIncomeMore(ymOutPovertyIncomeList);
     }
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/27 15:17
+     * Param: [jtbh]
+     * Return: int
+     * 功能描述: 通过家庭编号删除信息
+     */
+    public int deleteYmOutPovertyIncomeByJtbh(String jtbh){
+        return ymOutPovertyIncomeDao.deleteYmOutPovertyIncomeByJtbh(jtbh);
+    }
 }

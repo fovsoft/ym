@@ -70,6 +70,18 @@ public interface YmPersonDao {
     List<YmPerson> findAllYmPerson();
 
 
+    /*
+     * Author:tpc
+     * Date: 2019/11/27 16:41
+     * Param: [jtbh]
+     * Return: java.util.List<cn.com.fovsoft.ym.bean.YmPerson>
+     * 功能描述: 通过家庭编号获取信息
+     */
+    @Select("select * from ym_person where jtbh=#{jtbh} ")
+    @ResultMap(value = {"ymPersonResultMap"})
+    List<YmPerson> getYmPersonByJtbh(String jtbh);
+
+
 
     /*
      * Author:tpc
@@ -99,5 +111,27 @@ public interface YmPersonDao {
             return  sql;
         }
     }
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/27 15:26
+     * Param: [jtbh]
+     * Return: int
+     * 功能描述: 通过家庭编号删除所有家庭人员信息
+     */
+    @Delete("delete from ym_person where jtbh=#{jtbh} ")
+    int deleteYmPersonByJtbh(String jtbh);
+
+
+    /*
+     * Author:tpc
+     * Date: 2019/11/27 15:28
+     * Param: [rybh]
+     * Return: int
+     * 功能描述: 通过人员编号删除单一人员信息
+     */
+    @Delete("delete from ym_person where rybh=#{rybh} ")
+    int deleteYmPersonByRybh(String rybh);
 
 }

@@ -29,4 +29,9 @@ public class YmTransferIncomeService {
         return ymTransferIncomeDao.addYmTransferIncomeMore(ymTransferIncomeList);
     }
 
+
+    public int deleteYmTransferIncomeByJtbh(String jtbh){
+        return ymTransferIncomeDao.deleteYmTransferIncomeByJtbh(jtbh);
+    }
+
 }
