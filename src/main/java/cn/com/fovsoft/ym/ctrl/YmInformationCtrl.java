@@ -42,6 +42,8 @@ public class YmInformationCtrl {
     @ResponseBody
     public Map<String,Object> addYmInformation(HttpServletRequest request){
 
+
+
         //获取家庭基本信息
         String xzqhdm       = request.getParameter("xzqhdm");            // '家庭地址代码，对应行政区划表',
         String xxxzqhmz      = request.getParameter("xxxzqhmz");           // '家庭地址，对应行政区划表',
@@ -60,7 +62,20 @@ public class YmInformationCtrl {
 
         //写入家庭基本信息对象
         YmFamily ymFamily = new YmFamily();
+
         String jtbh = UuidUtil.getRandomNum();
+        String jtbh1 = request.getParameter("jtbh");
+
+        //获取前端是新增还是修改信息
+        String myMethod = request.getParameter("myMethod");
+        //如果是修改，就先删除信息，然后进行写入
+        if(myMethod.equals("edit")){
+            ymFamilyStatusService.deleteYmFamilyStatusByJtbh(jtbh1);
+            ymPersonService.deleteYmPersonByJtbh(jtbh1);
+            ymFamilyService.deleteYmFamilyByJtbh(jtbh1);
+            jtbh=jtbh1;
+        }
+
         ymFamily.setJtbh(jtbh);
         ymFamily.setXzqhdm(xzqhdm);
         ymFamily.setXxxzqhmz(xxxzqhmz);
@@ -119,7 +134,7 @@ public class YmInformationCtrl {
             YmPerson ymPerson = new YmPerson();
             //获取对象属性
             String rybh      = request.getParameter("ym_person["+i+"][rybh]");
-            String jtbh1     = request.getParameter("ym_person["+i+"][jtbh]");
+            String jtbh2     = request.getParameter("ym_person["+i+"][jtbh]");
             String xm        = request.getParameter("ym_person["+i+"][xm]");
             String xb        = request.getParameter("ym_person["+i+"][xb]");
             String sfzmhm    = request.getParameter("ym_person["+i+"][sfzmhm]");
@@ -503,6 +518,8 @@ public class YmInformationCtrl {
         }
         return mj;
     }
+
+
 
 
 

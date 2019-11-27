@@ -753,6 +753,10 @@
                                             <div class="step-pane active" data-step="1">
                                                 <h3 class="lighter block green center">请输入家庭信息</h3>
                                                 <form class="form-horizontal" id="family-form" method="get">
+                                                    <div class="form-group hide">
+                                                        <label class="sr-only control-label col-xs-12 col-sm-2 no-padding-right" for="jtbh">家庭编号:</label>
+                                                        <input type="text" name="jtbh" id="jtbh" class="sr-only form-control search-query"/>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="xzqhdm">家庭地址:</label>
 
@@ -1870,6 +1874,7 @@
 
         function addYmInformation() {
             //获取家庭基本信息表单数值
+            var jtbh     =  $("#jtbh").val();      //家庭编号
             var xxxzqhmz =  $("#xxxzqhmz").val();  //行政区划地址
             var xzqhdm    = $("#xzqhdm").val();    // 行政区划代码
             var lxdh      = $("#lxdh").val();      // '联系电话',
@@ -1886,6 +1891,7 @@
             var bqdz      = $("#bqdz").val();      // '搬迁地址'
             //拼凑成json格式
             var ym_result_json = {
+                "jtbh"     :jtbh      ,
                 "xxxzqhmz" :xxxzqhmz  ,
                 "xzqhdm"   :xzqhdm    ,
                 "lxdh"     :lxdh      ,
@@ -1980,6 +1986,10 @@
             ym_result_json["zyrllx"]          = zyrllx              ;
             ym_result_json["bgqksm"]          = bgqksm              ;
 
+
+            //写入是修改还是新增方法
+            ym_result_json["myMethod"]       = "add"               ;
+
             //alert(Json.stringify(ym_result_json));
             $.ajax({
                 type:"POST",
@@ -2037,7 +2047,11 @@
                 if(info.step == 1 ) {
                     if(!checkFamilyForm()) e.preventDefault();
                 }else if(info.step == 2) {
-                    if(!checkPersonForm()) e.preventDefault();
+                    var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
+                    if(rowids =""){
+                        alert("还没添加家庭人员，请进行添加！");
+                        e.preventDefault();
+                    }
                 }else if(info.step == 3) {
                     if(!checkCauseForm()) e.preventDefault();
                 }
@@ -2046,21 +2060,8 @@
             //})
             .on('finished.fu.wizard', function(e) {
                 //判断家庭信息
-                if($("#xxxzqhmz").val()==""){
-                    $('#fuelux-wizard-container').wizard('selectedItem',{step:1});
-                    $("#xxxzqhmz").tips({
-                        side : 3,
-                        msg : '家庭地址不能为空！',
-                        bg : '#ff0bd0',
-                        time : 3
-                    })
+                addYmInformation();
 
-                }else if($(grid_selector).getDataIDs().length<1){
-                    $('#fuelux-wizard-container').wizard('selectedItem',{step:2});
-                    alert("必须为家庭添加至少一个人员！");
-                }else {
-                    addYmInformation();
-                }
             }).on('stepclick.fu.wizard', function(e){
             //e.preventDefault();//this will prevent clicking and selecting steps
         });
@@ -2764,63 +2765,68 @@
 
         //点击人员添加按钮，进行事件响应
         $("#add-person").on('click',function (e) {
-            var xm        = $("#xm").val();        //'姓名',
-            var xb        = $("#xb").val();       //'性别',
-            var sfzmhm    = $("#sfzmhm").val();    //'身份证明号码',
-            var qfjg      = $("#qfjg").val();      //'身份证签发机关',
-            var sfzyxqs   = $("#sfzyxqs").val();   //身份证有效期始',
-            var sfzyxqz   = $("#sfzyxqz").val();   //身份证有效期止',
-            var yhzgx     = $("#yhzgx").val();     //'与户主关系',
-            var mz        = $("#mz").val();        //'民族',
-            var csrq      = $("#csrq").val();      //'出生日期',
-            var zzmm      = $("#zzmm").val();      //'政治面貌',
-            var whcd      = $("#whcd").val();      //'文化程度',
-            var zxsqk     = $("#zxsqk").val();     //'在校生情况'
-            var sxhcxyy   = $("#sxhcxyy").val();   //'失学或辍学原因'
-            var jkqk      = $("#jkqk").val();      //'健康情况',
-            var ldjn      = $("#ldjn").val();      //'劳动技能情况'
-            var sfhjpth   = $("#sfhjpth").val();   //'是否会讲普通话'
-            var sfxyjr    = $("#sfxyjr").val();    //'是否现役军人',
-            var sfcjylbx1 = $("#sfcjylbx1").val(); //'是否参加城乡居民基本医疗保险'
-            var sfcjsybx  = $("#sfcjsybx").val();  //'是否参加商业补充医疗保险'
-            var sfxsdb    = $("#sfxsdb").val();    //'是否享受低保',
-            var sfcjylbx2 = $("#sfcjylbx2").val(); //'是否参加城乡居民基本养老保险',
-            var sfxsywbxbt= $("#sfxsywbxbt").val();//'是否享受人身意外保险补贴
-            var lxdh      = $("#lxdh2").val();      //'联系电话'
+            if(checkPersonForm()){
+                var xm        = $("#xm").val();        //'姓名',
+                var xb        = $("#xb").val();       //'性别',
+                var sfzmhm    = $("#sfzmhm").val();    //'身份证明号码',
+                var qfjg      = $("#qfjg").val();      //'身份证签发机关',
+                var sfzyxqs   = $("#sfzyxqs").val();   //身份证有效期始',
+                var sfzyxqz   = $("#sfzyxqz").val();   //身份证有效期止',
+                var yhzgx     = $("#yhzgx").val();     //'与户主关系',
+                var mz        = $("#mz").val();        //'民族',
+                var csrq      = $("#csrq").val();      //'出生日期',
+                var zzmm      = $("#zzmm").val();      //'政治面貌',
+                var whcd      = $("#whcd").val();      //'文化程度',
+                var zxsqk     = $("#zxsqk").val();     //'在校生情况'
+                var sxhcxyy   = $("#sxhcxyy").val();   //'失学或辍学原因'
+                var jkqk      = $("#jkqk").val();      //'健康情况',
+                var ldjn      = $("#ldjn").val();      //'劳动技能情况'
+                var sfhjpth   = $("#sfhjpth").val();   //'是否会讲普通话'
+                var sfxyjr    = $("#sfxyjr").val();    //'是否现役军人',
+                var sfcjylbx1 = $("#sfcjylbx1").val(); //'是否参加城乡居民基本医疗保险'
+                var sfcjsybx  = $("#sfcjsybx").val();  //'是否参加商业补充医疗保险'
+                var sfxsdb    = $("#sfxsdb").val();    //'是否享受低保',
+                var sfcjylbx2 = $("#sfcjylbx2").val(); //'是否参加城乡居民基本养老保险',
+                var sfxsywbxbt= $("#sfxsywbxbt").val();//'是否享受人身意外保险补贴
+                var lxdh      = $("#lxdh2").val();      //'联系电话'
 
-            var ym_person_json={
-                "xm"           : xm         ,
-                "xb"           : xb         ,
-                "sfzmhm"       : sfzmhm     ,
-                "qfjg"         : qfjg       ,
-                "sfzyxqs"      : sfzyxqs    ,
-                "sfzyxqz"      : sfzyxqz    ,
-                "yhzgx"        : yhzgx      ,
-                "mz"           : mz         ,
-                "csrq"         : csrq       ,
-                "zzmm"         : zzmm       ,
-                "whcd"         : whcd       ,
-                "zxsqk"        : zxsqk      ,
-                "sxhcxyy"      : sxhcxyy    ,
-                "jkqk"         : jkqk       ,
-                "ldjn"         : ldjn       ,
-                "sfhjpth"      : sfhjpth    ,
-                "sfxyjr"       : sfxyjr     ,
-                "sfcjylbx1"    : sfcjylbx1  ,
-                "sfcjsybx"     : sfcjsybx   ,
-                "sfxsdb"       : sfxsdb     ,
-                "sfcjylbx2"    : sfcjylbx2  ,
-                "sfxsywbxbt"   : sfxsywbxbt ,
-                "lxdh"         : lxdh
-            };
-            var ids = $(grid_selector).jqGrid("getDataIDs");//得到jqgrid当前行数
-            var rowid = Math.max.apply(Math,ids);//获得当前最大行号
-            var newRowid = rowid+1;//
-            $(grid_selector).jqGrid('addRowData',newRowid,ym_person_json,"last");
-            $(grid_selector).setGridParam({
-                cellEdit : false
-            });
-        })
+                var ym_person_json={
+                    "rybh"         : ""         ,
+                    "jtbh"         : " "        ,
+                    "xm"           : xm         ,
+                    "xb"           : xb         ,
+                    "sfzmhm"       : sfzmhm     ,
+                    "qfjg"         : qfjg       ,
+                    "sfzyxqs"      : sfzyxqs    ,
+                    "sfzyxqz"      : sfzyxqz    ,
+                    "yhzgx"        : yhzgx      ,
+                    "mz"           : mz         ,
+                    "csrq"         : csrq       ,
+                    "zzmm"         : zzmm       ,
+                    "whcd"         : whcd       ,
+                    "zxsqk"        : zxsqk      ,
+                    "sxhcxyy"      : sxhcxyy    ,
+                    "jkqk"         : jkqk       ,
+                    "ldjn"         : ldjn       ,
+                    "sfhjpth"      : sfhjpth    ,
+                    "sfxyjr"       : sfxyjr     ,
+                    "sfcjylbx1"    : sfcjylbx1  ,
+                    "sfcjsybx"     : sfcjsybx   ,
+                    "sfxsdb"       : sfxsdb     ,
+                    "sfcjylbx2"    : sfcjylbx2  ,
+                    "sfxsywbxbt"   : sfxsywbxbt ,
+                    "lxdh"         : lxdh
+                };
+                var ids = $(grid_selector).jqGrid("getDataIDs");//得到jqgrid当前行数
+                var rowid = Math.max.apply(Math,ids);//获得当前最大行号
+                var newRowid = rowid+1;//
+                $(grid_selector).jqGrid('addRowData',newRowid,ym_person_json,"last");
+                $(grid_selector).setGridParam({
+                    cellEdit : false
+                });
+            }
+
+        });
 
 
 

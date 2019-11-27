@@ -753,6 +753,10 @@
                                             <div class="step-pane active" data-step="1">
                                                 <h3 class="lighter block green center">请输入家庭信息</h3>
                                                 <form class="form-horizontal" id="family-form" method="get">
+                                                    <div class="form-group hide">
+                                                        <label class="sr-only control-label col-xs-12 col-sm-2 no-padding-right" for="jtbh">家庭编号:</label>
+                                                        <input type="text" name="jtbh" id="jtbh" th:value="${ymFamily.jtbh}" class="sr-only form-control search-query"/>
+                                                    </div>
                                                     <div class="form-group">
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="xzqhdm">家庭地址:</label>
 
@@ -1227,21 +1231,21 @@
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
                                                                 <select class="input-medium form-control" id="zpyy1" name="zpyy1">
-                                                                    <option value="">------------------</option>
-                                                                    <option value="for-sick">因病</option>
-                                                                    <option value="for-disable">因残</option>
-                                                                    <option value="for-study">因学</option>
-                                                                    <option value="for-suffer">因灾</option>
-                                                                    <option value="for-marry">因婚</option>
-                                                                    <option value="less-land">缺土地</option>
-                                                                    <option value="less-water">缺水</option>
-                                                                    <option value="less-skill">缺技术</option>
-                                                                    <option value="less-labor">缺劳动力</option>
-                                                                    <option value="less-money">缺资金</option>
-                                                                    <option value="traffic-behind">交通条件落后</option>
-                                                                    <option value="less-self-power">自身发展动力不足</option>
-                                                                    <option value="for-lose">因丧</option>
-                                                                    <option value="other">其他</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '')" value="">------------------</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '因病')" value="for-sick">因病</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '因残')" value="for-disable">因残</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '因学')" value="for-study">因学</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '因灾')" value="for-suffer">因灾</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '因婚')" value="for-marry">因婚</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '缺土地')" value="less-land">缺土地</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '缺水')" value="less-water">缺水</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '缺技术')" value="less-skill">缺技术</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '缺劳动力')" value="less-labor">缺劳动力</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '缺资金')" value="less-money">缺资金</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '交通条件落后')" value="traffic-behind">交通条件落后</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '自身发展动力不足')" value="less-self-power">自身发展动力不足</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '因丧')" value="for-lose">因丧</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '其他')" value="other">其他</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -1251,21 +1255,21 @@
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
                                                                 <select class="input-medium form-control" id="zpyy2" name="zpyy2">
-                                                                    <option value="">------------------</option>
-                                                                    <option value="for-sick">因病</option>
-                                                                    <option value="for-disable">因残</option>
-                                                                    <option value="for-study">因学</option>
-                                                                    <option value="for-suffer">因灾</option>
-                                                                    <option value="for-marry">因婚</option>
-                                                                    <option value="less-land">缺土地</option>
-                                                                    <option value="less-water">缺水</option>
-                                                                    <option value="less-skill">缺技术</option>
-                                                                    <option value="less-labor">缺劳动力</option>
-                                                                    <option value="less-money">缺资金</option>
-                                                                    <option value="traffic-behind">交通条件落后</option>
-                                                                    <option value="less-self-power">自身发展动力不足</option>
-                                                                    <option value="for-lose">因丧</option>
-                                                                    <option value="other">其他</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy2} == '')" value="">------------------</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy2} == '因病')" value="for-sick">因病</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy2} == '因残')" value="for-disable">因残</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy2} == '因学')" value="for-study">因学</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy2} == '因灾')" value="for-suffer">因灾</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy2} == '因婚')" value="for-marry">因婚</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy2} == '缺土地')" value="less-land">缺土地</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy2} == '缺水')" value="less-water">缺水</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy2} == '缺技术')" value="less-skill">缺技术</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy2} == '缺劳动力')" value="less-labor">缺劳动力</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy2} == '缺资金')" value="less-money">缺资金</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy2} == '交通条件落后')" value="traffic-behind">交通条件落后</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy2} == '自身发展动力不足')" value="less-self-power">自身发展动力不足</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy2} == '因丧')" value="for-lose">因丧</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy2} == '其他')" value="other">其他</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -1279,21 +1283,21 @@
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
                                                                 <select class="input-medium form-control" id="zpyy3" name="zpyy3">
-                                                                    <option value="">------------------</option>
-                                                                    <option value="for-sick">因病</option>
-                                                                    <option value="for-disable">因残</option>
-                                                                    <option value="for-study">因学</option>
-                                                                    <option value="for-suffer">因灾</option>
-                                                                    <option value="for-marry">因婚</option>
-                                                                    <option value="less-land">缺土地</option>
-                                                                    <option value="less-water">缺水</option>
-                                                                    <option value="less-skill">缺技术</option>
-                                                                    <option value="less-labor">缺劳动力</option>
-                                                                    <option value="less-money">缺资金</option>
-                                                                    <option value="traffic-behind">交通条件落后</option>
-                                                                    <option value="less-self-power">自身发展动力不足</option>
-                                                                    <option value="for-lose">因丧</option>
-                                                                    <option value="other">其他</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy3} == '')" value="">------------------</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy3} == '因病')" value="for-sick">因病</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy3} == '因残')" value="for-disable">因残</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy3} == '因学')" value="for-study">因学</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy3} == '因灾')" value="for-suffer">因灾</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy3} == '因婚')" value="for-marry">因婚</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy3} == '缺土地')" value="less-land">缺土地</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy3} == '缺水')" value="less-water">缺水</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy3} == '缺技术')" value="less-skill">缺技术</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy3} == '缺劳动力')" value="less-labor">缺劳动力</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy3} == '缺资金')" value="less-money">缺资金</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy3} == '交通条件落后')" value="traffic-behind">交通条件落后</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy3} == '自身发展动力不足')" value="less-self-power">自身发展动力不足</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy3} == '因丧')" value="for-lose">因丧</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy3} == '其他')" value="other">其他</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -1301,7 +1305,7 @@
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ncjtrks">年初家庭人口数:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="number" id="ncjtrks" name="ncjtrks" class="col-xs-12 col-sm-5 form-control" />
+                                                                <input type="number" id="ncjtrks" name="ncjtrks" th:value="${ymFamilyStatus.ncjtrks}" class="col-xs-12 col-sm-5 form-control" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1313,7 +1317,7 @@
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ndjtrks">年底家庭人口数:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="number" id="ndjtrks" name="ndjtrks" class="col-xs-12 col-sm-5 form-control" />
+                                                                <input type="number" id="ndjtrks" name="ndjtrks" th:value="${ymFamilyStatus.ndjtrks}"  class="col-xs-12 col-sm-5 form-control" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1326,14 +1330,14 @@
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="gdmj">耕地面积(亩):</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="number" id="gdmj" name="gdmj" class="col-xs-12 col-sm-2 form-control" />
+                                                                <input type="number" id="gdmj" name="gdmj" th:value="${ymFamilyStatus.gdmj}"  class="col-xs-12 col-sm-2 form-control" />
                                                             </div>
                                                         </div>
 
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="yxggmj">有效灌溉面积(亩):</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="number" id="yxggmj" name="yxggmj" class="col-xs-12 col-sm-2 form-control" />
+                                                                <input type="number" id="yxggmj" name="yxggmj" th:value="${ymFamilyStatus.yxggmj}"  class="col-xs-12 col-sm-2 form-control" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1344,14 +1348,14 @@
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ldmj">林地面积(亩):</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="number" id="ldmj" name="ldmj" class="col-xs-12 col-sm-2 form-control" />
+                                                                <input type="number" id="ldmj" name="ldmj" th:value="${ymFamilyStatus.ldmj}"  class="col-xs-12 col-sm-2 form-control" />
                                                             </div>
                                                         </div>
 
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="tghlmj">退耕还林面积(亩):</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="number" id="tghlmj" name="tghlmj" class="col-xs-12 col-sm-2 form-control" />
+                                                                <input type="number" id="tghlmj" name="tghlmj" th:value="${ymFamilyStatus.tghlmj}"  class="col-xs-12 col-sm-2 form-control" />
                                                             </div>
                                                         </div>
 
@@ -1363,14 +1367,14 @@
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="lgmj">林果面积(亩):</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="number" id="lgmj" name="lgmj" class="col-xs-12 col-sm-2 form-control" />
+                                                                <input type="number" id="lgmj" name="lgmj" th:value="${ymFamilyStatus.lgmj}"  class="col-xs-12 col-sm-2 form-control" />
                                                             </div>
                                                         </div>
 
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="smmj">水面面积(亩):</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="number" id="smmj" name="smmj" class="col-xs-12 col-sm-2 form-control" />
+                                                                <input type="number" id="smmj" name="smmj" th:value="${ymFamilyStatus.smmj}"  class="col-xs-12 col-sm-2 form-control" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1382,7 +1386,7 @@
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
                                                                 <div class="clearfix">
-                                                                    <input type="number" id="mcdmj" name="mcdmj" class="col-xs-12 col-sm-2 form-control" />
+                                                                    <input type="number" id="mcdmj" name="mcdmj" th:value="${ymFamilyStatus.mcdmj}"  class="col-xs-12 col-sm-2 form-control" />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1390,9 +1394,9 @@
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sfjrnmzyhzs">是否加入农民专业合作社:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <select id="sfjrnmzyhzs" name="sfjrnmzyhzs" class="select2 form-control" data-placeholder="点击选择...">
-                                                                <option value="">&nbsp;</option>
-                                                                <option value="yes">是</option>
-                                                                <option value="no">否</option>
+                                                                <option th:selected="(${ymFamilyStatus.sfjrnmzyhzs} == '')" value="">&nbsp;</option>
+                                                                <option th:selected="(${ymFamilyStatus.sfjrnmzyhzs} == '是')" value="yes">是</option>
+                                                                <option th:selected="(${ymFamilyStatus.sfjrnmzyhzs} == '否')" value="no">否</option>
                                                             </select>
                                                         </div>
 
@@ -1404,18 +1408,18 @@
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sfyltqydd">是否有龙头企业带动:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <select id="sfyltqydd" name="sfyltqydd" class="select2 form-control" data-placeholder="点击选择...">
-                                                                <option value="">&nbsp;</option>
-                                                                <option value="yes">是</option>
-                                                                <option value="no">否</option>
+                                                                <option th:selected="(${ymFamilyStatus.sfyltqydd} == '')" value="">&nbsp;</option>
+                                                                <option th:selected="(${ymFamilyStatus.sfyltqydd} == '是')" value="yes">是</option>
+                                                                <option th:selected="(${ymFamilyStatus.sfyltqydd} == '否')" value="no">否</option>
                                                             </select>
                                                         </div>
 
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sfycyzfdtrdd">是否有创业致富带头人带动:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <select id="sfycyzfdtrdd" name="sfycyzfdtrdd" class="select2 form-control" data-placeholder="点击选择...">
-                                                                <option value="">&nbsp;</option>
-                                                                <option value="yes">是</option>
-                                                                <option value="no">否</option>
+                                                                <option th:selected="(${ymFamilyStatus.sfycyzfdtrdd} == '')" value="">&nbsp;</option>
+                                                                <option th:selected="(${ymFamilyStatus.sfycyzfdtrdd} == '是')" value="yes">是</option>
+                                                                <option th:selected="(${ymFamilyStatus.sfycyzfdtrdd} == '否')" value="no">否</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -1426,18 +1430,18 @@
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sftscyd">是否通生产用电:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <select id="sftscyd" name="sftscyd" class="select2 form-control" data-placeholder="点击选择...">
-                                                                <option value="">&nbsp;</option>
-                                                                <option value="yes">是</option>
-                                                                <option value="no">否</option>
+                                                                <option th:selected="(${ymFamilyStatus.sftscyd} == '')" value="">&nbsp;</option>
+                                                                <option th:selected="(${ymFamilyStatus.sftscyd} == '是')" value="yes">是</option>
+                                                                <option th:selected="(${ymFamilyStatus.sftscyd} == '否')" value="no">否</option>
                                                             </select>
                                                         </div>
 
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sftshyd">是否通生活用电:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <select id="sftshyd" name="sftshyd" class="select2 form-control" data-placeholder="点击选择...">
-                                                                <option value="">&nbsp;</option>
-                                                                <option value="yes">是</option>
-                                                                <option value="no">否</option>
+                                                                <option th:selected="(${ymFamilyStatus.sftshyd} == '')" value="">&nbsp;</option>
+                                                                <option th:selected="(${ymFamilyStatus.sftshyd} == '是')" value="yes">是</option>
+                                                                <option th:selected="(${ymFamilyStatus.sftshyd} == '否')" value="no">否</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -1448,18 +1452,18 @@
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sftgbds">是否通广播电视:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <select id="sftgbds" name="sftgbds" class="select2 form-control" data-placeholder="点击选择...">
-                                                                <option value="">&nbsp;</option>
-                                                                <option value="yes">是</option>
-                                                                <option value="no">否</option>
+                                                                <option th:selected="(${ymFamilyStatus.sftgbds} == '')" value="">&nbsp;</option>
+                                                                <option th:selected="(${ymFamilyStatus.sftgbds} == '是')" value="yes">是</option>
+                                                                <option th:selected="(${ymFamilyStatus.sftgbds} == '否')" value="no">否</option>
                                                             </select>
                                                         </div>
 
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sftgbds">饮水是否困难:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <select id="yssfkn" name="yssfkn" class="select2 form-control" data-placeholder="点击选择...">
-                                                                <option value="">&nbsp;</option>
-                                                                <option value="yes">是</option>
-                                                                <option value="no">否</option>
+                                                                <option th:selected="(${ymFamilyStatus.yssfkn} == '')" value="">&nbsp;</option>
+                                                                <option th:selected="(${ymFamilyStatus.yssfkn} == '是')" value="yes">是</option>
+                                                                <option th:selected="(${ymFamilyStatus.yssfkn} == '否')" value="no">否</option>
                                                             </select>
                                                         </div>
 
@@ -1471,18 +1475,18 @@
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="yssfaq">饮水是否安全:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <select id="yssfaq" name="yssfaq" class="select2 form-control" data-placeholder="点击选择...">
-                                                                <option value="">&nbsp;</option>
-                                                                <option value="yes">是</option>
-                                                                <option value="no">否</option>
+                                                                <option th:selected="(${ymFamilyStatus.yssfaq} == '')" value="">&nbsp;</option>
+                                                                <option th:selected="(${ymFamilyStatus.yssfaq} == '是')" value="yes">是</option>
+                                                                <option th:selected="(${ymFamilyStatus.yssfaq} == '否')" value="no">否</option>
                                                             </select>
                                                         </div>
 
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ywwscs">是否有卫生厕所:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <select id="ywwscs" name="ywwscs" class="select2 form-control" data-placeholder="点击选择...">
-                                                                <option value="">&nbsp;</option>
-                                                                <option value="yes">是</option>
-                                                                <option value="no">否</option>
+                                                                <option th:selected="(${ymFamilyStatus.ywwscs} == '')" value="">&nbsp;</option>
+                                                                <option th:selected="(${ymFamilyStatus.ywwscs} == '是')" value="yes">是</option>
+                                                                <option th:selected="(${ymFamilyStatus.ywwscs} == '否')" value="no">否</option>
                                                             </select>
                                                         </div>
 
@@ -1494,7 +1498,7 @@
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="yczgljl">与村主干路距离(公里):</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="number" id="yczgljl" name="yczgljl" class="col-xs-12 col-sm-2 form-control" />
+                                                                <input type="number" id="yczgljl" name="yczgljl" th:value="${ymFamilyStatus.yczgljl}" class="col-xs-12 col-sm-2 form-control" />
                                                             </div>
                                                         </div>
 
@@ -1502,11 +1506,11 @@
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
                                                                 <select class="input-medium form-control" id="rhllx" name="rhllx">
-                                                                    <option value="">------------------</option>
-                                                                    <option value="nt-road">泥土路</option>
-                                                                    <option value="ss-road">沙石路</option>
-                                                                    <option value="yh-road">硬化路</option>
-                                                                    <option value="other">其他</option>
+                                                                    <option th:selected="(${ymFamilyStatus.rhllx} == '')"  value="">------------------</option>
+                                                                    <option th:selected="(${ymFamilyStatus.rhllx} == '泥土路')"  value="nt-road">泥土路</option>
+                                                                    <option th:selected="(${ymFamilyStatus.rhllx} == '沙石路')"  value="ss-road">沙石路</option>
+                                                                    <option th:selected="(${ymFamilyStatus.rhllx} == '硬化路')"  value="yh-road">硬化路</option>
+                                                                    <option th:selected="(${ymFamilyStatus.rhllx} == '其他')"  value="other">其他</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -1519,14 +1523,14 @@
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="zfjg">住房结构:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="text" id="zfjg" name="zfjg" class="col-xs-12 col-sm-2 form-control" />
+                                                                <input type="text" id="zfjg" name="zfjg" th:value="${ymFamilyStatus.zfjg}" class="col-xs-12 col-sm-2 form-control" />
                                                             </div>
                                                         </div>
 
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="zfmj">住房面积(平方米):</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="number" id="zfmj" name="zfmj" class="col-xs-12 col-sm-2 form-control" />
+                                                                <input type="number" id="zfmj" name="zfmj" th:value="${ymFamilyStatus.zfmj}"  class="col-xs-12 col-sm-2 form-control" />
                                                             </div>
                                                         </div>
 
@@ -1538,16 +1542,16 @@
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="sfwfh">是否危房户:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <select id="sfwfh" name="sfwfh" class="select2 form-control" data-placeholder="点击选择...">
-                                                                <option value="">&nbsp;</option>
-                                                                <option value="yes">是</option>
-                                                                <option value="no">否</option>
+                                                                <option th:selected="(${ymFamilyStatus.sfwfh} == '')" value="">&nbsp;</option>
+                                                                <option th:selected="(${ymFamilyStatus.sfwfh} == '是')" value="yes">是</option>
+                                                                <option th:selected="(${ymFamilyStatus.sfwfh} == '否')" value="no">否</option>
                                                             </select>
                                                         </div>
 
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="wfdj">危房等级:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="text" id="wfdj" name="wfdj" class="col-xs-12 col-sm-2 form-control" />
+                                                                <input type="text" id="wfdj" name="wfdj" th:value="${ymFamilyStatus.wfdj}"  class="col-xs-12 col-sm-2 form-control" />
                                                             </div>
                                                         </div>
 
@@ -1559,7 +1563,7 @@
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="wgnd">危改年度:</label>
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
-                                                                <input type="text" id="wgnd" name="wgnd" class="col-xs-12 col-sm-2 form-control" />
+                                                                <input type="text" id="wgnd" name="wgnd" th:value="${ymFamilyStatus.wgnd}"   class="col-xs-12 col-sm-2 form-control" />
                                                             </div>
                                                         </div>
 
@@ -1567,12 +1571,12 @@
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
                                                                 <select class="input-medium form-control" id="zyrllx" name="zyrllx">
-                                                                    <option value="">------------------</option>
-                                                                    <option value="cc">柴草</option>
-                                                                    <option value="gcf">干畜粪</option>
-                                                                    <option value="mt">煤炭</option>
-                                                                    <option value="qjny">清洁能源</option>
-                                                                    <option value="other">其他</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zyrllx} == '')"  value="">------------------</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zyrllx} == '柴草')"  value="cc">柴草</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zyrllx} == '干畜粪')"  value="gcf">干畜粪</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zyrllx} == '煤炭')"  value="mt">煤炭</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zyrllx} == '清洁能源')"  value="qjny">清洁能源</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zyrllx} == '其他')"  value="other">其他</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -1585,7 +1589,7 @@
                                                         <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="bgsm">变更说明:</label>
                                                         <div class="col-xs-12 col-sm-9">
                                                             <div class="clearfix">
-                                                                <textarea class="input-xlarge" name="bgsm" id="bgsm"></textarea>
+                                                                <textarea class="input-xlarge" name="bgsm" id="bgsm" th:value="${ymFamilyStatus.bgsm}"  ></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1870,6 +1874,7 @@
 
         function addYmInformation() {
             //获取家庭基本信息表单数值
+            var jtbh     =  $("#jtbh").val();      //家庭编号
             var xxxzqhmz =  $("#xxxzqhmz").val();  //行政区划地址
             var xzqhdm    = $("#xzqhdm").val();    // 行政区划代码
             var lxdh      = $("#lxdh").val();      // '联系电话',
@@ -1886,6 +1891,7 @@
             var bqdz      = $("#bqdz").val();      // '搬迁地址'
             //拼凑成json格式
             var ym_result_json = {
+                "jtbh"     :jtbh      ,
                 "xxxzqhmz" :xxxzqhmz  ,
                 "xzqhdm"   :xzqhdm    ,
                 "lxdh"     :lxdh      ,
@@ -1980,6 +1986,8 @@
             ym_result_json["zyrllx"]          = zyrllx              ;
             ym_result_json["bgqksm"]          = bgqksm              ;
 
+            //写入是修改还是新增方法
+            ym_result_json["myMethod"]       = "edit"               ;
             //alert(Json.stringify(ym_result_json));
             $.ajax({
                 type:"POST",
@@ -1990,7 +1998,7 @@
                 success:function (data) {
                     if(data.status==1){
                         bootbox.dialog({
-                            message: "恭喜你! 你的信息录入成功!",
+                            message: "恭喜你! 你的信息修改成功!",
                             buttons: {
                                 "success" : {
                                     "label" : "确定",
@@ -2000,7 +2008,7 @@
                         });
                     }else{
                         bootbox.dialog({
-                            message: "对不起! 出现异常，信息录入失败!",
+                            message: "对不起! 出现异常，信息修改失败!",
                             buttons: {
                                 "success" : {
                                     "label" : "确定",
@@ -2050,21 +2058,8 @@
             //})
             .on('finished.fu.wizard', function(e) {
                 //判断家庭信息
-                if($("#xxxzqhmz").val()==""){
-                    $('#fuelux-wizard-container').wizard('selectedItem',{step:1});
-                    $("#xxxzqhmz").tips({
-                        side : 3,
-                        msg : '家庭地址不能为空！',
-                        bg : '#ff0bd0',
-                        time : 3
-                    })
+                addYmInformation();
 
-                }else if($(grid_selector).getDataIDs().length<1){
-                    $('#fuelux-wizard-container').wizard('selectedItem',{step:2});
-                    alert("必须为家庭添加至少一个人员！");
-                }else {
-                    addYmInformation();
-                }
             }).on('stepclick.fu.wizard', function(e){
             //e.preventDefault();//this will prevent clicking and selecting steps
         });
@@ -2413,11 +2408,15 @@
         //resize on sidebar collapse/expand
 
 
-
+        var jtbh = $('#jtbh').val();
+        var postStr = {
+            "jtbh": jtbh
+        };
         jQuery(grid_selector).jqGrid({
             datatype: "json",//数据封装方式为json
             url: '/person/listMember',
             mtype:"POST",
+            postData:postStr,
             // ajaxGridOptions: { contentType: 'application/json; charset=utf-8' },
             // serializeGridData: function (postData)
             // {
@@ -2831,7 +2830,7 @@
                 });
             }
 
-        })
+        });
 
 
 

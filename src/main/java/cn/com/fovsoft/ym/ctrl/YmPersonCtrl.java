@@ -176,6 +176,45 @@ public class YmPersonCtrl {
         response.getWriter().close();
     }
 
+
+
+    @RequestMapping("/person/listMember")
+    @ResponseBody
+    public  void getPersonByFamily(HttpServletRequest request,HttpServletResponse response) throws IOException{
+        String jtbh = request.getParameter("jtbh");
+
+
+        //前端获取到的页码数
+        int pageNum = Integer.parseInt(request.getParameter("page"));
+        //前端获取到的显示每页的数量
+        int pageSize = Integer.parseInt(request.getParameter("rows"));
+        //分页获取到所有用户信息
+        PageHelper.startPage(pageNum,pageSize);
+        List<YmPerson> ymPersonList = ymPersonService.getYmPersonByJtbh(jtbh);
+        PageInfo<YmPerson> pageInfo = new PageInfo<YmPerson>(ymPersonList);
+
+        //获得总记录数
+        long records = pageInfo.getTotal();
+        //默认当前页码
+        int page = pageInfo.getPageNum();
+        //获得总页数
+        int total = pageInfo.getPages();
+        //用来序列化json数据的map
+        Map<String,Object> map=new HashMap<>();
+        //设置json格式写出
+        map.put("rows",ymPersonList);
+        map.put("page",page);
+        map.put("total",total);
+        map.put("records",records);
+
+        response.setContentType("application/json;charset=utf-8");
+        //map.put("ymPerson_data",ymPersonList);
+        response.getWriter().write(objectMapper.writeValueAsString(map));
+        response.getWriter().flush();
+        response.getWriter().close();
+
+    }
+
     @RequestMapping("/person/delete")
     @ResponseBody
     public Map<String,Object> deletePerson(HttpServletRequest request){

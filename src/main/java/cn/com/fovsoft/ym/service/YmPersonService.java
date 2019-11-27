@@ -84,7 +84,7 @@ public class YmPersonService {
      * Return: java.util.List<cn.com.fovsoft.ym.bean.YmPerson>
      * 功能描述: 通过家庭编号获取家庭成员信息
      */
-    List<YmPerson> getYmPersonByJtbh(String jtbh){
+    public List<YmPerson> getYmPersonByJtbh(String jtbh){
         return ymPersonDao.getYmPersonByJtbh(jtbh);
     }
 
