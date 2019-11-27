@@ -101,7 +101,7 @@ public class YmPersonCtrl {
     public ModelAndView listPersonHtml(HttpServletRequest request,HttpServletResponse response) throws IOException{
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("list-person");
+        modelAndView.setViewName("add-ym-information");
         modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
 
         modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
@@ -123,7 +123,7 @@ public class YmPersonCtrl {
     @RequestMapping(value="/ym/mgr")
     public ModelAndView addYmInformation(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("add-ym-information");
+        modelAndView.setViewName("list-person");
         modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
         modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
 
