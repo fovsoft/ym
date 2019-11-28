@@ -246,12 +246,36 @@ public class YmPersonCtrl {
         return map;
     }
 
+//    @RequestMapping("/person/toEdit")
+//    public ModelAndView toEditPerson(HttpServletRequest request){
+//        String jtbh = request.getParameter("jtbh");
+//        //获取家庭信息
+//        YmFamily ymFamily = ymFamilyService.getYmFamilyByJtbh(jtbh);
+//        //获取家庭状况信息
+//        YmFamilyStatus ymFamilyStatus  = ymFamilyStatusService.getYmFamilyStatusByJtbh(jtbh);
+//
+//
+//
+//        ModelAndView modelAndView = new ModelAndView();
+//
+//        modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
+//        modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
+//
+//        //写出对象
+//        modelAndView.addObject("ymFamily",ymFamily);
+//        modelAndView.addObject("ymFamilyStatus",ymFamilyStatus);
+//        modelAndView.setViewName("redirect:/edit-ym-information.html");
+//        return modelAndView;
+//    }
+
+
 
     @RequestMapping("/person/edit")
     public ModelAndView editPerson(HttpServletRequest request){
 
         String rybh = request.getParameter("rybh");
         String jtbh = request.getParameter("jtbh");
+
         //获取家庭信息
         YmFamily ymFamily = ymFamilyService.getYmFamilyByJtbh(jtbh);
         //获取家庭状况信息
@@ -260,7 +284,6 @@ public class YmPersonCtrl {
 
 
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("edit-ym-information");
 
         modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
         modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
@@ -268,6 +291,8 @@ public class YmPersonCtrl {
         //写出对象
         modelAndView.addObject("ymFamily",ymFamily);
         modelAndView.addObject("ymFamilyStatus",ymFamilyStatus);
+
+        modelAndView.setViewName("edit-ym-information");
 
         return modelAndView;
     }

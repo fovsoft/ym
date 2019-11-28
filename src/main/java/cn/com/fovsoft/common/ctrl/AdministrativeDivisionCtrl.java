@@ -297,13 +297,13 @@ public class AdministrativeDivisionCtrl {
     @ResponseBody
     public Map<String,Object> deleteAdminDivision(HttpServletRequest request){
         //获取前端参数
-        String id       = request.getParameter("id");
+        String xzqhdm       = request.getParameter("xzqhdm");
 
         //返回前端的参数
         Map<String,Object> map = new HashMap<>();
 
         //写入信息
-        int status = administrativeDivisionService.deleteAdministrativeDivisionById(id);
+        int status = administrativeDivisionService.deleteAdministrativeDivisionByXzqhdm(xzqhdm);
         if(status<1){
             map.put("status",0);
             map.put("result","error");

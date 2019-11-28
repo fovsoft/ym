@@ -84,7 +84,9 @@ public class MenuTreeUtil {
                     }
                     menuTreeDto.setState(checkedMap);
                     childNodeList.add(menuTreeDto);
+                    containTree = false;
                 }
+
             }
         }
 

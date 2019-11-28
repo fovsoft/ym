@@ -2048,7 +2048,8 @@
                     if(!checkFamilyForm()) e.preventDefault();
                 }else if(info.step == 2) {
                     var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
-                    if(rowids =""){
+                    //console.log(rowids);
+                    if(rowids.length ==0){
                         alert("还没添加家庭人员，请进行添加！");
                         e.preventDefault();
                     }

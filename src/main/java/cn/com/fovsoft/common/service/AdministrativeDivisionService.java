@@ -95,7 +95,7 @@ public class AdministrativeDivisionService {
      * Return: int
      * 功能描述: 功能描述: 通过行政区划id删除其及其子行政区划
      */
-    public int deleteAdministrativeDivisionById(String id){
-        return administrativeDivisionDao.deleteAdministrativeDivisionById(id);
+    public int deleteAdministrativeDivisionByXzqhdm(String xzqhdm){
+        return administrativeDivisionDao.deleteAdministrativeDivisionByXzqhdm(xzqhdm);
     }
 }

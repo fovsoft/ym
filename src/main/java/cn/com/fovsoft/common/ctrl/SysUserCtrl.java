@@ -1,9 +1,11 @@
 package cn.com.fovsoft.common.ctrl;
 
+import cn.com.fovsoft.common.bean.SysMenu;
 import cn.com.fovsoft.common.bean.SysRole;
 import cn.com.fovsoft.common.bean.SysUser;
 import cn.com.fovsoft.common.bean.SysUserRole;
 import cn.com.fovsoft.common.constant.VarConstant;
+import cn.com.fovsoft.common.service.SysMenuService;
 import cn.com.fovsoft.common.service.SysRoleService;
 import cn.com.fovsoft.common.service.SysUserRoleService;
 import cn.com.fovsoft.common.service.SysUserService;
@@ -24,10 +26,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author: tpc
@@ -47,6 +46,9 @@ public class SysUserCtrl {
 
     @Autowired
     private SysUserRoleService sysUserRoleService;
+
+    @Autowired
+    private SysMenuService sysMenuService;
 
 
     @Autowired
@@ -258,7 +260,7 @@ public class SysUserCtrl {
         String yhlx      = request.getParameter("yhlx"      );
         String lxdh      = request.getParameter("lxdh"      );
         String zt        = request.getParameter("zt"        );
-        String roleIdArr = request.getParameter("roleIdArr"        );
+        String roleIdArr = request.getParameter("roleIdArr" );
 
         //用来返回信息的封装对象
         Map<String,Object> map=new HashMap<>();
@@ -300,6 +302,24 @@ public class SysUserCtrl {
             sysUserRole.setRoleId(str);
             sysUserRoleService.addSysUserRole(sysUserRole);
         }
+        //角色修改完成后，加入新增的权限
+        List<SysMenu> allSysMenuList = sysMenuService.findAllMenu();
+        //用来存放根菜单的list
+        List<SysMenu> rootSysMenuList = new ArrayList<>();
+        for(SysMenu sysMenu:allSysMenuList){
+            if(sysMenu.getParentId().equals("0")){
+                rootSysMenuList.add(sysMenu);
+            }
+        }
+        //循环根菜单，然后写入子菜单
+        for(SysMenu sysMenu1:rootSysMenuList){
+            sysMenu1.setChildMenuList(sysMenuService.findChildMenu(sysMenu1.getMenuId()));
+        }
+        //修改session缓存
+        request.getSession().removeAttribute("rootSysMenuList");
+        //把菜单信息写入session
+        request.getSession().setAttribute("rootSysMenuList",rootSysMenuList);
+
         //再写入修改后的用户信息
         int returnInt = sysUserService.updateSysUserInfo(sysUser);
         if(returnInt<1) {

@@ -1231,21 +1231,21 @@
                                                         <div class="col-xs-12 col-sm-4">
                                                             <div class="clearfix">
                                                                 <select class="input-medium form-control" id="zpyy1" name="zpyy1">
-                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '')" value="">------------------</option>
-                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '因病')" value="for-sick">因病</option>
-                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '因残')" value="for-disable">因残</option>
-                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '因学')" value="for-study">因学</option>
-                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '因灾')" value="for-suffer">因灾</option>
-                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '因婚')" value="for-marry">因婚</option>
-                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '缺土地')" value="less-land">缺土地</option>
-                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '缺水')" value="less-water">缺水</option>
-                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '缺技术')" value="less-skill">缺技术</option>
-                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '缺劳动力')" value="less-labor">缺劳动力</option>
-                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '缺资金')" value="less-money">缺资金</option>
-                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '交通条件落后')" value="traffic-behind">交通条件落后</option>
-                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '自身发展动力不足')" value="less-self-power">自身发展动力不足</option>
-                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '因丧')" value="for-lose">因丧</option>
-                                                                    <option th:selected="(${ymFamilyStatus.zypp1} == '其他')" value="other">其他</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy1} == '')" value="">------------------</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy1} == '因病')" value="for-sick">因病</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy1} == '因残')" value="for-disable">因残</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy1} == '因学')" value="for-study">因学</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy1} == '因灾')" value="for-suffer">因灾</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy1} == '因婚')" value="for-marry">因婚</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy1} == '缺土地')" value="less-land">缺土地</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy1} == '缺水')" value="less-water">缺水</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy1} == '缺技术')" value="less-skill">缺技术</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy1} == '缺劳动力')" value="less-labor">缺劳动力</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy1} == '缺资金')" value="less-money">缺资金</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy1} == '交通条件落后')" value="traffic-behind">交通条件落后</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy1} == '自身发展动力不足')" value="less-self-power">自身发展动力不足</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy1} == '因丧')" value="for-lose">因丧</option>
+                                                                    <option th:selected="(${ymFamilyStatus.zpyy1} == '其他')" value="other">其他</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -1586,10 +1586,10 @@
                                                     <div class="hr hr-dotted"></div>
 
                                                     <div class="form-group">
-                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="bgsm">变更说明:</label>
+                                                        <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="bgqksm">变更说明:</label>
                                                         <div class="col-xs-12 col-sm-9">
                                                             <div class="clearfix">
-                                                                <textarea class="input-xlarge" name="bgsm" id="bgsm" th:value="${ymFamilyStatus.bgsm}"  ></textarea>
+                                                                <textarea class="input-xlarge" name="bgqksm" id="bgqksm" th:value="${ymFamilyStatus.bgqksm}"  ></textarea>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -2046,7 +2046,7 @@
                     if(!checkFamilyForm()) e.preventDefault();
                 }else if(info.step == 2) {
                     var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
-                    if(rowids =""){
+                    if(rowids.length ==0){
                         alert("还没添加家庭人员，请进行添加！");
                         e.preventDefault();
                     }

@@ -1,3 +1,4 @@
+
 drop table frm_sysuser;
 create table frm_sysuser
 (
@@ -5,7 +6,7 @@ create table frm_sysuser
     userName   varchar(32)  NOT NULL comment '系统用户名',
     password   varchar(100) NOT NULL comment '密码',
     department varchar(20)  NOT NULL comment '用户所在部门',
-    sex        char(1) comment '性别',
+    sex        char(2) comment '性别',
     birthday   date comment '出生日期',
     sfzmhm     varchar(20) comment '身份证明号码',
     email      varchar(50) comment '邮箱',
@@ -58,7 +59,7 @@ create table frm_menu
   DEFAULT CHARSET = utf8 comment '菜单表';
 
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '系统管理', 0, '/admin', '1', 'a,d,u,s', 1, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+values ('', '系统管理', 0, '#', '1', 'a,d,u,s', 1, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
 values ('', '用户管理', 1, '/admin/user', '1', 'a,d,u,s', 2, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
@@ -68,7 +69,7 @@ values ('', '角色管理', 1, '/admin/role', '1', 'a,d,u,s', 4, '1', '2019-11-0
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
 values ('', '菜单管理', 1, '/admin/sysMenu', '1', 'a,d,u,s', 6, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '移民管理', 0, '/ym', '1', 'a,d,u,s', 11, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+values ('', '移民管理', 0, '#', '1', 'a,d,u,s', 11, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
 values ('', '移民信息采集', 6, '/ym/add', '1', 'a,d,u,s', 12, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
@@ -77,8 +78,14 @@ insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, 
 values ('', '影像化采集', 6, '/ym/img', '1', 'a,d,u,s', 14, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
 values ('', '收入信息采集', 6, '/ym/income', '1', 'a,d,u,s', 15, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
-
-
+insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
+values ('', '安置管理', 0, '#', '1', 'a,d,u,s', 16, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
+values ('', '安置点管理', 11, '/az/settlement', '1', 'a,d,u,s', 17, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
+values ('', '安置户管理', 11, '/az/household', '1', 'a,d,u,s', 18, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
+values ('', '安置户信息录入', 11, '/az/add', '1', 'a,d,u,s', 19, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 
 drop table frm_sysuser_role;
 create table frm_sysuser_role

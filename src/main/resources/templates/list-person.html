@@ -813,7 +813,7 @@
 
         //新增按钮查看
         $("#addBtn").on("click",function () {
-            window.location.href = "/ym/mgr";
+            window.location.href = "/ym/add";
         });
         //查询按钮
         $('#searchBtn').on('click',function () {
@@ -1194,9 +1194,13 @@
                 }else {
                     var rowData = $("#grid-table").jqGrid('getRowData',rowids[0]);
                     var idArr = "jtbh=" + rowData.jtbh +"&rybh=" + rowData.rybh;
+                    // var idArr = {
+                    //   "jtbh":rowData.jtbh,
+                    //   "rybh":rowData.rybh
+                    // };
 
                     window.location.href="/person/edit?"+idArr;
-                    // $.getJSON("/person/edit",idArr,function (data) {
+                    //$.getJSON("/person/edit",idArr,function (data) {});
                     //
                     // });
                 }
