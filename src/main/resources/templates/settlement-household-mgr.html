@@ -662,385 +662,283 @@
                         </div>
 
 
+                        <form class="form-inline" role="form">
+                            <div class="form-group">
+                                <label class="sr-only control-label">用户名:</label>
+                                <input type="text" id="s-userName" name="s-userName" class="form-control" placeholder="用户名">
+                                <label class="sr-only control-label">身份证明号码:</label>
+                                <input type="text" id="s-sfzmhm" name="s-sfzmhm" class=" form-control" placeholder="身份证明号码">
+                                <label class="sr-only control-label">联系电话:</label>
+                                <input type="text" id="s-lxdh" name="s-lxdh" class="form-control" placeholder="联系电话">
+                                <label class="sr-only control-label">邮箱:</label>
+                                <input type="text" id="s-email" name="邮箱" class="form-control" placeholder="邮箱">
+                                <button type="button" class="btn btn-purple btn-sm" id="searchBtn" onclick="querySysUser();">
+                                    <span class="ace-icon fa fa-search icon-on-right"></span>
+                                    查询
+                                </button>
+                                <button id="addBtn" type="button" class="btn btn-primary btn-sm" ><!--data-toggle="modal" data-target="#userAddModal">-->
+                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
+                                </button>
+                                <button id="editBtn" type="button" class="btn btn-success btn-sm">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
+                                </button>
+                                <button id="deleteBtn" type="button" class="btn btn-danger btn-sm">
+                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
+                                </button>
+                            </div>
+                        </form>
 
                         <div>
                             <!--新增用户的窗口-->
-                            <div class="widget-box widget-color-pink">
-                                <div class="widget-header">
-                                    <h4 class="widget-title lighter smaller">
-                                        <span class="smaller-80">填写搬迁安置户信息</span>
-                                    </h4>
-                                </div>
+                            <div class="modal fade" id="userAddModal" tabindex="-1" role="dialog" aria-labelledby="userAddModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title green" id="myModalLabel">
+                                                <label id="addTitle">新增用户(默认密码为888888)</label>
+                                                <label id="editTitle">修改用户</label>
+                                            </h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="tabbable">
+                                                <ul class="nav nav-tabs" id="myTab">
+                                                    <li class="active">
+                                                        <a data-toggle="tab" href="#home">
+                                                            <i class="green ace-icon fa fa-cog bigger-120"></i>
+                                                            用户信息
+                                                        </a>
+                                                    </li>
 
-                                <div class="widget-body">
-                                    <div class="widget-main padding-8">
-                                        <form class="form-horizontal" id="settlement-household-form">
-                                            <div class="form-group">
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="azdbh">安置点编号:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="input-group">
-                                                                <span class="input-group-addon">
-                                                                    <i class="red ace-icon fa fa-check"></i>
-                                                                </span>
-                                                        <input type="text" name="azdbh" id="azdbh" class="form-control search-query"
-                                                               placeholder="请点击获取按钮获取安置点信息" readonly/>
-                                                        <span class="input-group-btn">
-                                                                    <button type="button" class="btn btn-purple btn-sm" id="myAzdbhBtn" data-toggle="modal" data-target="#getAzdbhModal">
-                                                                        <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
-                                                                        获取
-                                                                    </button>
-                                                                </span>
-                                                    </div>
-                                                </div>
+                                                    <li>
+                                                        <a data-toggle="tab" href="#messages">
+                                                            <i class="red ace-icon fa fa-cogs bigger-120"></i>
+                                                            角色授权
+                                                        </a>
+                                                    </li>
 
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="hz">户主:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="input-group">
-                                                                <span class="input-group-addon">
-                                                                    <i class="red ace-icon fa fa-check"></i>
-                                                                </span>
-                                                        <input type="text" name="hz" id="hz" class="form-control search-query"
-                                                               placeholder="请点击获取按钮获取户主信息" readonly/>
-                                                        <span class="input-group-btn">
-                                                                    <button type="button" class="btn btn-purple btn-sm" id="myPersonBtn" data-toggle="modal" data-target="#getPersonModal">
-                                                                        <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
-                                                                        获取
-                                                                    </button>
-                                                                </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--隐藏家庭编号-->
-                                            <div class="form-group hide">
-                                                <label class="sr-only control-label col-xs-12 col-sm-2 no-padding-right" for="jtbh">家庭编号:</label>
-                                                <input type="text" name="jtbh" id="jtbh" class="sr-only form-control search-query"/>
-                                            </div>
+                                                </ul>
 
+                                                <div class="tab-content">
+                                                    <div id="home" class="tab-pane fade in active">
+                                                        <div class="row hide">
+                                                            <input type="hidden" id="userId" name="userId" value=""/>
+                                                        </div>
+                                                        <form class="form-horizontal" id="sysUserForm">
+                                                            <div class="form-group">
+                                                                <label for="userName" class="col-xs-12 col-xs-3 control-label no-padding-right">用户名</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-xs-8 form-control" id="userName" name="userName" placeholder="用户名长度在5-18字符之间" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                            <div class="hr hr-dotted"></div>
+                                                            <div class="hr hr-dotted"></div>
 
-                                            <div class="form-group">
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ldfh">楼栋房号:</label>
+                                                            <div class="form-group">
+                                                                <label for="department" class="col-xs-12 col-sm-3 control-label no-padding-right">部门</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="department" name="department"  />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <input type="text" name="ldfh" id="ldfh" class="col-xs-12 col-sm-4 form-control" readonly/>
-                                                    </div>
-                                                </div>
+                                                            <div class="hr hr-dotted"></div>
 
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ndfqrw">年度搬迁任务:</label>
+                                                            <div class="form-group">
+                                                                <label for="sex" class="col-xs-12 col-sm-3 control-label no-padding-right">性别</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <select class="input-medium" id="sex" name="sex">
+                                                                            <option value="">------------------</option>
+                                                                            <option value="man">男</option>
+                                                                            <option value="woman">女</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <input type="text" name="ndfqrw" id="ndfqrw" class="col-xs-12 col-sm-4 form-control" />
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                            <div class="hr hr-dotted"></div>
 
-                                            <div class="hr hr-dotted"></div>
+                                                            <div class="form-group">
+                                                                <label for="csrq" class="col-xs-12 col-sm-3 control-label no-padding-right">出生日期</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="input-group">
+                                                                        <input class="form-control date-picker" id="csrq" name="csrq" type="text" data-date-format="yyyy-mm-dd" />
+                                                                        <span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+                                                                        </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                            <div class="form-group">
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="bqlx">搬迁类型:</label>
+                                                            <div class="hr hr-dotted"></div>
 
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <select class="input-medium form-control" id="bqlx" name="bqlx">
-                                                            <option value="">------------------</option>
-                                                            <option value="jdlkpkh">建档立卡贫困户</option>
-                                                            <option value="tbbqh">同步搬迁户</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
+                                                            <div class="form-group">
+                                                                <label for="sfzmhm" class="col-xs-12 col-sm-3 control-label no-padding-right">身份证明号码</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="sfzmhm" name="sfzmhm"  />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="qcdsj">迁出地市级:</label>
+                                                            <div class="hr hr-dotted"></div>
 
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <input type="text" name="qcdsj" id="qcdsj" class="col-xs-12 col-sm-4 form-control" />
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                            <div class="form-group">
+                                                                <label for="email" class="col-xs-12 col-sm-3 control-label no-padding-right">邮箱</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="email" name="email" placeholder="如8888888@qq.com" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                            <div class="hr hr-dotted"></div>
+                                                            <div class="hr hr-dotted"></div>
 
-                                            <div class="form-group">
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="qcdxj">迁出地县级:</label>
+                                                            <div class="form-group">
+                                                                <label for="ipks" class="col-xs-12 col-sm-3 control-label no-padding-right">ip开始地址</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="ipks" name="ipks" placeholder="如192.168.1.1" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <input type="text" name="qcdxj" id="qcdxj" class="col-xs-12 col-sm-4 form-control" />
-                                                    </div>
-                                                </div>
+                                                            <div class="hr hr-dotted"></div>
 
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="qcdxxdz">迁出地详细地址:</label>
+                                                            <div class="form-group">
+                                                                <label for="ipjs" class="col-xs-12 col-sm-3 control-label no-padding-right">ip结束地址</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="ipjs" name="ipjs" placeholder="如192.168.1.254" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="input-group">
-                                                                <span class="input-group-addon">
-                                                                    <i class="red ace-icon fa fa-check"></i>
-                                                                </span>
-                                                        <input type="text" name="qcdxxdz" id="qcdxxdz" class="form-control search-query"
-                                                               placeholder="请点击获取按钮获取户主信息" readonly/>
-                                                        <span class="input-group-btn">
-                                                                    <button type="button" class="btn btn-purple btn-sm" id="myXxdzBtn" data-toggle="modal" data-target="#getXxdzModal">
-                                                                        <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
-                                                                        获取
-                                                                    </button>
-                                                                </span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                            <div class="hr hr-dotted"></div>
 
-                                            <div class="hr hr-dotted"></div>
-                                            <!--迁出地类型-->
-                                            <div class="form-group">
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="qcdlx">迁出地类型:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <select class="input-medium form-control" id="qcdlx" name="qcdlx">
-                                                            <option value="">------------------</option>
-                                                            <option value="1">一类</option>
-                                                            <option value="2">二类</option>
-                                                            <option value="3">三类</option>
-                                                            <option value="4">四类</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="jtsyhrk">家庭受益户人口:</label>
-
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <input type="number" name="jtsyhrk" id="jtsyhrk" class="col-xs-12 col-sm-4 form-control" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="hr hr-dotted"></div>
-                                            <!--住房面积-->
-                                            <div class="form-group">
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="zfmj">住房面积:</label>
-
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <input type="number" name="zfmj" id="zfmj" class="col-xs-12 col-sm-4 form-control" />
-                                                    </div>
-                                                </div>
-
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="zczj">自筹资金:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <input type="number" name="zczj" id="zczj" class="col-xs-12 col-sm-4 form-control" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="hr hr-dotted"></div>
-                                            <!--搬迁入住时间-->
-                                            <div class="form-group">
-                                                <label class="control-label col-sm-2 no-padding-right" for="bqrzsj">搬迁入住时间:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="input-group">
-                                                        <input class="form-control date-picker" id="bqrzsj" name="bqrzsj" type="text" data-date-format="yyyy-mm-dd" readonly/>
-                                                        <span class="input-group-addon">
+                                                            <div class="form-group">
+                                                                <label for="zhyxq" class="col-xs-12 col-sm-3 control-label no-padding-right">账号有效期</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="input-group ">
+                                                                        <input class="form-control date-picker" id="zhyxq" name="zhyxq" type="text" data-date-format="yyyy-mm-dd" />
+                                                                        <span class="input-group-addon">
 																		<i class="fa fa-calendar bigger-110"></i>
                                                                 </span>
-                                                    </div>
-                                                </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                                <label class="control-label col-sm-2 no-padding-right" for="sjrzsj">实际入住时间:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="input-group">
-                                                        <input class="form-control date-picker" id="sjrzsj" name="sjrzsj" type="text" data-date-format="yyyy-mm-dd" />
-                                                        <span class="input-group-addon">
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="mmyxq" class="col-xs-12 col-sm-3 control-label no-padding-right">密码有效期</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="input-group">
+                                                                        <input class="form-control date-picker" id="mmyxq" name="mmyxq" type="text" data-date-format="yyyy-mm-dd" />
+                                                                        <span class="input-group-addon">
 																		<i class="fa fa-calendar bigger-110"></i>
                                                                 </span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="yhlx" class="col-xs-12 col-sm-3 control-label no-padding-right">用户类型</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="yhlx" name="yhlx"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="lxdh" class="col-xs-12 col-sm-3 control-label no-padding-right">联系电话</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="lxdh" name="lxdh"/>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="zt" class="col-xs-12 col-sm-3 control-label no-padding-right">状态</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <label>
+                                                                            <input type="checkbox" class="col-xs-12 col-sm-8 form-control ace ace-switch btn-rotate" id="zt" name="zt" checked/>
+                                                                            <span class="lbl" data-lbl="启用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;停用"></span>
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+
+                                                    <div id="messages" class="tab-pane fade">
+                                                        <div class="row">
+                                                            <div class="widget-box widget-color-green2">
+                                                                <div class="widget-header">
+                                                                    <h4 class="widget-title lighter smaller">
+                                                                        角色列表
+                                                                        <span class="smaller-80"></span>
+                                                                    </h4>
+                                                                </div>
+
+                                                                <div class="widget-body">
+                                                                    <div class="widget-main padding-8">
+                                                                        <div class="row">
+                                                                            <div class="col-xs-12 col-sm-4" th:each="sysRole:${sysRoleList}">
+                                                                                <div class="checkbox">
+                                                                                    <label>
+                                                                                        <input name="sys-role-checkbox" type="checkbox" th:id="${sysRole.roleId}"/>
+                                                                                        <span class="lbl" th:text="${sysRole.roleName}"></span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
 
-                                            <div class="hr hr-dotted"></div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-info" data-dismiss="modal">关闭
+                                            </button>
+                                            <button type="button" class="btn btn-primary" onclick="addSysUser(1);" id="addSysUserBtn">
+                                                提交
+                                            </button>
+                                            <button type="button" class="btn btn-pink" onclick="addSysUser(2);" id="editSysUserBtn">
+                                                修改
+                                            </button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
 
-                                            <div class="form-group">
-                                                <label class="control-label col-sm-2 no-padding-right" for="sfsjrzmln">是否实际入住满两年:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <select id="sfsjrzmln" name="sfsjrzmln" class="select2" data-placeholder="点击选择...">
-                                                        <option value="">&nbsp;</option>
-                                                        <option value="yes">是</option>
-                                                        <option value="no">否</option>
-                                                    </select>
-                                                </div>
-
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="yyzf">原有住房:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <select class="input-medium form-control" id="yyzf" name="yyzf">
-                                                            <option value="">------------------</option>
-                                                            <option value="1">无房户</option>
-                                                            <option value="2">保护性住房</option>
-                                                            <option value="3">连体房</option>
-                                                            <option value="4">自建独立房</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="hr hr-dotted"></div>
-
-                                            <div class="form-group">
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="yzfmj">原住房面积:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <input type="number" name="yzfmj" id="yzfmj" class="col-xs-12 col-sm-4 form-control" />
-                                                    </div>
-                                                </div>
-
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ccjf">拆除旧房:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <select class="input-medium form-control" id="ccjf" name="ccjf" >
-                                                            <option value="">------------------</option>
-                                                            <option value="1">已拆除</option>
-                                                            <option value="2">未拆除</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="hr hr-dotted"></div>
-
-                                            <div class="form-group">
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="bhzfzl">保护住房种类:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <select class="input-medium form-control" id="bhzfzl" name="bhzfzl" >
-                                                            <option value="">------------------</option>
-                                                            <option value="1">传统保护村落</option>
-                                                            <option value="2">少数民族特色村落</option>
-                                                            <option value="3">国家乡村旅游扶贫重点村</option>
-                                                            <option value="4">重点文化旅游村落</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <label class="control-label col-sm-2 no-padding-right" for="ccsj">拆除时间:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="input-group">
-                                                        <input class="form-control date-picker" id="ccsj" name="ccsj" type="text" data-date-format="yyyy-mm" />
-                                                        <span class="input-group-addon">
-																		<i class="fa fa-calendar bigger-110"></i>
-                                                                </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="hr hr-dotted"></div>
-                                            <!--拆除旧房面积-->
-                                            <div class="form-group">
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ccjfmj">拆除旧房面积:</label>
-
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <input type="number" name="ccjfmj" id="ccjfmj" class="col-xs-12 col-sm-4 form-control" />
-                                                    </div>
-                                                </div>
-
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="dxcfjl">兑现拆房奖励:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <input type="number" name="dxcfjl" id="dxcfjl" class="col-xs-12 col-sm-4 form-control" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="hr hr-dotted"></div>
-                                            <!--复垦复绿-->
-                                            <div class="form-group">
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="fkfl">复垦复绿:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <select class="input-medium form-control" id="fkfl" name="fkfl" >
-                                                            <option value="">------------------</option>
-                                                            <option value="1">未复垦复绿</option>
-                                                            <option value="2">已复垦</option>
-                                                            <option value="3">已复绿</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="fkflmj">复垦复绿面积:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <input type="number" name="fkflmj" id="fkflmj" class="col-xs-12 col-sm-4 form-control" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="hr hr-dotted"></div>
-                                            <!--复垦复绿-->
-                                            <div class="form-group">
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="cyfcxm">产业扶持项目:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <input type="text" name="cyfcxm" id="cyfcxm" class="col-xs-12 col-sm-4 form-control" />
-                                                    </div>
-                                                </div>
-
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="nnhdcyfczj">年内获得产业扶持资金:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <input type="number" name="nnhdcyfczj" id="nnhdcyfczj" class="col-xs-12 col-sm-4 form-control" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                            <div class="hr hr-dotted"></div>
-                                            <!--复垦复绿-->
-                                            <div class="form-group">
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="tpqk">脱贫情况:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <input type="text" name="tpqk" id="tpqk" class="col-xs-12 col-sm-4 form-control" />
-                                                    </div>
-                                                </div>
-
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="hkqy">户口迁移:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <select id="hkqy" name="hkqy" class="select2" data-placeholder="点击选择...">
-                                                        <option value="">&nbsp;</option>
-                                                        <option value="yes">是</option>
-                                                        <option value="no">否</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-
-                                            <div class="hr hr-dotted"></div>
-                                            <!--复垦复绿-->
-                                            <div class="form-group">
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="fczbl">房产证办理:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <select id="fczbl" name="fczbl" class="select2" data-placeholder="点击选择...">
-                                                        <option value="">&nbsp;</option>
-                                                        <option value="yes">是</option>
-                                                        <option value="no">否</option>
-                                                    </select>
-                                                </div>
-
-                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="lxdh">联系电话:</label>
-                                                <div class="col-xs-12 col-sm-4">
-                                                    <div class="clearfix">
-                                                        <input type="phone" name="lxdh" id="lxdh" class="col-xs-12 col-sm-4 form-control" />
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </form>
-                                    </div>
-                                </div>
                             </div>
-
                         </div>
                         <div class="hr hr-double dotted"></div>
+
+                        <div>
+                            <table id="grid-table"></table>
+                            <div id="grid-pager"></div>
+                        </div>
 
                         <!-- PAGE CONTENT BEGINS -->
                         <!-- PAGE CONTENT ENDS -->

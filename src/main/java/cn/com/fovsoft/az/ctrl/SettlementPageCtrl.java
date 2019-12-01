@@ -35,4 +35,30 @@ public class SettlementPageCtrl {
 
         return modelAndView;
     }
+
+
+    @RequestMapping("/az/household")
+    public ModelAndView toSettlementHouseholdMgr(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("settlement-household-mgr");
+        modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
+
+        modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
+
+        return modelAndView;
+    }
+
+
+    @RequestMapping("/az/settlement")
+    public ModelAndView toSettlement(HttpServletRequest request){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("settlement-household-mgr");
+        modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
+
+        modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
+
+        return modelAndView;
+    }
+
+
 }

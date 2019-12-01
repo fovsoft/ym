@@ -32,7 +32,7 @@ public class AzSettlementHousehold implements Serializable {
     private String ccsj      ;//  '拆除时间',
     private String ccjfmj    ;//   '拆除旧房面积',
     private String dxcfjl    ;//         '兑现拆房奖励',
-    private String ffl       ;//         '复垦复绿',
+    private String fkfl      ;//         '复垦复绿',
     private String fkflmj    ;//   '复垦复绿面积',
     private String cyfcxm    ;//         '产业扶持项目',
     private String nnhdcyfczj;// '年内获得产业扶持资金',
@@ -234,12 +234,12 @@ public class AzSettlementHousehold implements Serializable {
         this.dxcfjl = dxcfjl;
     }
 
-    public String getFfl() {
-        return ffl;
+    public String getFkfl() {
+        return fkfl;
     }
 
-    public void setFfl(String ffl) {
-        this.ffl = ffl;
+    public void setFkfl(String ffl) {
+        this.fkfl = ffl;
     }
 
     public String getFkflmj() {

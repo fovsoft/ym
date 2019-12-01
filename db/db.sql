@@ -126,6 +126,14 @@ insert into frm_role_menu
 values (1, 9);
 insert into frm_role_menu
 values (1, 10);
+insert into frm_role_menu
+values (1, 11);
+insert into frm_role_menu
+values (1, 12);
+insert into frm_role_menu
+values (1, 13);
+insert into frm_role_menu
+values (1, 14);
 
 drop table frm_department;
 create table frm_department
@@ -547,7 +555,8 @@ create table ym_produce_income
     yf10     varchar(40) comment '10月的收入或者其他信息',
     yf11     varchar(40) comment '11月的收入或者其他信息',
     yf12     varchar(40) comment '12月的收入或者其他信息'
-);
+)ENGINE = InnoDB
+ DEFAULT CHARSET = utf8;
 
 drop table ym_salary_income;
 #工资性收入表
@@ -566,7 +575,8 @@ create table ym_salary_income(
     sa_yf10 varchar(40) comment '10月的收入或者其他信息',
     sa_yf11 varchar(40) comment '11月的收入或者其他信息',
     sa_yf12 varchar(40) comment '12月的收入或者其他信息'
-);
+)ENGINE = InnoDB
+ DEFAULT CHARSET = utf8;
 
 drop table ym_property_income;
 #财产收入表
@@ -582,7 +592,8 @@ create table ym_property_income
     pro_yf10 varchar(40) comment '10月的收入或者其他信息',
     pro_yf11 varchar(40) comment '11月的收入或者其他信息',
     pro_yf12 varchar(40) comment '12月的收入或者其他信息'
-);
+)ENGINE = InnoDB
+ DEFAULT CHARSET = utf8;
 
 
 
@@ -600,7 +611,8 @@ create table ym_transfer_income
     tra_yf10 varchar(40) comment '10月的收入或者其他信息',
     tra_yf11 varchar(40) comment '11月的收入或者其他信息',
     tra_yf12 varchar(40) comment '12月的收入或者其他信息'
-);
+)ENGINE = InnoDB
+ DEFAULT CHARSET = utf8;
 
 drop table ym_out_poverty_income;
 create table ym_out_poverty_income
@@ -616,7 +628,8 @@ create table ym_out_poverty_income
     pov_yf10 varchar(40) comment '10月的收入或者其他信息',
     pov_yf11 varchar(40) comment '11月的收入或者其他信息',
     pov_yf12 varchar(40) comment '12月的收入或者其他信息'
-);
+)ENGINE = InnoDB
+ DEFAULT CHARSET = utf8;
 
 drop table az_settlement;
 create table az_settlement(
@@ -624,10 +637,12 @@ create table az_settlement(
     azdbh varchar(20) unique comment '安置点编号',
     xzqhdm varchar(20) comment '安置点行政区划代码，关联行政区划表',
     azdmz varchar(80) comment '安置点名字',
-    azfs  char(1) comment '安置点安置方式：1,集中安置；2，分散安置',
-    cjsj date comment '创建时间',
-    gxsj date comment '更新时间'
-);
+    azfs  char(8) comment '安置点安置方式：1,集中安置；2，分散安置',
+    cjsj datetime comment '创建时间',
+    gxsj datetime comment '更新时间'
+)ENGINE = InnoDB
+ DEFAULT CHARSET = utf8;
+insert into az_settlement(azdbh,xzqhdm,azdmz,azfs,cjsj,gxsj) values('111111111111','450702000000','钦南区高新区集中安置点','集中安置',now(),now());
 
 drop table az_settlement_household;
 #安置户信息表
@@ -647,17 +662,17 @@ create table az_settlement_household
     jtsyhrk    int comment '家庭受益户人口',
     zfmj       float comment '住房面积',
     zczj       int comment '自筹资金',
-    bqrzsj     date comment '搬迁入住时间',
-    sjrzsj     date comment '实际入住时间',
+    bqrzsj     datetime comment '搬迁入住时间',
+    sjrzsj     datetime comment '实际入住时间',
     sfsjrzmln  char(2) comment '是否实际入住满两年',
     yyzf       varchar(20) comment '原有住房',
     yzfmj      float comment '原住房面积',
     ccjf       varchar(20) comment '拆除旧房',
     bhzfzl     varchar(20) comment '保护住房种类',
-    ccsj       date comment '拆除时间',
+    ccsj       datetime comment '拆除时间',
     ccjfmj     float comment '拆除旧房面积',
     dxcfjl     varchar(20) comment '兑现拆房奖励',
-    ffl        varchar(20) comment '复垦复绿',
+    fkfl        varchar(20) comment '复垦复绿',
     fkflmj     float comment '复垦复绿面积',
     cyfcxm     varchar(30) comment '产业扶持项目',
     nnhdcyfczj int comment '年内获得产业扶持资金',
@@ -665,7 +680,8 @@ create table az_settlement_household
     hkqy       char(2) comment '户口迁移',
     fczbl      char(2) comment '房子证办理',
     lxdh       varchar(20) comment '联系电话'
-);
+)ENGINE = InnoDB
+ DEFAULT CHARSET = utf8;
 
 
 
@@ -693,4 +709,5 @@ create table ym_relocate_petition
     sqrqm  varchar(20) comment '',
     lxdh   varchar(30) comment '',
     txrq   date comment ''
-);
+)ENGINE = InnoDB
+ DEFAULT CHARSET = utf8;
