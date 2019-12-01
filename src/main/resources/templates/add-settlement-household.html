@@ -478,13 +478,13 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="#">Home</a>
+                        <a href="#">主页</a>
                     </li>
 
                     <li>
-                        <a href="#">Forms</a>
+                        <a href="#">用户</a>
                     </li>
-                    <li class="active">Wizard &amp; Validation</li>
+                    <li class="active">用户管理</li>
                 </ul><!-- /.breadcrumb -->
 
                 <div class="nav-search" id="nav-search">
@@ -586,7 +586,6 @@
 
                 <div class="row">
                     <div class="col-xs-12">
-
                         <!-- 修改密码的窗口 -->
                         <div>
                             <!--新增角色的窗口-->
@@ -662,158 +661,144 @@
                             </div>
                         </div>
 
-                        <form class="form-inline" role="form">
-                            <div class="form-group">
-                                <label class="sr-only control-label">角色名:</label>
-                                <input type="text" id="s-roleName" name="s-roleName" class="form-control" placeholder="角色名">
-                                <button type="button" class="btn btn-purple btn-sm" id="searchBtn" onclick="querySysRole();">
-                                    <span class="ace-icon fa fa-search icon-on-right"></span>
-                                    查询
-                                </button>
-                                <button id="addBtn" type="button" class="btn btn-primary btn-sm" ><!--data-toggle="modal" data-target="#userAddModal">-->
-                                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
-                                </button>
-                                <button id="editBtn" type="button" class="btn btn-success btn-sm">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>修改
-                                </button>
-                                <button id="deleteBtn" type="button" class="btn btn-danger btn-sm">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>删除
-                                </button>
-                            </div>
-                        </form>
+
 
                         <div>
-                            <!--新增角色的窗口-->
-                            <div class="modal fade" id="roleAddModal" tabindex="-1" role="dialog" aria-labelledby="roleAddModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                &times;
-                                            </button>
-                                            <h4 class="modal-title green" id="myModalLabel">
-                                                <label id="addTitle">新增角色</label>
-                                                <label id="editTitle">修改角色</label>
-                                            </h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="row">
-                                                <div class="col-xs-12">
-                                                    <div class="tabbable">
-                                                        <ul class="nav nav-tabs" id="myTab">
-                                                            <li class="active">
-                                                                <a data-toggle="tab" href="#home">
-                                                                    <i class="green ace-icon fa fa-cog bigger-120"></i>
-                                                                    角色信息
-                                                                </a>
-                                                            </li>
+                            <!--新增用户的窗口-->
+                            <div class="widget-box widget-color-pink">
+                                <div class="widget-header">
+                                    <h4 class="widget-title lighter smaller">
+                                        <span class="smaller-80"></span>
+                                    </h4>
+                                </div>
 
-                                                            <li>
-                                                                <a data-toggle="tab" href="#messages">
-                                                                    <i class="red ace-icon fa fa-cogs bigger-120"></i>
-                                                                    权限信息
-                                                                </a>
-                                                            </li>
+                                <div class="widget-body">
+                                    <div class="widget-main padding-8">
+                                        <form class="form-horizontal" id="settlement-household-form">
+                                            <div class="form-group">
+                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="azdbh">安置点编号:</label>
 
-                                                        </ul>
-
-                                                        <div class="tab-content">
-                                                            <div id="home" class="tab-pane fade in active">
-                                                                <div class="row hide">
-                                                                    <input type="hidden" id="roleId" name="roleId" value=""/>
-                                                                </div>
-                                                                <form class="form-horizontal" id="sysRoleForm">
-                                                                    <div class="form-group">
-                                                                        <label for="roleName" class="col-xs-12 col-xs-3 control-label no-padding-right">角色名</label>
-                                                                        <div class="col-xs-12 col-sm-9">
-                                                                            <div class="clearfix">
-                                                                                <input type="text" class="col-xs-12 col-xs-8 form-control" id="roleName" name="roleName" placeholder="角色名长度在2-16字符之间" />
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="hr hr-dotted"></div>
-
-                                                                    <div class="form-group">
-                                                                        <label for="description" class="col-xs-12 col-sm-3 control-label no-padding-right">角色描述</label>
-                                                                        <div class="col-xs-12 col-sm-9">
-                                                                            <div class="clearfix">
-                                                                                <input type="text" class="col-xs-12 col-sm-8 form-control" id="description" name="description" placeholder="角色描述在2-30字符之间" />
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="hr hr-dotted"></div>
-
-                                                                    <div class="form-group">
-                                                                        <label for="zt" class="col-xs-12 col-sm-3 control-label no-padding-right">状态</label>
-                                                                        <div class="col-xs-12 col-sm-9">
-                                                                            <div class="clearfix">
-                                                                                <label>
-                                                                                    <input type="checkbox" class="col-xs-12 col-sm-8 form-control ace ace-switch btn-rotate" id="zt" name="zt" />
-                                                                                    <span class="lbl" data-lbl="启用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;停用"></span>
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-
-                                                            <div id="messages" class="tab-pane fade">
-                                                                <div class="row">
-                                                                    <div class="widget-box widget-color-green2">
-                                                                        <div class="widget-header">
-                                                                            <h4 class="widget-title lighter smaller">
-                                                                                权限信息树
-                                                                                <span class="smaller-80">(with selectable folders)</span>
-                                                                            </h4>
-                                                                        </div>
-
-                                                                        <div class="widget-body">
-                                                                            <div class="widget-main padding-8">
-                                                                                <ul id="permit-tree"></ul>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                <div class="col-xs-12 col-sm-10">
+                                                    <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="red ace-icon fa fa-check"></i>
+                                                                </span>
+                                                        <input type="text" name="azdbh" id="azdbh" class="form-control search-query"
+                                                               placeholder="请点击获取按钮获取安置点信息" readonly/>
+                                                        <span class="input-group-btn">
+                                                                    <button type="button" class="btn btn-purple btn-sm" id="myAzdbhBtn" data-toggle="modal" data-target="#getAzdbhModal">
+                                                                        <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+                                                                        获取
+                                                                    </button>
+                                                                </span>
                                                     </div>
-                                                </div><!-- /.col -->
+                                                </div>
+                                            </div>
+                                            <!--隐藏家庭编号-->
+                                            <div class="form-group hide">
+                                                <label class="sr-only control-label col-xs-12 col-sm-2 no-padding-right" for="jtbh">家庭编号:</label>
+                                                <input type="text" name="jtbh" id="jtbh" class="sr-only form-control search-query"/>
+                                            </div>
 
-                                                <div class="vspace-6-sm"></div>
-                                            </div><!-- /.row -->
-                                        </div>
+                                            <div class="hr hr-dotted"></div>
+                                            <!--户主-->
+                                            <div class="col-xs-12 col-sm-10">
+                                                <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="red ace-icon fa fa-check"></i>
+                                                                </span>
+                                                    <input type="text" name="hz" id="hz" class="form-control search-query"
+                                                           placeholder="请点击获取按钮搬迁户户主信息" readonly/>
+                                                    <span class="input-group-btn">
+                                                                    <button type="button" class="btn btn-purple btn-sm" id="myPersonBtn" data-toggle="modal" data-target="#getPersonModal">
+                                                                        <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+                                                                        获取
+                                                                    </button>
+                                                                </span>
+                                                </div>
+                                            </div>
 
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-info" data-dismiss="modal">关闭
-                                            </button>
-                                            <button type="button" class="btn btn-primary" onclick="addSysRole(1);" id="addSysRoleBtn">
-                                                提交
-                                            </button>
-                                            <button type="button" class="btn btn-pink" onclick="addSysRole(2);" id="editSysRoleBtn">
-                                                修改
-                                            </button>
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal -->
+                                            <div class="hr hr-dotted"></div>
 
+                                            <div class="form-group">
+                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ldfh">楼栋房号:</label>
+
+                                                <div class="col-xs-12 col-sm-4">
+                                                    <div class="clearfix">
+                                                        <input type="text" name="ldfh" id="ldfh" class="col-xs-12 col-sm-4 form-control" readonly/>
+                                                    </div>
+                                                </div>
+
+                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ndfqrw">年度搬迁任务:</label>
+
+                                                <div class="col-xs-12 col-sm-4">
+                                                    <div class="clearfix">
+                                                        <input type="tel" name="ndfqrw" id="ndfqrw" class="col-xs-12 col-sm-4 form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="hr hr-dotted"></div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="bqlx">搬迁类型:</label>
+
+                                                <div class="col-xs-12 col-sm-4">
+                                                    <div class="clearfix">
+                                                        <select class="input-medium form-control" id="bqlx" name="bqlx">
+                                                            <option value="">------------------</option>
+                                                            <option value="jdlkpkh">建档立卡贫困户</option>
+                                                            <option value="tbbqh">同步搬迁户</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="qcdsj">迁出地市级:</label>
+
+                                                <div class="col-xs-12 col-sm-4">
+                                                    <div class="clearfix">
+                                                        <input type="tel" name="qcdsj" id="qcdsj" class="col-xs-12 col-sm-4 form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="hr hr-dotted"></div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="qcdxj">迁出地县级:</label>
+
+                                                <div class="col-xs-12 col-sm-4">
+                                                    <div class="clearfix">
+                                                        <input type="tel" name="qcdxj" id="qcdxj" class="col-xs-12 col-sm-4 form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="qcdxxdz">迁出地详细地址:</label>
+
+                                                <div class="input-group col-xs-12 col-sm-4">
+                                                                <span class="input-group-addon">
+                                                                    <i class="red ace-icon fa fa-check"></i>
+                                                                </span>
+                                                    <input type="text" name="qcdxxdz" id="qcdxxdz" class="form-control search-query"
+                                                           placeholder="请点击获取迁出地详细地址信息" readonly/>
+                                                    <span class="input-group-btn">
+                                                                    <button type="button" class="btn btn-purple btn-sm" id="myXxdzBtn" data-toggle="modal" data-target="#getXxdzModal">
+                                                                        <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+                                                                        获取
+                                                                    </button>
+                                                                </span>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                         <div class="hr hr-double dotted"></div>
 
-                        <div>
-                            <table id="grid-table"></table>
-                            <div id="grid-pager"></div>
-                        </div>
-
-
-
-
-
                         <!-- PAGE CONTENT BEGINS -->
-
                         <!-- PAGE CONTENT ENDS -->
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -881,7 +866,6 @@
 <script th:src="@{/static/js/moment.min.js}"></script>
 <script th:src="@{/static/js/bootstrap-datetimepicker.min.js}"></script>
 <script th:src="@{/static/js/bootstrap-colorpicker.min.js}"></script>
-<script th:src="@{/static/js/bootstrap-treeview.js}"></script>
 
 <!-- ace scripts -->
 <script th:src="@{/static/js/ace-elements.min.js}"></script>
@@ -925,8 +909,8 @@
                     type: "POST",//请求方式为POST
                     url: "/user/password",//检验url
                     data:{
-                        "oldPassword":oldPassword,
-                        "newPassword":newPassword
+                      "oldPassword":oldPassword,
+                      "newPassword":newPassword
                     },
                     dataType: 'json',//数据类型为JSON类型
                     cache: false,//关闭缓存
@@ -1007,7 +991,7 @@
             //     return JSON.stringify(postData);
             // },
             height: 450,
-            colNames:[' ','角色ID','角色名','角色描述','状态','角色创建时间','角色更新时间'],
+            colNames:[' ','用户ID','用户名','密码','部门','性别','出生日期','身份证明号码','邮箱','ip起始地址','ip结束地址','账户有效期','密码有效期','用户类型','联系电话','最近登录ip','状态','创建时间','更新时间'],
             colModel:[
                 {name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
                     formatter:'actions',
@@ -1019,10 +1003,22 @@
                         //editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
                     }
                 },
-                {name:'roleId',       index:'roleId',       width:60, fixed:true, editable:false, sorttype:"int" },
-                {name:'roleName',       index:'roleName',       width:60, fixed:true, editable:true },
-                {name:'description',         index:'description',         width:120, fixed:true, editable:true},
-                {name:'zt',         index:'zt',         width:40, fixed:true, editable:true,unformat:aceSwitch },
+                {name:'userId',       index:'userId',       width:60, fixed:true, editable:true, sorttype:"int" },
+                {name:'userName',       index:'userName',       width:60, fixed:true, editable:true, sorttype:"int" },
+                {name:'password',         index:'password',         width:60, fixed:true, editable:true,                 },
+                {name:'department',         index:'department',         width:40, fixed:true, editable:true,                 },
+                {name:'sex',     index:'sex',     width:140, fixed:true, editable:true,                 },
+                {name:'birthday',     index:'birthday',     width:70, fixed:true, editable:true, sorttype:"date", unformat: pickDate},
+                {name:'sfzmhm',       index:'sfzmhm',       width:150, fixed:true, editable:true,                 },
+                {name:'email',    index:'email',    width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'ipks',    index:'ipks',    width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'ipjs',      index:'ipjs',      width:80, fixed:true, editable:true,                 },
+                {name:'zhyxq',         index:'zhyxq',         width:70, fixed:true, editable:true, sorttype:"date", unformat: pickDate},
+                {name:'mmyxq',       index:'mmyxq',       width:70, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'yhlx',       index:'yhlx',       width:70, fixed:true, editable:true,                 },
+                {name:'lxdh',       index:'lxdh',       width:70, fixed:true, editable:true,                 },
+                {name:'zjdlip',      index:'zjdlip',      width:80, fixed:true, editable:true,                 },
+                {name:'zt',    index:'zt',    width:110, fixed:true, editable:true,                 },
                 {name:'cjsj',       index:'cjsj',       width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate},
                 {name:'gxsj',       index:'gxsj',       width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate}
             ],
@@ -1048,170 +1044,31 @@
             },
 
             editurl: "./dummy.php",//nothing is saved
-            caption: "用户角色列表"
+            caption: "贫困人员信息列表"
 
         });
         $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
 
 
 
-
-        //权限树方法
-        //权限树的方法
-        var nodeCheckedSilent = false;
-
-        function nodeChecked(event, node) {
-            if (nodeCheckedSilent) {
-                return;
-            }
-            nodeCheckedSilent = true;
-            checkAllParent(node);
-            checkAllSon(node);
-            nodeCheckedSilent = false;
-        }
-
-        var nodeUncheckedSilent = false;
-
-        function nodeUnchecked(event, node) {
-            if (nodeUncheckedSilent)
-                return;
-            nodeUncheckedSilent = true;
-            uncheckAllParent(node);
-            uncheckAllSon(node);
-            nodeUncheckedSilent = false;
-        }
-
-        //选中全部父节点
-        function checkAllParent(node) {
-            $('#permit-tree').treeview('checkNode', node.nodeId, {
-                silent: true
-            });
-            var parentNode = $('#permit-tree').treeview('getParent', node.nodeId);
-            if (!("nodeId" in parentNode)) {
-                return;
-            } else {
-                checkAllParent(parentNode);
-            }
-        }
-        //取消全部父节点
-        function uncheckAllParent(node) {
-            $('#permit-tree').treeview('uncheckNode', node.nodeId, {
-                silent: true
-            });
-            var siblings = $('#permit-tree').treeview('getSiblings', node.nodeId);
-            var parentNode = $('#permit-tree').treeview('getParent', node.nodeId);
-            if (!("nodeId" in parentNode)) {
-                return;
-            }
-            var isAllUnchecked = true; //是否全部没选中
-            for (var i in siblings) {
-                if (siblings[i].state.checked) {
-                    isAllUnchecked = false;
-                    break;
-                }
-            }
-            if (isAllUnchecked) {
-                uncheckAllParent(parentNode);
-            }
-
-        }
-
-        //级联选中所有子节点
-        function checkAllSon(node) {
-            $('#permit-tree').treeview('checkNode', node.nodeId, {
-                silent: true
-            });
-            if (node.nodes != null && node.nodes.length > 0) {
-                for (var i in node.nodes) {
-                    checkAllSon(node.nodes[i]);
-                }
-            }
-        }
-        //级联取消所有子节点
-        function uncheckAllSon(node) {
-            $('#permit-tree').treeview('uncheckNode', node.nodeId, {
-                silent: true
-            });
-            if (node.nodes != null && node.nodes.length > 0) {
-                for (var i in node.nodes) {
-                    uncheckAllSon(node.nodes[i]);
-                }
-            }
-        }
-
-        function addNote() {
-            //得到选择的节点
-            var nodeData = $('#permit-tree').treeview('getSelected')[0];
-            //获取数据，添加到树中
-            $.getJSON("treeAddData.json", function (data) {
-                $('#permit-tree').treeview("addNode", [nodeData.nodeId, {node: data}]);
-            });
-        }
-
-        /**
-         * 删除节点,如果该节点如果是根节点，不能删除
-         */
-        function deleteNode() {
-            var nodeData = $('#permit-tree').treeview('getSelected')[0];
-            $('#permit-tree').treeview("deleteNode", nodeData.nodeId);
-        }
-
-        /**
-         * 删除全部子节点
-         */
-        function deleteChildrenNode(event,node) {
-            var node1 = {};
-            $('#permit-tree').treeview("deleteChildrenNode", node.nodeId);
-            $('#permit-tree').treeview("addNode", [node.nodeId, {node: node1}]);
-        }
-
-        /**
-         * 一个节点被展开 惰性加载
-         */
-        function addNextNode(event, node) {
-
-            var myData = {
-                id:node.nodeid
-            };
-
-            $.getJSON("/role/getChild",myData, function (data) {
-                $('#permit-tree').treeview("deleteChildrenNode", node.nodeId);
-                $('#permit-tree').treeview("addNode", [node.nodeId, {node: data.childNodes}]);
-            });
-        }
-
         //当点击新增按钮时，显示模态框
         $("#addBtn").on("click",function () {
-            $("#roleId").val("");
-            $("#roleName").val("");
-            $("#description").val("");
+            //先把表格置空
+            $("#userId").val("");
+            //$("#userName").val("");
+            //$("#department").val("");
+            $(":input","#sysUserForm").not(":button,:submit,:reset,:hidden").val("");
+            $("#sex").find("option[value='man']").attr("selected",true);
             $("#zt").prop("checked",false);
-            $("#roleAddModal").modal("show");
-            $("#addSysRoleBtn").removeClass("hide");
-            $("#editSysRoleBtn").addClass("hide");
+            //$("#csrq").val("");
+            //$("#sysUserForm").
+            $("#userAddModal").modal("show");
+            $("#addSysUserBtn").removeClass("hide");
+            $("#editSysUserBtn").addClass("hide");
             $("#addTitle").removeClass("hide");
             $("#editTitle").addClass("hide");
-
-            $.ajax({
-                type: "POST",//请求方式为POST
-                url: "/role/rootPermission",//检验url
-                dataType: 'json',//数据类型为JSON类型
-                cache: false,//关闭缓存
-                success: function (data) {
-                    alert(data.rootNodes);
-                    $('#permit-tree').treeview('remove');
-                    $('#permit-tree').treeview({
-                        showCheckbox: true,
-                        data: data.rootNodes,
-                        onNodeChecked: nodeChecked,
-                        onNodeUnchecked: nodeUnchecked,
-                        onNodeExpanded: addNextNode,
-                        onNodeCollapsed: deleteChildrenNode
-                    });
-
-                }
-            })
-
+            //先把所有角色不选中
+            $("input[name='sys-role-checkbox']").prop("checked",false);
 
 
         });
@@ -1224,49 +1081,53 @@
             if(rowid==null){
                 $("#editBtn").tips({
                     side : 3,
-                    msg : '请勾选一个角色！',
+                    msg : '请勾选一个用户！',
                     bg : '#AE81FF',
                     time : 5
                 });
             }else{
                 var rowData = $("#grid-table").jqGrid('getRowData',rowid);
-                $("#roleAddModal").modal("show");
-                $("#editSysRoleBtn").removeClass("hide");
-                $("#addSysRoleBtn").addClass("hide");
+
+                $("#userAddModal").modal("show");
+                $("#editSysUserBtn").removeClass("hide");
+                $("#addSysUserBtn").addClass("hide");
                 $("#editTitle").removeClass("hide");
                 $("#addTitle").addClass("hide");
-
-                $("#roleId").attr("value", rowData.roleId);
-                $("#roleName").attr("value",    rowData.roleName  );
-                $("#description").attr("value",  rowData.description);
-
+                $("#userId").attr("value", rowData.userId);
+                $("#userName").attr("value",    rowData.userName  );
+                $("#department").attr("value",  rowData.department);
+                $("#sex").attr("value",         rowData.sex       );
+                $("#birthday").attr("value",    rowData.birthday  );
+                $("#sfzmhm").attr("value",      rowData.sfzmhm    );
+                $("#email").attr("value",       rowData.email     );
+                $("#ipks").attr("value",        rowData.ipks      );
+                $("#ipjs").attr("value",        rowData.ipjs      );
+                $("#zhyxq").attr("value",       rowData.zhyxq     );
+                $("#mmyxq").attr("value",       rowData.mmyxq     );
+                $("#yhlx").attr("value",        rowData.yhlx      );
+                $("#lxdh").attr("value",        rowData.lxdh      );
                 if(rowData.zt=="1"){
                     $("#zt").prop("checked",true);
                 }else {
                     $("#zt").prop("checked",false);
                 }
+                //先把所有角色不选中
+                $("input[name='sys-role-checkbox']").prop("checked",false);
+                //拿到id后，与前端交互获取角色id，然后把角色选中
+                var myData = {
+                    "userId":rowData.userId
+                };
+                $.getJSON("/user/getRole",myData,function (data) {
 
-                //修改数据交互
-                $.ajax({
-                    type: "POST",//请求方式为POST
-                    url: "/role/listSelfPermission",//检验url
-                    dataType: 'json',//数据类型为JSON类型
-                    cache: false,//关闭缓存
-                    data:{
-                        "roleId":rowData.roleId
-                    },
-                    success: function (data) {
-                        console.log(data.treeNodes);
-                        $('#permit-tree').treeview('remove');
-                        $('#permit-tree').treeview({
-                            showCheckbox: true,
-                            data: data.treeNodes,
-                            onNodeChecked: nodeChecked,
-                            onNodeUnchecked: nodeUnchecked,
-                            onNodeExpanded: addNextNode,
-                            onNodeCollapsed: deleteChildrenNode
-                        });
-                        console.log($('#permit-tree').treeview('getNode'));
+                    var checkBoxRole = $("input[name='sys-role-checkbox']");
+                    var sysRole = data.sysRoleList;
+                    for(var i=0;i<checkBoxRole.length;i++){
+                        for(var j=0;j<sysRole.length;j++){
+                            if(checkBoxRole[i].id==sysRole[j].roleId){
+                                $(checkBoxRole[i]).prop("checked",true);
+                            }
+
+                        }
                     }
 
                 })
@@ -1280,27 +1141,26 @@
             var input = confirm("确定删除选定数据吗？");
             if(input){
                 var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
-
                 if(rowids !=""){
                     var idArr = "";
                     for(var i=0;i<rowids.length;i++){
                         var rowData = $("#grid-table").jqGrid('getRowData',rowids[i]);
-                        idArr = idArr + rowData.roleId + ",";
+                        idArr = idArr + rowData.userId + ",";
                     }
                     $.ajax({
                         type: "POST",//请求方式为POST
-                        url: "/role/delete",//检验url
+                        url: "/user/delete",//检验url
                         data: {
                             "idArr": idArr
                         },//请求数据
                         dataType: 'json',//数据类型为JSON类型
                         cache: false,//关闭缓存
                         success: function (data) {
-                            alert("角色删除成功！");
+                            alert("用户删除成功！");
                             $("#grid-table").jqGrid('clearGridData');
                             $("#grid-table").jqGrid('setGridParam', {
                                 datatype:"json",
-                                url:"/role/list"
+                                url:"/user/list"
                             }).trigger("reloadGrid");
                         }//响应成功
                     })
@@ -1308,7 +1168,7 @@
                 }else {
                     $("#deleteBtn").tips({
                         side : 3,
-                        msg : '请至少勾选一个角色！',
+                        msg : '请至少勾选一个用户！',
                         bg : '#AE81FF',
                         time : 5
                     });
@@ -1456,140 +1316,182 @@
             $.jgrid.gridDestroy(grid_selector);
             $('.ui-jqdialog').remove();
         });
-    });
-
-
-
-
-
-
-
+    })
 
 
     /**客户端校验**/
     function checkValidity() {
-        var nodeArray = $("#permit-tree").treeview('getChecked');
 
-        if ($("#roleName").val() == "") {
-            $('#myTab a[href="#home"]').tab('show');
-            $("#roleName").focus();
-            $("#roleName").tips({
-                side: 3,
-                msg: '角色名不得为空',
-                bg: '#ff1a96',
-                time: 3
+        alert($("#userName").val()+'111');
+        if ($("#userName").val() == "") {
+
+            $("#userName").focus();
+            $("#userName").tips({
+                side : 3,
+                msg : '用户名不得为空',
+                bg : '#AE81FF',
+                time : 3
             });
             return false;
-        }else if(nodeArray.length==0){
-            confirm("角色权限不能为空！");
-            return  false;
+        }
+
+        if ($("#zhyxq").val() == "") {
+            $("#zhyxq").tips({
+                side : 3,
+                msg : '账号有效期不得为空',
+                bg : '#AE81FF',
+                time : 3
+            });
+
+            $("#zhyxq").focus();
+            return false;
+        }
+        if ($("#mmyxq").val() == "") {
+
+            $("#mmyxq").tips({
+                side : 3,
+                msg : '密码有效期不得为空',
+                bg : '#AE81FF',
+                time : 3
+            });
+
+            $("#mmyxq").focus();
+            return false;
         }
 
         return true;
     }
 
 
-    //新增和修改角色方法
-    function addSysRole(id) {
+    //新增用户方法
+    function addSysUser(id) {
         if(checkValidity()) {
-            var roleId = $("#roleId").val();
-            var roleName = $("#roleName").val();
-            var description = $("#description").val();
+            var userId = $("#userId").val();
+            var userName = $("#userName").val();
+            var department = $("#department").val();
+            var sex = $("#sex").val();
+            var birthday = $("#birthday").val();
+            var sfzmhm = $("#sfzmhm").val();
+            var email = $("#email").val();
+            var ipks = $("#ipks").val();
+            var ipjs = $("#ipjs").val();
+            var zhyxq = $("#zhyxq").val();
+            var mmyxq = $("#mmyxq").val();
+            var yhlx = $("#yhlx").val();
+            var lxdh = $("#lxdh").val();
             var zt = "1";
             if(!$("#zt").prop("checked")){
                 zt = "0";
-            }
-            var checkedNode = $("#permit-tree").treeview("getChecked");
-
-            var returnIdStr = "";
-            //获取菜单id
-            for(var i=0;i<checkedNode.length;i++){
-                returnIdStr = returnIdStr + checkedNode[i].nodeid + ",";
             }
 
             //设置返回执行的方法
             var url = "";
             if(id==1){
-                url="/role/add";
+                url="/user/add";
             }else if(id==2){
-                url="/role/edit";
+                url="/user/edit";
             }
-            $.ajax({
-                type: "POST",//请求方式为POST
-                url: url,//检验url
-                data: {
-                    "roleId": roleId,
-                    "roleName": roleName,
-                    "description": description,
-                    "zt": zt,
-                    "idArray":returnIdStr
-                },//请求数据
-                dataType: 'json',//数据类型为JSON类型
-                cache: false,//关闭缓存
-                success: function (data) {//响应成功
-                    alert(data.status);
-                    alert(data.result);
-                    if (1 == data.status) {
-                        confirm("新增角色成功！")
-                        //window.location.href="/index";
-                    } else if(2 == data.status){
-                        confirm("修改角色成功！")
-                    }else if ("havedUser" == data.result) {
-                        $("#roleName").focus();
-                        $("#roleName").tips({
-                            side: 3,
-                            msg: "该角色已经存在",
-                            bg: '#FF5080',
-                            time: 15
-                        });
-                    } else if ("isNull" == data.result) {
-                        $("#roleName").focus();
-                        $("#roleName").tips({
-                            side: 3,
-                            msg: '角色名不能为空格！',
-                            bg: '#b5161f',
-                            time: 5
-                        });
-                    } else if ("error" == data.result) {
-                        $("#roleName").focus();
-                        $("#roleName").tips({
-                            side: 3,
-                            msg: '数据库存入数据失败！',
-                            bg: '#2a0ab5',
-                            time: 10
-                        });
-                    } else if ("inerror" == data.result) {
-                        $("#roleName").focus();
-                        $("#roleName").tips({
-                            side: 3,
-                            msg: '数据库修改数据失败！',
-                            bg: '#68B500',
-                            time: 10
-                        });
-                    } else {
-                        confirm("程序存在异常，请联系管理员！");
-                        $("#roleName").focus();
-                    }
+            //获取选中的角色id
+            var checkboxArr = $("input[name='sys-role-checkbox']:checked");
+            var roleIdArr = "";
+            if(checkboxArr.length<1){
+                alert("请为用户至少选择一个角色！");
+            }else{
+                for(var i=0;i<checkboxArr.length;i++){
+                    roleIdArr = roleIdArr + checkboxArr[i].id + ",";
                 }
-            });
+                $.ajax({
+                    type: "POST",//请求方式为POST
+                    url: url,//检验url
+                    data: {
+                        "userId": userId,
+                        "userName": userName,
+                        "department": department,
+                        "sex": sex,
+                        "birthday": birthday,
+                        "sfzmhm": sfzmhm,
+                        "email": email,
+                        "ipks": ipks,
+                        "ipjs": ipjs,
+                        "zhyxq": zhyxq,
+                        "mmyxq": mmyxq,
+                        "yhlx": yhlx,
+                        "lxdh": lxdh,
+                        "zt": zt,
+                        "roleIdArr":roleIdArr
+                    },//请求数据
+                    dataType: 'json',//数据类型为JSON类型
+                    cache: false,//关闭缓存
+                    success: function (data) {//响应成功
+
+
+                        if (1 == data.status) {
+                            confirm("新增用户成功！")
+                            //window.location.href="/index";
+                        } else if(2 == data.status){
+                            confirm("修改用户成功！")
+                        }else if ("havedUser" == data.result) {
+                            $("#userName").focus();
+                            $("#userName").tips({
+                                side: 3,
+                                msg: "该用户已经存在",
+                                bg: '#FF5080',
+                                time: 15
+                            });
+                        } else if ("isNull" == data.result) {
+                            $("#userName").focus();
+                            $("#userName").tips({
+                                side: 3,
+                                msg: '用户不能为空格！',
+                                bg: '#68B500',
+                                time: 5
+                            });
+                        } else if ("error" == data.result) {
+                            $("#userName").focus();
+                            $("#userName").tips({
+                                side: 3,
+                                msg: '数据库存入数据失败！',
+                                bg: '#68B500',
+                                time: 10
+                            });
+                        } else if ("inerror" == data.result) {
+                            $("#userName").focus();
+                            $("#userName").tips({
+                                side: 3,
+                                msg: '数据库修改数据失败！',
+                                bg: '#68B500',
+                                time: 10
+                            });
+                        } else {
+                            confirm("程序存在异常，请联系管理员！");
+                            $("#userName").focus();
+                        }
+                    }
+                });
+            }
+
+
         }
     }
-
+    
     //查询用户的方法
-    function querySysRole() {
-        var roleName = $("#s-roleName").val();
-        if(roleName==""){
+    function querySysUser() {
+        var userName = $("#s-userName").val();
+        var sfzmhm = $("#s-sfzmhm").val();
+        var lxdh = $("#s-lxdh").val();
+        var email = $("#s-email").val();
+        if(userName==""&&sfzmhm==""&&lxdh==""&&email==""){
 
             $("#searchBtn").tips({
                 side: 3,
-                msg: '将进行全部角色查询！',
+                msg: '将进行全部用户查询！',
                 bg: '#68B500',
                 time: 3
             });
             $("#grid-table").jqGrid('clearGridData');
             $("#grid-table").jqGrid('setGridParam', {
                 datatype:"json",
-                url:"/role/list"
+                url:"/user/list"
             }).trigger("reloadGrid");
         }else {
             $("#grid-table").jqGrid('clearGridData');
@@ -1597,15 +1499,19 @@
                 datatype:"json",
                 mtype:"POST",
                 page:1,
-                url:"/role/search",
+                url:"/user/search",
                 postData:{
-                    "roleName": roleName
+                    "userName": userName,
+                    "sfzmhm": sfzmhm,
+                    "email": email,
+                    "lxdh": lxdh
                 }
             }).trigger("reloadGrid");
         }
 
     }
 
+    
 </script>
 </body>
 </html>

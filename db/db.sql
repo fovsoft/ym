@@ -618,6 +618,55 @@ create table ym_out_poverty_income
     pov_yf12 varchar(40) comment '12月的收入或者其他信息'
 );
 
+drop table az_settlement;
+create table az_settlement(
+    id int(10) auto_increment primary key comment '主键值',
+    azdbh varchar(20) unique comment '安置点编号',
+    xzqhdm varchar(20) comment '安置点行政区划代码，关联行政区划表',
+    azdmz varchar(80) comment '安置点名字',
+    azfs  char(1) comment '安置点安置方式：1,集中安置；2，分散安置',
+    cjsj date comment '创建时间',
+    gxsj date comment '更新时间'
+);
+
+drop table az_settlement_household;
+#安置户信息表
+create table az_settlement_household
+(
+    id         int(10) auto_increment primary key comment '主键值',
+    azdbh      varchar(20) comment '安置点编号',
+    jtbh       varchar(20) comment '家庭编号',
+    hz         varchar(20) comment '户主',
+    ldfh       varchar(40) comment '楼栋房号',
+    ndfqrw     varchar(10) comment '年度搬迁任务',
+    bqlx       varchar(20) comment '搬迁类型：1，建档立卡贫困户；2，同步搬迁户',
+    qcdsj      varchar(20) comment '迁出底市级',
+    qcdxj      varchar(20) comment '迁出地县级',
+    qcdxxdz    varchar(80) comment '迁出地详细地址',
+    qcdlx      char(4) comment '迁出地类型：1，一类；2，二类；3，三类；4，四类',
+    jtsyhrk    int comment '家庭受益户人口',
+    zfmj       float comment '住房面积',
+    zczj       int comment '自筹资金',
+    bqrzsj     date comment '搬迁入住时间',
+    sjrzsj     date comment '实际入住时间',
+    sfsjrzmln  char(2) comment '是否实际入住满两年',
+    yyzf       varchar(20) comment '原有住房',
+    yzfmj      float comment '原住房面积',
+    ccjf       varchar(20) comment '拆除旧房',
+    bhzfzl     varchar(20) comment '保护住房种类',
+    ccsj       date comment '拆除时间',
+    ccjfmj     float comment '拆除旧房面积',
+    dxcfjl     varchar(20) comment '兑现拆房奖励',
+    ffl        varchar(20) comment '复垦复绿',
+    fkflmj     float comment '复垦复绿面积',
+    cyfcxm     varchar(30) comment '产业扶持项目',
+    nnhdcyfczj int comment '年内获得产业扶持资金',
+    tpqk       varchar(20) comment '脱贫情况',
+    hkqy       char(2) comment '户口迁移',
+    fczbl      char(2) comment '房子证办理',
+    lxdh       varchar(20) comment '联系电话'
+);
+
 
 
 

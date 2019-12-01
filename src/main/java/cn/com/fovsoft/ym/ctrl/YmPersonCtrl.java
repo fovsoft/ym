@@ -98,7 +98,7 @@ public class YmPersonCtrl {
     }
 
     @RequestMapping(value="/ym/add")
-    public ModelAndView listPersonHtml(HttpServletRequest request,HttpServletResponse response) throws IOException{
+    public ModelAndView listPersonHtml(HttpServletRequest request) throws IOException{
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("add-ym-information");

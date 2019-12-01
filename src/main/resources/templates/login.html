@@ -419,8 +419,8 @@
 									time : 3
 								});
 								$("#code").focus();
-							}else if("locked" == data.result){
-								alert('您的账号被锁定了，呜呜');
+							}else if("stopUse" == data.result){
+								alert('您的账号被停用了，请联系管理员进行处理！');
 							}else{
 								$("#username").tips({
 									side : 1,

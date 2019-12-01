@@ -279,11 +279,7 @@ public class SysRoleCtrl {
             sysRole = new SysRole();
             sysRole.setRoleName(roleName);
             sysRole.setDescription(description);
-            if(zt.equals("on")){
-                sysRole.setZt("1");
-            }else {
-                sysRole.setZt("0");
-            }
+            sysRole.setZt(zt);
             sysRole.setCjsj(DateUtil.getStringDate());
             sysRole.setGxsj(DateUtil.getStringDate());
 

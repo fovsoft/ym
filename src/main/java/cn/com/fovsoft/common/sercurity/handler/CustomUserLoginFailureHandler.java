@@ -58,6 +58,13 @@ public class CustomUserLoginFailureHandler extends SimpleUrlAuthenticationFailur
             response.getWriter().flush();
             response.getWriter().close();
             sessionCode = (String)request.getSession().getAttribute(VarConstant.SESSION_VERIFY_CODE);
+        }else if(exception.getMessage().equals("user stop use")){
+            response.setContentType("application/json;charset=utf-8");
+            map.put("status",0);
+            map.put("result","stopUse");
+            response.getWriter().write(objectMapper.writeValueAsString(map));
+            response.getWriter().flush();
+            response.getWriter().close();
         }
 
 

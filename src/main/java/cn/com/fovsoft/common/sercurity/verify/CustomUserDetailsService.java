@@ -3,6 +3,7 @@ package cn.com.fovsoft.common.sercurity.verify;
 import cn.com.fovsoft.common.bean.SysMenu;
 import cn.com.fovsoft.common.bean.SysUser;
 
+import cn.com.fovsoft.common.sercurity.exception.SysUserStopUseException;
 import cn.com.fovsoft.common.service.SysMenuService;
 import cn.com.fovsoft.common.service.SysUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,6 +48,10 @@ public class CustomUserDetailsService implements UserDetailsService {
         if(sysUser == null){
             System.out.println("没有该用户");
             throw new UsernameNotFoundException("not have this user");
+        }
+
+        if (sysUser.getZt().equals("0")) {
+            throw new SysUserStopUseException("user stop use");
         }
         Collection<GrantedAuthority> authorities = new ArrayList<>();
             //根据用户id拿到菜单权限信息

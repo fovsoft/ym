@@ -726,7 +726,7 @@
                                                         <div class="row hide">
                                                             <input type="hidden" id="userId" name="userId" value=""/>
                                                         </div>
-                                                        <form class="form-horizontal">
+                                                        <form class="form-horizontal" id="sysUserForm">
                                                             <div class="form-group">
                                                                 <label for="userName" class="col-xs-12 col-xs-3 control-label no-padding-right">用户名</label>
                                                                 <div class="col-xs-12 col-sm-9">
@@ -877,8 +877,8 @@
                                                                 <div class="col-xs-12 col-sm-9">
                                                                     <div class="clearfix">
                                                                         <label>
-                                                                            <input type="checkbox" class="col-xs-12 col-sm-8 form-control ace ace-switch btn-rotate" id="zt" name="zt" />
-                                                                            <span class="lbl" data-lbl="启&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;停"></span>
+                                                                            <input type="checkbox" class="col-xs-12 col-sm-8 form-control ace ace-switch btn-rotate" id="zt" name="zt" checked/>
+                                                                            <span class="lbl" data-lbl="启用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;停用"></span>
                                                                         </label>
                                                                     </div>
                                                                 </div>
@@ -1195,6 +1195,15 @@
 
         //当点击新增按钮时，显示模态框
         $("#addBtn").on("click",function () {
+            //先把表格置空
+            $("#userId").val("");
+            //$("#userName").val("");
+            //$("#department").val("");
+            $(":input","#sysUserForm").not(":button,:submit,:reset,:hidden").val("");
+            $("#sex").find("option[value='man']").attr("selected",true);
+            $("#zt").prop("checked",false);
+            //$("#csrq").val("");
+            //$("#sysUserForm").
             $("#userAddModal").modal("show");
             $("#addSysUserBtn").removeClass("hide");
             $("#editSysUserBtn").addClass("hide");
@@ -1239,7 +1248,11 @@
                 $("#mmyxq").attr("value",       rowData.mmyxq     );
                 $("#yhlx").attr("value",        rowData.yhlx      );
                 $("#lxdh").attr("value",        rowData.lxdh      );
-                $("#zt").attr("value",          rowData.zt        );
+                if(rowData.zt=="1"){
+                    $("#zt").prop("checked",true);
+                }else {
+                    $("#zt").prop("checked",false);
+                }
                 //先把所有角色不选中
                 $("input[name='sys-role-checkbox']").prop("checked",false);
                 //拿到id后，与前端交互获取角色id，然后把角色选中
@@ -1508,7 +1521,10 @@
             var mmyxq = $("#mmyxq").val();
             var yhlx = $("#yhlx").val();
             var lxdh = $("#lxdh").val();
-            var zt = $("#zt").val();
+            var zt = "1";
+            if(!$("#zt").prop("checked")){
+                zt = "0";
+            }
 
             //设置返回执行的方法
             var url = "";

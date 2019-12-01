@@ -289,8 +289,13 @@ public class SysUserCtrl {
         sysUser.setMmyxq(DateUtil.strToDate(mmyxq));
         sysUser.setZhyxq(DateUtil.strToDate(zhyxq));
         sysUser.setZjdlip("0.0.0.0");
-        sysUser.setSex(sex);
+        if(sex.equals("woman")){
+            sysUser.setSex("女");
+        }else {
+            sysUser.setSex("男");
+        }
         sysUser.setSfzmhm(sfzmhm);
+        sysUser.setZt(zt);
 
         String[] roleIdArray = roleIdArr.substring(0,roleIdArr.length()-1).split(",");
         //先删除原先拥有的角色信息
@@ -316,7 +321,7 @@ public class SysUserCtrl {
             sysMenu1.setChildMenuList(sysMenuService.findChildMenu(sysMenu1.getMenuId()));
         }
         //修改session缓存
-        request.getSession().removeAttribute("rootSysMenuList");
+        //request.getSession().removeAttribute("rootSysMenuList");
         //把菜单信息写入session
         request.getSession().setAttribute("rootSysMenuList",rootSysMenuList);
 
@@ -401,10 +406,15 @@ public class SysUserCtrl {
             sysUser.setMmyxq(DateUtil.strToDate(mmyxq));
             sysUser.setZhyxq(DateUtil.strToDate(zhyxq));
             sysUser.setZjdlip("0.0.0.0");
-            sysUser.setSex(sex);
+            if(sex.equals("woman")){
+                sysUser.setSex("女");
+            }else {
+                sysUser.setSex("男");
+            }
             sysUser.setSfzmhm(sfzmhm);
             String password = new BCryptPasswordEncoder().encode("888888");
             sysUser.setPassword(password);
+            sysUser.setZt(zt);
 
             //获取授权角色id
             String[] roleIdArray = roleIdArr.substring(0,roleIdArr.length()-1).split(",");
