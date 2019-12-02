@@ -588,7 +588,7 @@
                     <div class="col-xs-12">
                         <!-- 修改密码的窗口 -->
                         <div>
-                            <!--新增角色的窗口-->
+                            <!-- 修改密码的窗口 -->
                             <div class="modal fade" id="updatePasswordModal" tabindex="-1" role="dialog" aria-labelledby="updatePasswordModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
@@ -662,9 +662,62 @@
                         </div>
 
 
+                        <!--获取安置点信息-->
+                        <div>
+                            <div class="modal fade" id="getSettlementModal" tabindex="-1" role="dialog" aria-labelledby="getSettlementModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title red" id="getSettlementModalLabel">
+                                                <label>安置点列表，请进行勾选</label>
+                                            </h4>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <div class="widget-box widget-color-red2">
+                                                <div class="widget-header">
+                                                    <h4 class="widget-title lighter smaller">
+                                                        <span class="smaller-80"></span>
+                                                    </h4>
+                                                </div>
+
+                                                <div class="widget-body">
+                                                    <div class="widget-main padding-8">
+                                                        <div class="row">
+                                                            <div class="col-xs-12 col-sm-4" th:each="azSettlement:${azSettlementList}" id="azSettlementCheckBoxDiv">
+                                                                <div class="checkbox">
+                                                                    <label>
+                                                                        <input name="az-settlement-checkbox" type="checkbox" th:id="${azSettlement.id}" th:name="${azSettlement.azdbh}"/>
+                                                                        <span class="lbl" th:text="${azSettlement.azdmz}"></span>
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-info" data-dismiss="modal">关闭
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="getAzdbhBtn">
+                                                确定
+                                            </button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+
+                            </div>
+                        </div>
+
+
 
                         <div>
-                            <!--新增用户的窗口-->
+                            <!--主输入框-->
                             <div class="widget-box widget-color-pink">
                                 <div class="widget-header">
                                     <h4 class="widget-title lighter smaller">
@@ -1181,6 +1234,144 @@
                             alert("发生不可预测的错误，请联系管理员！");
                         }
                     }//响应成功
+                })
+            }
+        });
+
+
+
+        //进行输入框的判断
+        function checkSettlementHouseholdForm(){
+            if($("#azdbh").val()==""){
+                $("#azdbh").focus();
+                $("#azdbh").tips({
+                    side : 3,
+                    msg : '安置点编号不能为空，请进行获取!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#hz").val()==""){
+                $("#hz").focus();
+                $("#hz").tips({
+                    side : 3,
+                    msg : '户主不能为空，请进行获取!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#qcdlx").val()==""){
+                $("#qcdlx").focus();
+                $("#qcdlx").tips({
+                    side : 3,
+                    msg : '请选择一个迁出地类型!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#bqrzsj").val()==""){
+                $("#qcdlx").focus();
+                $("#qcdlx").tips({
+                    side : 3,
+                    msg : '搬迁入住时间不能为空!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#sjrzsj").val()==""){
+                $("#sjrzsj").focus();
+                $("#sjrzsj").tips({
+                    side : 3,
+                    msg : '搬迁入住时间不能为空!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#sfsjrzmln").val()==""){
+                $("#sjrzsj").focus();
+                $("#sjrzsj").tips({
+                    side : 3,
+                    msg : '请进行选择!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#yyzf").val()==""){
+                $("#yyzf").focus();
+                $("#yyzf").tips({
+                    side : 3,
+                    msg : '请进行选择!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#ccjf").val()==""){
+                $("#ccjf").focus();
+                $("#ccjf").tips({
+                    side : 3,
+                    msg : '请进行选择!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#bhzfzl").val()==""){
+                $("#bhzfzl").focus();
+                $("#bhzfzl").tips({
+                    side : 3,
+                    msg : '请进行选择!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#fkfl").val()==""){
+                $("#fkfl").focus();
+                $("#fkfl").tips({
+                    side : 3,
+                    msg : '请进行选择!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#hkqy").val()==""){
+                $("#hkqy").focus();
+                $("#hkqy").tips({
+                    side : 3,
+                    msg : '请进行选择!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#fczbl").val()==""){
+                $("#fczbl").focus();
+                $("#fczbl").tips({
+                    side : 3,
+                    msg : '请进行选择!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#lxdh").val()==""){
+                $("#lxdh").focus();
+                $("#lxdh").tips({
+                    side : 3,
+                    msg : '联系电话不能为空!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }
+            return true;
+        }
+
+        //当点击添加按钮时，进行与后台交互
+        $("#add-settlement-household").on("click",function () {
+            if(checkSettlementHouseholdForm()){
+                //生产收入种植业表格数据
+                var postData = $('#settlement-household-form').serialize();
+                $.post("/settlementHousehold/add", postData,function (data) {
+                    if(data.status==1){
+                        alert("安置户信息写入成功！");
+                    }
                 })
             }
         });

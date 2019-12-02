@@ -664,15 +664,15 @@
 
                         <form class="form-inline" role="form">
                             <div class="form-group">
-                                <label class="sr-only control-label">用户名:</label>
-                                <input type="text" id="s-userName" name="s-userName" class="form-control" placeholder="用户名">
-                                <label class="sr-only control-label">身份证明号码:</label>
-                                <input type="text" id="s-sfzmhm" name="s-sfzmhm" class=" form-control" placeholder="身份证明号码">
-                                <label class="sr-only control-label">联系电话:</label>
+                                <label class="sr-only control-label" for="s-azdmz">安置点名字:</label>
+                                <input type="text" id="s-azdmz" name="s-azdmz" class="form-control" placeholder="安置点名字">
+                                <label class="sr-only control-label" for="s-hz">户主:</label>
+                                <input type="text" id="s-hz" name="s-hz" class=" form-control" placeholder="户主">
+                                <label class="sr-only control-label" for="s-lxdh">联系电话:</label>
                                 <input type="text" id="s-lxdh" name="s-lxdh" class="form-control" placeholder="联系电话">
-                                <label class="sr-only control-label">邮箱:</label>
-                                <input type="text" id="s-email" name="邮箱" class="form-control" placeholder="邮箱">
-                                <button type="button" class="btn btn-purple btn-sm" id="searchBtn" onclick="querySysUser();">
+                                <label class="sr-only control-label" for="s-ldfh">楼栋或房号:</label>
+                                <input type="text" id="s-ldfh" name="s-ldfh" class="form-control" placeholder="楼栋或房号">
+                                <button type="button" class="btn btn-purple btn-sm" id="searchBtn">
                                     <span class="ace-icon fa fa-search icon-on-right"></span>
                                     查询
                                 </button>
@@ -1121,7 +1121,7 @@
 
         jQuery(grid_selector).jqGrid({
             datatype: "json",//数据封装方式为json
-            //url: '/user/list',
+            url: '/settlementHousehold/listAll',
             mtype:"POST",
             // ajaxGridOptions: { contentType: 'application/json; charset=utf-8' },
             // serializeGridData: function (postData)
@@ -1133,7 +1133,7 @@
             //     return JSON.stringify(postData);
             // },
             height: 450,
-            colNames:[' ','用户ID','用户名','密码','部门','性别','出生日期','身份证明号码','邮箱','ip起始地址','ip结束地址','账户有效期','密码有效期','用户类型','联系电话','最近登录ip','状态','创建时间','更新时间'],
+            colNames:[' ','主键值id','安置点编号','家庭编号','户主','楼栋房号','年度搬迁任务','搬迁类型','迁出底市级','迁出地县级','迁出地详细地址','迁出地类型','家庭受益户人口','住房面积','自筹资金','搬迁入住时间','实际入住时间','是否实际入住满两年','原有住房','原住房面积','拆除旧房','保护住房种类','拆除时间','拆除旧房面积','兑现拆房奖励','复垦复绿','复垦复绿面积','产业扶持项目','年内获得产业扶持资金','脱贫情况','户口迁移','房子证办理','联系电话'],
             colModel:[
                 {name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
                     formatter:'actions',
@@ -1145,24 +1145,38 @@
                         //editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
                     }
                 },
-                {name:'userId',       index:'userId',       width:60, fixed:true, editable:true, sorttype:"int" },
-                {name:'userName',       index:'userName',       width:60, fixed:true, editable:true, sorttype:"int" },
-                {name:'password',         index:'password',         width:60, fixed:true, editable:true,                 },
-                {name:'department',         index:'department',         width:40, fixed:true, editable:true,                 },
-                {name:'sex',     index:'sex',     width:140, fixed:true, editable:true,                 },
-                {name:'birthday',     index:'birthday',     width:70, fixed:true, editable:true, sorttype:"date", unformat: pickDate},
-                {name:'sfzmhm',       index:'sfzmhm',       width:150, fixed:true, editable:true,                 },
-                {name:'email',    index:'email',    width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
-                {name:'ipks',    index:'ipks',    width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
-                {name:'ipjs',      index:'ipjs',      width:80, fixed:true, editable:true,                 },
-                {name:'zhyxq',         index:'zhyxq',         width:70, fixed:true, editable:true, sorttype:"date", unformat: pickDate},
-                {name:'mmyxq',       index:'mmyxq',       width:70, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
-                {name:'yhlx',       index:'yhlx',       width:70, fixed:true, editable:true,                 },
-                {name:'lxdh',       index:'lxdh',       width:70, fixed:true, editable:true,                 },
-                {name:'zjdlip',      index:'zjdlip',      width:80, fixed:true, editable:true,                 },
-                {name:'zt',    index:'zt',    width:110, fixed:true, editable:true,                 },
-                {name:'cjsj',       index:'cjsj',       width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate},
-                {name:'gxsj',       index:'gxsj',       width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate}
+                {name:'id',           index:'id',           width:60,   fixed:true,  editable:true,  sorttype:"int"                     },
+                {name:'azdbh',        index:'azdbh',        width:60,   fixed:true,  editable:true                                      },
+                {name:'jtbh',         index:'jtbh',         width:60,   fixed:true,  editable:true                                      },
+                {name:'hz',           index:'hz',           width:60,   fixed:true,  editable:true                                      },
+                {name:'ldfh',         index:'ldfh',         width:60,   fixed:true,  editable:true                                      },
+                {name:'ndfqrw',       index:'ndfqrw',       width:60,   fixed:true,  editable:true                                      },
+                {name:'bqlx',         index:'bqlx',         width:60,   fixed:true,  editable:true                                      },
+                {name:'qcdsj',        index:'qcdsj',        width:60,   fixed:true,  editable:true                                      },
+                {name:'qcdxj',        index:'qcdxj',        width:60,   fixed:true,  editable:true                                      },
+                {name:'qcdxxdz',      index:'qcdxxdz',      width:150,  fixed:true,  editable:true                                      },
+                {name:'qcdlx',        index:'qcdlx',        width:60,   fixed:true,  editable:true                                      },
+                {name:'jtsyhrk',      index:'jtsyhrk',      width:60,   fixed:true,  editable:true                                      },
+                {name:'zfmj',         index:'zfmj',         width:60,   fixed:true,  editable:true                                      },
+                {name:'zczj',         index:'zczj',         width:60,   fixed:true,  editable:true                                      },
+                {name:'bqrzsj',       index:'bqrzsj',       width:60,   fixed:true,  editable:true,  sorttype:"date", unformat: pickDate},
+                {name:'sjrzsj',       index:'sjrzsj',       width:60,   fixed:true,  editable:true,  sorttype:"date", unformat: pickDate},
+                {name:'sfsjrzmln',    index:'sfsjrzmln',    width:60,   fixed:true,  editable:true                                      },
+                {name:'yyzf',         index:'yyzf',         width:60,   fixed:true,  editable:true                                      },
+                {name:'yzfmj',        index:'yzfmj',        width:60,   fixed:true,  editable:true                                      },
+                {name:'ccjf',         index:'ccjf',         width:60,   fixed:true,  editable:true                                      },
+                {name:'bhzfzl',       index:'bhzfzl',       width:60,   fixed:true,  editable:true                                      },
+                {name:'ccsj',         index:'ccsj',         width:60,   fixed:true,  editable:true                                      },
+                {name:'ccjfmj',       index:'ccjfmj',       width:60,   fixed:true,  editable:true                                      },
+                {name:'dxcfjl',       index:'dxcfjl',       width:60,   fixed:true,  editable:true                                      },
+                {name:'fkfl',         index:'fkfl',         width:60,   fixed:true,  editable:true                                      },
+                {name:'fkflmj',       index:'fkflmj',       width:60,   fixed:true,  editable:true                                      },
+                {name:'cyfcxm',       index:'cyfcxm',       width:60,   fixed:true,  editable:true                                      },
+                {name:'nnhdcyfczj',   index:'nnhdcyfczj',   width:60,   fixed:true,  editable:true                                      },
+                {name:'tpqk',         index:'tpqk',         width:60,   fixed:true,  editable:true                                      },
+                {name:'hkqy',         index:'hkqy',         width:60,   fixed:true,  editable:true                                      },
+                {name:'fczbl',        index:'fczbl',        width:60,   fixed:true,  editable:true                                      },
+                {name:'lxdh',         index:'lxdh',         width:60,   fixed:true,  editable:true                                      }
             ],
             viewrecords : true,
             rowNum:10,
@@ -1193,26 +1207,9 @@
 
 
 
-        //当点击新增按钮时，显示模态框
+        //新增按钮查看
         $("#addBtn").on("click",function () {
-            //先把表格置空
-            $("#userId").val("");
-            //$("#userName").val("");
-            //$("#department").val("");
-            $(":input","#sysUserForm").not(":button,:submit,:reset,:hidden").val("");
-            $("#sex").find("option[value='man']").attr("selected",true);
-            $("#zt").prop("checked",false);
-            //$("#csrq").val("");
-            //$("#sysUserForm").
-            $("#userAddModal").modal("show");
-            $("#addSysUserBtn").removeClass("hide");
-            $("#editSysUserBtn").addClass("hide");
-            $("#addTitle").removeClass("hide");
-            $("#editTitle").addClass("hide");
-            //先把所有角色不选中
-            $("input[name='sys-role-checkbox']").prop("checked",false);
-
-
+            window.location.href = "/az/add";
         });
 
 
