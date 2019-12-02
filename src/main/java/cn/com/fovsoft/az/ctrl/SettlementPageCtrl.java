@@ -5,8 +5,11 @@ package cn.com.fovsoft.az.ctrl;/*
  * @version:
  */
 
+import cn.com.fovsoft.az.bean.AzSettlement;
+import cn.com.fovsoft.az.service.AzSettlementService;
 import cn.com.fovsoft.common.bean.SysMenu;
 import cn.com.fovsoft.common.constant.VarConstant;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -16,6 +19,10 @@ import java.util.List;
 
 @Controller
 public class SettlementPageCtrl {
+
+
+    @Autowired
+    private AzSettlementService azSettlementService;
 
 
     /*
@@ -51,8 +58,14 @@ public class SettlementPageCtrl {
 
     @RequestMapping("/az/settlement")
     public ModelAndView toSettlement(HttpServletRequest request){
+
+        //获取安置点信息
+        List<AzSettlement> azSettlementList = azSettlementService.findAllAzSettlement();
+
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("settlement-household-mgr");
+        modelAndView.setViewName("settlement");
+        //写入安置点信息
+        modelAndView.addObject("azSettlementList",azSettlementList);
         modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
 
         modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));

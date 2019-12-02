@@ -587,6 +587,50 @@
                 <div class="row">
                     <div class="col-xs-12">
 
+                        <!--!-- 获取家庭地址窗口-->
+                        <div>
+                            <!--!-- 获取家庭地址窗口-->
+                            <div class="modal fade" id="getXzqhModal" tabindex="-1" role="dialog" aria-labelledby="getXzqhModalModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title red" id="getXzqhModalModalLabel">
+                                                <label id="addTitle5">获取行政区划代码</label>
+                                            </h4>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <div class="widget-box widget-color-green2">
+                                                <div class="widget-header">
+                                                    <h4 class="widget-title lighter smaller">
+                                                        <span class="smaller-80"></span>
+                                                    </h4>
+                                                </div>
+
+                                                <div class="widget-body">
+                                                    <div class="widget-main padding-8">
+                                                        <ul id="show-xzqh-tree"></ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-info" data-dismiss="modal">关闭
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="getXzqhBtn">
+                                                确定
+                                            </button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+
+                            </div>
+                        </div>
+
                         <!-- 修改密码的窗口 -->
                         <div>
                             <!--新增角色的窗口-->
@@ -669,7 +713,7 @@
                                     <div class="widget-box widget-color-green2">
                                         <div class="widget-header">
                                             <h4 class="widget-title lighter smaller">
-                                                行政区划信息树
+                                                安置点列表
                                                 <span class="smaller-80">(with selectable folders)</span>
                                             </h4>
                                         </div>
@@ -677,10 +721,10 @@
                                         <div class="widget-body">
                                             <div class="widget-main padding-8 " style=" overflow:scroll;height: 465px;">
                                                 <div class="row">
-                                                    <div class="col-xs-12 col-sm-4" th:each="azSettlement:${azSettlementList}">
-                                                        <div class="checkbox" id="azSettlementCheckBoxDiv">
+                                                    <div class="col-xs-12 col-sm-4" th:each="azSettlement:${azSettlementList}" id="azSettlementCheckBoxDiv">
+                                                        <div class="checkbox">
                                                             <label>
-                                                                <input name="sys-role-checkbox" type="checkbox" th:id="${azSettlement.id}"/>
+                                                                <input name="az-settlement-checkbox" type="checkbox" th:id="${azSettlement.id}"/>
                                                                 <span class="lbl" th:text="${azSettlement.azdmz}"></span>
                                                             </label>
                                                         </div>
@@ -695,88 +739,59 @@
                             <!--行政区划代码信息-->
                             <div class="col-sm-6">
                                 <div class="row hide">
+                                    <label for="id" class="sr-only">id</label>
                                     <input type="hidden" id="id" name="id" value=""/>
                                 </div>
+                                <div class="row hide">
+                                    <label for="azdbh" class="sr-only">安装点编号</label>
+                                    <input type="hidden" id="azdbh" name="azdbh" value=""/>
+                                </div>
                                 <form class="form-horizontal">
-                                    <!--行政区划代码信息-->
+
+
+                                    <div class="space-20"></div>
                                     <!--行政区划代码-->
                                     <div class="form-group">
                                         <label for="xzqhdm" class="col-xs-12 col-sm-3 control-label no-padding-right">行政区划代码</label>
                                         <div class="col-xs-12 col-sm-9">
-                                            <div class="clearfix">
-                                                <input type="text" class="col-xs-12 col-sm-8 form-control" id="xzqhdm" name="xzqhdm" placeholder="请输入12位行政区划代码" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--行政区划名字-->
-                                    <div class="form-group">
-                                        <label for="xzqhmz" class="col-xs-12 col-sm-3 control-label no-padding-right">行政区划名字</label>
-                                        <div class="col-xs-12 col-sm-9">
-                                            <div class="clearfix">
-                                                <input type="text" class="col-xs-12 col-sm-8 form-control" id="xzqhmz" name="xzqhmz" placeholder="请输入详细行政区划名字" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!--详细行政区划名字-->
-                                    <div class="form-group">
-                                        <label for="xxxzqhmz" class="col-xs-12 col-sm-3 control-label no-padding-right">详细行政区划名字</label>
-                                        <div class="col-xs-12 col-sm-9">
-                                            <div class="clearfix ">
-                                                <input type="text" class="col-xs-12 col-sm-8 form-control" id="xxxzqhmz" name="xxxzqhmz" readonly />
-                                            </div>
-                                            <div class="clearfix">
-
+                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="red ace-icon fa fa-check"></i>
+                                                                </span>
+                                                <input type="text" name="xzqhdm" id="xzqhdm" class="form-control search-query"
+                                                       placeholder="请点击获取行政区划代码信息" readonly/>
+                                                <span class="input-group-btn">
+                                                                    <button type="button" class="btn btn-purple btn-sm" id="myXzqhBtn" data-toggle="modal" data-target="#getXzqhModal">
+                                                                        <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+                                                                        获取
+                                                                    </button>
+                                                                </span>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!--上级行政区划代码-->
+                                    <div class="hr hr-dotted"></div>
+                                    <!--安置点名字-->
                                     <div class="form-group">
-                                        <label for="sjxzqhdm" class="col-xs-12 col-sm-3 control-label no-padding-right">上级行政区划代码</label>
+                                        <label for="azdmz" class="col-xs-12 col-sm-3 control-label no-padding-right">安置点名字</label>
                                         <div class="col-xs-12 col-sm-9">
                                             <div class="clearfix">
-                                                <input type="text" class="col-xs-12 col-sm-8 form-control" id="sjxzqhdm" name="sjxzqhdm" readonly />
+                                                <input type="text" class="col-xs-12 col-sm-8 form-control" id="azdmz" name="azdmz" placeholder="请输入安置点名字" />
                                             </div>
                                         </div>
                                     </div>
 
-                                    <!--上级行政区划代码-->
+                                    <div class="hr hr-dotted"></div>
+                                    <!--安置方式-->
                                     <div class="form-group">
-                                        <label for="xzqhcj" class="col-xs-12 col-sm-3 control-label no-padding-right">行政区划层级</label>
-                                        <div class="col-xs-12 col-sm-9">
+                                        <label for="azfs" class="col-xs-12 col-sm-3 control-label no-padding-right">安置方式</label>
+                                        <div class="col-xs-12 col-sm-4">
                                             <div class="clearfix">
-                                                <input type="text" class="col-xs-12 col-sm-8 form-control" id="xzqhcj" name="xzqhcj" placeholder="行政区划层级" readonly />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!--发证机关-->
-                                    <div class="form-group">
-                                        <label for="fzjg" class="col-xs-12 col-sm-3 control-label no-padding-right">发证机关</label>
-                                        <div class="col-xs-12 col-sm-9">
-                                            <div class="clearfix">
-                                                <input type="text" class="col-xs-12 col-sm-8 form-control" id="fzjg" name="fzjg" placeholder="如:桂N" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!--行政区划类别-->
-                                    <div class="form-group">
-                                        <label for="xzqhlb" class="col-xs-12 col-sm-3 control-label no-padding-right">行政区划类别</label>
-                                        <div class="col-xs-12 col-sm-9">
-                                            <div class="clearfix">
-                                                <input type="text" class="col-xs-12 col-sm-8 form-control" id="xzqhlb" name="xzqhlb" placeholder="如：省或市或县或街道或镇或社区等" />
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!--邮政编码-->
-                                    <div class="form-group">
-                                        <label for="yzbm" class="col-xs-12 col-sm-3 control-label no-padding-right">邮政编码</label>
-                                        <div class="col-xs-12 col-sm-9">
-                                            <div class="clearfix">
-                                                <input type="text" class="col-xs-12 col-sm-8 form-control" id="yzbm" name="yzbm" placeholder="如:535016" />
+                                                <select class="input-medium form-control" id="azfs" name="azfs">
+                                                    <option value="">------------------</option>
+                                                    <option value="1">集中安置</option>
+                                                    <option value="2">分散安置</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -798,7 +813,7 @@
                                 </form>
 
                             </div>
-                            <!--新增部门的模态框-->
+                            <!--新增安置点的模态框-->
                             <div>
                                 <div class="modal fade" id="adAddModal" tabindex="-1" role="dialog" aria-labelledby="adAddModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -808,7 +823,7 @@
                                                     &times;
                                                 </button>
                                                 <h4 class="modal-title green" id="myModalLabel">
-                                                    <label id="addTitle">新增行政区划</label>
+                                                    <label id="addTitle">新增安置点</label>
                                                 </h4>
                                             </div>
                                             <div class="modal-body">
@@ -1085,8 +1100,8 @@
 				})
          */
 
-        //行政区划树方法
-        //行政区划的方法
+            //行政区划树方法
+            //行政区划的方法
         var nodeCheckedSilent = false;
 
         function nodeChecked(event, node) {
@@ -1114,10 +1129,10 @@
 
         //选中全部父节点
         function checkAllParent(node) {
-            $('#admin-divs-tree').treeview('checkNode', node.nodeId, {
+            $('#show-xzqh-tree').treeview('checkNode', node.nodeId, {
                 silent: true
             });
-            var parentNode = $('#admin-divs-tree').treeview('getParent', node.nodeId);
+            var parentNode = $('#show-xzqh-tree').treeview('getParent', node.nodeId);
             if (!("nodeId" in parentNode)) {
                 return;
             } else {
@@ -1126,11 +1141,11 @@
         }
         //取消全部父节点
         function uncheckAllParent(node) {
-            $('#admin-divs-tree').treeview('uncheckNode', node.nodeId, {
+            $('#show-xzqh-tree').treeview('uncheckNode', node.nodeId, {
                 silent: true
             });
-            var siblings = $('#admin-divs-tree').treeview('getSiblings', node.nodeId);
-            var parentNode = $('#admin-divs-tree').treeview('getParent', node.nodeId);
+            var siblings = $('#show-xzqh-tree').treeview('getSiblings', node.nodeId);
+            var parentNode = $('#show-xzqh-tree').treeview('getParent', node.nodeId);
             if (!("nodeId" in parentNode)) {
                 return;
             }
@@ -1149,7 +1164,7 @@
 
         //级联选中所有子节点
         function checkAllSon(node) {
-            $('#admin-divs-tree').treeview('checkNode', node.nodeId, {
+            $('#show-xzqh-tree').treeview('checkNode', node.nodeId, {
                 silent: true
             });
             if (node.nodes != null && node.nodes.length > 0) {
@@ -1160,7 +1175,7 @@
         }
         //级联取消所有子节点
         function uncheckAllSon(node) {
-            $('#admin-divs-tree').treeview('uncheckNode', node.nodeId, {
+            $('#show-xzqh-tree').treeview('uncheckNode', node.nodeId, {
                 silent: true
             });
             if (node.nodes != null && node.nodes.length > 0) {
@@ -1176,29 +1191,16 @@
                 id:node.nodeid
             };
             $.getJSON("/dept/oneAdminDivision",myData, function (data) {
-                console.log(data.adminDivision);
-                $("#id").attr("value", data.adminDivision.id);
                 $("#xzqhdm").attr("value", data.adminDivision.xzqhdm);
-                $("#xzqhcj").attr("value", data.adminDivision.xzqhcj);
-                $("#xxxzqhmz").attr("value", data.adminDivision.xxxzqhmz);
-                $("#xzqhmz").attr("value", data.adminDivision.xzqhmz);
-                $("#fzjg").attr("value", data.adminDivision.fzjg);
-                $("#xzqhlb").attr("value", data.adminDivision.xzqhlb);
-                $("#yzbm").attr("value", data.adminDivision.yzbm);
-                $("#xzqhcj").attr("value",data.adminDivision.xzqhcj);
-                $("#sjxzqhdm").attr("value",data.adminDivision.sjxzqhdm);
-                $("#xxxzqhmz11").attr("value",data.adminDivision.xxxzqhmz);
-                $("#sjxzqhdm1").attr("value",data.adminDivision.xzqhdm);
-                $("#xzqhcj1").attr("value",parseInt(data.adminDivision.xzqhcj)+1);
             });
         }
 
         function addNote() {
             //得到选择的节点
-            var nodeData = $('#admin-divs-tree').treeview('getSelected')[0];
+            var nodeData = $('#show-xzqh-tree').treeview('getSelected')[0];
             //获取数据，添加到树中
             $.getJSON("treeAddData.json", function (data) {
-                $('#admin-divs-tree').treeview("addNode", [nodeData.nodeId, {node: data}]);
+                $('#show-xzqh-tree').treeview("addNode", [nodeData.nodeId, {node: data}]);
             });
         }
 
@@ -1206,8 +1208,8 @@
          * 删除节点,如果该节点如果是根节点，不能删除
          */
         function deleteNode() {
-            var nodeData = $('#admin-divs-tree').treeview('getSelected')[0];
-            $('#admin-divs-tree').treeview("deleteNode", nodeData.nodeId);
+            var nodeData = $('#show-xzqh-tree').treeview('getSelected')[0];
+            $('#show-xzqh-tree').treeview("deleteNode", nodeData.nodeId);
         }
 
         /**
@@ -1215,8 +1217,8 @@
          */
         function deleteChildrenNode(event,node) {
             var node1 = {};
-            $('#admin-divs-tree').treeview("deleteChildrenNode", node.nodeId);
-            $('#admin-divs-tree').treeview("addNode", [node.nodeId, {node: node1}]);
+            $('#show-xzqh-tree').treeview("deleteChildrenNode", node.nodeId);
+            $('#show-xzqh-tree').treeview("addNode", [node.nodeId, {node: node1}]);
         }
 
         /**
@@ -1229,14 +1231,14 @@
             };
 
             $.getJSON("/dept/childAdminDivision",myData, function (data) {
-                $('#admin-divs-tree').treeview("deleteChildrenNode", node.nodeId);
-                $('#admin-divs-tree').treeview("addNode", [node.nodeId, {node: data.childNodes}]);
+                $('#show-xzqh-tree').treeview("deleteChildrenNode", node.nodeId);
+                $('#show-xzqh-tree').treeview("addNode", [node.nodeId, {node: data.childNodes}]);
             });
         }
 
         //初始化树
         $.getJSON("/dept/rootAdminDivision",function (data) {
-            $('#admin-divs-tree').treeview({
+            $('#show-xzqh-tree').treeview({
                 data: data.rootNodes,
                 onNodeChecked: nodeChecked,
                 onNodeUnchecked: nodeUnchecked,
@@ -1245,124 +1247,159 @@
                 onNodeSelected:nodeSelected
             });
         });
-
-        //右边行政区划名字修改时，详细行政区划名字进行改变
-        $("#xzqhmz1").change(function () {
-            var val = $("#xzqhmz1").val();
-            $("#xxxzqhmz1").attr("value", val);
-        });
-
-
-
-
-        //当点击新增按钮时，显示模态框
-        $("#addBtn").on("click",function () {
-
-            $("#xzqhdm1").val("");
-            $("#xzqhmz1").val("");
-            $("#xxxzqhmz1").val("");
-            $("#fzjg1").val("");
-            $("#xzqhlb1").val("");
-            $("#yzbm1").val("");
-            $("#adAddModal").modal("show");
-        });
-
-
-        //判断修改行政区划列表的信息
-        function checkValidity1() {
-
-            if ($("#xzqhdm").val() == "") {
-                $("#xzqhdm").focus();
-                $("#xzqhdm").tips({
-                    side: 3,
-                    msg: '行政区划代码不得为空',
-                    bg: '#ff1a96',
-                    time: 3
-                });
-                return false;
-            }else if($("#xzqhdm").val().length!=12){
-                $("#xzqhdm").focus();
-                $("#xzqhdm").tips({
-                    side: 3,
-                    msg: '行政区划代码长度必须为12位',
-                    bg: '#ff1521',
-                    time: 3
-                });
-                return false;
-            }
-
-            if ($("#xzqhmz").val() == "") {
-                $("#xzqhmz").focus();
-                $("#xzqhmz").tips({
-                    side: 3,
-                    msg: '行政区划名字不得为空',
-                    bg: '#23ffaa',
-                    time: 3
-                });
-                return false;
-            }
-
-            return true;
-        }
-
-
-        //当点击修改按钮时，显示模态框
-        $("#editBtn").on("click",function () {
+        //家庭地址选择确定按钮事件
+        $("#getXzqhBtn").on("click",function () {
             //获取选中节点的信息
-            var selectedNodes = $('#admin-divs-tree').treeview('getSelected');
+            var selectedNodes = $('#show-xzqh-tree').treeview('getSelected');
             if (selectedNodes.length == 0) {
                 alert("请在左边树选择一个节点！");
             } else {
-                if (checkValidity1()) {
-                    var id = $("#id").val();
-                    var xzqhdm = $("#xzqhdm").val();
-                    var xzqhmz = $("#xzqhmz").val();
-                    var xxxzqhmz = $("#xxxzqhmz").val();
-                    var xxxzqhmz1 = $("#xxxzqhmz1").val();
-                    var sjxzqhdm = $("#sjxzqhdm").val();
-                    var xzqhcj = $("#xzqhcj").val();
-                    var fzjg = $("#fzjg").val();
-                    var xzqhlb = $("#xzqhlb").val();
-                    var yzbm = $("#yzbm").val();
+                alert("地址选择成功！");
+            }
+        });
 
+        //当点击新增按钮时，进行交互
+        $("#addBtn").on("click",function () {
 
-                    $.ajax({
-                        type: "POST",//请求方式为POST
-                        url: "/dept/edit",//检验url
-                        data: {
-                            "id":id,
-                            "xzqhdm": xzqhdm,
-                            "xzqhmz": xzqhmz,
-                            "xxxzqhmz": xxxzqhmz,
-                            "xxxzqhmz1": xxxzqhmz1,
-                            "sjxzqhdm": sjxzqhdm,
-                            "xzqhcj": xzqhcj,
-                            "fzjg": fzjg,
-                            "xzqhlb": xzqhlb,
-                            "yzbm": yzbm
-                        },//请求数据
-                        dataType: 'json',//数据类型为JSON类型
-                        cache: false,//关闭缓存
-                        success: function (data) {
-                            if (data.status == 1) {
-                                alert("行政区划修改成功！");
-                                $('#admin-divs-tree').treeview("remove");
-                                //刷新树
-                                $.getJSON("/dept/rootAdminDivision",function (data) {
-                                    $('#admin-divs-tree').treeview({
-                                        data: data.rootNodes,
-                                        onNodeChecked: nodeChecked,
-                                        onNodeUnchecked: nodeUnchecked,
-                                        onNodeExpanded: addNextNode,
-                                        onNodeCollapsed: deleteChildrenNode,
-                                        onNodeSelected:nodeSelected
-                                    });
-                                });
-                            }
+            var xzqhdm = $("#xzqhdm").val();
+            var azdmz = $("#azdmz").val();
+            var azfs = $("#azfs").val();
+            if(xzqhdm == ""){
+                $("#xzqhdm").focus();
+                $("#xzqhdm").tips({
+                    side : 3,
+                    msg : '行政区划代码不能为空，请进行选择!',
+                    bg : '#ff634a',
+                    time : 2
+                });
+            }else if(azdmz == ""){
+                $("#azdmz").focus();
+                $("#azdmz").tips({
+                    side : 3,
+                    msg : '安置点名字不能为空!',
+                    bg : '#ff634a',
+                    time : 2
+                });
+            }else if(azfs == ""){
+                $("#azfs").focus();
+                $("#azfs").tips({
+                    side : 3,
+                    msg : '请进行选择安置方式!',
+                    bg : '#ff634a',
+                    time : 2
+                });
+            }else{
+                $.ajax({
+                    type:"POST",
+                    url:"/settlement/add",
+                    data: {
+                        "xzqhdm":xzqhdm,
+                        "azdmz":azdmz,
+                        "azfs":azfs
+                    },
+                    datatype:'json',
+                    cache:false,
+                    success:function (data) {
+                        if(data.status==1){
+                            bootbox.dialog({
+                                message: "恭喜你! 你的信息录入成功!",
+                                buttons: {
+                                    "success" : {
+                                        "label" : "确定",
+                                        "className" : "btn-sm btn-primary"
+                                    }
+                                }
+                            });
+                            window.location.href="/az/settlement";
+                        }else{
+                            bootbox.dialog({
+                                message: "对不起! 出现异常，信息录入失败!",
+                                buttons: {
+                                    "success" : {
+                                        "label" : "确定",
+                                        "className" : "btn-sm btn-danger"
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        });
 
-                        }//响应成功
-                    })
-                }
+        //安置点选中事件
+        $("input[name='az-settlement-checkbox']").change(function () {
+            if($(this).prop("checked")){
+                console.log($(this).attr('id'));
+                var id = $(this).attr('id');
+                myData = {
+                    "id": id
+                };
+                $.getJSON("/settlement/getOneSettlement",myData,function (data) {
+
+                    $("#id").attr("value",data.azSettlement.id);
+                    $("#azdbh").attr("value",data.azSettlement.azdbh);
+                    $("#xzqhdm").attr("value",data.azSettlement.xzqhdm);
+                    $("#azdmz").attr("value",data.azSettlement.azdmz);
+                    if(data.azSettlement.azfs=="集中安置"){
+                        $("#azfs").val("1");
+                    }else {
+                        $("#azfs").val("2");
+                    }
+
+                });
+            }
+        });
+
+        //当点击修改按钮时，显示模态框
+        $("#editBtn").on("click",function () {
+            //获取选中的角色id
+            var checkboxArr = $("input[name='az-settlement-checkbox']:checked");
+            if (checkboxArr.length<1) {
+                alert("请在左边至少勾选一个安置点！");
+            }else if(checkboxArr.length>=2){
+                alert("请选择不要超过一个安置点！");
+            } else {
+                var id = $("#id").val();
+                var xzqhdm = $("#xzqhdm").val();
+                var azdmz = $("#azdmz").val();
+                var azfs = $("#azfs").val();
+                $.ajax({
+                    type:"POST",
+                    url:"/settlement/edit",
+                    data: {
+                        "id": id,
+                        "xzqhdm":xzqhdm,
+                        "azdmz":azdmz,
+                        "azfs":azfs
+                    },
+                    datatype:'json',
+                    cache:false,
+                    success:function (data) {
+                        if(data.status==1){
+                            bootbox.dialog({
+                                message: "恭喜你! 你的信息修改成功!",
+                                buttons: {
+                                    "success" : {
+                                        "label" : "确定",
+                                        "className" : "btn-sm btn-primary"
+                                    }
+                                }
+                            });
+                            window.location.href="/az/settlement";
+                        }else{
+                            bootbox.dialog({
+                                message: "对不起! 出现异常，信息修改失败!",
+                                buttons: {
+                                    "success" : {
+                                        "label" : "确定",
+                                        "className" : "btn-sm btn-danger"
+                                    }
+                                }
+                            });
+                        }
+                    }
+                });
             }
 
         })
@@ -1381,38 +1418,29 @@
 
         //当点击删除按钮时，执行操作
         $("#deleteBtn").on("click",function () {
-            //获取选中节点的信息
-            var selectedNodes = $('#admin-divs-tree').treeview('getSelected');
-            if (selectedNodes.length == 0) {
-                alert("请在左边树选择一个节点！");
-            } else {
-                var input = confirm("确定删除当前节点吗？，该操作将删除当前节点及下属所有节点！");
+            //获取选中的角色id
+            var checkboxArr = $("input[name='az-settlement-checkbox']:checked");
+            if (checkboxArr.length<1) {
+                alert("请在左边至少勾选一个安置点！");
+            }else {
+                var input = confirm("确定删除当前选择安置点吗？");
                 if(input){
-                    //var id = $("#id").val();
-                    var xzqhdm = $('#xzqhdm').val();
+                    idArr = "";
+                    for(var i=0;i<checkboxArr.length;i++){
+                        idArr = idArr + $(checkboxArr[i]).attr("id") +",";
+                    }
                     $.ajax({
                         type: "POST",//请求方式为POST
-                        url: "/dept/delete",//检验url
+                        url: "/settlement/delete",//检验url
                         data: {
-                            "xzqhdm":xzqhdm
+                            "idArr":idArr
                         },//请求数据
                         dataType: 'json',//数据类型为JSON类型
                         cache: false,//关闭缓存
                         success: function (data) {
                             if (data.status == 1) {
-                                alert("行政区划删除成功！");
-                                $('#admin-divs-tree').treeview("remove");
-                                //刷新树
-                                $.getJSON("/dept/rootAdminDivision",function (data) {
-                                    $('#admin-divs-tree').treeview({
-                                        data: data.rootNodes,
-                                        onNodeChecked: nodeChecked,
-                                        onNodeUnchecked: nodeUnchecked,
-                                        onNodeExpanded: addNextNode,
-                                        onNodeCollapsed: deleteChildrenNode,
-                                        onNodeSelected:nodeSelected
-                                    });
-                                });
+                                alert("安置点删除成功！");
+                                window.location.href="/az/settlement";
                             }
 
                         }//响应成功

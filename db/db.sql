@@ -632,6 +632,8 @@ create table ym_out_poverty_income
  DEFAULT CHARSET = utf8;
 
 drop table az_settlement;
+
+
 create table az_settlement(
     id int(10) auto_increment primary key comment '主键值',
     azdbh varchar(20) unique comment '安置点编号',
@@ -640,8 +642,8 @@ create table az_settlement(
     azfs  char(8) comment '安置点安置方式：1,集中安置；2，分散安置',
     cjsj datetime comment '创建时间',
     gxsj datetime comment '更新时间'
-)ENGINE = InnoDB
- DEFAULT CHARSET = utf8;
+)ENGINE = InnoDB DEFAULT CHARSET = utf8;
+
 insert into az_settlement(azdbh,xzqhdm,azdmz,azfs,cjsj,gxsj) values('111111111111','450702000000','钦南区高新区集中安置点','集中安置',now(),now());
 
 drop table az_settlement_household;
