@@ -70,6 +70,36 @@ public interface AzSettlementHouseholdDao {
     AzSettlementHousehold findAzSettlementHouseholdById(String id);
 
 
+
+    /**
+     * @author: tpc
+     * @date: 2019/12/3 22:59
+     * @description: 通过前端输入条件进行模糊查询
+     */
+    @SelectProvider(type = findSettlementHouseholdByMoreProvider.class, method = "findAzSettlementHouseholdByMoreCondition")
+    @ResultMap(value = {"settlementHouseholdMap"})
+    List<AzSettlementHousehold> findAzSettlementHouseholdByMoreCondition(String azdmz,String hz,String lxdh,String ldfh);
+    class findSettlementHouseholdByMoreProvider{
+        public String findAzSettlementHouseholdByMoreCondition(String azdmz,String hz,String lxdh,String ldfh){
+            String sql = "select a.* from az_settlement_household a,az_settlement b where 1=1 ";
+            if(!azdmz.equals("%%")){
+                sql = sql + " and b.azdmz like #{azdmz} and a.azdbh=b.azdbh ";
+            }
+            if(!hz.equals("%%")){
+                sql = sql + " and a.hz like #{hz} ";
+            }
+            if(!lxdh.equals("%%")){
+                sql = sql + " and a.lxdh like #{lxdh} ";
+            }
+            if(!ldfh.equals("%%")){
+                sql = sql + " and a.ldfh like #{ldfh} ";
+            }
+            return sql;
+        }
+
+    }
+
+
     /**
      * @author: tpc
      * @date: 2019/12/2 23:07

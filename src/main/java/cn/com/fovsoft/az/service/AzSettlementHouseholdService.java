@@ -59,4 +59,20 @@ public class AzSettlementHouseholdService {
     public int addAzSettlementHousehold(AzSettlementHousehold azSettlementHousehold){
         return azSettlementHouseholdDao.addAzSettlementHousehold(azSettlementHousehold);
     }
+
+
+    /**
+     * @author: tpc
+     * @date: 2019/12/3 23:01
+     * @description: 首先进行字段的模糊匹配拼接，然后调用查询方法
+     */
+    public List<AzSettlementHousehold> findAzSettlementHouseholdByMoreCondition(String azdmz,String hz,String lxdh,String ldfh){
+        //进行模糊查询的条件拼接
+        azdmz = "%"+azdmz+"%";
+        hz = "%"+hz+"%";
+        lxdh = "%"+lxdh+"%";
+        ldfh = "%"+ldfh+"%";
+        return azSettlementHouseholdDao.findAzSettlementHouseholdByMoreCondition(azdmz,hz,lxdh,ldfh);
+
+    }
 }

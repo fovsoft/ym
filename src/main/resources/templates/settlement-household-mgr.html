@@ -688,251 +688,6 @@
                             </div>
                         </form>
 
-                        <div>
-                            <!--新增用户的窗口-->
-                            <div class="modal fade" id="userAddModal" tabindex="-1" role="dialog" aria-labelledby="userAddModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                &times;
-                                            </button>
-                                            <h4 class="modal-title green" id="myModalLabel">
-                                                <label id="addTitle">新增用户(默认密码为888888)</label>
-                                                <label id="editTitle">修改用户</label>
-                                            </h4>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div class="tabbable">
-                                                <ul class="nav nav-tabs" id="myTab">
-                                                    <li class="active">
-                                                        <a data-toggle="tab" href="#home">
-                                                            <i class="green ace-icon fa fa-cog bigger-120"></i>
-                                                            用户信息
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a data-toggle="tab" href="#messages">
-                                                            <i class="red ace-icon fa fa-cogs bigger-120"></i>
-                                                            角色授权
-                                                        </a>
-                                                    </li>
-
-                                                </ul>
-
-                                                <div class="tab-content">
-                                                    <div id="home" class="tab-pane fade in active">
-                                                        <div class="row hide">
-                                                            <input type="hidden" id="userId" name="userId" value=""/>
-                                                        </div>
-                                                        <form class="form-horizontal" id="sysUserForm">
-                                                            <div class="form-group">
-                                                                <label for="userName" class="col-xs-12 col-xs-3 control-label no-padding-right">用户名</label>
-                                                                <div class="col-xs-12 col-sm-9">
-                                                                    <div class="clearfix">
-                                                                        <input type="text" class="col-xs-12 col-xs-8 form-control" id="userName" name="userName" placeholder="用户名长度在5-18字符之间" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="hr hr-dotted"></div>
-
-                                                            <div class="form-group">
-                                                                <label for="department" class="col-xs-12 col-sm-3 control-label no-padding-right">部门</label>
-                                                                <div class="col-xs-12 col-sm-9">
-                                                                    <div class="clearfix">
-                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="department" name="department"  />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="hr hr-dotted"></div>
-
-                                                            <div class="form-group">
-                                                                <label for="sex" class="col-xs-12 col-sm-3 control-label no-padding-right">性别</label>
-                                                                <div class="col-xs-12 col-sm-9">
-                                                                    <div class="clearfix">
-                                                                        <select class="input-medium" id="sex" name="sex">
-                                                                            <option value="">------------------</option>
-                                                                            <option value="man">男</option>
-                                                                            <option value="woman">女</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="hr hr-dotted"></div>
-
-                                                            <div class="form-group">
-                                                                <label for="csrq" class="col-xs-12 col-sm-3 control-label no-padding-right">出生日期</label>
-                                                                <div class="col-xs-12 col-sm-9">
-                                                                    <div class="input-group">
-                                                                        <input class="form-control date-picker" id="csrq" name="csrq" type="text" data-date-format="yyyy-mm-dd" />
-                                                                        <span class="input-group-addon">
-																		<i class="fa fa-calendar bigger-110"></i>
-                                                                        </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="hr hr-dotted"></div>
-
-                                                            <div class="form-group">
-                                                                <label for="sfzmhm" class="col-xs-12 col-sm-3 control-label no-padding-right">身份证明号码</label>
-                                                                <div class="col-xs-12 col-sm-9">
-                                                                    <div class="clearfix">
-                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="sfzmhm" name="sfzmhm"  />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="hr hr-dotted"></div>
-
-                                                            <div class="form-group">
-                                                                <label for="email" class="col-xs-12 col-sm-3 control-label no-padding-right">邮箱</label>
-                                                                <div class="col-xs-12 col-sm-9">
-                                                                    <div class="clearfix">
-                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="email" name="email" placeholder="如8888888@qq.com" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="hr hr-dotted"></div>
-
-                                                            <div class="form-group">
-                                                                <label for="ipks" class="col-xs-12 col-sm-3 control-label no-padding-right">ip开始地址</label>
-                                                                <div class="col-xs-12 col-sm-9">
-                                                                    <div class="clearfix">
-                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="ipks" name="ipks" placeholder="如192.168.1.1" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="hr hr-dotted"></div>
-
-                                                            <div class="form-group">
-                                                                <label for="ipjs" class="col-xs-12 col-sm-3 control-label no-padding-right">ip结束地址</label>
-                                                                <div class="col-xs-12 col-sm-9">
-                                                                    <div class="clearfix">
-                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="ipjs" name="ipjs" placeholder="如192.168.1.254" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="hr hr-dotted"></div>
-
-                                                            <div class="form-group">
-                                                                <label for="zhyxq" class="col-xs-12 col-sm-3 control-label no-padding-right">账号有效期</label>
-                                                                <div class="col-xs-12 col-sm-9">
-                                                                    <div class="input-group ">
-                                                                        <input class="form-control date-picker" id="zhyxq" name="zhyxq" type="text" data-date-format="yyyy-mm-dd" />
-                                                                        <span class="input-group-addon">
-																		<i class="fa fa-calendar bigger-110"></i>
-                                                                </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="hr hr-dotted"></div>
-
-                                                            <div class="form-group">
-                                                                <label for="mmyxq" class="col-xs-12 col-sm-3 control-label no-padding-right">密码有效期</label>
-                                                                <div class="col-xs-12 col-sm-9">
-                                                                    <div class="input-group">
-                                                                        <input class="form-control date-picker" id="mmyxq" name="mmyxq" type="text" data-date-format="yyyy-mm-dd" />
-                                                                        <span class="input-group-addon">
-																		<i class="fa fa-calendar bigger-110"></i>
-                                                                </span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="hr hr-dotted"></div>
-
-                                                            <div class="form-group">
-                                                                <label for="yhlx" class="col-xs-12 col-sm-3 control-label no-padding-right">用户类型</label>
-                                                                <div class="col-xs-12 col-sm-9">
-                                                                    <div class="clearfix">
-                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="yhlx" name="yhlx"/>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="hr hr-dotted"></div>
-
-                                                            <div class="form-group">
-                                                                <label for="lxdh" class="col-xs-12 col-sm-3 control-label no-padding-right">联系电话</label>
-                                                                <div class="col-xs-12 col-sm-9">
-                                                                    <div class="clearfix">
-                                                                        <input type="text" class="col-xs-12 col-sm-8 form-control" id="lxdh" name="lxdh"/>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="hr hr-dotted"></div>
-
-                                                            <div class="form-group">
-                                                                <label for="zt" class="col-xs-12 col-sm-3 control-label no-padding-right">状态</label>
-                                                                <div class="col-xs-12 col-sm-9">
-                                                                    <div class="clearfix">
-                                                                        <label>
-                                                                            <input type="checkbox" class="col-xs-12 col-sm-8 form-control ace ace-switch btn-rotate" id="zt" name="zt" checked/>
-                                                                            <span class="lbl" data-lbl="启用&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;停用"></span>
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-
-                                                    <div id="messages" class="tab-pane fade">
-                                                        <div class="row">
-                                                            <div class="widget-box widget-color-green2">
-                                                                <div class="widget-header">
-                                                                    <h4 class="widget-title lighter smaller">
-                                                                        角色列表
-                                                                        <span class="smaller-80"></span>
-                                                                    </h4>
-                                                                </div>
-
-                                                                <div class="widget-body">
-                                                                    <div class="widget-main padding-8">
-                                                                        <div class="row">
-                                                                            <div class="col-xs-12 col-sm-4" th:each="sysRole:${sysRoleList}">
-                                                                                <div class="checkbox">
-                                                                                    <label>
-                                                                                        <input name="sys-role-checkbox" type="checkbox" th:id="${sysRole.roleId}"/>
-                                                                                        <span class="lbl" th:text="${sysRole.roleName}"></span>
-                                                                                    </label>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-info" data-dismiss="modal">关闭
-                                            </button>
-                                            <button type="button" class="btn btn-primary" onclick="addSysUser(1);" id="addSysUserBtn">
-                                                提交
-                                            </button>
-                                            <button type="button" class="btn btn-pink" onclick="addSysUser(2);" id="editSysUserBtn">
-                                                修改
-                                            </button>
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal -->
-
-                            </div>
-                        </div>
                         <div class="hr hr-double dotted"></div>
 
                         <div>
@@ -1213,6 +968,30 @@
         });
 
 
+        //查询按钮的响应事件
+        $("#searchBtn").on("click",function () {
+           //获取查询输入框的输入值
+           var azdmz = $("#s-azdmz").val();
+           var hz = $("#s-hz").val();
+           var lxdh = $("#s-lxdh").val();
+           var ldfh = $("#s-ldfh").val();
+
+            $("#grid-table").jqGrid('clearGridData');
+            $("#grid-table").jqGrid('setGridParam', {
+                datatype:"json",
+                mtype:"POST",
+                page:1,
+                url:"/settlementHousehold/searchByMore",
+                postData:{
+                    "azdmz": azdmz,
+                    "hz": hz,
+                    "lxdh": lxdh,
+                    "ldfh": ldfh
+                }
+            }).trigger("reloadGrid");
+
+        });
+
 
         //当点击修改按钮时，显示模态框
         $("#editBtn").on("click",function () {
@@ -1229,7 +1008,7 @@
                     //   "rybh":rowData.rybh
                     // };
 
-                    window.location.href="/settlementHousehold/edit?"+idArr;
+                    window.location.href="/az/settlementHouseholdEdit?"+idArr;
                     //$.getJSON("/person/edit",idArr,function (data) {});
                     //
                     // });

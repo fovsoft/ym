@@ -880,8 +880,7 @@
                                                                 <span class="input-group-addon">
                                                                     <i class="red ace-icon fa fa-check"></i>
                                                                 </span>
-                                                        <input type="text" name="hz" id="hz" class="form-control search-query"
-                                                               placeholder="请点击获取按钮获取户主信息" readonly/>
+                                                        <input type="text" name="hz" id="hz" class="form-control search-query" th:value="${azSettlementHousehold.hz}" placeholder="请点击获取按钮获取户主信息" readonly/>
                                                         <span class="input-group-btn">
                                                                     <button type="button" class="btn btn-purple btn-sm" id="getFamilyBtn" data-toggle="modal" data-target="#getFamilyModal">
                                                                         <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
@@ -894,7 +893,7 @@
                                             <!--隐藏家庭编号-->
                                             <div class="form-group hide">
                                                 <label class="sr-only control-label col-xs-12 col-sm-2 no-padding-right" for="jtbh">家庭编号:</label>
-                                                <input type="text" name="jtbh" id="jtbh" class="sr-only form-control search-query"/>
+                                                <input type="text" name="jtbh" id="jtbh" class="sr-only form-control search-query"  th:value="${azSettlementHousehold.jtbh}"/>
                                             </div>
 
 
@@ -905,7 +904,7 @@
 
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
-                                                        <input type="text" name="ldfh" id="ldfh" class="col-xs-12 col-sm-4 form-control" placeholder="回车进行多个房号输入"/>
+                                                        <input type="text" name="ldfh" id="ldfh" class="col-xs-12 col-sm-4 form-control" th:value="${azSettlementHousehold.ldfh}" placeholder="回车进行多个房号输入"/>
                                                     </div>
                                                 </div>
 
@@ -913,7 +912,7 @@
 
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
-                                                        <input type="text" name="ndfqrw" id="ndfqrw" class="col-xs-12 col-sm-4 form-control" placeholder="如：2018年"/>
+                                                        <input type="text" name="ndfqrw" id="ndfqrw" class="col-xs-12 col-sm-4 form-control"  th:value="${azSettlementHousehold.ndfqrw}" placeholder="如：2018年"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -926,9 +925,9 @@
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
                                                         <select class="input-medium form-control" id="bqlx" name="bqlx">
-                                                            <option value="">------------------</option>
-                                                            <option value="1">建档立卡贫困户</option>
-                                                            <option value="2">同步搬迁户</option>
+                                                            <option th:selected="(${azSettlementHousehold.bqlx} =='')" value="">------------------</option>
+                                                            <option th:selected="(${azSettlementHousehold.bqlx} =='建档立卡贫困户')" value="1">建档立卡贫困户</option>
+                                                            <option th:selected="(${azSettlementHousehold.bqlx} =='同步搬迁户')" value="2">同步搬迁户</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -937,7 +936,7 @@
 
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
-                                                        <input type="text" name="qcdsj" id="qcdsj" class="col-xs-12 col-sm-4 form-control" placeholder="如钦州市"/>
+                                                        <input type="text" name="qcdsj" id="qcdsj" class="col-xs-12 col-sm-4 form-control" th:value="${azSettlementHousehold.qcdsj}" placeholder="如钦州市"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -949,7 +948,7 @@
 
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
-                                                        <input type="text" name="qcdxj" id="qcdxj" class="col-xs-12 col-sm-4 form-control" placeholder="如：钦南区"/>
+                                                        <input type="text" name="qcdxj" id="qcdxj" class="col-xs-12 col-sm-4 form-control" th:value="${azSettlementHousehold.qcdxj}" placeholder="如：钦南区"/>
                                                     </div>
                                                 </div>
 
@@ -960,8 +959,7 @@
                                                                 <span class="input-group-addon">
                                                                     <i class="red ace-icon fa fa-check"></i>
                                                                 </span>
-                                                        <input type="text" name="qcdxxdz" id="qcdxxdz" class="form-control search-query"
-                                                               placeholder="请点击获取按钮获取迁出地详细地址信息" readonly/>
+                                                        <input type="text" name="qcdxxdz" id="qcdxxdz" class="form-control search-query" th:value="${azSettlementHousehold.qcdxxdz}" placeholder="请点击获取按钮获取迁出地详细地址信息" readonly/>
                                                         <span class="input-group-btn">
                                                                     <button type="button" class="btn btn-purple btn-sm" id="getXxdzBtn" data-toggle="modal" data-target="#getXzqhModal">
                                                                         <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
@@ -979,11 +977,11 @@
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
                                                         <select class="input-medium form-control" id="qcdlx" name="qcdlx">
-                                                            <option value="">------------------</option>
-                                                            <option value="1">一类</option>
-                                                            <option value="2">二类</option>
-                                                            <option value="3">三类</option>
-                                                            <option value="4">四类</option>
+                                                            <option th:selected="(${azSettlementHousehold.qcdlx} =='')"  value="">------------------</option>
+                                                            <option th:selected="(${azSettlementHousehold.qcdlx} =='一类')" value="1">一类</option>
+                                                            <option th:selected="(${azSettlementHousehold.qcdlx} =='二类')" value="2">二类</option>
+                                                            <option th:selected="(${azSettlementHousehold.qcdlx} =='三类')" value="3">三类</option>
+                                                            <option th:selected="(${azSettlementHousehold.qcdlx} =='四类')" value="4">四类</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -992,7 +990,7 @@
 
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
-                                                        <input type="number" value="0" name="jtsyhrk" id="jtsyhrk" class="col-xs-12 col-sm-4 form-control" />
+                                                        <input type="number" value="0" name="jtsyhrk" id="jtsyhrk" th:value="${azSettlementHousehold.jtsyhrk}" class="col-xs-12 col-sm-4 form-control" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -1004,14 +1002,14 @@
 
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
-                                                        <input type="number" value="0" name="zfmj" id="zfmj" class="col-xs-12 col-sm-4 form-control" />
+                                                        <input type="number" value="0" name="zfmj" id="zfmj" th:value="${azSettlementHousehold.zfmj}" class="col-xs-12 col-sm-4 form-control" />
                                                     </div>
                                                 </div>
 
                                                 <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="zczj">自筹资金:</label>
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
-                                                        <input type="number" value="0" name="zczj" id="zczj" class="col-xs-12 col-sm-4 form-control" />
+                                                        <input type="number" value="0" name="zczj" id="zczj" th:value="${azSettlementHousehold.zczj}"  class="col-xs-12 col-sm-4 form-control" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -1022,7 +1020,7 @@
                                                 <label class="control-label col-sm-2 no-padding-right" for="bqrzsj">搬迁入住时间:</label>
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="input-group">
-                                                        <input class="form-control date-picker" id="bqrzsj" name="bqrzsj" type="text" data-date-format="yyyy-mm-dd" readonly/>
+                                                        <input class="form-control date-picker" id="bqrzsj" name="bqrzsj" type="text" th:value="${azSettlementHousehold.bqrzsj}" data-date-format="yyyy-mm-dd" readonly/>
                                                         <span class="input-group-addon">
 																		<i class="fa fa-calendar bigger-110"></i>
                                                                 </span>
@@ -1032,7 +1030,7 @@
                                                 <label class="control-label col-sm-2 no-padding-right" for="sjrzsj">实际入住时间:</label>
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="input-group">
-                                                        <input class="form-control date-picker" id="sjrzsj" name="sjrzsj" type="text" data-date-format="yyyy-mm-dd" />
+                                                        <input class="form-control date-picker" id="sjrzsj" name="sjrzsj" type="text" th:value="${azSettlementHousehold.sjrzsj}" data-date-format="yyyy-mm-dd" />
                                                         <span class="input-group-addon">
 																		<i class="fa fa-calendar bigger-110"></i>
                                                                 </span>
@@ -1046,9 +1044,9 @@
                                                 <label class="control-label col-sm-2 no-padding-right" for="sfsjrzmln">是否实际入住满两年:</label>
                                                 <div class="col-xs-12 col-sm-4">
                                                     <select id="sfsjrzmln" name="sfsjrzmln" class="select2" data-placeholder="点击选择...">
-                                                        <option value="">&nbsp;</option>
-                                                        <option value="yes">是</option>
-                                                        <option value="no">否</option>
+                                                        <option th:selected="(${azSettlementHousehold.sfsjrzmln} =='')"    value="">&nbsp;</option>
+                                                        <option th:selected="(${azSettlementHousehold.sfsjrzmln} =='是')" value="yes">是</option>
+                                                        <option th:selected="(${azSettlementHousehold.sfsjrzmln} =='否')"  value="no">否</option>
                                                     </select>
                                                 </div>
 
@@ -1056,11 +1054,11 @@
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
                                                         <select class="input-medium form-control" id="yyzf" name="yyzf">
-                                                            <option value="">------------------</option>
-                                                            <option value="1">无房户</option>
-                                                            <option value="2">保护性住房</option>
-                                                            <option value="3">连体房</option>
-                                                            <option value="4">自建独立房</option>
+                                                            <option th:selected="(${azSettlementHousehold.yyzf} =='')"  value="">------------------</option>
+                                                            <option th:selected="(${azSettlementHousehold.yyzf} =='无房户')" value="1">无房户</option>
+                                                            <option th:selected="(${azSettlementHousehold.yyzf} =='保护性住房')" value="2">保护性住房</option>
+                                                            <option th:selected="(${azSettlementHousehold.yyzf} =='连体房')" value="3">连体房</option>
+                                                            <option th:selected="(${azSettlementHousehold.yyzf} =='自建独立房')" value="4">自建独立房</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -1072,7 +1070,7 @@
                                                 <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="yzfmj">原住房面积:</label>
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
-                                                        <input type="number" value="0" name="yzfmj" id="yzfmj" class="col-xs-12 col-sm-4 form-control" />
+                                                        <input type="number" value="0" name="yzfmj" id="yzfmj" th:value="${azSettlementHousehold.yzfmj}" class="col-xs-12 col-sm-4 form-control" />
                                                     </div>
                                                 </div>
 
@@ -1080,9 +1078,9 @@
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
                                                         <select class="input-medium form-control" id="ccjf" name="ccjf" >
-                                                            <option value="">------------------</option>
-                                                            <option value="1">已拆除</option>
-                                                            <option value="2">未拆除</option>
+                                                            <option th:selected="(${azSettlementHousehold.ccjf} =='')"  value="">------------------</option>
+                                                            <option th:selected="(${azSettlementHousehold.ccjf} =='已拆除')" value="1">已拆除</option>
+                                                            <option th:selected="(${azSettlementHousehold.ccjf} =='未拆除')" value="2">未拆除</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -1095,11 +1093,11 @@
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
                                                         <select class="input-medium form-control" id="bhzfzl" name="bhzfzl" >
-                                                            <option value="">------------------</option>
-                                                            <option value="1">传统保护村落</option>
-                                                            <option value="2">少数民族特色村落</option>
-                                                            <option value="3">国家乡村旅游扶贫重点村</option>
-                                                            <option value="4">重点文化旅游村落</option>
+                                                            <option th:selected="(${azSettlementHousehold.bhzfzl} =='')"  value="">------------------</option>
+                                                            <option th:selected="(${azSettlementHousehold.bhzfzl} =='传统保护村落')" value="1">传统保护村落</option>
+                                                            <option th:selected="(${azSettlementHousehold.bhzfzl} =='少数民族特色村落')" value="2">少数民族特色村落</option>
+                                                            <option th:selected="(${azSettlementHousehold.bhzfzl} =='国家乡村旅游扶贫重点村')" value="3">国家乡村旅游扶贫重点村</option>
+                                                            <option th:selected="(${azSettlementHousehold.bhzfzl} =='重点文化旅游村落')" value="4">重点文化旅游村落</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -1107,7 +1105,7 @@
                                                 <label class="control-label col-sm-2 no-padding-right" for="ccsj">拆除时间:</label>
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="input-group">
-                                                        <input class="form-control date-picker" id="ccsj" name="ccsj" type="text" data-date-format="yyyy-mm" />
+                                                        <input class="form-control date-picker" id="ccsj" name="ccsj" type="text" th:value="${azSettlementHousehold.ccsj}" data-date-format="yyyy-mm" />
                                                         <span class="input-group-addon">
 																		<i class="fa fa-calendar bigger-110"></i>
                                                                 </span>
@@ -1122,14 +1120,14 @@
 
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
-                                                        <input type="number" value="0" name="ccjfmj" id="ccjfmj" class="col-xs-12 col-sm-4 form-control" />
+                                                        <input type="number" value="0" name="ccjfmj" id="ccjfmj" th:value="${azSettlementHousehold.ccjfmj}" class="col-xs-12 col-sm-4 form-control" />
                                                     </div>
                                                 </div>
 
                                                 <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="dxcfjl">兑现拆房奖励:</label>
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
-                                                        <input type="number" value="0" name="dxcfjl" id="dxcfjl" class="col-xs-12 col-sm-4 form-control" />
+                                                        <input type="number" value="0" name="dxcfjl" id="dxcfjl" th:value="${azSettlementHousehold.dxcfjl}" class="col-xs-12 col-sm-4 form-control" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -1141,10 +1139,10 @@
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
                                                         <select class="input-medium form-control" id="fkfl" name="fkfl" >
-                                                            <option value="">------------------</option>
-                                                            <option value="1">未复垦复绿</option>
-                                                            <option value="2">已复垦</option>
-                                                            <option value="3">已复绿</option>
+                                                            <option th:selected="(${azSettlementHousehold.fkfl} =='')"  value="">------------------</option>
+                                                            <option th:selected="(${azSettlementHousehold.fkfl} =='未复垦复绿')" value="1">未复垦复绿</option>
+                                                            <option th:selected="(${azSettlementHousehold.fkfl} =='已复垦')" value="2">已复垦</option>
+                                                            <option th:selected="(${azSettlementHousehold.fkfl} =='已复绿')" value="3">已复绿</option>
                                                         </select>
                                                     </div>
                                                 </div>
@@ -1152,7 +1150,7 @@
                                                 <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="fkflmj">复垦复绿面积:</label>
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
-                                                        <input type="number" value="0" name="fkflmj" id="fkflmj" class="col-xs-12 col-sm-4 form-control" />
+                                                        <input type="number" value="0" name="fkflmj" id="fkflmj" th:value="${azSettlementHousehold.fkflmj}" class="col-xs-12 col-sm-4 form-control" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -1163,14 +1161,14 @@
                                                 <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="cyfcxm">产业扶持项目:</label>
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
-                                                        <input type="text" name="cyfcxm" id="cyfcxm" class="col-xs-12 col-sm-4 form-control" placeholder="如：养鸡、养鸭"/>
+                                                        <input type="text" name="cyfcxm" id="cyfcxm" class="col-xs-12 col-sm-4 form-control" th:value="${azSettlementHousehold.cyfcxm}" placeholder="如：养鸡、养鸭"/>
                                                     </div>
                                                 </div>
 
                                                 <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="nnhdcyfczj">年内获得产业扶持资金:</label>
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
-                                                        <input type="number" value="0" name="nnhdcyfczj" id="nnhdcyfczj" class="col-xs-12 col-sm-4 form-control" />
+                                                        <input type="number" value="0" name="nnhdcyfczj" id="nnhdcyfczj" th:value="${azSettlementHousehold.nnhdcyfczj}" class="col-xs-12 col-sm-4 form-control" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -1181,16 +1179,16 @@
                                                 <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="tpqk">脱贫情况:</label>
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
-                                                        <input type="text" name="tpqk" id="tpqk" class="col-xs-12 col-sm-4 form-control" placeholder="如：2018年"/>
+                                                        <input type="text" name="tpqk" id="tpqk" class="col-xs-12 col-sm-4 form-control" th:value="${azSettlementHousehold.tpqk}" placeholder="如：2018年"/>
                                                     </div>
                                                 </div>
 
                                                 <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="hkqy">户口迁移:</label>
                                                 <div class="col-xs-12 col-sm-4">
                                                     <select id="hkqy" name="hkqy" class="select2" data-placeholder="点击选择...">
-                                                        <option value="">&nbsp;</option>
-                                                        <option value="yes">是</option>
-                                                        <option value="no">否</option>
+                                                        <option th:selected="(${azSettlementHousehold.hkqy} =='')"    value="">&nbsp;</option>
+                                                        <option th:selected="(${azSettlementHousehold.hkqy} =='是')" value="yes">是</option>
+                                                        <option th:selected="(${azSettlementHousehold.hkqy} =='否')"  value="no">否</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -1201,16 +1199,16 @@
                                                 <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="fczbl">房产证办理:</label>
                                                 <div class="col-xs-12 col-sm-4">
                                                     <select id="fczbl" name="fczbl" class="select2" data-placeholder="点击选择...">
-                                                        <option value="">&nbsp;</option>
-                                                        <option value="yes">是</option>
-                                                        <option value="no">否</option>
+                                                        <option th:selected="(${azSettlementHousehold.fczbl} =='')"    value="">&nbsp;</option>
+                                                        <option th:selected="(${azSettlementHousehold.fczbl} =='是')" value="yes">是</option>
+                                                        <option th:selected="(${azSettlementHousehold.fczbl} =='否')"  value="no">否</option>
                                                     </select>
                                                 </div>
 
                                                 <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="lxdh">联系电话:</label>
                                                 <div class="col-xs-12 col-sm-4">
                                                     <div class="clearfix">
-                                                        <input type="phone" name="lxdh" id="lxdh" class="col-xs-12 col-sm-4 form-control" />
+                                                        <input type="phone" name="lxdh" id="lxdh" th:value="${azSettlementHousehold.lxdh}" class="col-xs-12 col-sm-4 form-control" />
                                                     </div>
                                                 </div>
                                             </div>
@@ -1219,7 +1217,7 @@
 
                                             <div class="row">
                                                 <div class="center">
-                                                    <button type="button" class="btn btn-danger" id="add-settlement-household">添加</button>
+                                                    <button type="button" class="btn btn-danger" id="edit-settlement-household">确认</button>
                                                 </div>
                                             </div>
 
@@ -1495,13 +1493,13 @@
         }
 
         //当点击添加按钮时，进行与后台交互
-        $("#add-settlement-household").on("click",function () {
+        $("#edit-settlement-household").on("click",function () {
             if(checkSettlementHouseholdForm()){
                 //生产收入种植业表格数据
                 var postData = $('#settlement-household-form').serialize();
-                $.post("/settlementHousehold/add", postData,function (data) {
+                $.post("/settlementHousehold/edit", postData,function (data) {
                     if(data.status==1){
-                        alert("安置户信息写入成功！");
+                        alert("安置户信息修改成功！");
                     }
                 })
             }

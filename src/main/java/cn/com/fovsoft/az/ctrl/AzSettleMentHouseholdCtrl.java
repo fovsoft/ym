@@ -74,6 +74,50 @@ public class AzSettleMentHouseholdCtrl {
     }
 
 
+    /**
+     * @author: tpc
+     * @date: 2019/12/3 23:14
+     * @description: 给点条件的任意组合的条件查询实现
+     */
+    @RequestMapping(value = "/settlementHousehold/searchByMore",method = RequestMethod.POST)
+    @ResponseBody
+    public void searchAzSettlementHousehodByMore(HttpServletRequest request, HttpServletResponse response) throws IOException{
+        //前端获取参数
+        String azdmz = request.getParameter("azdmz");
+        String hz = request.getParameter("hz");
+        String lxdh = request.getParameter("lxdh");
+        String ldfh = request.getParameter("ldfh");
+        //前端获取到的页码数
+        int pageNum = Integer.parseInt(request.getParameter("page"));
+        //前端获取到的显示每页的数量
+        int pageSize = Integer.parseInt(request.getParameter("rows"));
+        //分页获取到所有安置户信息
+        PageHelper.startPage(pageNum,pageSize);
+        List<AzSettlementHousehold> azSettlementHouseholdList = azSettlementHouseholdService.findAzSettlementHouseholdByMoreCondition(azdmz,hz,lxdh,ldfh);
+        PageInfo<AzSettlementHousehold> pageInfo = new PageInfo<AzSettlementHousehold>(azSettlementHouseholdList);
+
+        //获得总记录数
+        long records = pageInfo.getTotal();
+        //默认当前页码
+        int page = pageInfo.getPageNum();
+        //获得总页数
+        int total = pageInfo.getPages();
+        //用来序列化json数据的map
+        Map<String,Object> map=new HashMap<>();
+        //设置json格式写出
+        map.put("rows",azSettlementHouseholdList);
+        map.put("page",page);
+        map.put("total",total);
+        map.put("records",records);
+
+        response.setContentType("application/json;charset=utf-8");
+        //map.put("ymPerson_data",ymPersonList);
+        response.getWriter().write(objectMapper.writeValueAsString(map));
+        response.getWriter().flush();
+        response.getWriter().close();
+    }
+
+
 
     /*
      * Author:tpc
@@ -85,6 +129,25 @@ public class AzSettleMentHouseholdCtrl {
     @RequestMapping(value = "/settlementHousehold/add")
     @ResponseBody
     public Map<String,Object> addAzSettlementHousehold(HttpServletRequest request){
+
+        int resultNum = insertAzSettlementHousehold(request);
+
+        //用来返回结果的信息
+        int status = 1;
+        String result = "success";
+        //判断写入情况
+        if(resultNum<1){
+            status = 0;
+            result = "error";
+        }
+        Map<String,Object> map = new HashMap<>();
+        map.put("status",status);
+        map.put("result",result);
+        return map;
+    }
+
+
+    public int insertAzSettlementHousehold(HttpServletRequest request){
         //获取前端参数
         String azdbh          = request.getParameter("azdbh")      ;
         String hz             = request.getParameter("hz")         ;
@@ -125,11 +188,11 @@ public class AzSettleMentHouseholdCtrl {
         azSettlementHousehold.setLdfh(ldfh);
         azSettlementHousehold.setNdfqrw(ndfqrw);
         if(bqlx.equals("1")){
-            azSettlementHousehold.setNdfqrw("建档立卡贫困户");
+            azSettlementHousehold.setBqlx("建档立卡贫困户");
         }else if(bqlx.equals("2")){
-            azSettlementHousehold.setNdfqrw("同步搬迁户");
+            azSettlementHousehold.setBqlx("同步搬迁户");
         }else {
-            azSettlementHousehold.setNdfqrw("其他");
+            azSettlementHousehold.setBqlx("其他");
         }
         azSettlementHousehold.setQcdsj(qcdsj);
         azSettlementHousehold.setQcdxj(qcdxj);
@@ -195,7 +258,7 @@ public class AzSettleMentHouseholdCtrl {
             azSettlementHousehold.setFkfl("已复垦");
         }else if(fkfl.equals("3")){
             azSettlementHousehold.setFkfl("已复绿");
-        }{
+        }else{
             azSettlementHousehold.setFkfl("其他");
         }
         azSettlementHousehold.setFkflmj(fkflmj);
@@ -215,6 +278,18 @@ public class AzSettleMentHouseholdCtrl {
         azSettlementHousehold.setLxdh(lxdh);
 
         int resultNum = azSettlementHouseholdService.addAzSettlementHousehold(azSettlementHousehold);
+        return resultNum;
+    }
+
+
+    @RequestMapping(value = "/settlementHousehold/edit")
+    @ResponseBody
+    public Map<String,Object> editAzSettlementHousehold(HttpServletRequest request){
+        //先删除原来的，然后再进行写入
+        String id = request.getParameter("id");
+        azSettlementHouseholdService.deleteAzSettlementHouseholdById(id);
+        //写入数据
+        int resultNum = insertAzSettlementHousehold(request);
 
         //用来返回结果的信息
         int status = 1;
@@ -228,10 +303,18 @@ public class AzSettleMentHouseholdCtrl {
         map.put("status",status);
         map.put("result",result);
         return map;
+
     }
 
 
 
+
+
+    /**
+     * @author: tpc
+     * @date: 2019/12/3 22:33
+     * @description: 安置户信息的删除
+     */
     @RequestMapping(value = "/settlementHousehold/delete")
     @ResponseBody
     public Map<String,Object> deleteAzSettlementHousehold(HttpServletRequest request){
@@ -252,6 +335,8 @@ public class AzSettleMentHouseholdCtrl {
         map.put("result","success");
         return map;
     }
+
+
 
 
 }
