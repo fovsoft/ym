@@ -58,6 +58,18 @@ public interface AzSettlementHouseholdDao {
     List<AzSettlementHousehold> findAllAzSettlementHousehold();
 
 
+    /*
+     * Author:tpc
+     * Date: 2019/12/3 17:33
+     * Param: [id]
+     * Return: cn.com.fovsoft.az.bean.AzSettlementHousehold
+     * 功能描述: 通过主键查找安置户
+     */
+    @Select("select * from az_settlement_household where id=#{id}")
+    @ResultMap(value = {"settlementHouseholdMap"})
+    AzSettlementHousehold findAzSettlementHouseholdById(String id);
+
+
     /**
      * @author: tpc
      * @date: 2019/12/2 23:07

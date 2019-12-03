@@ -74,4 +74,184 @@ public class AzSettleMentHouseholdCtrl {
     }
 
 
+
+    /*
+     * Author:tpc
+     * Date: 2019/12/3 11:38
+     * Param: [request]
+     * Return: java.util.Map<java.lang.String,java.lang.Object>
+     * 功能描述: 新增安置户
+     */
+    @RequestMapping(value = "/settlementHousehold/add")
+    @ResponseBody
+    public Map<String,Object> addAzSettlementHousehold(HttpServletRequest request){
+        //获取前端参数
+        String azdbh          = request.getParameter("azdbh")      ;
+        String hz             = request.getParameter("hz")         ;
+        String jtbh           = request.getParameter("jtbh")       ;
+        String ldfh           = request.getParameter("ldfh")       ;
+        String ndfqrw         = request.getParameter("ndfqrw")     ;
+        String bqlx           = request.getParameter("bqlx")       ;
+        String qcdsj          = request.getParameter("qcdsj")      ;
+        String qcdxj          = request.getParameter("qcdxj")      ;
+        String qcdxxdz        = request.getParameter("qcdxxdz")    ;
+        String qcdlx          = request.getParameter("qcdlx")      ;
+        String jtsyhrk        = request.getParameter("jtsyhrk")    ;
+        String zfmj           = request.getParameter("zfmj")       ;
+        String zczj           = request.getParameter("zczj")       ;
+        String bqrzsj         = request.getParameter("bqrzsj")     ;
+        String sjrzsj         = request.getParameter("sjrzsj")     ;
+        String sfsjrzmln      = request.getParameter("sfsjrzmln")  ;
+        String yyzf           = request.getParameter("yyzf")       ;
+        String yzfmj          = request.getParameter("yzfmj")      ;
+        String ccjf           = request.getParameter("ccjf")       ;
+        String bhzfzl         = request.getParameter("bhzfzl")     ;
+        String ccsj           = request.getParameter("ccsj")       ;
+        String ccjfmj         = request.getParameter("ccjfmj")     ;
+        String dxcfjl         = request.getParameter("dxcfjl")     ;
+        String fkfl           = request.getParameter("fkfl")       ;
+        String fkflmj         = request.getParameter("fkflmj")     ;
+        String cyfcxm         = request.getParameter("cyfcxm")     ;
+        String nnhdcyfczj     = request.getParameter("nnhdcyfczj") ;
+        String tpqk           = request.getParameter("tpqk")       ;
+        String hkqy           = request.getParameter("hkqy")       ;
+        String fczbl          = request.getParameter("fczbl")      ;
+        String lxdh           = request.getParameter("lxdh")       ;
+
+        AzSettlementHousehold azSettlementHousehold = new AzSettlementHousehold();
+        azSettlementHousehold.setAzdbh(azdbh);
+        azSettlementHousehold.setHz(hz);
+        azSettlementHousehold.setJtbh(jtbh);
+        azSettlementHousehold.setLdfh(ldfh);
+        azSettlementHousehold.setNdfqrw(ndfqrw);
+        if(bqlx.equals("1")){
+            azSettlementHousehold.setNdfqrw("建档立卡贫困户");
+        }else if(bqlx.equals("2")){
+            azSettlementHousehold.setNdfqrw("同步搬迁户");
+        }else {
+            azSettlementHousehold.setNdfqrw("其他");
+        }
+        azSettlementHousehold.setQcdsj(qcdsj);
+        azSettlementHousehold.setQcdxj(qcdxj);
+        azSettlementHousehold.setQcdxxdz(qcdxxdz);
+        if(qcdlx.equals("1")){
+            azSettlementHousehold.setQcdlx("一类");
+        }else if(qcdlx.equals("2")){
+            azSettlementHousehold.setQcdlx("二类");
+        }else if(qcdlx.equals("3")){
+            azSettlementHousehold.setQcdlx("三类");
+        }else if(qcdlx.equals("4")){
+            azSettlementHousehold.setQcdlx("四类");
+        }else{
+            azSettlementHousehold.setQcdlx("其他");
+        }
+        azSettlementHousehold.setJtsyhrk(jtsyhrk);
+        azSettlementHousehold.setZfmj(zfmj);
+        azSettlementHousehold.setZczj(zczj);
+        azSettlementHousehold.setBqrzsj(bqrzsj);
+        azSettlementHousehold.setSjrzsj(sjrzsj);
+        if(sfsjrzmln.equals("yes")){
+            azSettlementHousehold.setSfsjrzmln("是");
+        }else{
+            azSettlementHousehold.setSfsjrzmln("否");
+        }
+
+        if(yyzf.equals("1")){
+            azSettlementHousehold.setYyzf("无房户");
+        }else if(yyzf.equals("2")){
+            azSettlementHousehold.setYyzf("保护性住房");
+        }else if(yyzf.equals("3")){
+            azSettlementHousehold.setYyzf("连体房");
+        }else if(yyzf.equals("4")){
+            azSettlementHousehold.setYyzf("自建独立房");
+        }else{
+            azSettlementHousehold.setYyzf("其他");
+        }
+        azSettlementHousehold.setYzfmj(yzfmj);
+        if(ccjf.equals("1")){
+            azSettlementHousehold.setCcjf("已拆除");
+        }else if(ccjf.equals("2")){
+            azSettlementHousehold.setCcjf("未拆除");
+        }else {
+            azSettlementHousehold.setCcjf("其他");
+        }
+        if(bhzfzl.equals("1")){
+            azSettlementHousehold.setBhzfzl("传统保护村落");
+        }else if(bhzfzl.equals("2")){
+            azSettlementHousehold.setBhzfzl("少数民族特色村落");
+        }else if(bhzfzl.equals("3")){
+            azSettlementHousehold.setBhzfzl("国家乡村旅游扶贫重点村");
+        }else if(bhzfzl.equals("4")){
+            azSettlementHousehold.setBhzfzl("重点文化旅游村落");
+        }else{
+            azSettlementHousehold.setBhzfzl("其他");
+        }
+        azSettlementHousehold.setCcsj(ccsj);
+        azSettlementHousehold.setCcjfmj(ccjfmj);
+        azSettlementHousehold.setDxcfjl(dxcfjl);
+        if(fkfl.equals("1")){
+            azSettlementHousehold.setFkfl("未复垦复绿");
+        }else if(fkfl.equals("2")){
+            azSettlementHousehold.setFkfl("已复垦");
+        }else if(fkfl.equals("3")){
+            azSettlementHousehold.setFkfl("已复绿");
+        }{
+            azSettlementHousehold.setFkfl("其他");
+        }
+        azSettlementHousehold.setFkflmj(fkflmj);
+        azSettlementHousehold.setCyfcxm(cyfcxm);
+        azSettlementHousehold.setNnhdcyfczj(nnhdcyfczj);
+        azSettlementHousehold.setTpqk(tpqk);
+        if(hkqy.equals("yes")){
+            azSettlementHousehold.setHkqy("是");
+        }else{
+            azSettlementHousehold.setHkqy("否");
+        }
+        if(fczbl.equals("yes")){
+            azSettlementHousehold.setFczbl("是");
+        }else {
+            azSettlementHousehold.setFczbl("否");
+        }
+        azSettlementHousehold.setLxdh(lxdh);
+
+        int resultNum = azSettlementHouseholdService.addAzSettlementHousehold(azSettlementHousehold);
+
+        //用来返回结果的信息
+        int status = 1;
+        String result = "success";
+        //判断写入情况
+        if(resultNum<1){
+            status = 0;
+            result = "error";
+        }
+        Map<String,Object> map = new HashMap<>();
+        map.put("status",status);
+        map.put("result",result);
+        return map;
+    }
+
+
+
+    @RequestMapping(value = "/settlementHousehold/delete")
+    @ResponseBody
+    public Map<String,Object> deleteAzSettlementHousehold(HttpServletRequest request){
+        String idArr = request.getParameter("idArr");
+        idArr = idArr.substring(0,idArr.length()-1);
+        if(idArr.length()==1){
+            //直接删除
+            azSettlementHouseholdService.deleteAzSettlementHouseholdById(idArr);
+        }else {
+            String[] idArray = idArr.split(",");
+            for(String id:idArray){
+                azSettlementHouseholdService.deleteAzSettlementHouseholdById(id);
+            }
+        }
+        //用来返回信息的封装对象
+        Map<String,Object> map=new HashMap<>();
+        map.put("status",1);
+        map.put("result","success");
+        return map;
+    }
+
+
 }

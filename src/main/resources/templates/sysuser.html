@@ -1285,7 +1285,8 @@
             var input = confirm("确定删除选定数据吗？");
             if(input){
                 var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
-                if(rowids !=""){
+                console.log(rowids);
+                if(rowids !=""||rowids.length>0){
                     var idArr = "";
                     for(var i=0;i<rowids.length;i++){
                         var rowData = $("#grid-table").jqGrid('getRowData',rowids[i]);

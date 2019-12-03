@@ -200,37 +200,37 @@ insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,f
 insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('5','450702404000', '中马钦州产业园区'			,'广西壮族自治区钦州市钦南区中马钦州产业园区'			,'450702000000','桂N','园区',  '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
 
 
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702001003', '新兴社区居委会'	      ,'广西壮族自治区钦州市钦南区向阳街道办事处新兴社区'	      ,'450702001000','桂N','社区',	'535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702001004', '新兴社区居委会'	      ,'广西壮族自治区钦州市钦南区向阳街道办事处新兴社区'	      ,'450702001000','桂N','社区',	'535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702001003', '新兴社区'	      ,'广西壮族自治区钦州市钦南区向阳街道办事处新兴社区'	      ,'450702001000','桂N','社区',	'535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702001004', '新兴社区'	      ,'广西壮族自治区钦州市钦南区向阳街道办事处新兴社区'	      ,'450702001000','桂N','社区',	'535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
 
 
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702002001', '东南社区居委会'	      ,'广西壮族自治区钦州市钦南区水东街道办事处东南社区'	      ,'450702002000','桂N','社区',	'535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702002002', '五里桥社区居委会'	      ,'广西壮族自治区钦州市钦南区水东街道办事处五里桥社区'	      ,'450702002000','桂N','社区',	'535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702002005', '大沙垌社区居委会'	      ,'广西壮族自治区钦州市钦南区水东街道办事处大沙垌社区'	      ,'450702002000','桂N','社区',	'535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702002001', '东南社区'	      ,'广西壮族自治区钦州市钦南区水东街道办事处东南社区'	      ,'450702002000','桂N','社区',	'535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702002002', '五里桥社区'	      ,'广西壮族自治区钦州市钦南区水东街道办事处五里桥社区'	      ,'450702002000','桂N','社区',	'535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702002005', '大沙垌社区'	      ,'广西壮族自治区钦州市钦南区水东街道办事处大沙垌社区'	      ,'450702002000','桂N','社区',	'535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
 
 
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702003001', '东风社区居委会'	      ,'广西壮族自治区钦州市钦南区文峰街道办事处东风社区'	      ,'450702003000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702003002', '江滨社区居委会'	      ,'广西壮族自治区钦州市钦南区文峰街道办事处江滨社区'	      ,'450702003000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702003003', '中山社区居委会'	      ,'广西壮族自治区钦州市钦南区文峰街道办事处中山社区'	      ,'450702003000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702003004', '三宣堂社区居委会'	      ,'广西壮族自治区钦州市钦南区文峰街道办事处三宣堂社区'	      ,'450702003000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702003005', '文昌社区居委会'	      ,'广西壮族自治区钦州市钦南区文峰街道办事处文昌社区'	      ,'450702003000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702003006', '新隆社区居委会'	      ,'广西壮族自治区钦州市钦南区文峰街道办事处新隆社区'	      ,'450702003000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-
-
-
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702004001', '城西社区居委会'	      ,'广西壮族自治区钦州市钦南区南珠街道办事处城西社区'	      ,'450702004000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702004002', '高岭社区居委会'	      ,'广西壮族自治区钦州市钦南区南珠街道办事处高岭社区'	      ,'450702004000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702004003', '鸿泰社区居委会'	      ,'广西壮族自治区钦州市钦南区南珠街道办事处鸿泰社区'	      ,'450702004000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702003001', '东风社区'	      ,'广西壮族自治区钦州市钦南区文峰街道办事处东风社区'	      ,'450702003000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702003002', '江滨社区'	      ,'广西壮族自治区钦州市钦南区文峰街道办事处江滨社区'	      ,'450702003000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702003003', '中山社区'	      ,'广西壮族自治区钦州市钦南区文峰街道办事处中山社区'	      ,'450702003000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702003004', '三宣堂社区'	      ,'广西壮族自治区钦州市钦南区文峰街道办事处三宣堂社区'	      ,'450702003000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702003005', '文昌社区'	      ,'广西壮族自治区钦州市钦南区文峰街道办事处文昌社区'	      ,'450702003000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702003006', '新隆社区'	      ,'广西壮族自治区钦州市钦南区文峰街道办事处新隆社区'	      ,'450702003000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
 
 
 
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702005001', '尖山社区居委会'	      ,'广西壮族自治区钦州市钦南区尖山街道办事处尖山社区'	      ,'450702005000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702005002', '排榜社区居委会'	      ,'广西壮族自治区钦州市钦南区尖山街道办事处排榜社区'	      ,'450702005000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702005202', '西沟村委会'	      ,'广西壮族自治区钦州市钦南区尖山街道办事处西沟村'	      ,'450702005000','桂N','村', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702005203', '黄坡豕村委会'	      ,'广西壮族自治区钦州市钦南区尖山街道办事处黄坡豕村'	      ,'450702005000','桂N','村', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702005204', '谷仓村委会'	      ,'广西壮族自治区钦州市钦南区尖山街道办事处谷仓村'	      ,'450702005000','桂N','村', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702005205', '九鸦村委会'	      ,'广西壮族自治区钦州市钦南区尖山街道办事处九鸦村'	      ,'450702005000','桂N','村', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702005206', '黎头咀村委会'	      ,'广西壮族自治区钦州市钦南区尖山街道办事处黎头咀村'	      ,'450702005000','桂N','村', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702004001', '城西社区'	      ,'广西壮族自治区钦州市钦南区南珠街道办事处城西社区'	      ,'450702004000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702004002', '高岭社区'	      ,'广西壮族自治区钦州市钦南区南珠街道办事处高岭社区'	      ,'450702004000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702004003', '鸿泰社区'	      ,'广西壮族自治区钦州市钦南区南珠街道办事处鸿泰社区'	      ,'450702004000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+
+
+
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702005001', '尖山社区'	      ,'广西壮族自治区钦州市钦南区尖山街道办事处尖山社区'	      ,'450702005000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702005002', '排榜社区'	      ,'广西壮族自治区钦州市钦南区尖山街道办事处排榜社区'	      ,'450702005000','桂N','社区', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702005202', '西沟村'	      ,'广西壮族自治区钦州市钦南区尖山街道办事处西沟村'	      ,'450702005000','桂N','村', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702005203', '黄坡豕村'	      ,'广西壮族自治区钦州市钦南区尖山街道办事处黄坡豕村'	      ,'450702005000','桂N','村', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702005204', '谷仓村'	      ,'广西壮族自治区钦州市钦南区尖山街道办事处谷仓村'	      ,'450702005000','桂N','村', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702005205', '九鸦村'	      ,'广西壮族自治区钦州市钦南区尖山街道办事处九鸦村'	      ,'450702005000','桂N','村', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702005206', '黎头咀村'	      ,'广西壮族自治区钦州市钦南区尖山街道办事处黎头咀村'	      ,'450702005000','桂N','村', '535000','2019-11-09 21:40:00','2019-11-09 21:40:01');
 
 
 
@@ -286,16 +286,16 @@ insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,f
 insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702102216',  '料连村',	  '广西壮族自治区钦州市钦南区黄屋屯镇料连村'				      ,'450702102000','桂N','村',		 '535033','2019-11-09 21:40:00','2019-11-09 21:40:01');
 
 
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104001',  '茅坡社区',	'广西壮族自治区钦州市钦南区大番坡镇茅坡社区',	'450702000000','桂N','社区',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104201',  '沙坡村',	  '广西壮族自治区钦州市钦南区大番坡镇沙坡村',	  '450702000000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104202',  '葵子村',	  '广西壮族自治区钦州市钦南区大番坡镇葵子村',	  '450702000000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104203',  '大番坡村',	'广西壮族自治区钦州市钦南区大番坡镇大番坡村',	'450702000000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104204',  '青龙村',	  '广西壮族自治区钦州市钦南区大番坡镇青龙村',	  '450702000000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104205',  '板桥村',	  '广西壮族自治区钦州市钦南区大番坡镇板桥村',	  '450702000000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104206',  '大窝口村',	'广西壮族自治区钦州市钦南区大番坡镇大窝口村',	'450702000000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104207',  '六村村',	  '广西壮族自治区钦州市钦南区大番坡镇六村村',	  '450702000000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104208',  '深坪村',	  '广西壮族自治区钦州市钦南区大番坡镇深坪村',	  '450702000000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
-insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104210',  '辣椒槌村',	'广西壮族自治区钦州市钦南区大番坡镇辣椒槌村',	'450702000000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104001',  '茅坡社区',	'广西壮族自治区钦州市钦南区大番坡镇茅坡社区',	'450702104000','桂N','社区',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104201',  '沙坡村',	  '广西壮族自治区钦州市钦南区大番坡镇沙坡村',	  '450702104000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104202',  '葵子村',	  '广西壮族自治区钦州市钦南区大番坡镇葵子村',	  '450702104000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104203',  '大番坡村',	'广西壮族自治区钦州市钦南区大番坡镇大番坡村',	'450702104000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104204',  '青龙村',	  '广西壮族自治区钦州市钦南区大番坡镇青龙村',	  '450702104000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104205',  '板桥村',	  '广西壮族自治区钦州市钦南区大番坡镇板桥村',	  '450702104000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104206',  '大窝口村',	'广西壮族自治区钦州市钦南区大番坡镇大窝口村',	'450702104000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104207',  '六村村',	  '广西壮族自治区钦州市钦南区大番坡镇六村村',	  '450702104000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104208',  '深坪村',	  '广西壮族自治区钦州市钦南区大番坡镇深坪村',	  '450702104000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
+insert into frm_administrative_division(xzqhcj,xzqhdm,xzqhmz,xxxzqhmz,sjxzqhdm,fzjg,xzqhlb,yzbm,cjsj,gxsj) values ('6','450702104210',  '辣椒槌村',	'广西壮族自治区钦州市钦南区大番坡镇辣椒槌村',	'450702104000','桂N','村',		 '535037','2019-11-09 21:40:00','2019-11-09 21:40:01');
 
 
 
@@ -671,7 +671,7 @@ create table az_settlement_household
     yzfmj      float comment '原住房面积',
     ccjf       varchar(20) comment '拆除旧房',
     bhzfzl     varchar(20) comment '保护住房种类',
-    ccsj       datetime comment '拆除时间',
+    ccsj       varchar(10) comment '拆除时间',
     ccjfmj     float comment '拆除旧房面积',
     dxcfjl     varchar(20) comment '兑现拆房奖励',
     fkfl        varchar(20) comment '复垦复绿',

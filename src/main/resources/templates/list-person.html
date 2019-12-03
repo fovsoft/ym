@@ -1188,7 +1188,7 @@
         //编辑按钮操作
         $('#editBtn').on('click',function () {
             var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
-            if(rowids !=""){
+            if(rowids !=""||rowids.length>0){
                 if(rowids.length>2){
                     alert("请不要勾选超过一个人员!")
                 }else {

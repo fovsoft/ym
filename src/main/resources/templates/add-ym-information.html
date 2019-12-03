@@ -1871,6 +1871,223 @@
 
 
 
+        <!--jqgrid-->
+
+
+
+
+
+        //var parent_column = $(grid_selector).closest('[class*="col-"]');
+
+        //var pre_column = $(parent_column).attr('id');
+        //alert($(parent_column).attr('id'));
+        //var parent_column = "#alert-dev";
+        //resize to fit page size
+
+
+        //resize on sidebar collapse/expand
+
+
+
+        jQuery(grid_selector).jqGrid({
+            datatype: "json",//数据封装方式为json
+            //url: '/ym/addperson',
+            mtype:"POST",
+            // ajaxGridOptions: { contentType: 'application/json; charset=utf-8' },
+            // serializeGridData: function (postData)
+            // {
+            //     if (postData.searchField === undefined) postData.searchField = null;
+            //     if (postData.searchString === undefined) postData.searchString = null;
+            //     if (postData.searchOper === undefined) postData.searchOper = null;
+            //     alert(JSON.stringify(postData));
+            //     return JSON.stringify(postData);
+            // },
+            height: 250,
+            colNames:[' ','姓名','性别','身份证明号码','身份证签发机关','身份证有效期始','身份证有效期止','与户主关系','民族','出生日期','政治面貌','文化程度','在校生情况','失学或辍学原因','健康情况','劳动技能情况','是否会讲普通话','是否现役军人','是否参加城乡居民基本医疗保险','是否参加商业补充医疗保险','是否享受低保','是否参加城乡居民基本养老保险','是否享受人身意外保险补贴','联系电话'],
+            colModel:[
+                {name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
+                    formatter:'actions',
+                    formatoptions:{
+                        keys:true,
+                        //delbutton: false,//disable delete button
+
+                        delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
+                        //editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
+                    }
+                },
+                {name:'xm',         index:'xm',         width:60, fixed:true, editable:true,                 },
+                {name:'xb',         index:'xb',         width:40, fixed:true, editable:true,                 },
+                {name:'sfzmhm',     index:'sfzmhm',     width:140, fixed:true, editable:true,                 },
+                {name:'qfjg',       index:'qfjg',       width:150, fixed:true, editable:true,                 },
+                {name:'sfzyxqs',    index:'sfzyxqs',    width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'sfzyxqz',    index:'sfzyxqz',    width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'yhzgx',      index:'yhzgx',      width:80, fixed:true, editable:true,                 },
+                {name:'mz',         index:'mz',         width:40, fixed:true, editable:true,                 },
+                {name:'csrq',       index:'csrq',       width:70, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'zzmm',       index:'zzmm',       width:70, fixed:true, editable:true,                 },
+                {name:'whcd',       index:'whcd',       width:70, fixed:true, editable:true,                 },
+                {name:'zxsqk',      index:'zxsqk',      width:80, fixed:true, editable:true,                 },
+                {name:'sxhcxyy',    index:'sxhcxyy',    width:110, fixed:true, editable:true,                 },
+                {name:'jkqk',       index:'jkqk',       width:70, fixed:true, editable:true,                 },
+                {name:'ldjn',       index:'ldjn',       width:90, fixed:true, editable:true,                 },
+                {name:'sfhjpth',    index:'sfhjpth',    width:110, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfxyjr',     index:'sfxyjr',     width:90, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfcjylbx1',  index:'sfcjylbx1',  width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfcjsybx',   index:'sfcjsybx',   width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfxsdb',     index:'sfxsdb',     width:90, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfcjylbx2',  index:'sfcjylbx2',  width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfxsywbxbt', index:'sfxsywbxbt', width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'lxdh',       index:'lxdh',       width:90, fixed:true, editable:true                  }
+            ],
+            viewrecords : true,
+            rowNum:10,
+            rowList:[10,20,30],
+            pager : pager_selector,
+            altRows: true,
+            //toppager: true,
+
+            multiselect: true,
+            multiboxonly: true,
+
+            loadComplete : function() {
+                var table = this;
+                setTimeout(function(){
+                    styleCheckbox(table);
+
+                    updateActionIcons(table);
+                    updatePagerIcons(table);
+                    enableTooltips(table);
+                }, 0);
+            },
+
+            editurl: "./dummy.php",//nothing is saved
+            caption: "贫困人员信息列表"
+
+        });
+        $(window).triggerHandler('resize.jqGrid');
+
+
+        function aceSwitch( cellvalue, options, cell ) {
+            setTimeout(function(){
+                $(cell) .find('input[type=checkbox]')
+                    .addClass('ace ace-switch ace-switch-5')
+                    .after('<span class="lbl"></span>');
+            }, 0);
+        }
+        //enable datepicker
+        function pickDate( cellvalue, options, cell ) {
+            setTimeout(function(){
+                $(cell) .find('input[type=text]')
+                    .datepicker({format:'yyyy-mm-dd' , autoclose:true});
+            }, 0);
+        }
+
+        function style_edit_form(form) {
+            //enable datepicker on "sdate" field and switches for "stock" field
+            form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
+
+            form.find('input[name=stock]').addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
+            //don't wrap inside a label element, the checkbox value won't be submitted (POST'ed)
+            //.addClass('ace ace-switch ace-switch-5').wrap('<label class="inline" />').after('<span class="lbl"></span>');
+
+
+            //update buttons classes
+            var buttons = form.next().find('.EditButton .fm-button');
+            buttons.addClass('btn btn-sm').find('[class*="-icon"]').hide();//ui-icon, s-icon
+            buttons.eq(0).addClass('btn-primary').prepend('<i class="ace-icon fa fa-check"></i>');
+            buttons.eq(1).prepend('<i class="ace-icon fa fa-times"></i>')
+
+            buttons = form.next().find('.navButton a');
+            buttons.find('.ui-icon').hide();
+            buttons.eq(0).append('<i class="ace-icon fa fa-chevron-left"></i>');
+            buttons.eq(1).append('<i class="ace-icon fa fa-chevron-right"></i>');
+        }
+
+        function style_delete_form(form) {
+            var buttons = form.next().find('.EditButton .fm-button');
+            buttons.addClass('btn btn-sm btn-white btn-round').find('[class*="-icon"]').hide();//ui-icon, s-icon
+            buttons.eq(0).addClass('btn-danger').prepend('<i class="ace-icon fa fa-trash-o"></i>');
+            buttons.eq(1).addClass('btn-default').prepend('<i class="ace-icon fa fa-times"></i>')
+        }
+
+        function beforeDeleteCallback(e) {
+            var form = $(e[0]);
+            if(form.data('styled')) return false;
+
+            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+            style_delete_form(form);
+
+            form.data('styled', true);
+        }
+
+
+        //it causes some flicker when reloading or navigating grid
+        //it may be possible to have some custom formatter to do this as the grid is being created to prevent this
+        //or go back to default browser checkbox styles for the grid
+        function styleCheckbox(table) {
+            /**
+             $(table).find('input:checkbox').addClass('ace')
+             .wrap('<label />')
+             .after('<span class="lbl align-top" />')
+
+
+             $('.ui-jqgrid-labels th[id*="_cb"]:first-child')
+             .find('input.cbox[type=checkbox]').addClass('ace')
+             .wrap('<label />').after('<span class="lbl align-top" />');
+             */
+        }
+
+
+        //unlike navButtons icons, action icons in rows seem to be hard-coded
+        //you can change them like this in here if you want
+        function updateActionIcons(table) {
+            /**
+             var replacement =
+             {
+						'ui-ace-icon fa fa-pencil' : 'ace-icon fa fa-pencil blue',
+						'ui-ace-icon fa fa-trash-o' : 'ace-icon fa fa-trash-o red',
+						'ui-icon-disk' : 'ace-icon fa fa-check green',
+						'ui-icon-cancel' : 'ace-icon fa fa-times red'
+					};
+             $(table).find('.ui-pg-div span.ui-icon').each(function(){
+						var icon = $(this);
+						var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+						if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+					})
+             */
+        }
+
+        //replace icons with FontAwesome icons like above
+        function updatePagerIcons(table) {
+            var replacement =
+                {
+                    'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
+                    'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
+                    'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
+                    'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
+                };
+            $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+                var icon = $(this);
+                var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+
+                if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+            })
+        }
+
+        function enableTooltips(table) {
+            $('.navtable .ui-pg-button').tooltip({container:'body'});
+            $(table).find('.ui-pg-div').tooltip({container:'body'});
+        }
+
+        //var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
+
+        $(document).one('ajaxloadstart.page', function(e) {
+            $.jgrid.gridDestroy(grid_selector);
+            $('.ui-jqdialog').remove();
+        });
+
+        <!--end jqgrid-->
+
 
         function addYmInformation() {
             //获取家庭基本信息表单数值
@@ -1913,6 +2130,7 @@
             var ym_person_array = new Array();
             //获取grid表中所有的rowid值
             var rowIds = $(grid_selector).getDataIDs();
+            console.log(rowIds);
             if(rowIds.length>0){
                 for (var i = 0; i < rowIds.length; i++) {
                     ym_person_array.push($(grid_selector).getRowData(rowIds[i]));
@@ -2022,7 +2240,7 @@
                 }
             });
         }
-        
+
         var $validation = false;
         var final_bol = false;
 
@@ -2041,15 +2259,15 @@
                 }else {
                     $("#add-person").removeClass("hidden");
                 }
-            
-        })
+
+            })
             .on('actionclicked.fu.wizard' , function(e, info){
                 if(info.step == 1 ) {
                     if(!checkFamilyForm()) e.preventDefault();
                 }else if(info.step == 2) {
-                    var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
+                    var recordNum=$('#grid-table').jqGrid('getGridParam','records');
                     //console.log(rowids);
-                    if(rowids.length ==0){
+                    if(recordNum <1){
                         alert("还没添加家庭人员，请进行添加！");
                         e.preventDefault();
                     }
@@ -2257,9 +2475,6 @@
                     time : 3
                 });
                 return false;
-            }else if($(grid_selector).getDataIDs().length<1){
-                alert("必须添加至少一个家庭成员！");
-                return false;
             }
             return true;
         };
@@ -2389,190 +2604,6 @@
 
         $('#modal-wizard-container').ace_wizard();
         $('#modal-wizard .wizard-actions .btn[data-dismiss=modal]').removeAttr('disabled');
-
-
-
-
-
-        <!--jqgrid-->
-
-
-
-
-
-        //var parent_column = $(grid_selector).closest('[class*="col-"]');
-
-        //var pre_column = $(parent_column).attr('id');
-        //alert($(parent_column).attr('id'));
-        //var parent_column = "#alert-dev";
-        //resize to fit page size
-
-
-        //resize on sidebar collapse/expand
-
-
-
-        jQuery(grid_selector).jqGrid({
-            datatype: "json",//数据封装方式为json
-            //url: '/ym/addperson',
-            mtype:"POST",
-            // ajaxGridOptions: { contentType: 'application/json; charset=utf-8' },
-            // serializeGridData: function (postData)
-            // {
-            //     if (postData.searchField === undefined) postData.searchField = null;
-            //     if (postData.searchString === undefined) postData.searchString = null;
-            //     if (postData.searchOper === undefined) postData.searchOper = null;
-            //     alert(JSON.stringify(postData));
-            //     return JSON.stringify(postData);
-            // },
-            height: 250,
-            colNames:[' ','姓名','性别','身份证明号码','身份证签发机关','身份证有效期始','身份证有效期止','与户主关系','民族','出生日期','政治面貌','文化程度','在校生情况','失学或辍学原因','健康情况','劳动技能情况','是否会讲普通话','是否现役军人','是否参加城乡居民基本医疗保险','是否参加商业补充医疗保险','是否享受低保','是否参加城乡居民基本养老保险','是否享受人身意外保险补贴','联系电话'],
-            colModel:[
-                {name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
-                    formatter:'actions',
-                    formatoptions:{
-                        keys:true,
-                        //delbutton: false,//disable delete button
-
-                        delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
-                        //editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
-                    }
-                },
-                {name:'xm',         index:'xm',         width:60, fixed:true, editable:true,                 },
-                {name:'xb',         index:'xb',         width:40, fixed:true, editable:true,                 },
-                {name:'sfzmhm',     index:'sfzmhm',     width:140, fixed:true, editable:true,                 },
-                {name:'qfjg',       index:'qfjg',       width:150, fixed:true, editable:true,                 },
-                {name:'sfzyxqs',    index:'sfzyxqs',    width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
-                {name:'sfzyxqz',    index:'sfzyxqz',    width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
-                {name:'yhzgx',      index:'yhzgx',      width:80, fixed:true, editable:true,                 },
-                {name:'mz',         index:'mz',         width:40, fixed:true, editable:true,                 },
-                {name:'csrq',       index:'csrq',       width:70, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
-                {name:'zzmm',       index:'zzmm',       width:70, fixed:true, editable:true,                 },
-                {name:'whcd',       index:'whcd',       width:70, fixed:true, editable:true,                 },
-                {name:'zxsqk',      index:'zxsqk',      width:80, fixed:true, editable:true,                 },
-                {name:'sxhcxyy',    index:'sxhcxyy',    width:110, fixed:true, editable:true,                 },
-                {name:'jkqk',       index:'jkqk',       width:70, fixed:true, editable:true,                 },
-                {name:'ldjn',       index:'ldjn',       width:90, fixed:true, editable:true,                 },
-                {name:'sfhjpth',    index:'sfhjpth',    width:110, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfxyjr',     index:'sfxyjr',     width:90, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfcjylbx1',  index:'sfcjylbx1',  width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfcjsybx',   index:'sfcjsybx',   width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfxsdb',     index:'sfxsdb',     width:90, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfcjylbx2',  index:'sfcjylbx2',  width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfxsywbxbt', index:'sfxsywbxbt', width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'lxdh',       index:'lxdh',       width:90, fixed:true, editable:true                  }
-            ],
-            viewrecords : true,
-            rowNum:10,
-            rowList:[10,20,30],
-            pager : pager_selector,
-            altRows: true,
-            //toppager: true,
-
-            multiselect: true,
-            multiboxonly: true,
-
-            loadComplete : function() {
-                var table = this;
-                setTimeout(function(){
-                    styleCheckbox(table);
-
-                    updateActionIcons(table);
-                    updatePagerIcons(table);
-                    enableTooltips(table);
-                }, 0);
-            },
-
-            editurl: "./dummy.php",//nothing is saved
-            caption: "贫困人员信息列表"
-
-        });
-        $(window).triggerHandler('resize.jqGrid');
-
-
-        function aceSwitch( cellvalue, options, cell ) {
-            setTimeout(function(){
-                $(cell) .find('input[type=checkbox]')
-                    .addClass('ace ace-switch ace-switch-5')
-                    .after('<span class="lbl"></span>');
-            }, 0);
-        }
-        //enable datepicker
-        function pickDate( cellvalue, options, cell ) {
-            setTimeout(function(){
-                $(cell) .find('input[type=text]')
-                    .datepicker({format:'yyyy-mm-dd' , autoclose:true});
-            }, 0);
-        }
-
-        function style_edit_form(form) {
-            //enable datepicker on "sdate" field and switches for "stock" field
-            form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
-
-            form.find('input[name=stock]').addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
-            //don't wrap inside a label element, the checkbox value won't be submitted (POST'ed)
-            //.addClass('ace ace-switch ace-switch-5').wrap('<label class="inline" />').after('<span class="lbl"></span>');
-
-
-            //update buttons classes
-            var buttons = form.next().find('.EditButton .fm-button');
-            buttons.addClass('btn btn-sm').find('[class*="-icon"]').hide();//ui-icon, s-icon
-            buttons.eq(0).addClass('btn-primary').prepend('<i class="ace-icon fa fa-check"></i>');
-            buttons.eq(1).prepend('<i class="ace-icon fa fa-times"></i>')
-
-            buttons = form.next().find('.navButton a');
-            buttons.find('.ui-icon').hide();
-            buttons.eq(0).append('<i class="ace-icon fa fa-chevron-left"></i>');
-            buttons.eq(1).append('<i class="ace-icon fa fa-chevron-right"></i>');
-        }
-
-        function style_delete_form(form) {
-            var buttons = form.next().find('.EditButton .fm-button');
-            buttons.addClass('btn btn-sm btn-white btn-round').find('[class*="-icon"]').hide();//ui-icon, s-icon
-            buttons.eq(0).addClass('btn-danger').prepend('<i class="ace-icon fa fa-trash-o"></i>');
-            buttons.eq(1).addClass('btn-default').prepend('<i class="ace-icon fa fa-times"></i>')
-        }
-
-        function beforeDeleteCallback(e) {
-            var form = $(e[0]);
-            if(form.data('styled')) return false;
-
-            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
-            style_delete_form(form);
-
-            form.data('styled', true);
-        }
-
-        //replace icons with FontAwesome icons like above
-        function updatePagerIcons(table) {
-            var replacement =
-                {
-                    'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
-                    'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
-                    'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
-                    'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
-                };
-            $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
-                var icon = $(this);
-                var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
-
-                if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
-            })
-        }
-
-        function enableTooltips(table) {
-            $('.navtable .ui-pg-button').tooltip({container:'body'});
-            $(table).find('.ui-pg-div').tooltip({container:'body'});
-        }
-
-        //var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
-
-        $(document).one('ajaxloadstart.page', function(e) {
-            $.jgrid.gridDestroy(grid_selector);
-            $('.ui-jqdialog').remove();
-        });
-
-        <!--end jqgrid-->
 
 
         $('.date-picker').datepicker({
@@ -2818,10 +2849,10 @@
                     "sfxsywbxbt"   : sfxsywbxbt ,
                     "lxdh"         : lxdh
                 };
-                var ids = $(grid_selector).jqGrid("getDataIDs");//得到jqgrid当前行数
-                var rowid = Math.max.apply(Math,ids);//获得当前最大行号
-                var newRowid = rowid+1;//
-                $(grid_selector).jqGrid('addRowData',newRowid,ym_person_json,"last");
+                //var ids = $(grid_selector).jqGrid("getDataIDs");//得到jqgrid当前行数
+                var rowNum=$('#grid-table').jqGrid('getGridParam','records');
+                var rowid = rowNum+1;//获得当前最大行号
+                $(grid_selector).jqGrid('addRowData',rowid,ym_person_json,"last");
                 $(grid_selector).setGridParam({
                     cellEdit : false
                 });

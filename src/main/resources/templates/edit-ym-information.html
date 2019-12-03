@@ -1913,8 +1913,10 @@
             var ym_person_array = new Array();
             //获取grid表中所有的rowid值
             var rowIds = $(grid_selector).getDataIDs();
+            console.log(rowIds);
             if(rowIds.length>0){
                 for (var i = 0; i < rowIds.length; i++) {
+                    console.log($(grid_selector).getRowData(rowIds[i]));
                     ym_person_array.push($(grid_selector).getRowData(rowIds[i]));
                 }
             }
@@ -2045,8 +2047,8 @@
                 if(info.step == 1 ) {
                     if(!checkFamilyForm()) e.preventDefault();
                 }else if(info.step == 2) {
-                    var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
-                    if(rowids.length ==0){
+                    var rowNum=$('#grid-table').jqGrid('getGridParam','records');
+                    if(rowNum.length <1){
                         alert("还没添加家庭人员，请进行添加！");
                         e.preventDefault();
                     }
@@ -2253,9 +2255,6 @@
                     bg : '#381eff',
                     time : 3
                 });
-                return false;
-            }else if($(grid_selector).getDataIDs().length<1){
-                alert("必须添加至少一个家庭成员！");
                 return false;
             }
             return true;
@@ -2544,6 +2543,43 @@
             style_delete_form(form);
 
             form.data('styled', true);
+        }
+
+
+        //it causes some flicker when reloading or navigating grid
+        //it may be possible to have some custom formatter to do this as the grid is being created to prevent this
+        //or go back to default browser checkbox styles for the grid
+        function styleCheckbox(table) {
+            /**
+             $(table).find('input:checkbox').addClass('ace')
+             .wrap('<label />')
+             .after('<span class="lbl align-top" />')
+
+
+             $('.ui-jqgrid-labels th[id*="_cb"]:first-child')
+             .find('input.cbox[type=checkbox]').addClass('ace')
+             .wrap('<label />').after('<span class="lbl align-top" />');
+             */
+        }
+
+
+        //unlike navButtons icons, action icons in rows seem to be hard-coded
+        //you can change them like this in here if you want
+        function updateActionIcons(table) {
+            /**
+             var replacement =
+             {
+						'ui-ace-icon fa fa-pencil' : 'ace-icon fa fa-pencil blue',
+						'ui-ace-icon fa fa-trash-o' : 'ace-icon fa fa-trash-o red',
+						'ui-icon-disk' : 'ace-icon fa fa-check green',
+						'ui-icon-cancel' : 'ace-icon fa fa-times red'
+					};
+             $(table).find('.ui-pg-div span.ui-icon').each(function(){
+						var icon = $(this);
+						var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+						if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+					})
+             */
         }
 
         //replace icons with FontAwesome icons like above

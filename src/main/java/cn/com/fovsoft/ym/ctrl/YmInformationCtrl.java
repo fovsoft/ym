@@ -74,6 +74,7 @@ public class YmInformationCtrl {
             ymPersonService.deleteYmPersonByJtbh(jtbh1);
             ymFamilyService.deleteYmFamilyByJtbh(jtbh1);
             jtbh=jtbh1;
+
         }
 
         ymFamily.setJtbh(jtbh);
@@ -109,7 +110,16 @@ public class YmInformationCtrl {
         }else {
             ymFamily.setSfydfpbqh("无搬迁意愿");
         }
-        ymFamily.setBqfs(bqfs);
+        if(bqfs.equals("xzcztbq")){
+            ymFamily.setBqfs("行政村整体搬迁");
+        }else if(bqfs.equals("zrcztbq")){
+            ymFamily.setBqfs("自然村整体搬迁");
+        }else if(bqfs.equals("jdlkpkhgbbq")){
+            ymFamily.setBqfs("建档立卡贫困户个别搬迁");
+        }else {
+            ymFamily.setBqfs("其他");
+        }
+
         ymFamily.setBqdz(bqdz);
 
         //写入家庭信息
@@ -177,135 +187,150 @@ public class YmInformationCtrl {
             ymPerson.setCsrq(DateUtil.strToDate(csrq));
             ymPerson.setZzmm(zzmm);
             ymPerson.setWhcd(whcd);
-            if(zxsqk.equals("fzxs")){
-                ymPerson.setZxsqk("非在校生");
-            }else if(zxsqk.equals("xqjy")){
-                ymPerson.setZxsqk("学前教育");
-            }else if(zxsqk.equals("xx")){
-                ymPerson.setZxsqk("小学");
-            }else if(zxsqk.equals("nj7")){
-                ymPerson.setZxsqk("七年级");
-            }else if(zxsqk.equals("nj8")){
-                ymPerson.setZxsqk("八年级");
-            }else if(zxsqk.equals("nj9")){
-                ymPerson.setZxsqk("九年级");
-            }else if(zxsqk.equals("g1")){
-                ymPerson.setZxsqk("高一");
-            }else if(zxsqk.equals("g2")){
-                ymPerson.setZxsqk("高二");
-            }else if(zxsqk.equals("g3")){
-                ymPerson.setZxsqk("高三");
-            }else if(zxsqk.equals("zz1")){
-                ymPerson.setZxsqk("中职一");
-            }else if(zxsqk.equals("zz2")){
-                ymPerson.setZxsqk("中职二");
-            }else if(zxsqk.equals("zz3")){
-                ymPerson.setZxsqk("中职三");
-            }else if(zxsqk.equals("gz1")){
-                ymPerson.setZxsqk("高职一");
-            }else if(zxsqk.equals("gz2")){
-                ymPerson.setZxsqk("高职二");
-            }else if(zxsqk.equals("gz3")){
-                ymPerson.setZxsqk("高职三");
-            }else if(zxsqk.equals("jg1")){
-                ymPerson.setZxsqk("技工一");
-            }else if(zxsqk.equals("jg2")){
-                ymPerson.setZxsqk("技工二");
-            }else if(zxsqk.equals("jg3")){
-                ymPerson.setZxsqk("技工三");
-            }else if(zxsqk.equals("jg4")){
-                ymPerson.setZxsqk("技工四");
-            }else if(zxsqk.equals("bk1")){
-                ymPerson.setZxsqk("本科一");
-            }else if(zxsqk.equals("bk2")){
-                ymPerson.setZxsqk("本科二");
-            }else if(zxsqk.equals("bk3")){
-                ymPerson.setZxsqk("本科三");
-            }else if(zxsqk.equals("bk4")){
-                ymPerson.setZxsqk("本科四");
-            }else if(zxsqk.equals("bk5")){
-                ymPerson.setZxsqk("本科五");
-            }else if(zxsqk.equals("ssjys")){
-                ymPerson.setZxsqk("硕士及以上");
+            if(myMethod.equals("edit")){
+                ymPerson.setZxsqk(zxsqk);
+                ymPerson.setSxhcxyy(sxhcxyy);
+                ymPerson.setJkqk(jkqk);
+                ymPerson.setLdjn(ldjn);
+                ymPerson.setSfhjpth(sfhjpth);
+                ymPerson.setSfxyjr(sfxyjr);
+                ymPerson.setSfcjylbx1(sfcjylbx1);
+                ymPerson.setSfcjsybx(sfcjsybx);
+                ymPerson.setSfcjylbx2(sfcjylbx2);
+                ymPerson.setSfxsdb(sfxsdb);
+                ymPerson.setSfxsywbxbt(sfxsywbxbt);
             }else {
-                ymPerson.setZxsqk("其他");
-            }
-            if(sxhcxyy.equals("yb")){
-                ymPerson.setSxhcxyy("因病");
-            }else if(sxhcxyy.equals("yj")){
-                ymPerson.setSxhcxyy("因疾");
-            }else if(sxhcxyy.equals("yx")){
-                ymPerson.setSxhcxyy("厌学");
-            }else if(sxhcxyy.equals("qt")){
-                ymPerson.setSxhcxyy("其他");
-            }else {
-                ymPerson.setSxhcxyy("其他");
-            }
-            if(jkqk.equals("jk")){
-                ymPerson.setJkqk("健康");
-            }else if(sxhcxyy.equals("cj")){
-                ymPerson.setJkqk("残疾");
-            }else if(sxhcxyy.equals("db")){
-                ymPerson.setJkqk("大病");
-            }else if(sxhcxyy.equals("cqmxb")){
-                ymPerson.setJkqk("长期慢性病");
-            }else {
-                ymPerson.setJkqk("其他");
+                if(zxsqk.equals("fzxs")){
+                    ymPerson.setZxsqk("非在校生");
+                }else if(zxsqk.equals("xqjy")){
+                    ymPerson.setZxsqk("学前教育");
+                }else if(zxsqk.equals("xx")){
+                    ymPerson.setZxsqk("小学");
+                }else if(zxsqk.equals("nj7")){
+                    ymPerson.setZxsqk("七年级");
+                }else if(zxsqk.equals("nj8")){
+                    ymPerson.setZxsqk("八年级");
+                }else if(zxsqk.equals("nj9")){
+                    ymPerson.setZxsqk("九年级");
+                }else if(zxsqk.equals("g1")){
+                    ymPerson.setZxsqk("高一");
+                }else if(zxsqk.equals("g2")){
+                    ymPerson.setZxsqk("高二");
+                }else if(zxsqk.equals("g3")){
+                    ymPerson.setZxsqk("高三");
+                }else if(zxsqk.equals("zz1")){
+                    ymPerson.setZxsqk("中职一");
+                }else if(zxsqk.equals("zz2")){
+                    ymPerson.setZxsqk("中职二");
+                }else if(zxsqk.equals("zz3")){
+                    ymPerson.setZxsqk("中职三");
+                }else if(zxsqk.equals("gz1")){
+                    ymPerson.setZxsqk("高职一");
+                }else if(zxsqk.equals("gz2")){
+                    ymPerson.setZxsqk("高职二");
+                }else if(zxsqk.equals("gz3")){
+                    ymPerson.setZxsqk("高职三");
+                }else if(zxsqk.equals("jg1")){
+                    ymPerson.setZxsqk("技工一");
+                }else if(zxsqk.equals("jg2")){
+                    ymPerson.setZxsqk("技工二");
+                }else if(zxsqk.equals("jg3")){
+                    ymPerson.setZxsqk("技工三");
+                }else if(zxsqk.equals("jg4")){
+                    ymPerson.setZxsqk("技工四");
+                }else if(zxsqk.equals("bk1")){
+                    ymPerson.setZxsqk("本科一");
+                }else if(zxsqk.equals("bk2")){
+                    ymPerson.setZxsqk("本科二");
+                }else if(zxsqk.equals("bk3")){
+                    ymPerson.setZxsqk("本科三");
+                }else if(zxsqk.equals("bk4")){
+                    ymPerson.setZxsqk("本科四");
+                }else if(zxsqk.equals("bk5")){
+                    ymPerson.setZxsqk("本科五");
+                }else if(zxsqk.equals("ssjys")){
+                    ymPerson.setZxsqk("硕士及以上");
+                }else {
+                    ymPerson.setZxsqk("其他");
+                }
+                if(sxhcxyy.equals("yb")){
+                    ymPerson.setSxhcxyy("因病");
+                }else if(sxhcxyy.equals("yj")){
+                    ymPerson.setSxhcxyy("因疾");
+                }else if(sxhcxyy.equals("yx")){
+                    ymPerson.setSxhcxyy("厌学");
+                }else if(sxhcxyy.equals("qt")){
+                    ymPerson.setSxhcxyy("其他");
+                }else {
+                    ymPerson.setSxhcxyy("其他");
+                }
+                if(jkqk.equals("jk")){
+                    ymPerson.setJkqk("健康");
+                }else if(sxhcxyy.equals("cj")){
+                    ymPerson.setJkqk("残疾");
+                }else if(sxhcxyy.equals("db")){
+                    ymPerson.setJkqk("大病");
+                }else if(sxhcxyy.equals("cqmxb")){
+                    ymPerson.setJkqk("长期慢性病");
+                }else {
+                    ymPerson.setJkqk("其他");
+                }
+
+                if(ldjn.equals("ptldl")){
+                    ymPerson.setLdjn("普通劳动力");
+                }else if(ldjn.equals("jnldl")){
+                    ymPerson.setLdjn("技能劳动力");
+                }else if(ldjn.equals("rldl")){
+                    ymPerson.setLdjn("弱劳动力或半劳动力");
+                }else if(ldjn.equals("ssldl")){
+                    ymPerson.setLdjn("丧失劳动力");
+                }else {
+                    ymPerson.setLdjn("无劳动力");
+                }
+
+                if(sfhjpth.equals("yes")){
+                    ymPerson.setSfhjpth("是");
+                }else {
+                    ymPerson.setSfhjpth("否");
+                }
+
+                if(sfxyjr.equals("yes")){
+                    ymPerson.setSfxyjr("是");
+                }else {
+                    ymPerson.setSfxyjr("否");
+                }
+
+                if(sfcjylbx1.equals("yes")){
+                    ymPerson.setSfcjylbx1("是");
+                }else {
+                    ymPerson.setSfcjylbx1("否");
+                }
+
+                if(sfcjsybx.equals("yes")){
+                    ymPerson.setSfcjsybx("是");
+                }else {
+                    ymPerson.setSfcjsybx("否");
+                }
+
+                if(sfxsdb.equals("yes")){
+                    ymPerson.setSfxsdb("是");
+                }else {
+                    ymPerson.setSfxsdb("否");
+                }
+
+                if(sfcjylbx2.equals("yes")){
+                    ymPerson.setSfcjylbx2("是");
+                }else {
+                    ymPerson.setSfcjylbx2("否");
+                }
+
+                if(sfxsywbxbt.equals("yes")){
+                    ymPerson.setSfxsywbxbt("是");
+                }else {
+                    ymPerson.setSfxsywbxbt("否");
+                }
             }
 
-            if(ldjn.equals("ptldl")){
-                ymPerson.setLdjn("普通劳动力");
-            }else if(ldjn.equals("jnldl")){
-                ymPerson.setLdjn("技能劳动力");
-            }else if(ldjn.equals("rldl")){
-                ymPerson.setLdjn("弱劳动力或半劳动力");
-            }else if(ldjn.equals("ssldl")){
-                ymPerson.setLdjn("丧失劳动力");
-            }else {
-                ymPerson.setLdjn("无劳动力");
-            }
-
-            if(sfhjpth.equals("yes")){
-                ymPerson.setSfhjpth("是");
-            }else {
-                ymPerson.setSfhjpth("否");
-            }
-
-            if(sfxyjr.equals("yes")){
-                ymPerson.setSfxyjr("是");
-            }else {
-                ymPerson.setSfxyjr("否");
-            }
-
-            if(sfcjylbx1.equals("yes")){
-                ymPerson.setSfcjylbx1("是");
-            }else {
-                ymPerson.setSfcjylbx1("否");
-            }
-
-            if(sfcjsybx.equals("yes")){
-                ymPerson.setSfcjsybx("是");
-            }else {
-                ymPerson.setSfcjsybx("否");
-            }
-
-            if(sfxsdb.equals("yes")){
-                ymPerson.setSfxsdb("是");
-            }else {
-                ymPerson.setSfxsdb("否");
-            }
-
-            if(sfcjylbx2.equals("yes")){
-                ymPerson.setSfcjylbx2("是");
-            }else {
-                ymPerson.setSfcjylbx2("否");
-            }
-
-            if(sfxsywbxbt.equals("yes")){
-                ymPerson.setSfxsywbxbt("是");
-            }else {
-                ymPerson.setSfxsywbxbt("否");
-            }
             ymPerson.setLxdh(lxdh2);
             //写入家庭人员信息
             return_num = ymPersonService.addYmPerson(ymPerson);
@@ -368,6 +393,11 @@ public class YmInformationCtrl {
         ymFamilyStatus.setLgmj(getMj(lgmj));
         ymFamilyStatus.setSmmj(getMj(smmj));
         ymFamilyStatus.setMcdmj(getMj(mcdmj));
+        if(sfyltqydd.equals("yes")){
+            ymFamilyStatus.setSfyltqydd("是");
+        }else{
+            ymFamilyStatus.setSfyltqydd("否");
+        }
         if(sfycyzfdtrdd.equals("yes")){
             ymFamilyStatus.setSfyltqydd("是");
         }else {

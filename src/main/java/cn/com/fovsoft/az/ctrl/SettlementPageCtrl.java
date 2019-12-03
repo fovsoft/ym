@@ -6,6 +6,8 @@ package cn.com.fovsoft.az.ctrl;/*
  */
 
 import cn.com.fovsoft.az.bean.AzSettlement;
+import cn.com.fovsoft.az.bean.AzSettlementHousehold;
+import cn.com.fovsoft.az.service.AzSettlementHouseholdService;
 import cn.com.fovsoft.az.service.AzSettlementService;
 import cn.com.fovsoft.common.bean.SysMenu;
 import cn.com.fovsoft.common.constant.VarConstant;
@@ -24,6 +26,9 @@ public class SettlementPageCtrl {
     @Autowired
     private AzSettlementService azSettlementService;
 
+    @Autowired
+    private AzSettlementHouseholdService azSettlementHouseholdService;
+
 
     /*
      * Author:tpc
@@ -36,6 +41,11 @@ public class SettlementPageCtrl {
     public ModelAndView toAddSettlementHouseholdPage(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("add-settlement-household");
+        //获取安置点信息
+        List<AzSettlement> azSettlementList = azSettlementService.findAllAzSettlement();
+
+        //写入安置点信息
+        modelAndView.addObject("azSettlementList",azSettlementList);
         modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
 
         modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
@@ -48,6 +58,7 @@ public class SettlementPageCtrl {
     public ModelAndView toSettlementHouseholdMgr(HttpServletRequest request){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("settlement-household-mgr");
+
         modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
 
         modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
@@ -64,6 +75,28 @@ public class SettlementPageCtrl {
 
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("settlement");
+        //写入安置点信息
+        modelAndView.addObject("azSettlementList",azSettlementList);
+        modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
+
+        modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));
+
+        return modelAndView;
+    }
+
+
+    @RequestMapping("/az/settlementHouseholdEdit")
+    public ModelAndView toSettlementHouseholdEditPage(HttpServletRequest request){
+        //获取安置户id
+        String id = request.getParameter("id");
+        AzSettlementHousehold azSettlementHousehold = azSettlementHouseholdService.findAzSettlementHouseholdById(id);
+        //获取安置点信息
+        List<AzSettlement> azSettlementList = azSettlementService.findAllAzSettlement();
+
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("edit-settlement-household");
+        //写入安置户信息
+        modelAndView.addObject("azSettlementHousehold",azSettlementHousehold);
         //写入安置点信息
         modelAndView.addObject("azSettlementList",azSettlementList);
         modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));

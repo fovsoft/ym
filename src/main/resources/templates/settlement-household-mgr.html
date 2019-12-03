@@ -1216,71 +1216,44 @@
 
         //当点击修改按钮时，显示模态框
         $("#editBtn").on("click",function () {
-            var rowid=$('#grid-table').jqGrid('getGridParam','selrow');
-            if(rowid==null){
+            var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
+            //console.log(rowid);
+            if(rowids !=""||rowids.length>0){
+                if(rowids.length>2){
+                    alert("请不要勾选超过一个人员!")
+                }else {
+                    var rowData = $("#grid-table").jqGrid('getRowData',rowids[0]);
+                    var idArr = "id=" + rowData.id;
+                    // var idArr = {
+                    //   "jtbh":rowData.jtbh,
+                    //   "rybh":rowData.rybh
+                    // };
+
+                    window.location.href="/settlementHousehold/edit?"+idArr;
+                    //$.getJSON("/person/edit",idArr,function (data) {});
+                    //
+                    // });
+                }
+            }else {
                 $("#editBtn").tips({
                     side : 3,
-                    msg : '请勾选一个用户！',
-                    bg : '#AE81FF',
+                    msg : '请至少勾选一个人员！',
+                    bg : '#ce1fff',
                     time : 5
                 });
-            }else{
-                var rowData = $("#grid-table").jqGrid('getRowData',rowid);
-
-                $("#userAddModal").modal("show");
-                $("#editSysUserBtn").removeClass("hide");
-                $("#addSysUserBtn").addClass("hide");
-                $("#editTitle").removeClass("hide");
-                $("#addTitle").addClass("hide");
-                $("#userId").attr("value", rowData.userId);
-                $("#userName").attr("value",    rowData.userName  );
-                $("#department").attr("value",  rowData.department);
-                $("#sex").attr("value",         rowData.sex       );
-                $("#birthday").attr("value",    rowData.birthday  );
-                $("#sfzmhm").attr("value",      rowData.sfzmhm    );
-                $("#email").attr("value",       rowData.email     );
-                $("#ipks").attr("value",        rowData.ipks      );
-                $("#ipjs").attr("value",        rowData.ipjs      );
-                $("#zhyxq").attr("value",       rowData.zhyxq     );
-                $("#mmyxq").attr("value",       rowData.mmyxq     );
-                $("#yhlx").attr("value",        rowData.yhlx      );
-                $("#lxdh").attr("value",        rowData.lxdh      );
-                if(rowData.zt=="1"){
-                    $("#zt").prop("checked",true);
-                }else {
-                    $("#zt").prop("checked",false);
-                }
-                //先把所有角色不选中
-                $("input[name='sys-role-checkbox']").prop("checked",false);
-                //拿到id后，与前端交互获取角色id，然后把角色选中
-                var myData = {
-                    "userId":rowData.userId
-                };
-                $.getJSON("/user/getRole",myData,function (data) {
-
-                    var checkBoxRole = $("input[name='sys-role-checkbox']");
-                    var sysRole = data.sysRoleList;
-                    for(var i=0;i<checkBoxRole.length;i++){
-                        for(var j=0;j<sysRole.length;j++){
-                            if(checkBoxRole[i].id==sysRole[j].roleId){
-                                $(checkBoxRole[i]).prop("checked",true);
-                            }
-
-                        }
-                    }
-
-                })
             }
 
 
         });
 
+
         //当点击删除按钮时，执行操作
         $("#deleteBtn").on("click",function () {
             var input = confirm("确定删除选定数据吗？");
             if(input){
-                var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
-                if(rowids !=""){
+                var rowIds=$('#grid-table').jqGrid('getGridParam','selarrrow');
+                //console.log(rowIds);
+                if(rowids !=""||rowIds.length>0){
                     var idArr = "";
                     for(var i=0;i<rowids.length;i++){
                         var rowData = $("#grid-table").jqGrid('getRowData',rowids[i]);
@@ -1288,7 +1261,7 @@
                     }
                     $.ajax({
                         type: "POST",//请求方式为POST
-                        url: "/user/delete",//检验url
+                        url: "/settlementHousehold/delete",//检验url
                         data: {
                             "idArr": idArr
                         },//请求数据
@@ -1299,7 +1272,7 @@
                             $("#grid-table").jqGrid('clearGridData');
                             $("#grid-table").jqGrid('setGridParam', {
                                 datatype:"json",
-                                url:"/user/list"
+                                url:"/settlementHousehold/listAll"
                             }).trigger("reloadGrid");
                         }//响应成功
                     })
@@ -1307,7 +1280,7 @@
                 }else {
                     $("#deleteBtn").tips({
                         side : 3,
-                        msg : '请至少勾选一个用户！',
+                        msg : '请至少勾选一个安置户！',
                         bg : '#AE81FF',
                         time : 5
                     });
@@ -1456,200 +1429,6 @@
             $('.ui-jqdialog').remove();
         });
     })
-
-
-    /**客户端校验**/
-    function checkValidity() {
-
-        alert($("#userName").val()+'111');
-        if ($("#userName").val() == "") {
-
-            $("#userName").focus();
-            $("#userName").tips({
-                side : 3,
-                msg : '用户名不得为空',
-                bg : '#AE81FF',
-                time : 3
-            });
-            return false;
-        }
-
-        if ($("#zhyxq").val() == "") {
-            $("#zhyxq").tips({
-                side : 3,
-                msg : '账号有效期不得为空',
-                bg : '#AE81FF',
-                time : 3
-            });
-
-            $("#zhyxq").focus();
-            return false;
-        }
-        if ($("#mmyxq").val() == "") {
-
-            $("#mmyxq").tips({
-                side : 3,
-                msg : '密码有效期不得为空',
-                bg : '#AE81FF',
-                time : 3
-            });
-
-            $("#mmyxq").focus();
-            return false;
-        }
-
-        return true;
-    }
-
-
-    //新增用户方法
-    function addSysUser(id) {
-        if(checkValidity()) {
-            var userId = $("#userId").val();
-            var userName = $("#userName").val();
-            var department = $("#department").val();
-            var sex = $("#sex").val();
-            var birthday = $("#birthday").val();
-            var sfzmhm = $("#sfzmhm").val();
-            var email = $("#email").val();
-            var ipks = $("#ipks").val();
-            var ipjs = $("#ipjs").val();
-            var zhyxq = $("#zhyxq").val();
-            var mmyxq = $("#mmyxq").val();
-            var yhlx = $("#yhlx").val();
-            var lxdh = $("#lxdh").val();
-            var zt = "1";
-            if(!$("#zt").prop("checked")){
-                zt = "0";
-            }
-
-            //设置返回执行的方法
-            var url = "";
-            if(id==1){
-                url="/user/add";
-            }else if(id==2){
-                url="/user/edit";
-            }
-            //获取选中的角色id
-            var checkboxArr = $("input[name='sys-role-checkbox']:checked");
-            var roleIdArr = "";
-            if(checkboxArr.length<1){
-                alert("请为用户至少选择一个角色！");
-            }else{
-                for(var i=0;i<checkboxArr.length;i++){
-                    roleIdArr = roleIdArr + checkboxArr[i].id + ",";
-                }
-                $.ajax({
-                    type: "POST",//请求方式为POST
-                    url: url,//检验url
-                    data: {
-                        "userId": userId,
-                        "userName": userName,
-                        "department": department,
-                        "sex": sex,
-                        "birthday": birthday,
-                        "sfzmhm": sfzmhm,
-                        "email": email,
-                        "ipks": ipks,
-                        "ipjs": ipjs,
-                        "zhyxq": zhyxq,
-                        "mmyxq": mmyxq,
-                        "yhlx": yhlx,
-                        "lxdh": lxdh,
-                        "zt": zt,
-                        "roleIdArr":roleIdArr
-                    },//请求数据
-                    dataType: 'json',//数据类型为JSON类型
-                    cache: false,//关闭缓存
-                    success: function (data) {//响应成功
-
-
-                        if (1 == data.status) {
-                            confirm("新增用户成功！")
-                            //window.location.href="/index";
-                        } else if(2 == data.status){
-                            confirm("修改用户成功！")
-                        }else if ("havedUser" == data.result) {
-                            $("#userName").focus();
-                            $("#userName").tips({
-                                side: 3,
-                                msg: "该用户已经存在",
-                                bg: '#FF5080',
-                                time: 15
-                            });
-                        } else if ("isNull" == data.result) {
-                            $("#userName").focus();
-                            $("#userName").tips({
-                                side: 3,
-                                msg: '用户不能为空格！',
-                                bg: '#68B500',
-                                time: 5
-                            });
-                        } else if ("error" == data.result) {
-                            $("#userName").focus();
-                            $("#userName").tips({
-                                side: 3,
-                                msg: '数据库存入数据失败！',
-                                bg: '#68B500',
-                                time: 10
-                            });
-                        } else if ("inerror" == data.result) {
-                            $("#userName").focus();
-                            $("#userName").tips({
-                                side: 3,
-                                msg: '数据库修改数据失败！',
-                                bg: '#68B500',
-                                time: 10
-                            });
-                        } else {
-                            confirm("程序存在异常，请联系管理员！");
-                            $("#userName").focus();
-                        }
-                    }
-                });
-            }
-
-
-        }
-    }
-    
-    //查询用户的方法
-    function querySysUser() {
-        var userName = $("#s-userName").val();
-        var sfzmhm = $("#s-sfzmhm").val();
-        var lxdh = $("#s-lxdh").val();
-        var email = $("#s-email").val();
-        if(userName==""&&sfzmhm==""&&lxdh==""&&email==""){
-
-            $("#searchBtn").tips({
-                side: 3,
-                msg: '将进行全部用户查询！',
-                bg: '#68B500',
-                time: 3
-            });
-            $("#grid-table").jqGrid('clearGridData');
-            $("#grid-table").jqGrid('setGridParam', {
-                datatype:"json",
-                url:"/user/list"
-            }).trigger("reloadGrid");
-        }else {
-            $("#grid-table").jqGrid('clearGridData');
-            $("#grid-table").jqGrid('setGridParam', {
-                datatype:"json",
-                mtype:"POST",
-                page:1,
-                url:"/user/search",
-                postData:{
-                    "userName": userName,
-                    "sfzmhm": sfzmhm,
-                    "email": email,
-                    "lxdh": lxdh
-                }
-            }).trigger("reloadGrid");
-        }
-
-    }
-
     
 </script>
 </body>

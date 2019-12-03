@@ -29,6 +29,18 @@ public class AzSettlementHouseholdService {
     }
 
 
+    /*
+     * Author:tpc
+     * Date: 2019/12/3 17:34
+     * Param: [id]
+     * Return: cn.com.fovsoft.az.bean.AzSettlementHousehold
+     * 功能描述: 通过主键查找安置户信息服务方法
+     */
+    public AzSettlementHousehold findAzSettlementHouseholdById(String id){
+        return azSettlementHouseholdDao.findAzSettlementHouseholdById(id);
+    }
+
+
     /**
      * @author: tpc
      * @date: 2019/12/2 23:13
