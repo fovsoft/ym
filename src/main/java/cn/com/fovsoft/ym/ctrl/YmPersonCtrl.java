@@ -114,6 +114,31 @@ public class YmPersonCtrl {
 
 
     /*
+     * Author:tpc
+     * Date: 2019/12/5 13:37
+     * Param: [request]
+     * Return: java.util.Map<java.lang.String,java.lang.Object>
+     * 功能描述: 响应前端双击贫困人员记录事件，进而返回贫困人员基本信息
+     */
+    @RequestMapping(value="/person/viewInfo")
+    @ResponseBody
+    public Map<String,Object> viewPersonInfo(HttpServletRequest request){
+        String jtbh = request.getParameter("jtbh");
+        //先获取家庭基本信息
+        YmFamily ymFamily = ymFamilyService.getYmFamilyByJtbh(jtbh);
+        //再获取家庭基础条件信息
+        YmFamilyStatus ymFamilyStatus = ymFamilyStatusService.getYmFamilyStatusByJtbh(jtbh);
+        Map<String,Object> map = new HashMap<>();
+        map.put("status",1);
+        map.put("result","success");
+        map.put("ymFamily",ymFamily);
+        map.put("ymFamilyStatus",ymFamilyStatus);
+        return map;
+
+    }
+
+
+    /*
      * 功能描述: 用来跳转到贫困人员信息采集界面
      * @author by tpc
      * @date 2019/10/22 11:44
@@ -223,7 +248,7 @@ public class YmPersonCtrl {
         for(String personStr1:personArray){
             String[] proArray = personStr1.split("-");
             //如果是户主，将删除所有家庭信息
-            if(proArray[2].equals("本人")){
+            if(proArray[2].equals("户主")){
                 //先删除收入信息
                 ymProduceIncomeService.deleteYmProduceIncomeByJtbh(proArray[1]);
                 ymSalaryIncomeService.deleteYmSalaryIncomeByJtbh(proArray[1]);
