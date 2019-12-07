@@ -12,9 +12,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -282,14 +280,17 @@ public class AzSettleMentHouseholdCtrl {
     }
 
 
-    @RequestMapping(value = "/settlementHousehold/edit")
+    @RequestMapping(value = "/settlementHousehold/edit",method=RequestMethod.POST, produces = "application/json;charset=UTF-8")
     @ResponseBody
-    public Map<String,Object> editAzSettlementHousehold(HttpServletRequest request){
+    public Map<String,Object> editAzSettlementHousehold(@RequestBody AzSettlementHousehold azSettlementHousehold){
+
+
         //先删除原来的，然后再进行写入
-        String id = request.getParameter("id");
-        azSettlementHouseholdService.deleteAzSettlementHouseholdById(id);
+        //String id = request.getParameter("id");
+//        azSettlementHouseholdService.deleteAzSettlementHouseholdById(id);
         //写入数据
-        int resultNum = insertAzSettlementHousehold(request);
+//        int resultNum = insertAzSettlementHousehold(request);
+        int resultNum = azSettlementHouseholdService.updateAzSettlementHouseholdById(azSettlementHousehold);
 
         //用来返回结果的信息
         int status = 1;

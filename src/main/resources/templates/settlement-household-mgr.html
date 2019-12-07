@@ -39,6 +39,11 @@
         .frozen-div, .frozen-bdiv {
             background-color: #E4E6E9; /*与网页背景色一致*/
         }
+
+        .modal-body{
+            max-height:400px;
+            overflow-y:auto;
+        }
     </style>
 
     <!--[if lte IE 9]>
@@ -676,6 +681,10 @@
                                     <span class="ace-icon fa fa-search icon-on-right"></span>
                                     查询
                                 </button>
+                                <button type="button" class="btn btn-warning btn-sm" id="viewBtn">
+                                    <span class="ace-icon fa fa-search icon-on-right"></span>
+                                    查看
+                                </button>
                                 <button id="addBtn" type="button" class="btn btn-primary btn-sm" ><!--data-toggle="modal" data-target="#userAddModal">-->
                                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增
                                 </button>
@@ -699,6 +708,964 @@
                         <!-- PAGE CONTENT ENDS -->
                     </div><!-- /.col -->
                 </div><!-- /.row -->
+
+                <!--查看安置户信息模态框-->
+                <div class="modal fade" id="viewAzhModal" tabindex="-1" role="dialog" aria-labelledby="viewAzhModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            </div>
+
+                            <div class="modal-body">
+                                <div class="widget-box widget-color-pink">
+                                    <div class="widget-header">
+                                        <h4 class="widget-title lighter smaller">
+                                            <span class="smaller-80">填写搬迁安置户信息</span>
+                                        </h4>
+                                    </div>
+
+                                    <div class="widget-body">
+                                        <div class="widget-main padding-8">
+                                            <form class="form-horizontal" id="view-settlement-household-form">
+                                                <div class="form-group hide">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right sr-only" for="v-id">主键id:</label>
+                                                    <input type="text" class="sr-only form-control" name="v-id" id="v-id"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-azdbh">安置点编号:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="red ace-icon fa fa-check"></i>
+                                                                </span>
+                                                            <input type="text" name="v-azdbh" id="v-azdbh" class="form-control search-query" readonly/>
+
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-hz">户主:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="red ace-icon fa fa-check"></i>
+                                                                </span>
+                                                            <input type="text" name="v-hz" id="v-hz" class="form-control search-query" readonly/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--隐藏家庭编号-->
+                                                <div class="form-group hide">
+                                                    <label class="sr-only control-label col-xs-12 col-sm-2 no-padding-right" for="v-jtbh">家庭编号:</label>
+                                                    <input type="text" name="v-jtbh" id="v-jtbh" class="sr-only form-control search-query"/>
+                                                </div>
+
+
+                                                <div class="hr hr-dotted"></div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-ldfh">楼栋房号:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="text" name="v-ldfh" id="v-ldfh" class="col-xs-12 col-sm-4 form-control"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-ndfqrw">年度搬迁任务:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="text" name="v-ndfqrw" id="v-ndfqrw" class="col-xs-12 col-sm-4 form-control"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-bqlx">搬迁类型:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <select class="input-medium form-control" id="v-bqlx" name="v-bqlx">
+                                                                <option value="">------------------</option>
+                                                                <option value="1">建档立卡贫困户</option>
+                                                                <option value="2">同步搬迁户</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-qcdsj">迁出地市级:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="text" name="v-qcdsj" id="v-qcdsj" class="col-xs-12 col-sm-4 form-control"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-qcdxj">迁出地县级:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="text" name="v-qcdxj" id="v-qcdxj" class="col-xs-12 col-sm-4 form-control"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-qcdxxdz">迁出地详细地址:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="red ace-icon fa fa-check"></i>
+                                                                </span>
+                                                            <input type="text" name="v-qcdxxdz" id="v-qcdxxdz" class="form-control search-query" readonly/>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+                                                <!--迁出地类型-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-qcdlx">迁出地类型:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <select class="input-medium form-control" id="v-qcdlx" name="qcdlx">
+                                                                <option value="">------------------</option>
+                                                                <option value="1">一类</option>
+                                                                <option value="2">二类</option>
+                                                                <option value="3">三类</option>
+                                                                <option value="4">四类</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-jtsyhrk">家庭受益户人口:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="number" value="0" name="v-jtsyhrk" id="v-jtsyhrk" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+                                                <!--住房面积-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-zfmj">住房面积:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="number" value="0" name="v-zfmj" id="v-zfmj" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-zczj">自筹资金:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="number" value="0" name="v-zczj" id="v-zczj" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+                                                <!--搬迁入住时间-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-2 no-padding-right" for="v-bqrzsj">搬迁入住时间:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="input-group">
+                                                            <input class="form-control date-picker" id="v-bqrzsj" name="v-bqrzsj" type="text" data-date-format="yyyy-mm-dd" readonly/>
+                                                            <span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+                                                                </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-sm-2 no-padding-right" for="v-sjrzsj">实际入住时间:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="input-group">
+                                                            <input class="form-control date-picker" id="v-sjrzsj" name="v-sjrzsj" type="text" data-date-format="yyyy-mm-dd" />
+                                                            <span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+                                                                </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-2 no-padding-right" for="v-sfsjrzmln">是否实际入住满两年:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <select id="v-sfsjrzmln" name="v-sfsjrzmln" class="select2" data-placeholder="点击选择...">
+                                                            <option value="">&nbsp;</option>
+                                                            <option value="yes">是</option>
+                                                            <option value="no">否</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-yyzf">原有住房:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <select class="input-medium form-control" id="v-yyzf" name="v-yyzf">
+                                                                <option value="">------------------</option>
+                                                                <option value="1">无房户</option>
+                                                                <option value="2">保护性住房</option>
+                                                                <option value="3">连体房</option>
+                                                                <option value="4">自建独立房</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-yzfmj">原住房面积:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="number" value="0" name="v-yzfmj" id="v-yzfmj" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-ccjf">拆除旧房:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <select class="input-medium form-control" id="v-ccjf" name="v-ccjf" >
+                                                                <option value="">------------------</option>
+                                                                <option value="1">已拆除</option>
+                                                                <option value="2">未拆除</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-bhzfzl">保护住房种类:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <select class="input-medium form-control" id="v-bhzfzl" name="v-bhzfzl" >
+                                                                <option value="">------------------</option>
+                                                                <option value="1">传统保护村落</option>
+                                                                <option value="2">少数民族特色村落</option>
+                                                                <option value="3">国家乡村旅游扶贫重点村</option>
+                                                                <option value="4">重点文化旅游村落</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-sm-2 no-padding-right" for="v-ccsj">拆除时间:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="input-group">
+                                                            <input class="form-control date-picker" id="v-ccsj" name="v-ccsj" type="text" data-date-format="yyyy-mm" />
+                                                            <span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+                                                                </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+                                                <!--拆除旧房面积-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-ccjfmj">拆除旧房面积:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="number" value="0" name="v-ccjfmj" id="v-ccjfmj" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-dxcfjl">兑现拆房奖励:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="number" value="0" name="v-dxcfjl" id="v-dxcfjl" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+                                                <!--复垦复绿-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-fkfl">复垦复绿:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <select class="input-medium form-control" id="v-fkfl" name="v-fkfl" >
+                                                                <option value="">------------------</option>
+                                                                <option value="1">未复垦复绿</option>
+                                                                <option value="2">已复垦</option>
+                                                                <option value="3">已复绿</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-fkflmj">复垦复绿面积:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="number" value="0" name="v-fkflmj" id="v-fkflmj" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+                                                <!--复垦复绿-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-cyfcxm">产业扶持项目:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="text" name="v-cyfcxm" id="v-cyfcxm" class="col-xs-12 col-sm-4 form-control" placeholder="如：养鸡、养鸭"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-nnhdcyfczj">年内获得产业扶持资金:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="number" value="0" name=v-"nnhdcyfczj" id="v-nnhdcyfczj" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+                                                <!--复垦复绿-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-tpqk">脱贫情况:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="text" name="v-tpqk" id="v-tpqk" class="col-xs-12 col-sm-4 form-control" placeholder="如：2018年"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-hkqy">户口迁移:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <select id="v-hkqy" name="v-hkqy" class="select2" data-placeholder="点击选择...">
+                                                            <option value="">&nbsp;</option>
+                                                            <option value="yes">是</option>
+                                                            <option value="no">否</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+                                                <!--复垦复绿-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-fczbl">房产证办理:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <select id="v-fczbl" name="v-fczbl" class="select2" data-placeholder="点击选择...">
+                                                            <option value="">&nbsp;</option>
+                                                            <option value="yes">是</option>
+                                                            <option value="no">否</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="v-lxdh">联系电话:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="phone" name="v-lxdh" id="v-lxdh" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-double dotted"></div>
+
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">关闭
+                                </button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+
+                </div><!--查看安置户模态框结尾-->
+
+                <!--新增安置户模态框-->
+                <div class="modal fade" id="addOrEditAzhModal" tabindex="-1" role="dialog" aria-labelledby="addOrEditAzhModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                            </div>
+
+                            <div class="modal-body">
+                                <div class="widget-box widget-color-pink">
+                                    <div class="widget-header">
+                                        <h4 class="widget-title lighter smaller">
+                                            <span class="smaller-80">填写搬迁安置户信息</span>
+                                        </h4>
+                                    </div>
+
+                                    <div class="widget-body">
+                                        <div class="widget-main padding-8">
+                                            <form class="form-horizontal" id="settlement-household-form">
+                                                <div class="form-group hide">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right sr-only" for="id">主键id:</label>
+                                                    <input type="text" class="sr-only form-control" name="id" id="id"/>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="azdbh">安置点编号:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="red ace-icon fa fa-check"></i>
+                                                                </span>
+                                                            <input type="text" name="azdbh" id="azdbh" class="form-control search-query"
+                                                                   placeholder="请点击获取按钮获取安置点信息" readonly/>
+                                                            <span class="input-group-btn">
+                                                                    <button type="button" class="btn btn-purple btn-sm" id="myAzdbhBtn" >
+                                                                        <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+                                                                        获取
+                                                                    </button>
+                                                                </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="hz">户主:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="red ace-icon fa fa-check"></i>
+                                                                </span>
+                                                            <input type="text" name="hz" id="hz" class="form-control search-query"
+                                                                   placeholder="请点击获取按钮获取户主信息" readonly/>
+                                                            <span class="input-group-btn">
+                                                                    <button type="button" class="btn btn-purple btn-sm" id="getFamilyBtn" data-toggle="modal" data-target="#getFamilyModal">
+                                                                        <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+                                                                        获取
+                                                                    </button>
+                                                                </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--隐藏家庭编号-->
+                                                <div class="form-group hide">
+                                                    <label class="sr-only control-label col-xs-12 col-sm-2 no-padding-right" for="jtbh">家庭编号:</label>
+                                                    <input type="text" name="jtbh" id="jtbh" class="sr-only form-control search-query"/>
+                                                </div>
+
+
+                                                <div class="hr hr-dotted"></div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ldfh">楼栋房号:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="text" name="ldfh" id="ldfh" class="col-xs-12 col-sm-4 form-control" placeholder="回车进行多个房号输入"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ndfqrw">年度搬迁任务:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="text" name="ndfqrw" id="ndfqrw" class="col-xs-12 col-sm-4 form-control" placeholder="如：2018年"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="bqlx">搬迁类型:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <select class="input-medium form-control" id="bqlx" name="bqlx">
+                                                                <option value="">------------------</option>
+                                                                <option value="1">建档立卡贫困户</option>
+                                                                <option value="2">同步搬迁户</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="qcdsj">迁出地市级:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="text" name="qcdsj" id="qcdsj" class="col-xs-12 col-sm-4 form-control" placeholder="如钦州市"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="qcdxj">迁出地县级:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="text" name="qcdxj" id="qcdxj" class="col-xs-12 col-sm-4 form-control" placeholder="如：钦南区"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="qcdxxdz">迁出地详细地址:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <i class="red ace-icon fa fa-check"></i>
+                                                                </span>
+                                                            <input type="text" name="qcdxxdz" id="qcdxxdz" class="form-control search-query"
+                                                                   placeholder="请点击获取按钮获取迁出地详细地址信息" readonly/>
+                                                            <span class="input-group-btn">
+                                                                    <button type="button" class="btn btn-purple btn-sm" id="getXxdzBtn" data-toggle="modal" data-target="#getXzqhModal">
+                                                                        <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+                                                                        获取
+                                                                    </button>
+                                                                </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+                                                <!--迁出地类型-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="qcdlx">迁出地类型:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <select class="input-medium form-control" id="qcdlx" name="qcdlx">
+                                                                <option value="">------------------</option>
+                                                                <option value="1">一类</option>
+                                                                <option value="2">二类</option>
+                                                                <option value="3">三类</option>
+                                                                <option value="4">四类</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="jtsyhrk">家庭受益户人口:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="number" value="0" name="jtsyhrk" id="jtsyhrk" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+                                                <!--住房面积-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="zfmj">住房面积:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="number" value="0" name="zfmj" id="zfmj" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="zczj">自筹资金:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="number" value="0" name="zczj" id="zczj" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+                                                <!--搬迁入住时间-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-2 no-padding-right" for="bqrzsj">搬迁入住时间:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="input-group">
+                                                            <input class="form-control date-picker" id="bqrzsj" name="bqrzsj" type="text" data-date-format="yyyy-mm-dd" readonly/>
+                                                            <span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+                                                                </span>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-sm-2 no-padding-right" for="sjrzsj">实际入住时间:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="input-group">
+                                                            <input class="form-control date-picker" id="sjrzsj" name="sjrzsj" type="text" data-date-format="yyyy-mm-dd" />
+                                                            <span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+                                                                </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-sm-2 no-padding-right" for="sfsjrzmln">是否实际入住满两年:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <select id="sfsjrzmln" name="sfsjrzmln" class="select2" data-placeholder="点击选择...">
+                                                            <option value="">&nbsp;</option>
+                                                            <option value="yes">是</option>
+                                                            <option value="no">否</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="yyzf">原有住房:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <select class="input-medium form-control" id="yyzf" name="yyzf">
+                                                                <option value="">------------------</option>
+                                                                <option value="1">无房户</option>
+                                                                <option value="2">保护性住房</option>
+                                                                <option value="3">连体房</option>
+                                                                <option value="4">自建独立房</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="yzfmj">原住房面积:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="number" value="0" name="yzfmj" id="yzfmj" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ccjf">拆除旧房:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <select class="input-medium form-control" id="ccjf" name="ccjf" >
+                                                                <option value="">------------------</option>
+                                                                <option value="1">已拆除</option>
+                                                                <option value="2">未拆除</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="bhzfzl">保护住房种类:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <select class="input-medium form-control" id="bhzfzl" name="bhzfzl" >
+                                                                <option value="">------------------</option>
+                                                                <option value="1">传统保护村落</option>
+                                                                <option value="2">少数民族特色村落</option>
+                                                                <option value="3">国家乡村旅游扶贫重点村</option>
+                                                                <option value="4">重点文化旅游村落</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-sm-2 no-padding-right" for="ccsj">拆除时间:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="input-group">
+                                                            <input class="form-control date-picker" id="ccsj" name="ccsj" type="text" data-date-format="yyyy-mm" />
+                                                            <span class="input-group-addon">
+																		<i class="fa fa-calendar bigger-110"></i>
+                                                                </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+                                                <!--拆除旧房面积-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="ccjfmj">拆除旧房面积:</label>
+
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="number" value="0" name="ccjfmj" id="ccjfmj" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="dxcfjl">兑现拆房奖励:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="number" value="0" name="dxcfjl" id="dxcfjl" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+                                                <!--复垦复绿-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="fkfl">复垦复绿:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <select class="input-medium form-control" id="fkfl" name="fkfl" >
+                                                                <option value="">------------------</option>
+                                                                <option value="1">未复垦复绿</option>
+                                                                <option value="2">已复垦</option>
+                                                                <option value="3">已复绿</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="fkflmj">复垦复绿面积:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="number" value="0" name="fkflmj" id="fkflmj" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+                                                <!--复垦复绿-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="cyfcxm">产业扶持项目:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="text" name="cyfcxm" id="cyfcxm" class="col-xs-12 col-sm-4 form-control" placeholder="如：养鸡、养鸭"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="nnhdcyfczj">年内获得产业扶持资金:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="number" value="0" name="nnhdcyfczj" id="nnhdcyfczj" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+                                                <!--复垦复绿-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="tpqk">脱贫情况:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="text" name="tpqk" id="tpqk" class="col-xs-12 col-sm-4 form-control" placeholder="如：2018年"/>
+                                                        </div>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="hkqy">户口迁移:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <select id="hkqy" name="hkqy" class="select2" data-placeholder="点击选择...">
+                                                            <option value="">&nbsp;</option>
+                                                            <option value="yes">是</option>
+                                                            <option value="no">否</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-dotted"></div>
+                                                <!--复垦复绿-->
+                                                <div class="form-group">
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="fczbl">房产证办理:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <select id="fczbl" name="fczbl" class="select2" data-placeholder="点击选择...">
+                                                            <option value="">&nbsp;</option>
+                                                            <option value="yes">是</option>
+                                                            <option value="no">否</option>
+                                                        </select>
+                                                    </div>
+
+                                                    <label class="control-label col-xs-12 col-sm-2 no-padding-right" for="lxdh">联系电话:</label>
+                                                    <div class="col-xs-12 col-sm-4">
+                                                        <div class="clearfix">
+                                                            <input type="phone" name="lxdh" id="lxdh" class="col-xs-12 col-sm-4 form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="hr hr-double dotted"></div>
+
+
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-inverse" data-dismiss="modal">关闭
+                                </button>
+                                <button type="button" class="btn btn-danger" id="sureAddAzhBtn">
+                                    确定
+                                </button>
+                                <button type="button" class="btn btn-warning" id="sureEditAzhBtn">
+                                    修改
+                                </button>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal -->
+                </div><!--添加和修改安置户模态框-->
+
+                <!--获取安置点信息-->
+                <div>
+                    <div class="modal fade" id="getSettlementModal" tabindex="-1" role="dialog" aria-labelledby="getSettlementModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title red" id="getSettlementModalLabel">
+                                        <label>安置点列表，请进行勾选</label>
+                                    </h4>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="widget-box widget-color-red2">
+                                        <div class="widget-header">
+                                            <h4 class="widget-title lighter smaller">
+                                                <span class="smaller-80"></span>
+                                            </h4>
+                                        </div>
+
+                                        <div class="widget-body">
+                                            <div class="widget-main padding-8">
+                                                <div class="row">
+                                                    <div class="col-xs-12 col-sm-4" th:each="azSettlement:${azSettlementList}" id="azSettlementCheckBoxDiv">
+                                                        <div class="checkbox">
+                                                            <label>
+                                                                <input name="az-settlement-checkbox" type="checkbox" th:id="${azSettlement.azdbh}"/>
+                                                                <span class="lbl" th:text="${azSettlement.azdmz}"></span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">关闭
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="getAzdbhBtn">
+                                        确定
+                                    </button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+                    </div>
+                </div><!--获取安置点信息-->
+
+
+                <!-- 选取家庭窗口 -->
+                <div>
+                    <!-- 选取家庭窗口-->
+                    <div class="modal fade" id="getFamilyModal" tabindex="-1" role="dialog" aria-labelledby="getFamilyModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title red" id="getFamilyModalLabel">
+                                        <label id="addTitle5">获取家庭地址</label>
+                                    </h4>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="widget-box widget-color-green2">
+                                        <div class="widget-header">
+                                            <h4 class="widget-title lighter smaller">
+                                                <span class="smaller-80"></span>
+                                            </h4>
+                                        </div>
+
+                                        <div class="widget-body">
+                                            <div class="widget-main padding-8">
+                                                <div class="row">
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group col-xs-12">
+                                                            <label class="sr-only control-label" for="s-xm">姓名:</label>
+                                                            <input type="text" id="s-xm" name="s-xm" class="form-control" placeholder="姓名">
+                                                            <label class="sr-only control-label" for="s-sfzmhm">身份证明号码:</label>
+                                                            <input type="text" id="s-sfzmhm" name="s-sfzmhm" class=" form-control" placeholder="身份证明号码">
+                                                            <label class="sr-only control-label" for="s-lxdh">联系电话:</label>
+                                                            <input type="text" id="s-lxdh2" name="s-lxdh" class="form-control" placeholder="联系电话">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="hr hr-dotted"></div>
+                                                <div class="row">
+                                                    <form class="form-inline" role="form">
+                                                        <div class="form-group col-xs-12">
+                                                            <label class="sr-only control-label" for="s-csrq">出生日期:</label>
+                                                            <div class="input-group">
+                                                                <input class="form-control date-picker" id="s-csrq" name="s-csrq" type="text" data-date-format="yyyy-mm-dd" placeholder="出生日期"/>
+                                                                <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar bigger-110"></i>
+                                                                    </span>
+                                                            </div>
+                                                            <button type="button" class="btn btn-purple btn-sm" id="searchPersonBtn">
+                                                                <span class="ace-icon fa fa-search icon-on-right"></span>
+                                                                查询
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+
+                                                <div class="hr hr-double dotted"></div>
+
+                                                <table id="person-grid-table"></table>
+                                                <div id="person-grid-pager"></div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">关闭
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="getFamilyResultBtn">
+                                        确定
+                                    </button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+                    </div>
+                </div><!-- 选取家庭窗口 -->
+
+
+                <!-- 获取家庭地址窗口 -->
+                <div>
+                    <!--!-- 获取家庭地址窗口-->
+                    <div class="modal fade" id="getXzqhModal" tabindex="-1" role="dialog" aria-labelledby="getXzqhModalModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title red" id="getXzqhModalModalLabel">
+                                        <label>获取家庭地址</label>
+                                    </h4>
+                                </div>
+
+                                <div class="modal-body">
+                                    <div class="widget-box widget-color-green2">
+                                        <div class="widget-header">
+                                            <h4 class="widget-title lighter smaller">
+                                                <span class="smaller-80"></span>
+                                            </h4>
+                                        </div>
+
+                                        <div class="widget-body">
+                                            <div class="widget-main padding-8">
+                                                <ul id="show-xzqh-tree"></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">关闭
+                                    </button>
+                                    <button type="button" class="btn btn-primary" id="getXzqhBtn">
+                                        确定
+                                    </button>
+                                </div>
+                            </div><!-- /.modal-content -->
+                        </div><!-- /.modal -->
+                    </div>
+                </div><!-- 获取家庭地址窗口 -->
+
             </div><!-- /.page-content -->
         </div>
     </div><!-- /.main-content -->
@@ -763,6 +1730,7 @@
 <script th:src="@{/static/js/moment.min.js}"></script>
 <script th:src="@{/static/js/bootstrap-datetimepicker.min.js}"></script>
 <script th:src="@{/static/js/bootstrap-colorpicker.min.js}"></script>
+<script th:src="@{/static/js/bootstrap-treeview.js}"></script>
 
 <!-- ace scripts -->
 <script th:src="@{/static/js/ace-elements.min.js}"></script>
@@ -871,9 +1839,6 @@
 
 
 
-
-
-
         jQuery(grid_selector).jqGrid({
             datatype: "json",//数据封装方式为json
             url: '/settlementHousehold/listAll',
@@ -942,6 +1907,10 @@
 
             multiselect: true,
             multiboxonly: true,
+            ondblClickRow:function(row){
+                getAzhInfo(row);
+                $("#viewAzhModal").modal("show");
+            },
 
             loadComplete : function() {
                 var table = this;
@@ -962,9 +1931,147 @@
 
 
 
+        var grid_selector1 = "#person-grid-table";
+        var pager_selector1 = "#person-grid-pager";
+
+        var parent_column1   = $(grid_selector).closest('[class*="widget-main"]');
+
+        $(window).on('resize.jqGrid', function () {
+
+            $(grid_selector1).jqGrid( 'setGridWidth', parent_column1.width()-10 );
+        });
+
+        jQuery(grid_selector1).jqGrid({
+            datatype: "json",//数据封装方式为json
+            url: '/ym/all',
+            mtype:"POST",
+            // ajaxGridOptions: { contentType: 'application/json; charset=utf-8' },
+            // serializeGridData: function (postData)
+            // {
+            //     if (postData.searchField === undefined) postData.searchField = null;
+            //     if (postData.searchString === undefined) postData.searchString = null;
+            //     if (postData.searchOper === undefined) postData.searchOper = null;
+            //     alert(JSON.stringify(postData));
+            //     return JSON.stringify(postData);
+            // },
+            height: 250,
+            shrinkToFit:true,
+            colNames:[' ','人员编号','家庭编号','姓名','性别','身份证明号码','身份证签发机关','身份证有效期始','身份证有效期止','与户主关系','民族','出生日期','政治面貌','文化程度','在校生情况','失学或辍学原因','健康情况','劳动技能情况','是否会讲普通话','是否现役军人','是否参加城乡居民基本医疗保险','是否参加商业补充医疗保险','是否享受低保','是否参加城乡居民基本养老保险','是否享受人身意外保险补贴','联系电话'],
+            colModel:[
+                {name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
+                    formatter:'actions',
+                    formatoptions:{
+                        keys:true,
+                        //delbutton: false,//disable delete button
+
+                        delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
+                        //editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
+                    }
+                },
+                {name:'rybh',       index:'rybh',       width:60, fixed:true, editable:true, sorttype:"int" },
+                {name:'jtbh',       index:'jtbh',       width:60, fixed:true, editable:true, sorttype:"int" },
+                {name:'xm',         index:'xm',         width:60, fixed:true, editable:true,                 },
+                {name:'xb',         index:'xb',         width:40, fixed:true, editable:true,                 },
+                {name:'sfzmhm',     index:'sfzmhm',     width:140, fixed:true, editable:true,                 },
+                {name:'qfjg',       index:'qfjg',       width:150, fixed:true, editable:true,                 },
+                {name:'sfzyxqs',    index:'sfzyxqs',    width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'sfzyxqz',    index:'sfzyxqz',    width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'yhzgx',      index:'yhzgx',      width:80, fixed:true, editable:true,                 },
+                {name:'mz',         index:'mz',         width:40, fixed:true, editable:true,                 },
+                {name:'csrq',       index:'csrq',       width:70, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'zzmm',       index:'zzmm',       width:70, fixed:true, editable:true,                 },
+                {name:'whcd',       index:'whcd',       width:70, fixed:true, editable:true,                 },
+                {name:'zxsqk',      index:'zxsqk',      width:80, fixed:true, editable:true,                 },
+                {name:'sxhcxyy',    index:'sxhcxyy',    width:110, fixed:true, editable:true,                 },
+                {name:'jkqk',       index:'jkqk',       width:70, fixed:true, editable:true,                 },
+                {name:'ldjn',       index:'ldjn',       width:90, fixed:true, editable:true,                 },
+                {name:'sfhjpth',    index:'sfhjpth',    width:110, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfxyjr',     index:'sfxyjr',     width:90, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfcjylbx1',  index:'sfcjylbx1',  width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfcjsybx',   index:'sfcjsybx',   width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfxsdb',     index:'sfxsdb',     width:90, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfcjylbx2',  index:'sfcjylbx2',  width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfxsywbxbt', index:'sfxsywbxbt', width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'lxdh',       index:'lxdh',       width:90, fixed:true, editable:true                  }
+            ],
+            viewrecords : true,
+            rowNum:10,
+            rowList:[10,20,30],
+            pager : pager_selector1,
+            altRows: true,
+            //toppager: true,
+
+            multiselect: true,
+            multiboxonly: true,
+
+            loadComplete : function() {
+                var table = this;
+                setTimeout(function(){
+                    styleCheckbox(table);
+
+                    updateActionIcons(table);
+                    updatePagerIcons(table);
+                    enableTooltips(table);
+                }, 0);
+            },
+
+            editurl: "./dummy.php",//nothing is saved
+            caption: "贫困人员信息列表"
+
+        });
+
+        $('#getFamilyModal').on('shown.bs.modal',function () {
+            var parent_column = $(grid_selector1).closest('[class*="widget-main"]');
+            $(grid_selector1).jqGrid( 'setGridWidth', parent_column.width() );
+
+        });
+
+
+
+
+
+
+        //当点击安置点编号获取按钮时候，显示模态框
+        $("#myAzdbhBtn").on("click",function () {
+            //先把所有的checkbox不选中
+            $("input[name='az-settlement-checkbox']:checked").prop("checked",false);
+            //显示模态框
+            $("#getSettlementModal").modal("show");
+        });
+        //当点击模态框的确定按钮时候，进行信息填入
+        $("#getAzdbhBtn").on("click",function () {
+            var checkboxArray =  $("input[name='az-settlement-checkbox']:checked");
+            if(checkboxArray.length<1){
+                alert("请选择一个安置点！")
+            }else if(checkboxArray.length>1){
+                alert("安置点选择不要超过一个！")
+            }else{
+                var azdbh = $("input[name='az-settlement-checkbox']:checked").attr("id");
+                $("#azdbh").attr("value",azdbh);
+                alert("安置点选择成功!");
+                $("#getSettlementModal").modal("hide");
+            }
+        });
+
         //新增按钮查看
         $("#addBtn").on("click",function () {
-            window.location.href = "/az/add";
+            $("#sureEditAzhBtn").addClass("hide");
+            $("#sureAddAzhBtn").removeClass("hide");
+            $(":input","#settlement-household-form").not("button").val("").removeAttr('checked').removeAttr('selected');
+            $("#addOrEditAzhModal").modal("show");
+        });
+
+        //当点击确定新增按钮时，进行与后台交互
+        $("#add-settlement-household").on("click",function () {
+            if(checkSettlementHouseholdForm()){
+                //生产收入种植业表格数据
+                var postData = $('#settlement-household-form').serialize();
+                $.post("/settlementHousehold/add", postData,function (data) {
+                    if(data.status==1){
+                        alert("安置户信息写入成功！");
+                    }
+                })
+            }
         });
 
 
@@ -992,26 +2099,233 @@
 
         });
 
+        //当点击查看按钮时候，获取选中的行的数据，并进行表单填充的方法
+        function getAzhInfo(row){
+            var rowData = $("#grid-table").jqGrid('getRowData',row);
+            $("#v-id").val(rowData.id);
+            $("#v-azdbh").val(rowData.azdbh);
+            $("#v-jtbh").val(rowData.jtbh);
+            $("#v-hz").val(rowData.hz);
+            $("#v-ldfh").val(rowData.ldfh);
+            $("#v-ndfqrw").val(rowData.ndfqrw);
+            if(rowData.bqlx=="建档立卡贫困户"){
+                $("#v-bqlx")[0].selectedIndex = 1;
+            }else if(rowData.bqlx=="同步搬迁户"){
+                $("#v-bqlx")[0].selectedIndex = 2;
+            }
+            $("#v-qcdsj").val(rowData.qcdsj);
+            $("#v-qcdxj").val(rowData.qcdxj);
+            $("#v-qcdxxdz").val(rowData.qcdxxdz);
+            if(rowData.qcdlx=="一类"){
+                $("#v-qcdlx")[0].selectedIndex = 1;
+            }else if(rowData.qcdlx=="二类"){
+                $("#v-qcdlx")[0].selectedIndex = 2;
+            }else if(rowData.qcdlx=="三类"){
+                $("#v-qcdlx")[0].selectedIndex = 3;
+            }else if(rowData.qcdlx=="四类"){
+                $("#v-qcdlx")[0].selectedIndex = 4;
+            }
 
-        //当点击修改按钮时，显示模态框
-        $("#editBtn").on("click",function () {
-            var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
-            //console.log(rowid);
-            if(rowids !=""||rowids.length>0){
-                if(rowids.length>2){
+            $("#v-jtsyhrk").val(rowData.jtsyhrk);
+            $("#v-zfmj").val(rowData.zfmj);
+            $("#v-zczj").val(rowData.zczj);
+            $("#v-bqrzsj").val(rowData.bqrzsj);
+            $("#v-sjrzsj").val(rowData.sjrzsj);
+            if(rowData.sfsjrzmln=="是"){
+                $("#v-sfsjrzmln")[0].selectedIndex = 1;
+            }else{
+                $("#v-sfsjrzmln")[0].selectedIndex = 2;
+            }
+
+            if(rowData.yyzf=="无房户"){
+                $("#v-yyzf")[0].selectedIndex = 1;
+            }else if(rowData.yyzf=="保护性住房"){
+                $("#v-yyzf")[0].selectedIndex = 2;
+            }else if(rowData.yyzf=="连体房"){
+                $("#v-yyzf")[0].selectedIndex = 3;
+            }else if(rowData.yyzf=="自建独立房"){
+                $("#v-yyzf")[0].selectedIndex = 4;
+            }
+
+            $("#v-yzfmj").val(rowData.yzfmj);
+
+            if(rowData.ccjf=="已拆除"){
+                $("#v-ccjf")[0].selectedIndex = 1;
+            }else if(rowData.ccjf=="未拆除"){
+                $("#v-ccjf")[0].selectedIndex = 2;
+            }
+
+            if(rowData.bhzfzl=="传统保护村落"){
+                $("#v-bhzfzl")[0].selectedIndex = 1;
+            }else if(rowData.bhzfzl=="少数民族特色村落"){
+                $("#v-bhzfzl")[0].selectedIndex = 2;
+            }else if(rowData.bhzfzl=="国家乡村旅游扶贫重点村"){
+                $("#v-bhzfzl")[0].selectedIndex = 3;
+            }else if(rowData.bhzfzl=="重点文化旅游村落"){
+                $("#v-bhzfzl")[0].selectedIndex = 4;
+            }
+
+            $("#v-ccsj").val(rowData.ccsj);
+            $("#v-ccjfmj").val(rowData.ccjfmj);
+            $("#v-dxcfjl").val(rowData.dxcfjl);
+
+            if(rowData.fkfl=="未复垦复绿"){
+                $("#v-fkfl")[0].selectedIndex = 1;
+            }else if(rowData.fkfl=="已复垦"){
+                $("#v-fkfl")[0].selectedIndex = 2;
+            }else if(rowData.fkfl=="已复绿"){
+                $("#v-fkfl")[0].selectedIndex = 3;
+            }
+
+            $("#v-fkflmj").val(rowData.fkflmj);
+            $("#v-cyfcxm").val(rowData.cyfcxm);
+            $("#v-nnhdcyfczj").val(rowData.nnhdcyfczj);
+            $("#v-tpqk").val(rowData.tpqk);
+            if(rowData.hkqy=="是"){
+                $("#v-hkqy")[0].selectedIndex = 1;
+            }else{
+                $("#v-hkqy")[0].selectedIndex = 2;
+            }
+
+            if(rowData.fczbl=="是"){
+                $("#v-fczbl")[0].selectedIndex = 1;
+            }else{
+                $("#v-fczbl")[0].selectedIndex = 2;
+            }
+
+            $("#v-lxdh").val(rowData.lxdh);
+
+
+
+        }
+        //查看按钮的响应事件
+        $("#viewBtn").on("click",function () {
+            var rowIds=$('#grid-table').jqGrid('getGridParam','selarrrow');
+            if(rowIds !=""||rowIds.length>0){
+                if(rowIds.length>1){
                     alert("请不要勾选超过一个人员!")
                 }else {
-                    var rowData = $("#grid-table").jqGrid('getRowData',rowids[0]);
-                    var idArr = "id=" + rowData.id;
-                    // var idArr = {
-                    //   "jtbh":rowData.jtbh,
-                    //   "rybh":rowData.rybh
-                    // };
+                    getAzhInfo(rowIds[0]);
+                    $(":input","#view-settlement-household-form").not("button").attr("readonly");
+                    $("#viewAzhModal").modal("show");
+                }
+            }else {
+                $("#viewBtn").tips({
+                    side : 3,
+                    msg : '请至少勾选一个人员！',
+                    bg : '#ce1fff',
+                    time : 5
+                });
+            }
+        });
 
-                    window.location.href="/az/settlementHouseholdEdit?"+idArr;
-                    //$.getJSON("/person/edit",idArr,function (data) {});
-                    //
-                    // });
+        //当点击修改按钮时候，获取选中的行的数据，并进行表单填充的方法
+        function editAzhInfo(row){
+            var rowData = $("#grid-table").jqGrid('getRowData',row);
+            $("#id").val(rowData.id);
+            $("#azdbh").val(rowData.azdbh);
+            $("#jtbh").val(rowData.jtbh);
+            $("#hz").val(rowData.hz);
+            $("#ldfh").val(rowData.ldfh);
+            $("#ndfqrw").val(rowData.ndfqrw);
+            if(rowData.bqlx=="建档立卡贫困户"){
+                $("#bqlx")[0].selectedIndex = 1;
+            }else if(rowData.bqlx=="同步搬迁户"){
+                $("#bqlx")[0].selectedIndex = 2;
+            }
+            $("#qcdsj").val(rowData.qcdsj);
+            $("#qcdxj").val(rowData.qcdxj);
+            $("#qcdxxdz").val(rowData.qcdxxdz);
+            if(rowData.qcdlx=="一类"){
+                $("#qcdlx")[0].selectedIndex = 1;
+            }else if(rowData.qcdlx=="二类"){
+                $("#qcdlx")[0].selectedIndex = 2;
+            }else if(rowData.qcdlx=="三类"){
+                $("#qcdlx")[0].selectedIndex = 3;
+            }else if(rowData.qcdlx=="四类"){
+                $("#qcdlx")[0].selectedIndex = 4;
+            }
+
+            $("#jtsyhrk").val(rowData.jtsyhrk);
+            $("#zfmj").val(rowData.zfmj);
+            $("#zczj").val(rowData.zczj);
+            $("#bqrzsj").val(rowData.bqrzsj);
+            $("#sjrzsj").val(rowData.sjrzsj);
+            if(rowData.sfsjrzmln=="是"){
+                $("#sfsjrzmln")[0].selectedIndex = 1;
+            }else{
+                $("#sfsjrzmln")[0].selectedIndex = 2;
+            }
+
+            if(rowData.yyzf=="无房户"){
+                $("#yyzf")[0].selectedIndex = 1;
+            }else if(rowData.yyzf=="保护性住房"){
+                $("#yyzf")[0].selectedIndex = 2;
+            }else if(rowData.yyzf=="连体房"){
+                $("#yyzf")[0].selectedIndex = 3;
+            }else if(rowData.yyzf=="自建独立房"){
+                $("#yyzf")[0].selectedIndex = 4;
+            }
+
+            $("#yzfmj").val(rowData.yzfmj);
+
+            if(rowData.ccjf=="已拆除"){
+                $("#ccjf")[0].selectedIndex = 1;
+            }else if(rowData.ccjf=="未拆除"){
+                $("#ccjf")[0].selectedIndex = 2;
+            }
+
+            if(rowData.bhzfzl=="传统保护村落"){
+                $("#bhzfzl")[0].selectedIndex = 1;
+            }else if(rowData.bhzfzl=="少数民族特色村落"){
+                $("#bhzfzl")[0].selectedIndex = 2;
+            }else if(rowData.bhzfzl=="国家乡村旅游扶贫重点村"){
+                $("#bhzfzl")[0].selectedIndex = 3;
+            }else if(rowData.bhzfzl=="重点文化旅游村落"){
+                $("#bhzfzl")[0].selectedIndex = 4;
+            }
+
+            $("#ccsj").val(rowData.ccsj);
+            $("#ccjfmj").val(rowData.ccjfmj);
+            $("#dxcfjl").val(rowData.dxcfjl);
+
+            if(rowData.fkfl=="未复垦复绿"){
+                $("#fkfl")[0].selectedIndex = 1;
+            }else if(rowData.fkfl=="已复垦"){
+                $("#fkfl")[0].selectedIndex = 2;
+            }else if(rowData.fkfl=="已复绿"){
+                $("#fkfl")[0].selectedIndex = 3;
+            }
+
+            $("#fkflmj").val(rowData.fkflmj);
+            $("#cyfcxm").val(rowData.cyfcxm);
+            $("#nnhdcyfczj").val(rowData.nnhdcyfczj);
+            $("#tpqk").val(rowData.tpqk);
+            if(rowData.hkqy=="是"){
+                $("#hkqy")[0].selectedIndex = 1;
+            }else{
+                $("#hkqy")[0].selectedIndex = 2;
+            }
+
+            if(rowData.fczbl=="是"){
+                $("#fczbl")[0].selectedIndex = 1;
+            }else{
+                $("#fczbl")[0].selectedIndex = 2;
+            }
+            $("#lxdh").val(rowData.lxdh);
+        }
+        //当点击修改按钮时，显示模态框
+        $("#editBtn").on("click",function () {
+            var rowIds=$('#grid-table').jqGrid('getGridParam','selarrrow');
+            //console.log(rowid);
+            if(rowIds !=""||rowIds.length>0){
+                if(rowIds.length>1){
+                    alert("请不要勾选超过一个人员!")
+                }else {
+                    editAzhInfo(rowIds[0]);
+                    $("#sureAddAzhBtn").addClass("hide");
+                    $("#sureEditAzhBtn").removeClass("hide");
+                    $("#addOrEditAzhModal").modal("show");
                 }
             }else {
                 $("#editBtn").tips({
@@ -1021,8 +2335,102 @@
                     time : 5
                 });
             }
+        });
 
+        function getAzhJson(){
+            var id        =$("#id").val();
+            var azdbh     =$("#azdbh").val();
+            var jtbh      =$("#jtbh").val();
+            var hz        =$("#hz").val();
+            var ldfh      =$("#ldfh").val();
+            var ndfqrw    =$("#ndfqrw").val();
+            var bqlx      =$("#bqlx").find("option:selected").text();
+            var qcdsj     =$("#qcdsj").val();
+            var qcdxj     =$("#qcdxj").val();
+            var qcdxxdz   =$("#qcdxxdz").val();
+            var qcdlx     =$("#qcdlx").find("option:selected").text();
+            var jtsyhrk   =$("#jtsyhrk").val();
+            var zfmj      =$("#zfmj").val();
+            var zczj      =$("#zczj").val();
+            var bqrzsj    =$("#bqrzsj").val();
+            var sjrzsj    =$("#sjrzsj").val();
+            var sfsjrzmln =$("#sfsjrzmln").find("option:selected").text();
+            var yyzf      =$("#yyzf").find("option:selected").text();
+            var yzfmj     =$("#yzfmj").val();
+            var ccjf      =$("#ccjf").find("option:selected").text();
+            var bhzfzl    =$("#bhzfzl").find("option:selected").text();
+            var ccsj      =$("#ccsj").val();
+            var ccjfmj    =$("#ccjfmj").val();
+            var dxcfjl    =$("#dxcfjl").val();
+            var fkfl      =$("#fkfl").find("option:selected").text();
+            var fkflmj    =$("#fkflmj").val();
+            var cyfcxm    =$("#cyfcxm").val();
+            var nnhdcyfczj=$("#nnhdcyfczj").val();
+            var tpqk      =$("#tpqk").val();
+            var hkqy      =$("#hkqy").find("option:selected").text();
+            var fczbl     =$("#fczbl").find("option:selected").text();
+            var lxdh      =$("#lxdh").val();
 
+            var azhJson= {
+                "id"         : id        ,
+                "azdbh"      : azdbh     ,
+                "jtbh"       : jtbh      ,
+                "hz"         : hz        ,
+                "ldfh"       : ldfh      ,
+                "ndfqrw"     : ndfqrw    ,
+                "bqlx"       : bqlx      ,
+                "qcdsj"      : qcdsj     ,
+                "qcdxj"      : qcdxj     ,
+                "qcdxxdz"    : qcdxxdz   ,
+                "qcdlx"      : qcdlx     ,
+                "jtsyhrk"    : jtsyhrk   ,
+                "zfmj"       : zfmj      ,
+                "zczj"       : zczj      ,
+                "bqrzsj"     : bqrzsj    ,
+                "sjrzsj"     : sjrzsj    ,
+                "sfsjrzmln"  : sfsjrzmln ,
+                "yyzf"       : yyzf      ,
+                "yzfmj"      : yzfmj     ,
+                "ccjf"       : ccjf      ,
+                "bhzfzl"     : bhzfzl    ,
+                "ccsj"       : ccsj      ,
+                "ccjfmj"     : ccjfmj    ,
+                "dxcfjl"     : dxcfjl    ,
+                "fkfl"       : fkfl      ,
+                "fkflmj"     : fkflmj    ,
+                "cyfcxm"     : cyfcxm    ,
+                "nnhdcyfczj" : nnhdcyfczj,
+                "tpqk"       : tpqk      ,
+                "hkqy"       : hkqy      ,
+                "fczbl"      : fczbl     ,
+                "lxdh"       : lxdh
+            };
+            return azhJson;
+        }
+
+        //当点击模态框修改按钮时候，进行响应，与后台交互
+        $("#sureEditAzhBtn").on("click",function () {
+            if(checkSettlementHouseholdForm()){
+                //生产收入种植业表格数据
+                var postData = JSON.stringify(getAzhJson());
+                $.ajax({
+                    type: "POST",//请求方式为POST
+                    url: "/settlementHousehold/edit",//检验url
+                    contentType: "application/json;charset=UTF-8",
+                    data: postData,//请求数据
+                    dataType: 'json',//数据类型为JSON类型
+                    cache: false,//关闭缓存
+                    success: function (data) {
+                        alert("安置户信息修改成功！");
+                        $("#addOrEditAzhModal").modal("hide");
+                        $("#grid-table").jqGrid('clearGridData');
+                        $("#grid-table").jqGrid('setGridParam', {
+                            datatype:"json",
+                            url:"/settlementHousehold/listAll"
+                        }).trigger("reloadGrid");
+                    }//响应成功
+                })
+            }
         });
 
 
@@ -1032,11 +2440,11 @@
             if(input){
                 var rowIds=$('#grid-table').jqGrid('getGridParam','selarrrow');
                 //console.log(rowIds);
-                if(rowids !=""||rowIds.length>0){
+                if(rowIds !=""||rowIds.length>0){
                     var idArr = "";
-                    for(var i=0;i<rowids.length;i++){
-                        var rowData = $("#grid-table").jqGrid('getRowData',rowids[i]);
-                        idArr = idArr + rowData.userId + ",";
+                    for(var i=0;i<rowIds.length;i++){
+                        var rowData = $("#grid-table").jqGrid('getRowData',rowIds[i]);
+                        idArr = idArr + rowData.id + ",";
                     }
                     $.ajax({
                         type: "POST",//请求方式为POST
@@ -1067,6 +2475,130 @@
             }
 
         });
+
+
+        //进行输入框的判断
+        function checkSettlementHouseholdForm(){
+            if($("#azdbh").val()==""){
+                $("#azdbh").focus();
+                $("#azdbh").tips({
+                    side : 3,
+                    msg : '安置点编号不能为空，请进行获取!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#hz").val()==""){
+                $("#hz").focus();
+                $("#hz").tips({
+                    side : 3,
+                    msg : '户主不能为空，请进行获取!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#qcdlx").val()==""){
+                $("#qcdlx").focus();
+                $("#qcdlx").tips({
+                    side : 3,
+                    msg : '请选择一个迁出地类型!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#bqrzsj").val()==""){
+                $("#qcdlx").focus();
+                $("#qcdlx").tips({
+                    side : 3,
+                    msg : '搬迁入住时间不能为空!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#sjrzsj").val()==""){
+                $("#sjrzsj").focus();
+                $("#sjrzsj").tips({
+                    side : 3,
+                    msg : '搬迁入住时间不能为空!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#sfsjrzmln").val()==""){
+                $("#sjrzsj").focus();
+                $("#sjrzsj").tips({
+                    side : 3,
+                    msg : '请进行选择!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#yyzf").val()==""){
+                $("#yyzf").focus();
+                $("#yyzf").tips({
+                    side : 3,
+                    msg : '请进行选择!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#ccjf").val()==""){
+                $("#ccjf").focus();
+                $("#ccjf").tips({
+                    side : 3,
+                    msg : '请进行选择!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#bhzfzl").val()==""){
+                $("#bhzfzl").focus();
+                $("#bhzfzl").tips({
+                    side : 3,
+                    msg : '请进行选择!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#fkfl").val()==""){
+                $("#fkfl").focus();
+                $("#fkfl").tips({
+                    side : 3,
+                    msg : '请进行选择!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#hkqy").val()==""){
+                $("#hkqy").focus();
+                $("#hkqy").tips({
+                    side : 3,
+                    msg : '请进行选择!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#fczbl").val()==""){
+                $("#fczbl").focus();
+                $("#fczbl").tips({
+                    side : 3,
+                    msg : '请进行选择!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }else if($("#lxdh").val()==""){
+                $("#lxdh").focus();
+                $("#lxdh").tips({
+                    side : 3,
+                    msg : '联系电话不能为空!',
+                    bg : '#ff27b7',
+                    time : 3
+                });
+                return false;
+            }
+            return true;
+        }
 
 
 
@@ -1200,6 +2732,251 @@
         }).next().on(ace.click_event, function(){
             $(this).prev().focus();
         });
+
+
+        //行政区划树方法
+        //行政区划的方法
+        var nodeCheckedSilent = false;
+
+        function nodeChecked(event, node) {
+            if (nodeCheckedSilent) {
+                return;
+            }
+            nodeCheckedSilent = true;
+            checkAllParent(node);
+            checkAllSon(node);
+            nodeCheckedSilent = false;
+        }
+
+        var nodeUncheckedSilent = false;
+
+        function nodeUnchecked(event, node) {
+            if (nodeUncheckedSilent)
+                return;
+            nodeUncheckedSilent = true;
+            uncheckAllParent(node);
+            uncheckAllSon(node);
+            nodeUncheckedSilent = false;
+        }
+
+
+
+        //选中全部父节点
+        function checkAllParent(node) {
+            $('#show-xzqh-tree').treeview('checkNode', node.nodeId, {
+                silent: true
+            });
+            var parentNode = $('#show-xzqh-tree').treeview('getParent', node.nodeId);
+            if (!("nodeId" in parentNode)) {
+                return;
+            } else {
+                checkAllParent(parentNode);
+            }
+        }
+        //取消全部父节点
+        function uncheckAllParent(node) {
+            $('#show-xzqh-tree').treeview('uncheckNode', node.nodeId, {
+                silent: true
+            });
+            var siblings = $('#show-xzqh-tree').treeview('getSiblings', node.nodeId);
+            var parentNode = $('#show-xzqh-tree').treeview('getParent', node.nodeId);
+            if (!("nodeId" in parentNode)) {
+                return;
+            }
+            var isAllUnchecked = true; //是否全部没选中
+            for (var i in siblings) {
+                if (siblings[i].state.checked) {
+                    isAllUnchecked = false;
+                    break;
+                }
+            }
+            if (isAllUnchecked) {
+                uncheckAllParent(parentNode);
+            }
+
+        }
+
+        //级联选中所有子节点
+        function checkAllSon(node) {
+            $('#show-xzqh-tree').treeview('checkNode', node.nodeId, {
+                silent: true
+            });
+            if (node.nodes != null && node.nodes.length > 0) {
+                for (var i in node.nodes) {
+                    checkAllSon(node.nodes[i]);
+                }
+            }
+        }
+        //级联取消所有子节点
+        function uncheckAllSon(node) {
+            $('#show-xzqh-tree').treeview('uncheckNode', node.nodeId, {
+                silent: true
+            });
+            if (node.nodes != null && node.nodes.length > 0) {
+                for (var i in node.nodes) {
+                    uncheckAllSon(node.nodes[i]);
+                }
+            }
+        }
+
+        //节点被选中事件
+        function nodeSelected(event,node){
+            var myData = {
+                id:node.nodeid
+            };
+            $.getJSON("/dept/oneAdminDivision",myData, function (data) {
+                $("#qcdxxdz").attr("value", data.adminDivision.xxxzqhmz);
+            });
+        }
+
+        function addNote() {
+            //得到选择的节点
+            var nodeData = $('#show-xzqh-tree').treeview('getSelected')[0];
+            //获取数据，添加到树中
+            $.getJSON("treeAddData.json", function (data) {
+                $('#show-xzqh-tree').treeview("addNode", [nodeData.nodeId, {node: data}]);
+            });
+        }
+
+        /**
+         * 删除节点,如果该节点如果是根节点，不能删除
+         */
+        function deleteNode() {
+            var nodeData = $('#show-xzqh-tree').treeview('getSelected')[0];
+            $('#show-xzqh-tree').treeview("deleteNode", nodeData.nodeId);
+        }
+
+        /**
+         * 删除全部子节点
+         */
+        function deleteChildrenNode(event,node) {
+            var node1 = {};
+            $('#show-xzqh-tree').treeview("deleteChildrenNode", node.nodeId);
+            $('#show-xzqh-tree').treeview("addNode", [node.nodeId, {node: node1}]);
+        }
+
+        /**
+         * 一个节点被展开 惰性加载
+         */
+        function addNextNode(event, node) {
+
+            var myData = {
+                id:node.nodeid
+            };
+
+            $.getJSON("/dept/childAdminDivision",myData, function (data) {
+                $('#show-xzqh-tree').treeview("deleteChildrenNode", node.nodeId);
+                $('#show-xzqh-tree').treeview("addNode", [node.nodeId, {node: data.childNodes}]);
+            });
+        }
+
+        //初始化树
+        $.getJSON("/dept/rootAdminDivision",function (data) {
+            $('#show-xzqh-tree').treeview({
+                data: data.rootNodes,
+                onNodeChecked: nodeChecked,
+                onNodeUnchecked: nodeUnchecked,
+                onNodeExpanded: addNextNode,
+                onNodeCollapsed: deleteChildrenNode,
+                onNodeSelected:nodeSelected
+            });
+        });
+
+        //家庭地址选择确定按钮事件
+        $("#getXzqhBtn").on("click",function () {
+            //获取选中节点的信息
+            var selectedNodes = $('#show-xzqh-tree').treeview('getSelected');
+            if (selectedNodes.length == 0) {
+                alert("请在左边树选择一个节点！");
+            } else {
+                alert("地址选择成功！");
+                $("#getXzqhModal").modal("hide");
+            }
+        });
+
+        //查询按钮
+        $('#searchPersonBtn').on('click',function () {
+            var xm = $('#s-xm').val();
+            var sfzmhm = $('#s-sfzmhm').val();
+            var lxdh = $('#s-lxdh2').val();
+            var csrq = $('#s-csrq').val();
+            $("#person-grid-table").jqGrid('clearGridData');
+            $("#person-grid-table").jqGrid('setGridParam', {
+                datatype:"json",
+                mtype:"POST",
+                page:1,
+                url:"/person/search",
+                postData:{
+                    "xm": xm,
+                    "sfzmhm": sfzmhm,
+                    "lxdh": lxdh,
+                    "csrq": csrq
+                }
+            }).trigger("reloadGrid");
+        });
+
+
+        //确定选择家庭按钮
+        $('#getFamilyResultBtn').on('click',function () {
+            var rowids=$('#person-grid-table').jqGrid('getGridParam','selarrrow');
+            if(rowids !=""){
+                if(rowids.length==1){
+                    var rowData = $("#person-grid-table").jqGrid('getRowData',rowids[0]);
+                    $('#jtbh').val(rowData.jtbh)
+                    $('#hz').val(rowData.xm);
+                    alert("贫困户户主获取成功!")
+                    $("#getFamilyModal").modal("hide");
+                }else {
+                    $('#getFamilyResultBtn').tips({
+                        side : 1,
+                        msg : '请选择一个人员(不要超过一个）！',
+                        bg : '#ff2120',
+                        time : 2
+                    })
+                }
+            }else {
+                $('#getFamilyResultBtn').tips({
+                    side : 1,
+                    msg : '请至少选择一个人员！',
+                    bg : '#ff2120',
+                    time : 2
+                })
+            }
+        });
+
+
+        //楼栋房号的标签输入框
+        var tag_input = $('#ldfh');
+        try{
+            tag_input.tag(
+                {
+                    placeholder:tag_input.attr('placeholder'),
+                    //enable typeahead by specifying the source array
+                    source: ace.vars['US_STATES'],//defined in ace.js >> ace.enable_search_ahead
+                    /**
+                     //or fetch data from database, fetch those that match "query"
+                     source: function(query, process) {
+						  $.ajax({url: 'remote_source.php?q='+encodeURIComponent(query)})
+						  .done(function(result_items){
+							process(result_items);
+						  });
+						}
+                     */
+                }
+            )
+
+            //programmatically add/remove a tag
+            var $tag_obj = $('#ldfh ').data('tag');
+            //$tag_obj.add('Programmatically Added');
+
+            var index = $tag_obj.inValues('some tag');
+            $tag_obj.remove(index);
+        }
+        catch(e) {
+            //display a textarea for old IE, because it doesn't support this plugin or another one I tried!
+            tag_input.after('<textarea id="'+tag_input.attr('id')+'" name="'+tag_input.attr('name')+'" rows="3">'+tag_input.val()+'</textarea>').remove();
+            //autosize($('#form-field-tags'));
+        }
 
 
 

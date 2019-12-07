@@ -75,4 +75,14 @@ public class AzSettlementHouseholdService {
         return azSettlementHouseholdDao.findAzSettlementHouseholdByMoreCondition(azdmz,hz,lxdh,ldfh);
 
     }
+
+
+    /**
+     * @author: tpc
+     * @date: 2019/12/7 18:20
+     * @description: 通过主键id去修改用户信息
+     */
+    public int updateAzSettlementHouseholdById(AzSettlementHousehold azSettlementHousehold){
+        return azSettlementHouseholdDao.updateAzSettlementHouseholdById(azSettlementHousehold);
+    }
 }

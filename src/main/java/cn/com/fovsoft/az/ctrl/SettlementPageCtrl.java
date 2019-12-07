@@ -59,6 +59,12 @@ public class SettlementPageCtrl {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("settlement-household-mgr");
 
+
+        //获取安置点信息
+        List<AzSettlement> azSettlementList = azSettlementService.findAllAzSettlement();
+        //写入安置点信息
+        modelAndView.addObject("azSettlementList",azSettlementList);
+
         modelAndView.addObject("rootSysMenuList",request.getSession().getAttribute(VarConstant.SESSION_MENU));
 
         modelAndView.addObject("sessionUser",request.getSession().getAttribute(VarConstant.SESSION_USER));

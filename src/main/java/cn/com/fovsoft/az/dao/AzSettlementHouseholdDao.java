@@ -117,4 +117,14 @@ public interface AzSettlementHouseholdDao {
     @Insert("insert into az_settlement_household(azdbh,jtbh,hz,ldfh,ndfqrw,bqlx,qcdsj,qcdxj,qcdxxdz,qcdlx,jtsyhrk,zfmj,zczj,bqrzsj,sjrzsj,sfsjrzmln,yyzf,yzfmj,ccjf,bhzfzl,ccsj,ccjfmj,dxcfjl,fkfl,fkflmj,cyfcxm,nnhdcyfczj,tpqk,hkqy,fczbl,lxdh) " +
             " values(#{azdbh},#{jtbh},#{hz},#{ldfh},#{ndfqrw},#{bqlx},#{qcdsj},#{qcdxj},#{qcdxxdz},#{qcdlx},#{jtsyhrk},#{zfmj},#{zczj},#{bqrzsj},#{sjrzsj},#{sfsjrzmln},#{yyzf},#{yzfmj},#{ccjf},#{bhzfzl},#{ccsj},#{ccjfmj},#{dxcfjl},#{fkfl},#{fkflmj},#{cyfcxm},#{nnhdcyfczj},#{tpqk},#{hkqy},#{fczbl},#{lxdh})")
     int addAzSettlementHousehold(AzSettlementHousehold azSettlementHousehold);
+
+
+    /**
+     * @author: tpc
+     * @date: 2019/12/7 18:19
+     * @description: 通过id修改信息
+     */
+    @Update("update az_settlement_household set azdbh=#{azdbh},jtbh=#{jtbh},hz=#{hz},ldfh=#{ldfh},ndfqrw=#{ndfqrw},bqlx=#{bqlx},qcdsj=#{qcdsj},qcdxj=#{qcdxj},qcdxxdz=#{qcdxxdz},qcdlx=#{qcdlx},jtsyhrk=#{jtsyhrk},zfmj=#{zfmj},zczj=#{zczj},bqrzsj=#{bqrzsj}," +
+            "sjrzsj=#{sjrzsj},sfsjrzmln=#{sfsjrzmln},yyzf=#{yyzf},yzfmj=#{yzfmj},ccjf=#{ccjf},bhzfzl=#{bhzfzl},ccsj=#{ccsj},ccjfmj=#{ccjfmj},dxcfjl=#{dxcfjl},fkfl=#{fkfl},fkflmj=#{fkflmj},cyfcxm=#{cyfcxm},nnhdcyfczj=#{nnhdcyfczj},tpqk=#{tpqk},hkqy=#{hkqy},fczbl=#{fczbl},lxdh=#{lxdh} where id=#{id} ")
+    int updateAzSettlementHouseholdById(AzSettlementHousehold azSettlementHousehold);
 }

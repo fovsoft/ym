@@ -2828,8 +2828,7 @@
         //查看框信息
         function getPersonInfo(row) {
             var rowData = $('#grid-table').jqGrid('getRowData',row);
-            var cc='柴草';
-            $("#v-zyrllx option[text='柴草']").attr("selected",true);
+
 
             //$("#v-zyrllx")[0].selectedIndex=1;
             $("#modal-wizard-view").modal("show");
@@ -3632,9 +3631,14 @@
 
         //新增按钮查看
         $("#addBtn").on("click",function () {
+
             $(":input","#family-form").not("button").val("").removeAttr('checked').removeAttr('selected');
-            $(":input","#person-form").not("button").val("").removeAttr('checked').removeAttr('selected');;
-            $(":input","#cause-form").not("button").val("").removeAttr('checked').removeAttr('selected');;
+            $(":input","#person-form").not("button").val("").removeAttr('checked').removeAttr('selected');
+            $(":input","#cause-form").not("button").val("").removeAttr('checked').removeAttr('selected');
+            $("#fuelux-wizard-container").wizard('selectedItem', {
+                step: 1
+            });
+
             $("#modal-wizard").modal("show");
             //window.location.href = "/ym/add";
         });
@@ -4222,7 +4226,6 @@
                 "bqdz"     :bqdz
             };
 
-            alert(ym_result_json.toString());
             //获取家庭人员信息,进行拼凑
             var ym_person_array = new Array();
             //获取grid表中所有的rowid值
@@ -4989,14 +4992,45 @@
                     "sfxsywbxbt"   : sfxsywbxbt ,
                     "lxdh"         : lxdh
                 };
-                //var ids = $("#getperson-grid-table").jqGrid("getDataIDs");//得到jqgrid当前行数
-                var rowNum=$("#getperson-grid-table").jqGrid('getGridParam','records');
-                var rowid = rowNum+1;//获得当前最大行号
-                $("#getperson-grid-table").jqGrid('addRowData',rowid,ym_person_json,"last");
-                $("#getperson-grid-table").setGridParam({
-                    cellEdit : false
-                });
-                alert("家庭成员添加成功！");
+
+                //获取grid表中所有的rowid值
+                var rowIds = $("#getperson-grid-table").getDataIDs();
+                var isHave = false;
+                if(rowIds.length>0){
+                    for (var i = 0; i < rowIds.length; i++) {
+                        var rowData = $("#getperson-grid-table").getRowData(rowIds[i]);
+                        console.log(rowData);
+                        if(xm==rowData.xm){
+                            var input = confirm("已存在该姓名的家庭成员了,是否进行替换！");
+                            console.log(input);
+                            if(input){
+                                $("#getperson-grid-table").jqGrid("setRowData",rowIds[i],ym_person_json);
+                                alert("家庭成员替换成功！");
+                                break;
+                            }
+                            isHave = true;
+                        }else if(sfzmhm==rowData.sfzmhm){
+                            var input = confirm("已存在该身份证明号码的家庭成员了！")
+                            if(input){
+                                $("#getperson-grid-table").jqGrid("setRowData",rowIds[i],ym_person_json);
+                                alert("家庭成员替换成功！");
+                                break;
+                            }
+                            isHave = true;
+
+                        }
+                    }
+                }
+                if(isHave===false){
+                    var rowNum=$("#getperson-grid-table").jqGrid('getGridParam','records');
+                    var rowid = rowNum+1;//获得当前最大行号
+                    $("#getperson-grid-table").jqGrid('addRowData',rowid,ym_person_json,"last");
+                    $("#getperson-grid-table").setGridParam({
+                        cellEdit : false
+                    });
+                    alert("家庭成员添加成功！");
+                }
+
             }
 
         });
