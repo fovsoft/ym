@@ -12,7 +12,20 @@ spring:
     suffix: .html
   mvc:
     static-path-pattern: /static/**
- #数据源
+
+  resources:
+    chain:
+      cache: true
+      strategy:
+        content:
+          enabled: true
+      compressed: true
+    static-locations: classpath:/static/,classpath:/views/
+    cache:
+      period: 3600
+
+
+  #数据源
   datasource:
     #连接池的类型
     type: com.alibaba.druid.pool.DruidDataSource
@@ -54,22 +67,15 @@ pagehelper:
   params: count=countSql
   returnPageInfo: check
 
-resources: # 指定静态资源的路径
-    static-locations: classpath:/static/,classpath:/views/
-    cache-period: 0
 
-thymeleaf:
-  cache: true
-
-
-devtools:
-  restart:
-  #热部署生效
-  enabled: true
-  #设置重启的目录
-  additional-paths: resources/**,static/**,templates/**
-  #该目录下的内容修改不重启
-  exclude: data/**
+#devtools:
+#  restart:
+#  #热部署生效
+#  enabled: true
+#  #设置重启的目录
+#  additional-paths: resources/**,static/**,templates/**
+#  #该目录下的内容修改不重启
+#  exclude: data/**
 
 # mybatis 控制台打印sql
 logging:
