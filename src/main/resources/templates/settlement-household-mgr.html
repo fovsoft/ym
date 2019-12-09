@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta charset="utf-8"/>
-    <title>信息采集 - 钦南区易地搬迁信息管理系统</title>
+    <title>安置户管理 - 钦南区易地搬迁信息管理系统</title>
 
     <meta name="description" content="and Validation"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
@@ -95,265 +95,6 @@
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="grey dropdown-modal">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-tasks"></i>
-                        <span class="badge badge-grey">4</span>
-                    </a>
-
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-check"></i>
-                            4 Tasks to complete
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Software Update</span>
-                                            <span class="pull-right">65%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:65%" class="progress-bar"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Hardware Upgrade</span>
-                                            <span class="pull-right">35%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:35%" class="progress-bar progress-bar-danger"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Unit Testing</span>
-                                            <span class="pull-right">15%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:15%" class="progress-bar progress-bar-warning"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Bug Fixes</span>
-                                            <span class="pull-right">90%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini progress-striped active">
-                                            <div style="width:90%" class="progress-bar progress-bar-success"></div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="#">
-                                See tasks with details
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="purple dropdown-modal">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-                        <span class="badge badge-important">8</span>
-                    </a>
-
-                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-exclamation-triangle"></i>
-                            8 Notifications
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-														New Comments
-													</span>
-                                            <span class="pull-right badge badge-info">+12</span>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
-                                        Bob just signed up as an editor ...
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-														New Orders
-													</span>
-                                            <span class="pull-right badge badge-success">+8</span>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-														Followers
-													</span>
-                                            <span class="pull-right badge badge-info">+11</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="#">
-                                See all notifications
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="green dropdown-modal">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-                        <span class="badge badge-success">5</span>
-                    </a>
-
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-envelope-o"></i>
-                            5 Messages
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img th:src="@{/static/images/avatars/avatar.png}" class="msg-photo"
-                                             alt="Alex's Avatar"/>
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Alex:</span>
-														Ciao sociis natoque penatibus et auctor ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>a moment ago</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img th:src="@{/static/images/avatars/avatar3.png}" class="msg-photo"
-                                             alt="Susan's Avatar"/>
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Susan:</span>
-														Vestibulum id ligula porta felis euismod ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>20 minutes ago</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img th:src="@{/static/images/avatars/avatar4.png}" class="msg-photo"
-                                             alt="Bob's Avatar"/>
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Bob:</span>
-														Nullam quis risus eget urna mollis ornare ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>3:15 pm</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img th:src="@{/static/images/avatars/avatar2.png}" class="msg-photo"
-                                             alt="Kate's Avatar"/>
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Kate:</span>
-														Ciao sociis natoque eget urna mollis ornare ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>1:33 pm</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img th:src="@{/static/images/avatars/avatar5.png}" class="msg-photo"
-                                             alt="Fred's Avatar"/>
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Fred:</span>
-														Vestibulum id penatibus et auctor  ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>10:09 am</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="inbox.html">
-                                See all messages
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
                 <li class="light-blue dropdown-modal">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
@@ -483,13 +224,13 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="#">主页</a>
+                        <a href="/toIndex">首页</a>
                     </li>
 
                     <li>
-                        <a href="#">用户</a>
+                        <a href="/az/household">安置户管理</a>
                     </li>
-                    <li class="active">用户管理</li>
+                    <li class="active">安置户信息列表</li>
                 </ul><!-- /.breadcrumb -->
 
                 <div class="nav-search" id="nav-search">
@@ -581,10 +322,10 @@
 
                 <div class="page-header">
                     <h1>
-                        首页
+                        安置户信息列表
                         <small>
                             <i class="ace-icon fa fa-angle-double-right"></i>
-                            and Validation
+                            可以进行安置户的各类操作(安置户对应贫困人员，即进行了搬迁安置的贫困人员)
                         </small>
                     </h1>
                 </div><!-- /.page-header -->
@@ -1731,6 +1472,7 @@
 <script th:src="@{/static/js/bootstrap-datetimepicker.min.js}"></script>
 <script th:src="@{/static/js/bootstrap-colorpicker.min.js}"></script>
 <script th:src="@{/static/js/bootstrap-treeview.js}"></script>
+<script th:src="@{/static/js/bootstrap-tag.min.js}"></script>
 
 <!-- ace scripts -->
 <script th:src="@{/static/js/ace-elements.min.js}"></script>
@@ -1855,16 +1597,7 @@
             height: 450,
             colNames:[' ','主键值id','安置点编号','家庭编号','户主','楼栋房号','年度搬迁任务','搬迁类型','迁出底市级','迁出地县级','迁出地详细地址','迁出地类型','家庭受益户人口','住房面积','自筹资金','搬迁入住时间','实际入住时间','是否实际入住满两年','原有住房','原住房面积','拆除旧房','保护住房种类','拆除时间','拆除旧房面积','兑现拆房奖励','复垦复绿','复垦复绿面积','产业扶持项目','年内获得产业扶持资金','脱贫情况','户口迁移','房子证办理','联系电话'],
             colModel:[
-                {name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
-                    formatter:'actions',
-                    formatoptions:{
-                        keys:true,
-                        //delbutton: false,//disable delete button
-
-                        delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
-                        //editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
-                    }
-                },
+                {name:'oper',index:'',width:80,fixed:true,sortable:false, resize:false,formatter:myOper},
                 {name:'id',           index:'id',           width:60,   fixed:true,  editable:true,  sorttype:"int"                     },
                 {name:'azdbh',        index:'azdbh',        width:60,   fixed:true,  editable:true                                      },
                 {name:'jtbh',         index:'jtbh',         width:60,   fixed:true,  editable:true                                      },
@@ -1929,6 +1662,10 @@
         });
         $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
 
+        function myOper(cellValue,grid, rows, state) {
+            return "<div style='margin-left: 8px;'>" +
+                "<div title style='float:left;cursor:pointer;' class='ui-pg-div ui-inline-del' onclick=\"myDel('"+rows.id+"')\" onmouseover=\"jQuery(this).addClass('ui-state-hover');\" onmouseout=\"jQuery(this).removeClass('ui-state-hover');\" data-original-title=\"删除该行数据！\"><span class='ui-icon ui-icon-trash'></span></div></div>";
+        }
 
 
         var grid_selector1 = "#person-grid-table";
@@ -1956,18 +1693,9 @@
             // },
             height: 250,
             shrinkToFit:true,
-            colNames:[' ','人员编号','家庭编号','姓名','性别','身份证明号码','身份证签发机关','身份证有效期始','身份证有效期止','与户主关系','民族','出生日期','政治面貌','文化程度','在校生情况','失学或辍学原因','健康情况','劳动技能情况','是否会讲普通话','是否现役军人','是否参加城乡居民基本医疗保险','是否参加商业补充医疗保险','是否享受低保','是否参加城乡居民基本养老保险','是否享受人身意外保险补贴','联系电话'],
+            colNames:['人员编号','家庭编号','姓名','性别','身份证明号码','身份证签发机关','身份证有效期始','身份证有效期止','与户主关系','民族','出生日期','政治面貌','文化程度','在校生情况','失学或辍学原因','健康情况','劳动技能情况','是否会讲普通话','是否现役军人','是否参加城乡居民基本医疗保险','是否参加商业补充医疗保险','是否享受低保','是否参加城乡居民基本养老保险','是否享受人身意外保险补贴','联系电话'],
             colModel:[
-                {name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
-                    formatter:'actions',
-                    formatoptions:{
-                        keys:true,
-                        //delbutton: false,//disable delete button
 
-                        delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
-                        //editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
-                    }
-                },
                 {name:'rybh',       index:'rybh',       width:60, fixed:true, editable:true, sorttype:"int" },
                 {name:'jtbh',       index:'jtbh',       width:60, fixed:true, editable:true, sorttype:"int" },
                 {name:'xm',         index:'xm',         width:60, fixed:true, editable:true,                 },
@@ -2015,7 +1743,7 @@
                 }, 0);
             },
 
-            editurl: "./dummy.php",//nothing is saved
+            //editurl: "./dummy.php",//nothing is saved
             caption: "贫困人员信息列表"
 
         });
@@ -2047,7 +1775,7 @@
                 alert("安置点选择不要超过一个！")
             }else{
                 var azdbh = $("input[name='az-settlement-checkbox']:checked").attr("id");
-                $("#azdbh").attr("value",azdbh);
+                $("#azdbh").val(azdbh);
                 alert("安置点选择成功!");
                 $("#getSettlementModal").modal("hide");
             }
@@ -2825,7 +2553,7 @@
                 id:node.nodeid
             };
             $.getJSON("/dept/oneAdminDivision",myData, function (data) {
-                $("#qcdxxdz").attr("value", data.adminDivision.xxxzqhmz);
+                $("#qcdxxdz").val(data.adminDivision.xxxzqhmz);
             });
         }
 
@@ -2985,7 +2713,29 @@
             $('.ui-jqdialog').remove();
         });
     })
-    
+
+
+    //删除安置户信息
+    function myDel(id) {
+        var input = confirm("你确定删除该行数据吗");
+        if(input){
+            var myData = {
+                "id":id
+            };
+
+            $.getJSON("/settlementHousehold/deleteOne",myData, function (data) {
+                if(data.status==1){
+                    alert("数据删除成功！");
+                    $("#grid-table").jqGrid('clearGridData');
+                    $("#grid-table").jqGrid('setGridParam', {
+                        datatype:"json",
+                        url:"/settlementHousehold/listAll"
+                    }).trigger("reloadGrid");
+                }
+            });
+        }
+    }
+
 </script>
 </body>
 </html>

@@ -338,6 +338,21 @@ public class AzSettleMentHouseholdCtrl {
     }
 
 
+    @RequestMapping(value = "/settlementHousehold/deleteOne")
+    @ResponseBody
+    public Map<String,Object> deleteAzSettlementHouseholdOne(HttpServletRequest request){
+        String id = request.getParameter("id");
+
+        azSettlementHouseholdService.deleteAzSettlementHouseholdById(id);
+
+        //用来返回信息的封装对象
+        Map<String,Object> map=new HashMap<>();
+        map.put("status",1);
+        map.put("result","success");
+        return map;
+    }
+
+
 
 
 }

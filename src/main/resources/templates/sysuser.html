@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <meta charset="utf-8"/>
-    <title>信息采集 - 钦南区易地搬迁信息管理系统</title>
+    <title>用户管理 - 钦南区易地搬迁信息管理系统</title>
 
     <meta name="description" content="and Validation"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
@@ -90,266 +90,6 @@
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="grey dropdown-modal">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-tasks"></i>
-                        <span class="badge badge-grey">4</span>
-                    </a>
-
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-check"></i>
-                            4 Tasks to complete
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Software Update</span>
-                                            <span class="pull-right">65%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:65%" class="progress-bar"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Hardware Upgrade</span>
-                                            <span class="pull-right">35%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:35%" class="progress-bar progress-bar-danger"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Unit Testing</span>
-                                            <span class="pull-right">15%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:15%" class="progress-bar progress-bar-warning"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Bug Fixes</span>
-                                            <span class="pull-right">90%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini progress-striped active">
-                                            <div style="width:90%" class="progress-bar progress-bar-success"></div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="#">
-                                See tasks with details
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="purple dropdown-modal">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-                        <span class="badge badge-important">8</span>
-                    </a>
-
-                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-exclamation-triangle"></i>
-                            8 Notifications
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-														New Comments
-													</span>
-                                            <span class="pull-right badge badge-info">+12</span>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
-                                        Bob just signed up as an editor ...
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-														New Orders
-													</span>
-                                            <span class="pull-right badge badge-success">+8</span>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-														Followers
-													</span>
-                                            <span class="pull-right badge badge-info">+11</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="#">
-                                See all notifications
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="green dropdown-modal">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-                        <span class="badge badge-success">5</span>
-                    </a>
-
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-envelope-o"></i>
-                            5 Messages
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img th:src="@{/static/images/avatars/avatar.png}" class="msg-photo"
-                                             alt="Alex's Avatar"/>
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Alex:</span>
-														Ciao sociis natoque penatibus et auctor ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>a moment ago</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img th:src="@{/static/images/avatars/avatar3.png}" class="msg-photo"
-                                             alt="Susan's Avatar"/>
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Susan:</span>
-														Vestibulum id ligula porta felis euismod ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>20 minutes ago</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img th:src="@{/static/images/avatars/avatar4.png}" class="msg-photo"
-                                             alt="Bob's Avatar"/>
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Bob:</span>
-														Nullam quis risus eget urna mollis ornare ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>3:15 pm</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img th:src="@{/static/images/avatars/avatar2.png}" class="msg-photo"
-                                             alt="Kate's Avatar"/>
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Kate:</span>
-														Ciao sociis natoque eget urna mollis ornare ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>1:33 pm</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img th:src="@{/static/images/avatars/avatar5.png}" class="msg-photo"
-                                             alt="Fred's Avatar"/>
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Fred:</span>
-														Vestibulum id penatibus et auctor  ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>10:09 am</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="inbox.html">
-                                See all messages
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
                 <li class="light-blue dropdown-modal">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                         <img class="nav-user-photo" th:src="@{/static/images/avatars/user.jpg}" alt="Jason's Photo"/>
@@ -478,13 +218,13 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="#">主页</a>
+                        <a href="/toIndex">主页</a>
                     </li>
 
                     <li>
-                        <a href="#">用户</a>
+                        <a href="/admin/user">用户管理</a>
                     </li>
-                    <li class="active">用户管理</li>
+                    <li class="active">用户信息列表</li>
                 </ul><!-- /.breadcrumb -->
 
                 <div class="nav-search" id="nav-search">
@@ -576,10 +316,10 @@
 
                 <div class="page-header">
                     <h1>
-                        首页
+                        用户信息列表
                         <small>
                             <i class="ace-icon fa fa-angle-double-right"></i>
-                            and Validation
+                            可以在此进行系统用户的各类操作
                         </small>
                     </h1>
                 </div><!-- /.page-header -->
@@ -1135,16 +875,7 @@
             height: 450,
             colNames:[' ','用户ID','用户名','密码','部门','性别','出生日期','身份证明号码','邮箱','ip起始地址','ip结束地址','账户有效期','密码有效期','用户类型','联系电话','最近登录ip','状态','创建时间','更新时间'],
             colModel:[
-                {name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
-                    formatter:'actions',
-                    formatoptions:{
-                        keys:true,
-                        //delbutton: false,//disable delete button
-
-                        delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
-                        //editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
-                    }
-                },
+                {name:'oper',index:'',width:80,fixed:true,sortable:false, resize:false,formatter:operUser},
                 {name:'userId',       index:'userId',       width:60, fixed:true, editable:true, sorttype:"int" },
                 {name:'userName',       index:'userName',       width:60, fixed:true, editable:true, sorttype:"int" },
                 {name:'password',         index:'password',         width:60, fixed:true, editable:true,                 },
@@ -1185,12 +916,16 @@
                 }, 0);
             },
 
-            editurl: "./dummy.php",//nothing is saved
-            caption: "贫困人员信息列表"
+            //editurl: "./dummy.php",//nothing is saved
+            caption: "系统用户信息列表"
 
         });
         $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
 
+        function operUser(cellValue,grid, rows, state) {
+            return "<div style='margin-left: 8px;'>" +
+                "<div title style='float:left;cursor:pointer;' class='ui-pg-div ui-inline-del' onclick=\"delUser('"+rows.userId+"')\" onmouseover=\"jQuery(this).addClass('ui-state-hover');\" onmouseout=\"jQuery(this).removeClass('ui-state-hover');\" data-original-title=\"删除该行数据！\"><span class='ui-icon ui-icon-trash'></span></div></div>";
+        }
 
 
         //当点击新增按钮时，显示模态框
@@ -1285,7 +1020,7 @@
             var input = confirm("确定删除选定数据吗？");
             if(input){
                 var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
-                console.log(rowids);
+                //console.log(rowids);
                 if(rowids !=""||rowids.length>0){
                     var idArr = "";
                     for(var i=0;i<rowids.length;i++){
@@ -1467,7 +1202,7 @@
     /**客户端校验**/
     function checkValidity() {
 
-        alert($("#userName").val()+'111');
+        //alert($("#userName").val()+'111');
         if ($("#userName").val() == "") {
 
             $("#userName").focus();
@@ -1654,6 +1389,27 @@
             }).trigger("reloadGrid");
         }
 
+    }
+
+    //删除用户信息
+    function delPerson(userId) {
+        var input = confirm("你确定删除该行数据吗");
+        if(input){
+            var myData = {
+                "userId":userId
+            };
+
+            $.getJSON("/user/deleteOne",myData, function (data) {
+                if(data.status==1){
+                    alert("数据删除成功！");
+                    $("#grid-table").jqGrid('clearGridData');
+                    $("#grid-table").jqGrid('setGridParam', {
+                        datatype:"json",
+                        url:"/user/list"
+                    }).trigger("reloadGrid");
+                }
+            });
+        }
     }
 
     

@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta charset="utf-8" />
-    <title>jqGrid - 移民管理系统</title>
+    <title>贫困人员管理 - 钦南区易地搬迁信息管理系统</title>
 
     <meta name="description" content="Dynamic tables and grids using jqGrid plugin" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
@@ -93,261 +93,6 @@
 
         <div class="navbar-buttons navbar-header pull-right" role="navigation">
             <ul class="nav ace-nav">
-                <li class="grey dropdown-modal">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-tasks"></i>
-                        <span class="badge badge-grey">4</span>
-                    </a>
-
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-check"></i>
-                            4 Tasks to complete
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Software Update</span>
-                                            <span class="pull-right">65%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:65%" class="progress-bar"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Hardware Upgrade</span>
-                                            <span class="pull-right">35%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:35%" class="progress-bar progress-bar-danger"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Unit Testing</span>
-                                            <span class="pull-right">15%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini">
-                                            <div style="width:15%" class="progress-bar progress-bar-warning"></div>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-                                            <span class="pull-left">Bug Fixes</span>
-                                            <span class="pull-right">90%</span>
-                                        </div>
-
-                                        <div class="progress progress-mini progress-striped active">
-                                            <div style="width:90%" class="progress-bar progress-bar-success"></div>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="#">
-                                See tasks with details
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="purple dropdown-modal">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-bell icon-animated-bell"></i>
-                        <span class="badge badge-important">8</span>
-                    </a>
-
-                    <ul class="dropdown-menu-right dropdown-navbar navbar-pink dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-exclamation-triangle"></i>
-                            8 Notifications
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar navbar-pink">
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-pink fa fa-comment"></i>
-														New Comments
-													</span>
-                                            <span class="pull-right badge badge-info">+12</span>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <i class="btn btn-xs btn-primary fa fa-user"></i>
-                                        Bob just signed up as an editor ...
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-success fa fa-shopping-cart"></i>
-														New Orders
-													</span>
-                                            <span class="pull-right badge badge-success">+8</span>
-                                        </div>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#">
-                                        <div class="clearfix">
-													<span class="pull-left">
-														<i class="btn btn-xs no-hover btn-info fa fa-twitter"></i>
-														Followers
-													</span>
-                                            <span class="pull-right badge badge-info">+11</span>
-                                        </div>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="#">
-                                See all notifications
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
-                <li class="green dropdown-modal">
-                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-                        <span class="badge badge-success">5</span>
-                    </a>
-
-                    <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                        <li class="dropdown-header">
-                            <i class="ace-icon fa fa-envelope-o"></i>
-                            5 Messages
-                        </li>
-
-                        <li class="dropdown-content">
-                            <ul class="dropdown-menu dropdown-navbar">
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img th:src="@{/static/images/avatars/avatar.png}" class="msg-photo" alt="Alex's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Alex:</span>
-														Ciao sociis natoque penatibus et auctor ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>a moment ago</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img th:src="@{/static/images/avatars/avatar3.png}" class="msg-photo" alt="Susan's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Susan:</span>
-														Vestibulum id ligula porta felis euismod ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>20 minutes ago</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img th:src="@{/static/images/avatars/avatar4.png}" class="msg-photo" alt="Bob's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Bob:</span>
-														Nullam quis risus eget urna mollis ornare ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>3:15 pm</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img th:src="@{/static/images/avatars/avatar2.png}" class="msg-photo" alt="Kate's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Kate:</span>
-														Ciao sociis natoque eget urna mollis ornare ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>1:33 pm</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="#" class="clearfix">
-                                        <img th:src="@{/static/images/avatars/avatar5.png}" class="msg-photo" alt="Fred's Avatar" />
-                                        <span class="msg-body">
-													<span class="msg-title">
-														<span class="blue">Fred:</span>
-														Vestibulum id penatibus et auctor  ...
-													</span>
-
-													<span class="msg-time">
-														<i class="ace-icon fa fa-clock-o"></i>
-														<span>10:09 am</span>
-													</span>
-												</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="dropdown-footer">
-                            <a href="inbox.html">
-                                See all messages
-                                <i class="ace-icon fa fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
                 <li class="light-blue dropdown-modal">
                     <a data-toggle="dropdown" href="#" class="dropdown-toggle">
                         <img class="nav-user-photo" th:src="@{/static/images/avatars/user.jpg}" alt="Jason's Photo" />
@@ -468,13 +213,13 @@
                 <ul class="breadcrumb">
                     <li>
                         <i class="ace-icon fa fa-home home-icon"></i>
-                        <a href="#">Home</a>
+                        <a href="/toIndex">首页</a>
                     </li>
 
                     <li>
-                        <a href="#">Tables</a>
+                        <a href="/ym/mgr">贫困人员管理</a>
                     </li>
-                    <li class="active">jqGrid plugin</li>
+                    <li class="active">贫困人员信息列表</li>
                 </ul><!-- /.breadcrumb -->
 
                 <div class="nav-search" id="nav-search">
@@ -565,10 +310,10 @@
 
                 <div class="page-header">
                     <h1>
-                        jqGrid
+                        贫困人员信息列表
                         <small>
                             <i class="ace-icon fa fa-angle-double-right"></i>
-                            Dynamic tables and grids using jqGrid plugin
+                            可以进行贫困人员的各类操作
                         </small>
                     </h1>
                 </div><!-- /.page-header -->
@@ -2703,6 +2448,293 @@
         });
 
 
+
+        //编辑框信息
+        function editPersonInfo(row) {
+            var rowData = $('#grid-table').jqGrid('getRowData',row);
+
+            //$("#zyrllx")[0].selectedIndex=1;
+            $("#modal-wizard").modal("show");
+            var postData = {
+                "jtbh": rowData.jtbh
+            };
+            $.getJSON('/person/viewInfo',postData,function (data) {
+                $("#jtbh").val(data.ymFamily.jtbh);
+                $("#xzqhdm").val(data.ymFamily.xzqhdm);
+                $("#xxxzqhmz").val(data.ymFamily.xxxzqhmz);
+                $("#lxdh").val(data.ymFamily.lxdh);
+                $("#khyh").val(data.ymFamily.khyh);
+                $("#yhkh").val(data.ymFamily.yhkh);
+                var pkhsx = data.ymFamily.pkhsx;
+                if(pkhsx=="一般贫困户"){
+                    $("#pkhsx")[0].selectedIndex=1;
+                }else if(pkhsx=="低保贫困户"){
+                    $("#pkhsx")[0].selectedIndex=2;
+                }else if(pkhsx=="特困供养贫困户"){
+                    $("#pkhsx")[0].selectedIndex=3;
+                }
+                var sfdnytp = data.ymFamily.sfdnytp;
+                if(sfdnytp=="是"){
+                    $("#sfdnytp")[0].selectedIndex=1;
+                }else {
+                    $("#sfdnytp")[0].selectedIndex=2;
+                }
+                $("#jhtpnd").val(data.ymFamily.jhtpnd);
+                $("#fpnd").val(data.ymFamily.fpnd);
+                $("#fpyy").val(data.ymFamily.fpyy);
+                var sfjls = data.ymFamily.sfjls;
+                if(sfjls=="是"){
+                    $("#sfjls")[0].selectedIndex=1;
+                }else {
+                    $("#sfjls")[0].selectedIndex=2;
+                }
+                var sfydfpbqh = data.ymFamily.sfydfpbqh;
+                if(sfydfpbqh=="有搬迁意愿"){
+                    $("#sfydfpbqh")[0].selectedIndex=1;
+                }else if(sfydfpbqh=="无搬迁意愿"){
+                    $("#sfydfpbqh")[0].selectedIndex=2;
+                }
+                var bqfs = data.ymFamily.bqfs;
+                if(bqfs=="行政村整体搬迁"){
+                    $("#bqfs")[0].selectedIndex=1;
+                }else if(bqfs=="自然村整体搬迁"){
+                    $("#bqfs")[0].selectedIndex=2;
+                }else if(bqfs=="建档立卡贫困户个别搬迁"){
+                    $("#bqfs")[0].selectedIndex=3;
+                }
+                $("#bqdz").val(data.ymFamily.bqdz);
+
+                //填充贫困人员成员列表
+                $("#getperson-grid-table").jqGrid('clearGridData');
+                $("#getperson-grid-table").jqGrid('setGridParam', {
+                    datatype:"json",
+                    mtype:"POST",
+                    page:1,
+                    url:"/person/listMember",
+                    postData:postData
+                }).trigger("reloadGrid");
+                //填充person form表单
+                inputPersonForm(rowData);
+
+                //填充家庭致贫原因和基本条件表单
+                //致贫原因1
+                if(data.ymFamilyStatus.zpyy1=="因病"){
+                    $("#zpyy1")[0].selectedIndex=1;
+                }else if(data.ymFamilyStatus.zpyy1=="因残"){
+                    $("#zpyy1")[0].selectedIndex=2;
+                }else if(data.ymFamilyStatus.zpyy1=="因学"){
+                    $("#zpyy1")[0].selectedIndex=3;
+                }else if(data.ymFamilyStatus.zpyy1=="因灾"){
+                    $("#zpyy1")[0].selectedIndex=4;
+                }else if(data.ymFamilyStatus.zpyy1=="因婚"){
+                    $("#zpyy1")[0].selectedIndex=5;
+                }else if(data.ymFamilyStatus.zpyy1=="缺土地"){
+                    $("#zpyy1")[0].selectedIndex=6;
+                }else if(data.ymFamilyStatus.zpyy1=="缺水"){
+                    $("#zpyy1")[0].selectedIndex=7;
+                }else if(data.ymFamilyStatus.zpyy1=="缺技术"){
+                    $("#zpyy1")[0].selectedIndex=8;
+                }else if(data.ymFamilyStatus.zpyy1=="缺劳动力"){
+                    $("#zpyy1")[0].selectedIndex=9;
+                }else if(data.ymFamilyStatus.zpyy1=="缺资金"){
+                    $("#zpyy1")[0].selectedIndex=10;
+                }else if(data.ymFamilyStatus.zpyy1=="交通条件落后"){
+                    $("#zpyy1")[0].selectedIndex=11;
+                }else if(data.ymFamilyStatus.zpyy1=="自身发展动力不足"){
+                    $("#zpyy1")[0].selectedIndex=12;
+                }else if(data.ymFamilyStatus.zpyy1=="因丧"){
+                    $("#zpyy1")[0].selectedIndex=13;
+                }else if(data.ymFamilyStatus.zpyy1=="其他"){
+                    $("#zpyy1")[0].selectedIndex=14;
+                }else {
+                    $("#zpyy1")[0].selectedIndex=0;
+                }
+                //致贫原因2
+                if(data.ymFamilyStatus.zpyy2=="因病"){
+                    $("#zpyy2")[0].selectedIndex=1;
+                }else if(data.ymFamilyStatus.zpyy2=="因残"){
+                    $("#zpyy2")[0].selectedIndex=2;
+                }else if(data.ymFamilyStatus.zpyy2=="因学"){
+                    $("#zpyy2")[0].selectedIndex=3;
+                }else if(data.ymFamilyStatus.zpyy2=="因灾"){
+                    $("#zpyy2")[0].selectedIndex=4;
+                }else if(data.ymFamilyStatus.zpyy2=="因婚"){
+                    $("#zpyy2")[0].selectedIndex=5;
+                }else if(data.ymFamilyStatus.zpyy2=="缺土地"){
+                    $("#zpyy2")[0].selectedIndex=6;
+                }else if(data.ymFamilyStatus.zpyy2=="缺水"){
+                    $("#zpyy2")[0].selectedIndex=7;
+                }else if(data.ymFamilyStatus.zpyy2=="缺技术"){
+                    $("#zpyy2")[0].selectedIndex=8;
+                }else if(data.ymFamilyStatus.zpyy2=="缺劳动力"){
+                    $("#zpyy2")[0].selectedIndex=9;
+                }else if(data.ymFamilyStatus.zpyy2=="缺资金"){
+                    $("#zpyy2")[0].selectedIndex=10;
+                }else if(data.ymFamilyStatus.zpyy2=="交通条件落后"){
+                    $("#zpyy2")[0].selectedIndex=11;
+                }else if(data.ymFamilyStatus.zpyy2=="自身发展动力不足"){
+                    $("#zpyy2")[0].selectedIndex=12;
+                }else if(data.ymFamilyStatus.zpyy2=="因丧"){
+                    $("#zpyy2")[0].selectedIndex=13;
+                }else if(data.ymFamilyStatus.zpyy2=="其他"){
+                    $("#zpyy2")[0].selectedIndex=14;
+                }else {
+                    $("#zpyy2")[0].selectedIndex=0;
+                }
+                //致贫原因3
+                if(data.ymFamilyStatus.zpyy3=="因病"){
+                    $("#zpyy3")[0].selectedIndex=1;
+                }else if(data.ymFamilyStatus.zpyy3=="因残"){
+                    $("#zpyy3")[0].selectedIndex=2;
+                }else if(data.ymFamilyStatus.zpyy3=="因学"){
+                    $("#zpyy3")[0].selectedIndex=3;
+                }else if(data.ymFamilyStatus.zpyy3=="因灾"){
+                    $("#zpyy3")[0].selectedIndex=4;
+                }else if(data.ymFamilyStatus.zpyy3=="因婚"){
+                    $("#zpyy3")[0].selectedIndex=5;
+                }else if(data.ymFamilyStatus.zpyy3=="缺土地"){
+                    $("#zpyy3")[0].selectedIndex=6;
+                }else if(data.ymFamilyStatus.zpyy3=="缺水"){
+                    $("#zpyy3")[0].selectedIndex=7;
+                }else if(data.ymFamilyStatus.zpyy3=="缺技术"){
+                    $("#zpyy3")[0].selectedIndex=8;
+                }else if(data.ymFamilyStatus.zpyy3=="缺劳动力"){
+                    $("#zpyy3")[0].selectedIndex=9;
+                }else if(data.ymFamilyStatus.zpyy3=="缺资金"){
+                    $("#zpyy3")[0].selectedIndex=10;
+                }else if(data.ymFamilyStatus.zpyy3=="交通条件落后"){
+                    $("#zpyy3")[0].selectedIndex=11;
+                }else if(data.ymFamilyStatus.zpyy3=="自身发展动力不足"){
+                    $("#zpyy3")[0].selectedIndex=12;
+                }else if(data.ymFamilyStatus.zpyy3=="因丧"){
+                    $("#zpyy3")[0].selectedIndex=13;
+                }else if(data.ymFamilyStatus.zpyy3=="其他"){
+                    $("#zpyy3")[0].selectedIndex=14;
+                }else {
+                    $("#zpyy3")[0].selectedIndex=0;
+                }
+                //年初家庭人口数
+                $("#ncjtrks").val(data.ymFamilyStatus.ncjtrks);
+                //年底家庭人口数
+                $("#ndjtrks").val(data.ymFamilyStatus.ndjtrks);
+                //耕地面积
+                $("#gdmj").val(data.ymFamilyStatus.gdmj);
+                //有效灌溉面积(亩)
+                $("#yxggmj").val(data.ymFamilyStatus.yxggmj);
+                //林地面积(亩)
+                $("#ldmj").val(data.ymFamilyStatus.ldmj);
+                //退耕还林面积(亩)
+                $("#tghlmj").val(data.ymFamilyStatus.tghlmj);
+                //林果面积(亩)
+                $("#lgmj").val(data.ymFamilyStatus.lgmj);
+                //水面面积(亩)
+                $("#smmj").val(data.ymFamilyStatus.smmj);
+                //牧草地面积(亩)
+                $("#mcdmj").val(data.ymFamilyStatus.mcdmj);
+
+                //是否加入农民专业合作社
+                //console.log(data.ymFamilyStatus.sfjrnmzyhzs);
+                //console.log($("#sfjrnmzyhzs"));
+                if(data.ymFamilyStatus.sfjrnmzyhzs=="是"){
+                    $("#sfjrnmzyhzs")[0].selectedIndex=1;
+                }else {
+                    $("#sfjrnmzyhzs")[0].selectedIndex=2;
+                }
+                //是否有龙头企业带动
+                if(data.ymFamilyStatus.sfyltqydd=="是"){
+                    $("#sfyltqydd")[0].selectedIndex=1;
+                }else {
+                    $("#sfyltqydd")[0].selectedIndex=2;
+                }
+                //是否有创业致富带头人带动
+                if(data.ymFamilyStatus.sfycyzfdtrdd=="是"){
+                    $("#sfycyzfdtrdd")[0].selectedIndex=1;
+                }else {
+                    $("#sfycyzfdtrdd")[0].selectedIndex=2;
+                }
+                //是否通生产用电
+                if(data.ymFamilyStatus.sftscyd=="是"){
+                    $("#sftscyd")[0].selectedIndex=1;
+                }else {
+                    $("#sftscyd")[0].selectedIndex=2;
+                }
+                //是否通生活用电
+                if(data.ymFamilyStatus.sftshyd=="是"){
+                    $("#sftshyd")[0].selectedIndex=1;
+                }else {
+                    $("#sftshyd")[0].selectedIndex=2;
+                }
+                //是否通广播电视
+                if(data.ymFamilyStatus.sftgbds=="是"){
+                    $("#sftgbds")[0].selectedIndex=1;
+                }else {
+                    $("#sftgbds")[0].selectedIndex=2;
+                }
+
+                //饮水是否困难
+                if(data.ymFamilyStatus.yssfkn=="是"){
+                    $("#yssfkn")[0].selectedIndex=1;
+                }else {
+                    $("#yssfkn")[0].selectedIndex=2;
+                }
+                //饮水是否安全
+                if(data.ymFamilyStatus.yssfaq=="是"){
+                    $("#yssfaq")[0].selectedIndex=1;
+                }else {
+                    $("#yssfaq")[0].selectedIndex=2;
+                }
+                //是否有卫生厕所
+                if(data.ymFamilyStatus.ywwscs=="是"){
+                    $("#ywwscs")[0].selectedIndex=1;
+                }else {
+                    $("#ywwscs")[0].selectedIndex=2;
+                }
+                //与村主干路距离
+                $("#yczgljl").val(data.ymFamilyStatus.yczgljl);
+                //入户路类型
+                if(data.ymFamilyStatus.rhllx=="泥土路"){
+                    $("#rhllx")[0].selectedIndex=1;
+                }else if(data.ymFamilyStatus.rhllx=="沙石路"){
+                    $("#rhllx")[0].selectedIndex=2;
+                }else if(data.ymFamilyStatus.rhllx=="硬化路"){
+                    $("#rhllx")[0].selectedIndex=3;
+                }else if(data.ymFamilyStatus.rhllx=="其他"){
+                    $("#rhllx")[0].selectedIndex=4;
+                }else{
+                    $("#rhllx")[0].selectedIndex=0;
+                }
+                //住房结构
+                $("#zfjg").val(data.ymFamilyStatus.zfjg);
+                //住房面积
+                $("#zfmj").val(data.ymFamilyStatus.zfmj);
+                //是否危房户
+                if(data.ymFamilyStatus.sfwfh=="是"){
+                    $("#sfwfh")[0].selectedIndex=1;
+                }else {
+                    $("#sfwfh")[0].selectedIndex=2;
+                }
+                //危房等级
+                $("#wfdj").val(data.ymFamilyStatus.wfdj);
+                //危改年度
+                $("#wgnd").val(data.ymFamilyStatus.wgnd);
+                //主要燃料类型
+                if(data.ymFamilyStatus.zyrllx=="柴草"){
+                    $("#zyrllx")[0].selectedIndex=1;
+                }else if(data.ymFamilyStatus.zyrllx=="干畜粪"){
+                    $("#zyrllx")[0].selectedIndex=2;
+                }else if(data.ymFamilyStatus.zyrllx=="煤炭"){
+                    $("#zyrllx")[0].selectedIndex=3;
+                }else if(data.ymFamilyStatus.zyrllx=="清洁能源"){
+                    $("#zyrllx")[0].selectedIndex=4;
+                }else{
+                    $("#zyrllx")[0].selectedIndex=5;
+                }
+                //变更说明
+                $("#bgsm").val(data.ymFamilyStatus.bgsm);
+            })
+        }
+
+
         var grid_selector = "#grid-table";
         var pager_selector = "#grid-pager";
 
@@ -2711,7 +2743,7 @@
 
         $(window).on('resize.jqGrid', function () {
             var parent_column = $(grid_selector).closest('[class*="col-xs"]');
-            console.log(parent_column.width());
+            //console.log(parent_column.width());
             $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
         });
 
@@ -2756,7 +2788,7 @@
             // },
             height: 250,
             shrinkToFit:true,
-            colNames:['人员编号','家庭编号','姓名','性别','身份证明号码','身份证签发机关','身份证有效期始','身份证有效期止','与户主关系','民族','出生日期','政治面貌','文化程度','在校生情况','失学或辍学原因','健康情况','劳动技能情况','是否会讲普通话','是否现役军人','是否参加城乡居民基本医疗保险','是否参加商业补充医疗保险','是否享受低保','是否参加城乡居民基本养老保险','是否享受人身意外保险补贴','联系电话'],
+            colNames:['','人员编号','家庭编号','姓名','性别','身份证明号码','身份证签发机关','身份证有效期始','身份证有效期止','与户主关系','民族','出生日期','政治面貌','文化程度','在校生情况','失学或辍学原因','健康情况','劳动技能情况','是否会讲普通话','是否现役军人','是否参加城乡居民基本医疗保险','是否参加商业补充医疗保险','是否享受低保','是否参加城乡居民基本养老保险','是否享受人身意外保险补贴','联系电话'],
             colModel:[
                 // {name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
                 //     formatter:'actions',
@@ -2768,6 +2800,7 @@
                 //         //editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
                 //     }
                 // },
+                {name:'oper',index:'',width:80,fixed:true,sortable:false, resize:false,formatter:operPerson},
                 {name:'rybh',       index:'rybh',       width:60, fixed:true, editable:true, sorttype:"int" },
                 {name:'jtbh',       index:'jtbh',       width:60, fixed:true, editable:true, sorttype:"int" },
                 {name:'xm',         index:'xm',         width:60, fixed:true, editable:true,                 },
@@ -2804,6 +2837,7 @@
             multiselect: true,
             multiboxonly: true,
             ondblClickRow:function(row){
+
                 getPersonInfo(row);
             },
 
@@ -2825,6 +2859,14 @@
         //trigger window resize to make the grid get the correct size
         $(window).triggerHandler('resize.jqGrid');
 
+        function operPerson(cellValue,grid, rows, state) {
+            return "<div style='margin-left: 8px;'>" +
+                "<div title style='float:left;cursor:pointer;' class='ui-pg-div ui-inline-del' onclick=\"delPerson('"+rows.rybh+"','"+rows.jtbh+"','"+rows.yhzgx+"')\" onmouseover=\"jQuery(this).addClass('ui-state-hover');\" onmouseout=\"jQuery(this).removeClass('ui-state-hover');\" data-original-title=\"删除该行数据！\"><span class='ui-icon ui-icon-trash'></span></div></div>";
+        }
+
+
+
+        
         //查看框信息
         function getPersonInfo(row) {
             var rowData = $('#grid-table').jqGrid('getRowData',row);
@@ -3182,8 +3224,8 @@
                 $("#v-mcdmj").val(data.ymFamilyStatus.mcdmj);
 
                 //是否加入农民专业合作社
-                console.log(data.ymFamilyStatus.sfjrnmzyhzs);
-                console.log($("#v-sfjrnmzyhzs"));
+                //console.log(data.ymFamilyStatus.sfjrnmzyhzs);
+                //console.log($("#v-sfjrnmzyhzs"));
                 if(data.ymFamilyStatus.sfjrnmzyhzs=="是"){
                     $("#v-sfjrnmzyhzs")[0].selectedIndex=1;
                 }else {
@@ -3330,16 +3372,7 @@
             height: 250,
             colNames:[' ','姓名','性别','身份证明号码','身份证签发机关','身份证有效期始','身份证有效期止','与户主关系','民族','出生日期','政治面貌','文化程度','在校生情况','失学或辍学原因','健康情况','劳动技能情况','是否会讲普通话','是否现役军人','是否参加城乡居民基本医疗保险','是否参加商业补充医疗保险','是否享受低保','是否参加城乡居民基本养老保险','是否享受人身意外保险补贴','联系电话'],
             colModel:[
-                {name:'myac',index:'', width:80, fixed:true, sortable:false, resize:false,
-                    formatter:'actions',
-                    formatoptions:{
-                        keys:true,
-                        //delbutton: false,//disable delete button
-
-                        delOptions:{recreateForm: true, beforeShowForm:beforeDeleteCallback},
-                        //editformbutton:true, editOptions:{recreateForm: true, beforeShowForm:beforeEditCallback}
-                    }
-                },
+                {name:'oper',index:'',width:80,fixed:true,sortable:false, resize:false,formatter:operPerson1},
                 {name:'xm',         index:'xm',         width:60, fixed:true, editable:true,                 },
                 {name:'xb',         index:'xb',         width:40, fixed:true, editable:true,                 },
                 {name:'sfzmhm',     index:'sfzmhm',     width:140, fixed:true, editable:true,                 },
@@ -3373,6 +3406,10 @@
 
             multiselect: true,
             multiboxonly: true,
+            ondblClickRow:function(row){
+                var rowData = $('#grid-table').jqGrid('getRowData',row);
+                inputPersonForm(rowData);
+            },
 
             loadComplete : function() {
                 var table = this;
@@ -3385,12 +3422,17 @@
                 }, 0);
             },
 
-            editurl: "./dummy.php",//nothing is saved
+            //editurl: "./dummy.php",//nothing is saved
             caption: "家庭人员列表"
 
         });
         //$(window).triggerHandler('resize.jqGrid');
 
+
+        function operPerson1(cellValue,grid, rows, state) {
+            return "<div style='margin-left: 8px;'>" +
+                "<div title style='float:left;cursor:pointer;' class='ui-pg-div ui-inline-del' onclick=\"delPerson1('"+rows.rybh+"','"+rows.jtbh+"','"+rows.yhzgx+"')\" onmouseover=\"jQuery(this).addClass('ui-state-hover');\" onmouseout=\"jQuery(this).removeClass('ui-state-hover');\" data-original-title=\"删除该行数据！\"><span class='ui-icon ui-icon-trash'></span></div></div>";
+        }
 
         //查看贫困人员列表
         jQuery("#v-getperson-grid-table").jqGrid({
@@ -3434,13 +3476,13 @@
                 {name:'sxhcxyy',    index:'sxhcxyy',    width:110, fixed:true, editable:true,                 },
                 {name:'jkqk',       index:'jkqk',       width:70, fixed:true, editable:true,                 },
                 {name:'ldjn',       index:'ldjn',       width:90, fixed:true, editable:true,                 },
-                {name:'sfhjpth',    index:'sfhjpth',    width:110, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfxyjr',     index:'sfxyjr',     width:90, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfcjylbx1',  index:'sfcjylbx1',  width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfcjsybx',   index:'sfcjsybx',   width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfxsdb',     index:'sfxsdb',     width:90, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfcjylbx2',  index:'sfcjylbx2',  width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
-                {name:'sfxsywbxbt', index:'sfxsywbxbt', width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfhjpth',    index:'sfhjpth',    width:110, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "是:否"}, unformat: aceSwitch},
+                {name:'sfxyjr',     index:'sfxyjr',     width:90, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "是:否"}, unformat: aceSwitch},
+                {name:'sfcjylbx1',  index:'sfcjylbx1',  width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "是:否"}, unformat: aceSwitch},
+                {name:'sfcjsybx',   index:'sfcjsybx',   width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "是:否"}, unformat: aceSwitch},
+                {name:'sfxsdb',     index:'sfxsdb',     width:90, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "是:否"}, unformat: aceSwitch},
+                {name:'sfcjylbx2',  index:'sfcjylbx2',  width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "是:否"}, unformat: aceSwitch},
+                {name:'sfxsywbxbt', index:'sfxsywbxbt', width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "是:否"}, unformat: aceSwitch},
                 {name:'lxdh',       index:'lxdh',       width:90, fixed:true, editable:true                  }
             ],
             viewrecords : true,
@@ -3614,6 +3656,7 @@
                 if(rowIds.length>1){
                     alert("请不要勾选超过一个人员!")
                 }else {
+                    //var rowData = $('#grid-table').jqGrid('getRowData',row);
                     getPersonInfo(rowIds[0]);
                 }
             }else {
@@ -3663,463 +3706,183 @@
             }).trigger("reloadGrid");
         });
 
+        function inputPersonForm(rowData){
+            $("#xm").val(rowData.xm);
+            if(rowData.xb=="男"){
+                $("#xb")[0].selectedIndex=1;
+            }else {
+                $("#xb")[0].selectedIndex=2;
+            }
+            $("#sfzmhm").val(rowData.sfzmhm);
+            $("#qfjg").val(rowData.qfjg);
+            $("#sfzyxqs").val(rowData.sfzyxqs);
+            $("#sfzyxqz").val(rowData.sfzyxqz);
+            if(rowData.yhzgx=="户主"){
+                $("#yhzgx")[0].selectedIndex=1;
+            }else if(rowData.yhzgx=="配偶"){
+                $("#yhzgx")[0].selectedIndex=2;
+            }else if(rowData.yhzgx=="之子"){
+                $("#yhzgx")[0].selectedIndex=3;
+            }else if(rowData.yhzgx=="之女"){
+                $("#yhzgx")[0].selectedIndex=4;
+            }else if(rowData.yhzgx=="之父"){
+                $("#yhzgx")[0].selectedIndex=5;
+            }else if(rowData.yhzgx=="之母"){
+                $("#yhzgx")[0].selectedIndex=6;
+            }else if(rowData.yhzgx=="之兄"){
+                $("#yhzgx")[0].selectedIndex=7;
+            }else if(rowData.yhzgx=="之弟"){
+                $("#yhzgx")[0].selectedIndex=8;
+            }else if(rowData.yhzgx=="之姐"){
+                $("#yhzgx")[0].selectedIndex=9;
+            }else if(rowData.yhzgx=="之妹"){
+                $("#yhzgx")[0].selectedIndex=10;
+            }else{
+                $("#yhzgx")[0].selectedIndex=0;
+            }
+            $("#mz").val(rowData.mz);
+            $("#csrq").val(rowData.csrq);
+            $("#zzmm").val(rowData.zzmm);
+            $("#whcd").val(rowData.whcd);
+            if(rowData.zxsqk=="非在校生"){
+                $("#zxsqk")[0].selectedIndex=1;
+            }else if(rowData.zxsqk=="学前教育"){
+                $("#zxsqk")[0].selectedIndex=2;
+            }else if(rowData.zxsqk=="小学"){
+                $("#zxsqk")[0].selectedIndex=3;
+            }else if(rowData.zxsqk=="七年级"){
+                $("#zxsqk")[0].selectedIndex=4;
+            }else if(rowData.zxsqk=="八年级"){
+                $("#zxsqk")[0].selectedIndex=5;
+            }else if(rowData.zxsqk=="九年级"){
+                $("#zxsqk")[0].selectedIndex=6;
+            }else if(rowData.zxsqk=="高一"){
+                $("#zxsqk")[0].selectedIndex=7;
+            }else if(rowData.zxsqk=="高二"){
+                $("#zxsqk")[0].selectedIndex=8;
+            }else if(rowData.zxsqk=="高三"){
+                $("#zxsqk")[0].selectedIndex=9;
+            }else if(rowData.zxsqk=="中职一"){
+                $("#zxsqk")[0].selectedIndex=10;
+            }else if(rowData.zxsqk=="中职二"){
+                $("#zxsqk")[0].selectedIndex=11;
+            }else if(rowData.zxsqk=="中职三"){
+                $("#zxsqk")[0].selectedIndex=12;
+            }else if(rowData.zxsqk=="高职一"){
+                $("#zxsqk")[0].selectedIndex=13;
+            }else if(rowData.zxsqk=="高职二"){
+                $("#zxsqk")[0].selectedIndex=14;
+            }else if(rowData.zxsqk=="高职三"){
+                $("#zxsqk")[0].selectedIndex=15;
+            }else if(rowData.zxsqk=="技工一"){
+                $("#zxsqk")[0].selectedIndex=16;
+            }else if(rowData.zxsqk=="技工二"){
+                $("#zxsqk")[0].selectedIndex=17;
+            }else if(rowData.zxsqk=="技工三"){
+                $("#zxsqk")[0].selectedIndex=18;
+            }else if(rowData.zxsqk=="技工四"){
+                $("#zxsqk")[0].selectedIndex=19;
+            }else if(rowData.zxsqk=="本科一"){
+                $("#zxsqk")[0].selectedIndex=20;
+            }else if(rowData.zxsqk=="本科二"){
+                $("#zxsqk")[0].selectedIndex=21;
+            }else if(rowData.zxsqk=="本科三"){
+                $("#zxsqk")[0].selectedIndex=22;
+            }else if(rowData.zxsqk=="本科四"){
+                $("#zxsqk")[0].selectedIndex=23;
+            }else if(rowData.zxsqk=="本科五"){
+                $("#zxsqk")[0].selectedIndex=24;
+            }else if(rowData.zxsqk=="硕士及以上"){
+                $("#zxsqk")[0].selectedIndex=25;
+            }else {
+                $("#zxsqk")[0].selectedIndex=0;
+            }
+            //失学或者辍学原因
+            if(rowData.sxhcxyy=="因病"){
+                $("#sxhcxyy")[0].selectedIndex=1;
+            }else if(rowData.sxhcxyy=="因疾"){
+                $("#sxhcxyy")[0].selectedIndex=2;
+            }else if(rowData.sxhcxyy=="厌学"){
+                $("#sxhcxyy")[0].selectedIndex=3;
+            }else if(rowData.sxhcxyy=="其他"){
+                $("#sxhcxyy")[0].selectedIndex=4;
+            }else {
+                $("#sxhcxyy")[0].selectedIndex=0;
+            }
+            //健康情况
+            if(rowData.jkqk=="健康"){
+                $("#jkqk")[0].selectedIndex=1;
+            }else if(rowData.jkqk=="残疾"){
+                $("#jkqk")[0].selectedIndex=2;
+            }else if(rowData.jkqk=="大病"){
+                $("#jkqk")[0].selectedIndex=3;
+            }else if(rowData.jkqk=="长期慢性病"){
+                $("#jkqk")[0].selectedIndex=4;
+            }else {
+                $("#jkqk")[0].selectedIndex=0;
+            }
+            //劳动技能情况
+            if(rowData.ldjn=="普通劳动力"){
+                $("#ldjn")[0].selectedIndex=1;
+            }else if(rowData.ldjn=="技能劳动力"){
+                $("#ldjn")[0].selectedIndex=2;
+            }else if(rowData.ldjn=="弱劳动力或半劳动力"){
+                $("#ldjn")[0].selectedIndex=3;
+            }else if(rowData.ldjn=="丧失劳动力"){
+                $("#ldjn")[0].selectedIndex=4;
+            }else if(rowData.ldjn=="无劳动力"){
+                $("#ldjn")[0].selectedIndex=5;
+            }else {
+                $("#ldjn")[0].selectedIndex=0;
+            }
+            //是否会讲普通话
+            if(rowData.sfhjpth=="是"){
+                $("#sfhjpth")[0].selectedIndex=1;
+            }else {
+                $("#sfhjpth")[0].selectedIndex=2;
+            }
+            //是否现役军人
+            if(rowData.sfxyjr=="是"){
+                $("#sfxyjr")[0].selectedIndex=1;
+            }else {
+                $("#sfxyjr")[0].selectedIndex=2;
+            }
+            //是否参加城乡居民基本医疗保险
+            if(rowData.sfcjylbx1=="是"){
+                $("#sfcjylbx1")[0].selectedIndex=1;
+            }else {
+                $("#sfcjylbx1")[0].selectedIndex=2;
+            }
+            //是否参加商业补充医疗保险
+            if(rowData.sfcjsybx=="是"){
+                $("#sfcjsybx")[0].selectedIndex=1;
+            }else {
+                $("#sfcjsybx")[0].selectedIndex=2;
+            }
+            //是否享受低保
+            if(rowData.sfxsdb=="是"){
+                $("#sfxsdb")[0].selectedIndex=1;
+            }else {
+                $("#sfxsdb")[0].selectedIndex=2;
+            }
 
-        //编辑框信息
-        function editPersonInfo(row) {
-            var rowData = $('#grid-table').jqGrid('getRowData',row);
-
-            //$("#zyrllx")[0].selectedIndex=1;
-            $("#modal-wizard").modal("show");
-            var postData = {
-                "jtbh": rowData.jtbh
-            };
-            $.getJSON('/person/viewInfo',postData,function (data) {
-                $("#jtbh").val(data.ymFamily.jtbh);
-                $("#xzqhdm").val(data.ymFamily.xzqhdm);
-                $("#xxxzqhmz").val(data.ymFamily.xxxzqhmz);
-                $("#lxdh").val(data.ymFamily.lxdh);
-                $("#khyh").val(data.ymFamily.khyh);
-                $("#yhkh").val(data.ymFamily.yhkh);
-                var pkhsx = data.ymFamily.pkhsx;
-                if(pkhsx=="一般贫困户"){
-                    $("#pkhsx")[0].selectedIndex=1;
-                }else if(pkhsx=="低保贫困户"){
-                    $("#pkhsx")[0].selectedIndex=2;
-                }else if(pkhsx=="特困供养贫困户"){
-                    $("#pkhsx")[0].selectedIndex=3;
-                }
-                var sfdnytp = data.ymFamily.sfdnytp;
-                if(sfdnytp=="是"){
-                    $("#sfdnytp")[0].selectedIndex=1;
-                }else {
-                    $("#sfdnytp")[0].selectedIndex=2;
-                }
-                $("#jhtpnd").val(data.ymFamily.jhtpnd);
-                $("#fpnd").val(data.ymFamily.fpnd);
-                $("#fpyy").val(data.ymFamily.fpyy);
-                var sfjls = data.ymFamily.sfjls;
-                if(sfjls=="是"){
-                    $("#sfjls")[0].selectedIndex=1;
-                }else {
-                    $("#sfjls")[0].selectedIndex=2;
-                }
-                var sfydfpbqh = data.ymFamily.sfydfpbqh;
-                if(sfydfpbqh=="有搬迁意愿"){
-                    $("#sfydfpbqh")[0].selectedIndex=1;
-                }else if(sfydfpbqh=="无搬迁意愿"){
-                    $("#sfydfpbqh")[0].selectedIndex=2;
-                }
-                var bqfs = data.ymFamily.bqfs;
-                if(bqfs=="行政村整体搬迁"){
-                    $("#bqfs")[0].selectedIndex=1;
-                }else if(bqfs=="自然村整体搬迁"){
-                    $("#bqfs")[0].selectedIndex=2;
-                }else if(bqfs=="建档立卡贫困户个别搬迁"){
-                    $("#bqfs")[0].selectedIndex=3;
-                }
-                $("#bqdz").val(data.ymFamily.bqdz);
-
-                //填充贫困人员成员列表
-                $("#getperson-grid-table").jqGrid('clearGridData');
-                $("#getperson-grid-table").jqGrid('setGridParam', {
-                    datatype:"json",
-                    mtype:"POST",
-                    page:1,
-                    url:"/person/listMember",
-                    postData:postData
-                }).trigger("reloadGrid");
-                //填充form表单
-                $("#xm").val(rowData.xm);
-                if(rowData.xb=="男"){
-                    $("#xb")[0].selectedIndex=1;
-                }else {
-                    $("#xb")[0].selectedIndex=2;
-                }
-                $("#sfzmhm").val(rowData.sfzmhm);
-                $("#qfjg").val(rowData.qfjg);
-                $("#sfzyxqs").val(rowData.sfzyxqs);
-                $("#sfzyxqz").val(rowData.sfzyxqz);
-                if(rowData.yhzgx=="户主"){
-                    $("#yhzgx")[0].selectedIndex=1;
-                }else if(rowData.yhzgx=="配偶"){
-                    $("#yhzgx")[0].selectedIndex=2;
-                }else if(rowData.yhzgx=="之子"){
-                    $("#yhzgx")[0].selectedIndex=3;
-                }else if(rowData.yhzgx=="之女"){
-                    $("#yhzgx")[0].selectedIndex=4;
-                }else if(rowData.yhzgx=="之父"){
-                    $("#yhzgx")[0].selectedIndex=5;
-                }else if(rowData.yhzgx=="之母"){
-                    $("#yhzgx")[0].selectedIndex=6;
-                }else if(rowData.yhzgx=="之兄"){
-                    $("#yhzgx")[0].selectedIndex=7;
-                }else if(rowData.yhzgx=="之弟"){
-                    $("#yhzgx")[0].selectedIndex=8;
-                }else if(rowData.yhzgx=="之姐"){
-                    $("#yhzgx")[0].selectedIndex=9;
-                }else if(rowData.yhzgx=="之妹"){
-                    $("#yhzgx")[0].selectedIndex=10;
-                }else{
-                    $("#yhzgx")[0].selectedIndex=0;
-                }
-                $("#mz").val(rowData.mz);
-                $("#csrq").val(rowData.csrq);
-                $("#zzmm").val(rowData.zzmm);
-                $("#whcd").val(rowData.whcd);
-                if(rowData.zxsqk=="非在校生"){
-                    $("#zxsqk")[0].selectedIndex=1;
-                }else if(rowData.zxsqk=="学前教育"){
-                    $("#zxsqk")[0].selectedIndex=2;
-                }else if(rowData.zxsqk=="小学"){
-                    $("#zxsqk")[0].selectedIndex=3;
-                }else if(rowData.zxsqk=="七年级"){
-                    $("#zxsqk")[0].selectedIndex=4;
-                }else if(rowData.zxsqk=="八年级"){
-                    $("#zxsqk")[0].selectedIndex=5;
-                }else if(rowData.zxsqk=="九年级"){
-                    $("#zxsqk")[0].selectedIndex=6;
-                }else if(rowData.zxsqk=="高一"){
-                    $("#zxsqk")[0].selectedIndex=7;
-                }else if(rowData.zxsqk=="高二"){
-                    $("#zxsqk")[0].selectedIndex=8;
-                }else if(rowData.zxsqk=="高三"){
-                    $("#zxsqk")[0].selectedIndex=9;
-                }else if(rowData.zxsqk=="中职一"){
-                    $("#zxsqk")[0].selectedIndex=10;
-                }else if(rowData.zxsqk=="中职二"){
-                    $("#zxsqk")[0].selectedIndex=11;
-                }else if(rowData.zxsqk=="中职三"){
-                    $("#zxsqk")[0].selectedIndex=12;
-                }else if(rowData.zxsqk=="高职一"){
-                    $("#zxsqk")[0].selectedIndex=13;
-                }else if(rowData.zxsqk=="高职二"){
-                    $("#zxsqk")[0].selectedIndex=14;
-                }else if(rowData.zxsqk=="高职三"){
-                    $("#zxsqk")[0].selectedIndex=15;
-                }else if(rowData.zxsqk=="技工一"){
-                    $("#zxsqk")[0].selectedIndex=16;
-                }else if(rowData.zxsqk=="技工二"){
-                    $("#zxsqk")[0].selectedIndex=17;
-                }else if(rowData.zxsqk=="技工三"){
-                    $("#zxsqk")[0].selectedIndex=18;
-                }else if(rowData.zxsqk=="技工四"){
-                    $("#zxsqk")[0].selectedIndex=19;
-                }else if(rowData.zxsqk=="本科一"){
-                    $("#zxsqk")[0].selectedIndex=20;
-                }else if(rowData.zxsqk=="本科二"){
-                    $("#zxsqk")[0].selectedIndex=21;
-                }else if(rowData.zxsqk=="本科三"){
-                    $("#zxsqk")[0].selectedIndex=22;
-                }else if(rowData.zxsqk=="本科四"){
-                    $("#zxsqk")[0].selectedIndex=23;
-                }else if(rowData.zxsqk=="本科五"){
-                    $("#zxsqk")[0].selectedIndex=24;
-                }else if(rowData.zxsqk=="硕士及以上"){
-                    $("#zxsqk")[0].selectedIndex=25;
-                }else {
-                    $("#zxsqk")[0].selectedIndex=0;
-                }
-                //失学或者辍学原因
-                if(rowData.sxhcxyy=="因病"){
-                    $("#sxhcxyy")[0].selectedIndex=1;
-                }else if(rowData.sxhcxyy=="因疾"){
-                    $("#sxhcxyy")[0].selectedIndex=2;
-                }else if(rowData.sxhcxyy=="厌学"){
-                    $("#sxhcxyy")[0].selectedIndex=3;
-                }else if(rowData.sxhcxyy=="其他"){
-                    $("#sxhcxyy")[0].selectedIndex=4;
-                }else {
-                    $("#sxhcxyy")[0].selectedIndex=0;
-                }
-                //健康情况
-                if(rowData.jkqk=="健康"){
-                    $("#jkqk")[0].selectedIndex=1;
-                }else if(rowData.jkqk=="残疾"){
-                    $("#jkqk")[0].selectedIndex=2;
-                }else if(rowData.jkqk=="大病"){
-                    $("#jkqk")[0].selectedIndex=3;
-                }else if(rowData.jkqk=="长期慢性病"){
-                    $("#jkqk")[0].selectedIndex=4;
-                }else {
-                    $("#jkqk")[0].selectedIndex=0;
-                }
-                //劳动技能情况
-                if(rowData.ldjn=="普通劳动力"){
-                    $("#ldjn")[0].selectedIndex=1;
-                }else if(rowData.ldjn=="技能劳动力"){
-                    $("#ldjn")[0].selectedIndex=2;
-                }else if(rowData.ldjn=="弱劳动力或半劳动力"){
-                    $("#ldjn")[0].selectedIndex=3;
-                }else if(rowData.ldjn=="丧失劳动力"){
-                    $("#ldjn")[0].selectedIndex=4;
-                }else if(rowData.ldjn=="无劳动力"){
-                    $("#ldjn")[0].selectedIndex=5;
-                }else {
-                    $("#ldjn")[0].selectedIndex=0;
-                }
-                //是否会讲普通话
-                if(rowData.sfhjpth=="是"){
-                    $("#sfhjpth")[0].selectedIndex=1;
-                }else {
-                    $("#sfhjpth")[0].selectedIndex=2;
-                }
-                //是否现役军人
-                if(rowData.sfxyjr=="是"){
-                    $("#sfxyjr")[0].selectedIndex=1;
-                }else {
-                    $("#sfxyjr")[0].selectedIndex=2;
-                }
-                //是否参加城乡居民基本医疗保险
-                if(rowData.sfcjylbx1=="是"){
-                    $("#sfcjylbx1")[0].selectedIndex=1;
-                }else {
-                    $("#sfcjylbx1")[0].selectedIndex=2;
-                }
-                //是否参加商业补充医疗保险
-                if(rowData.sfcjsybx=="是"){
-                    $("#sfcjsybx")[0].selectedIndex=1;
-                }else {
-                    $("#sfcjsybx")[0].selectedIndex=2;
-                }
-                //是否享受低保
-                if(rowData.sfxsdb=="是"){
-                    $("#sfxsdb")[0].selectedIndex=1;
-                }else {
-                    $("#sfxsdb")[0].selectedIndex=2;
-                }
-
-                //是否参加城乡居民基本养老保险
-                if(rowData.sfcjylbx2=="是"){
-                    $("#sfcjylbx2")[0].selectedIndex=1;
-                }else {
-                    $("#sfcjylbx2")[0].selectedIndex=2;
-                }
-                //是否享受人身意外保险补贴
-                if(rowData.sfxsywbxbt=="是"){
-                    $("#sfxsywbxbt")[0].selectedIndex=1;
-                }else {
-                    $("#sfxsywbxbt")[0].selectedIndex=2;
-                }
-                $("#lxdh2").val(rowData.lxdh2);
-
-
-                //填充家庭致贫原因和基本条件表单
-                //致贫原因1
-                if(data.ymFamilyStatus.zpyy1=="因病"){
-                    $("#zpyy1")[0].selectedIndex=1;
-                }else if(data.ymFamilyStatus.zpyy1=="因残"){
-                    $("#zpyy1")[0].selectedIndex=2;
-                }else if(data.ymFamilyStatus.zpyy1=="因学"){
-                    $("#zpyy1")[0].selectedIndex=3;
-                }else if(data.ymFamilyStatus.zpyy1=="因灾"){
-                    $("#zpyy1")[0].selectedIndex=4;
-                }else if(data.ymFamilyStatus.zpyy1=="因婚"){
-                    $("#zpyy1")[0].selectedIndex=5;
-                }else if(data.ymFamilyStatus.zpyy1=="缺土地"){
-                    $("#zpyy1")[0].selectedIndex=6;
-                }else if(data.ymFamilyStatus.zpyy1=="缺水"){
-                    $("#zpyy1")[0].selectedIndex=7;
-                }else if(data.ymFamilyStatus.zpyy1=="缺技术"){
-                    $("#zpyy1")[0].selectedIndex=8;
-                }else if(data.ymFamilyStatus.zpyy1=="缺劳动力"){
-                    $("#zpyy1")[0].selectedIndex=9;
-                }else if(data.ymFamilyStatus.zpyy1=="缺资金"){
-                    $("#zpyy1")[0].selectedIndex=10;
-                }else if(data.ymFamilyStatus.zpyy1=="交通条件落后"){
-                    $("#zpyy1")[0].selectedIndex=11;
-                }else if(data.ymFamilyStatus.zpyy1=="自身发展动力不足"){
-                    $("#zpyy1")[0].selectedIndex=12;
-                }else if(data.ymFamilyStatus.zpyy1=="因丧"){
-                    $("#zpyy1")[0].selectedIndex=13;
-                }else if(data.ymFamilyStatus.zpyy1=="其他"){
-                    $("#zpyy1")[0].selectedIndex=14;
-                }else {
-                    $("#zpyy1")[0].selectedIndex=0;
-                }
-                //致贫原因2
-                if(data.ymFamilyStatus.zpyy2=="因病"){
-                    $("#zpyy2")[0].selectedIndex=1;
-                }else if(data.ymFamilyStatus.zpyy2=="因残"){
-                    $("#zpyy2")[0].selectedIndex=2;
-                }else if(data.ymFamilyStatus.zpyy2=="因学"){
-                    $("#zpyy2")[0].selectedIndex=3;
-                }else if(data.ymFamilyStatus.zpyy2=="因灾"){
-                    $("#zpyy2")[0].selectedIndex=4;
-                }else if(data.ymFamilyStatus.zpyy2=="因婚"){
-                    $("#zpyy2")[0].selectedIndex=5;
-                }else if(data.ymFamilyStatus.zpyy2=="缺土地"){
-                    $("#zpyy2")[0].selectedIndex=6;
-                }else if(data.ymFamilyStatus.zpyy2=="缺水"){
-                    $("#zpyy2")[0].selectedIndex=7;
-                }else if(data.ymFamilyStatus.zpyy2=="缺技术"){
-                    $("#zpyy2")[0].selectedIndex=8;
-                }else if(data.ymFamilyStatus.zpyy2=="缺劳动力"){
-                    $("#zpyy2")[0].selectedIndex=9;
-                }else if(data.ymFamilyStatus.zpyy2=="缺资金"){
-                    $("#zpyy2")[0].selectedIndex=10;
-                }else if(data.ymFamilyStatus.zpyy2=="交通条件落后"){
-                    $("#zpyy2")[0].selectedIndex=11;
-                }else if(data.ymFamilyStatus.zpyy2=="自身发展动力不足"){
-                    $("#zpyy2")[0].selectedIndex=12;
-                }else if(data.ymFamilyStatus.zpyy2=="因丧"){
-                    $("#zpyy2")[0].selectedIndex=13;
-                }else if(data.ymFamilyStatus.zpyy2=="其他"){
-                    $("#zpyy2")[0].selectedIndex=14;
-                }else {
-                    $("#zpyy2")[0].selectedIndex=0;
-                }
-                //致贫原因3
-                if(data.ymFamilyStatus.zpyy3=="因病"){
-                    $("#zpyy3")[0].selectedIndex=1;
-                }else if(data.ymFamilyStatus.zpyy3=="因残"){
-                    $("#zpyy3")[0].selectedIndex=2;
-                }else if(data.ymFamilyStatus.zpyy3=="因学"){
-                    $("#zpyy3")[0].selectedIndex=3;
-                }else if(data.ymFamilyStatus.zpyy3=="因灾"){
-                    $("#zpyy3")[0].selectedIndex=4;
-                }else if(data.ymFamilyStatus.zpyy3=="因婚"){
-                    $("#zpyy3")[0].selectedIndex=5;
-                }else if(data.ymFamilyStatus.zpyy3=="缺土地"){
-                    $("#zpyy3")[0].selectedIndex=6;
-                }else if(data.ymFamilyStatus.zpyy3=="缺水"){
-                    $("#zpyy3")[0].selectedIndex=7;
-                }else if(data.ymFamilyStatus.zpyy3=="缺技术"){
-                    $("#zpyy3")[0].selectedIndex=8;
-                }else if(data.ymFamilyStatus.zpyy3=="缺劳动力"){
-                    $("#zpyy3")[0].selectedIndex=9;
-                }else if(data.ymFamilyStatus.zpyy3=="缺资金"){
-                    $("#zpyy3")[0].selectedIndex=10;
-                }else if(data.ymFamilyStatus.zpyy3=="交通条件落后"){
-                    $("#zpyy3")[0].selectedIndex=11;
-                }else if(data.ymFamilyStatus.zpyy3=="自身发展动力不足"){
-                    $("#zpyy3")[0].selectedIndex=12;
-                }else if(data.ymFamilyStatus.zpyy3=="因丧"){
-                    $("#zpyy3")[0].selectedIndex=13;
-                }else if(data.ymFamilyStatus.zpyy3=="其他"){
-                    $("#zpyy3")[0].selectedIndex=14;
-                }else {
-                    $("#zpyy3")[0].selectedIndex=0;
-                }
-                //年初家庭人口数
-                $("#ncjtrks").val(data.ymFamilyStatus.ncjtrks);
-                //年底家庭人口数
-                $("#ndjtrks").val(data.ymFamilyStatus.ndjtrks);
-                //耕地面积
-                $("#gdmj").val(data.ymFamilyStatus.gdmj);
-                //有效灌溉面积(亩)
-                $("#yxggmj").val(data.ymFamilyStatus.yxggmj);
-                //林地面积(亩)
-                $("#ldmj").val(data.ymFamilyStatus.ldmj);
-                //退耕还林面积(亩)
-                $("#tghlmj").val(data.ymFamilyStatus.tghlmj);
-                //林果面积(亩)
-                $("#lgmj").val(data.ymFamilyStatus.lgmj);
-                //水面面积(亩)
-                $("#smmj").val(data.ymFamilyStatus.smmj);
-                //牧草地面积(亩)
-                $("#mcdmj").val(data.ymFamilyStatus.mcdmj);
-
-                //是否加入农民专业合作社
-                console.log(data.ymFamilyStatus.sfjrnmzyhzs);
-                console.log($("#sfjrnmzyhzs"));
-                if(data.ymFamilyStatus.sfjrnmzyhzs=="是"){
-                    $("#sfjrnmzyhzs")[0].selectedIndex=1;
-                }else {
-                    $("#sfjrnmzyhzs")[0].selectedIndex=2;
-                }
-                //是否有龙头企业带动
-                if(data.ymFamilyStatus.sfyltqydd=="是"){
-                    $("#sfyltqydd")[0].selectedIndex=1;
-                }else {
-                    $("#sfyltqydd")[0].selectedIndex=2;
-                }
-                //是否有创业致富带头人带动
-                if(data.ymFamilyStatus.sfycyzfdtrdd=="是"){
-                    $("#sfycyzfdtrdd")[0].selectedIndex=1;
-                }else {
-                    $("#sfycyzfdtrdd")[0].selectedIndex=2;
-                }
-                //是否通生产用电
-                if(data.ymFamilyStatus.sftscyd=="是"){
-                    $("#sftscyd")[0].selectedIndex=1;
-                }else {
-                    $("#sftscyd")[0].selectedIndex=2;
-                }
-                //是否通生活用电
-                if(data.ymFamilyStatus.sftshyd=="是"){
-                    $("#sftshyd")[0].selectedIndex=1;
-                }else {
-                    $("#sftshyd")[0].selectedIndex=2;
-                }
-                //是否通广播电视
-                if(data.ymFamilyStatus.sftgbds=="是"){
-                    $("#sftgbds")[0].selectedIndex=1;
-                }else {
-                    $("#sftgbds")[0].selectedIndex=2;
-                }
-
-                //饮水是否困难
-                if(data.ymFamilyStatus.yssfkn=="是"){
-                    $("#yssfkn")[0].selectedIndex=1;
-                }else {
-                    $("#yssfkn")[0].selectedIndex=2;
-                }
-                //饮水是否安全
-                if(data.ymFamilyStatus.yssfaq=="是"){
-                    $("#yssfaq")[0].selectedIndex=1;
-                }else {
-                    $("#yssfaq")[0].selectedIndex=2;
-                }
-                //是否有卫生厕所
-                if(data.ymFamilyStatus.ywwscs=="是"){
-                    $("#ywwscs")[0].selectedIndex=1;
-                }else {
-                    $("#ywwscs")[0].selectedIndex=2;
-                }
-                //与村主干路距离
-                $("#yczgljl").val(data.ymFamilyStatus.yczgljl);
-                //入户路类型
-                if(data.ymFamilyStatus.rhllx=="泥土路"){
-                    $("#rhllx")[0].selectedIndex=1;
-                }else if(data.ymFamilyStatus.rhllx=="沙石路"){
-                    $("#rhllx")[0].selectedIndex=2;
-                }else if(data.ymFamilyStatus.rhllx=="硬化路"){
-                    $("#rhllx")[0].selectedIndex=3;
-                }else if(data.ymFamilyStatus.rhllx=="其他"){
-                    $("#rhllx")[0].selectedIndex=4;
-                }else{
-                    $("#rhllx")[0].selectedIndex=0;
-                }
-                //住房结构
-                $("#zfjg").val(data.ymFamilyStatus.zfjg);
-                //住房面积
-                $("#zfmj").val(data.ymFamilyStatus.zfmj);
-                //是否危房户
-                if(data.ymFamilyStatus.sfwfh=="是"){
-                    $("#sfwfh")[0].selectedIndex=1;
-                }else {
-                    $("#sfwfh")[0].selectedIndex=2;
-                }
-                //危房等级
-                $("#wfdj").val(data.ymFamilyStatus.wfdj);
-                //危改年度
-                $("#wgnd").val(data.ymFamilyStatus.wgnd);
-                //主要燃料类型
-                if(data.ymFamilyStatus.zyrllx=="柴草"){
-                    $("#zyrllx")[0].selectedIndex=1;
-                }else if(data.ymFamilyStatus.zyrllx=="干畜粪"){
-                    $("#zyrllx")[0].selectedIndex=2;
-                }else if(data.ymFamilyStatus.zyrllx=="煤炭"){
-                    $("#zyrllx")[0].selectedIndex=3;
-                }else if(data.ymFamilyStatus.zyrllx=="清洁能源"){
-                    $("#zyrllx")[0].selectedIndex=4;
-                }else{
-                    $("#zyrllx")[0].selectedIndex=5;
-                }
-                //变更说明
-                $("#bgsm").val(data.ymFamilyStatus.bgsm);
-            })
+            //是否参加城乡居民基本养老保险
+            if(rowData.sfcjylbx2=="是"){
+                $("#sfcjylbx2")[0].selectedIndex=1;
+            }else {
+                $("#sfcjylbx2")[0].selectedIndex=2;
+            }
+            //是否享受人身意外保险补贴
+            if(rowData.sfxsywbxbt=="是"){
+                $("#sfxsywbxbt")[0].selectedIndex=1;
+            }else {
+                $("#sfxsywbxbt")[0].selectedIndex=2;
+            }
+            $("#lxdh2").val(rowData.lxdh2);
         }
+
+
+
 
 
         //编辑按钮操作
@@ -4129,12 +3892,10 @@
                 if(rowids.length>1){
                     alert("请不要勾选超过一个人员!");
                 }else {
+                    $("#fuelux-wizard-container").wizard('selectedItem', {
+                        step: 1
+                    });
                     editPersonInfo(rowids[0]);
-
-                    //window.location.href="/person/edit?"+idArr;
-                    //$.getJSON("/person/edit",idArr,function (data) {});
-                    //
-                    // });
                 }
             }else {
                     $("#editBtn").tips({
@@ -4160,7 +3921,6 @@
                         var rowData = $("#grid-table").jqGrid('getRowData',rowids[i]);
                         idArr = idArr + rowData.rybh + "-"+rowData.jtbh+ "-"+ rowData.yhzgx + ",";
                     }
-                    console.log(idArr);
                     $.ajax({
                         type: "POST",//请求方式为POST
                         url: "/person/delete",//检验url
@@ -4999,24 +4759,24 @@
                 if(rowIds.length>0){
                     for (var i = 0; i < rowIds.length; i++) {
                         var rowData = $("#getperson-grid-table").getRowData(rowIds[i]);
-                        console.log(rowData);
                         if(xm==rowData.xm){
+                            isHave = true;
                             var input = confirm("已存在该姓名的家庭成员了,是否进行替换！");
-                            console.log(input);
                             if(input){
                                 $("#getperson-grid-table").jqGrid("setRowData",rowIds[i],ym_person_json);
                                 alert("家庭成员替换成功！");
                                 break;
                             }
-                            isHave = true;
+
                         }else if(sfzmhm==rowData.sfzmhm){
+                            isHave = true;
                             var input = confirm("已存在该身份证明号码的家庭成员了！")
                             if(input){
                                 $("#getperson-grid-table").jqGrid("setRowData",rowIds[i],ym_person_json);
                                 alert("家庭成员替换成功！");
                                 break;
                             }
-                            isHave = true;
+
 
                         }
                     }
@@ -5040,6 +4800,56 @@
             $('.ui-jqdialog').remove();
         });
     });
+
+    //删除用户信息
+    function delPerson(rybh,jtbh,yhzgx) {
+        var input = confirm("你确定删除该行数据,如果是户主，将删除家庭所有信息！");
+        if(input){
+            var myData = {
+                "rybh":rybh,
+                "jtbh":jtbh,
+                "yhzgx":yhzgx
+            };
+
+            $.getJSON("/person/deleteOne",myData, function (data) {
+                if(data.status==1){
+                    $("#grid-table").jqGrid('clearGridData');
+                    $("#grid-table").jqGrid('setGridParam', {
+                        datatype:"json",
+                        url:"/ym/all"
+                    }).trigger("reloadGrid");
+                }
+            });
+        }
+    }
+
+    //删除用户信息
+    function delPerson1(rybh,jtbh,yhzgx) {
+        var input = confirm("你确定删除该行数据,如果是户主，将删除家庭所有信息！");
+        if(input){
+            var myData = {
+                "rybh":rybh,
+                "jtbh":jtbh,
+                "yhzgx":yhzgx
+            };
+
+            $.getJSON("/person/deleteOne",myData, function (data) {
+                if(data.status==1){
+                    alert("家庭成员删除成功！");
+                    //填充贫困人员成员列表
+                    $("#getperson-grid-table").jqGrid('clearGridData');
+                    $("#getperson-grid-table").jqGrid('setGridParam', {
+                        datatype:"json",
+                        mtype:"POST",
+                        page:1,
+                        url:"/person/listMember",
+                        postData:myData
+                    }).trigger("reloadGrid");
+                }
+            });
+        }
+    }
+
 </script>
 </body>
 </html>

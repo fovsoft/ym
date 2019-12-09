@@ -271,6 +271,36 @@ public class YmPersonCtrl {
         return map;
     }
 
+
+    @RequestMapping("/person/deleteOne")
+    @ResponseBody
+    public Map<String,Object> deletePersonOne(HttpServletRequest request){
+        String rybh = request.getParameter("rybh");
+        String jtbh = request.getParameter("jtbh");
+        String yhzgx = request.getParameter("yhzgx");
+
+        if(yhzgx.equals("户主")){
+            //先删除收入信息
+            ymProduceIncomeService.deleteYmProduceIncomeByJtbh(jtbh);
+            ymSalaryIncomeService.deleteYmSalaryIncomeByJtbh(jtbh);
+            ymPropertyIncomeService.deleteYmPropertyIncomeByJtbh(jtbh);
+            ymTransferIncomeService.deleteYmTransferIncomeByJtbh(jtbh);
+            ymOutPovertyIncomeService.deleteYmOutPovertyIncomeByJtbh(jtbh);
+            //删除人员信息
+            ymPersonService.deleteYmPersonByJtbh(jtbh);
+            //删除家庭条件信息
+            ymFamilyStatusService.deleteYmFamilyStatusByJtbh(jtbh);
+            ymFamilyService.deleteYmFamilyByJtbh(jtbh);
+        }else{//不是户主，就只删除人员信息
+            ymPersonService.deleteYmPersonByRybh(rybh);
+        }
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("status",1);
+        map.put("result","success");
+        return map;
+    }
+
 //    @RequestMapping("/person/toEdit")
 //    public ModelAndView toEditPerson(HttpServletRequest request){
 //        String jtbh = request.getParameter("jtbh");

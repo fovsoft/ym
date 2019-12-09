@@ -232,6 +232,31 @@ public class SysUserCtrl {
 
     }
 
+    @RequestMapping(value = "/user/deleteOne")
+    @ResponseBody
+    public Map<String,Object> deleteSysUserOne(HttpServletRequest request){
+        //获取封装的用户id信息
+        String userId = request.getParameter("userId");
+        Map<String,Object> map = new HashMap<>();
+        int status = 0;
+        String result = "error";
+
+        //删除角色信息
+        sysUserRoleService.deleteSysUserRoleByUserId(userId);
+        //删除用户信息
+        int resultInt = sysUserService.deleteSysUser(Integer.parseInt(userId));
+        //获取选中行的所有id，存入数组中
+        if(resultInt>0){
+            status = 1;
+            result="success";
+        }
+        map.put("status",status);
+        map.put("result",result);
+
+        return map;
+
+    }
+
 
 
     /*

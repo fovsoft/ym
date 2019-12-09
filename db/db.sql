@@ -67,25 +67,23 @@ values ( '', '行政区划管理', 1, '/admin/dept', '1', 'a,d,u,s', 3, '1', '20
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
 values ('', '角色管理', 1, '/admin/role', '1', 'a,d,u,s', 4, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '菜单管理', 1, '/admin/sysMenu', '1', 'a,d,u,s', 6, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+values ('', '菜单管理', 1, '/admin/sysMenu', '1', 'a,d,u,s', 5, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '移民管理', 0, '#', '1', 'a,d,u,s', 11, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+values ('', '贫困人员管理', 0, '#', '1', 'a,d,u,s', 6, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '移民信息采集', 6, '/ym/add', '1', 'a,d,u,s', 12, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+values ('', '贫困人员信息管理', 6, '/ym/mgr', '1', 'a,d,u,s', 7, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+#insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
+#values ('', '影像化采集', 6, '/ym/img', '1', 'a,d,u,s', 14, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '移民信息管理', 6, '/ym/mgr', '1', 'a,d,u,s', 13, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+values ('', '收入信息采集', 6, '/ym/income', '1', 'a,d,u,s', 8, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '影像化采集', 6, '/ym/img', '1', 'a,d,u,s', 14, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+values ('', '安置管理', 0, '#', '1', 'a,d,u,s', 9, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '收入信息采集', 6, '/ym/income', '1', 'a,d,u,s', 15, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+values ('', '安置点管理', 9, '/az/settlement', '1', 'a,d,u,s', 10, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '安置管理', 0, '#', '1', 'a,d,u,s', 16, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
-insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '安置点管理', 11, '/az/settlement', '1', 'a,d,u,s', 17, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
-insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '安置户管理', 11, '/az/household', '1', 'a,d,u,s', 18, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
-insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '安置户信息录入', 11, '/az/add', '1', 'a,d,u,s', 19, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+values ('', '安置户管理', 9, '/az/household', '1', 'a,d,u,s', 11, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+#insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
+#values ('', '安置户信息录入', 9, '/az/add', '1', 'a,d,u,s', 12, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 
 drop table frm_sysuser_role;
 create table frm_sysuser_role
@@ -128,12 +126,7 @@ insert into frm_role_menu
 values (1, 10);
 insert into frm_role_menu
 values (1, 11);
-insert into frm_role_menu
-values (1, 12);
-insert into frm_role_menu
-values (1, 13);
-insert into frm_role_menu
-values (1, 14);
+
 
 drop table frm_department;
 create table frm_department

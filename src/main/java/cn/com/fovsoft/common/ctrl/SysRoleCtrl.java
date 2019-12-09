@@ -505,5 +505,31 @@ public class SysRoleCtrl {
     }
 
 
+    @RequestMapping(value = "/role/deleteOne")
+    @ResponseBody
+    public Map<String,Object> deleteSysRoleOne(HttpServletRequest request){
+
+
+        Map<String,Object> map = new HashMap<>();
+        int status = 0;
+        String result = "error";
+        //获取封装的角色id信息
+        String roleId = request.getParameter("roleId");
+        //先删权限信息
+        sysRoleMenuService.deleteSysRoleMenuByRoleId(roleId);
+        //再删角色信息
+        int resultInt = sysRoleService.deleteSysRole(roleId);
+        if(resultInt>0){
+
+            status = 1;
+            result = "success";
+        }
+        map.put("status",status);
+        map.put("result",result);
+
+        return map;
+    }
+
+
 
 }
