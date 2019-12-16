@@ -25,9 +25,9 @@ public interface YmSalaryIncomeDao {
      */
     @Insert({
             "<script>",
-            "insert into ym_salary_income(jtbh,xm,wggz,wgdz,wgljsj,wgqymc,sa_nf,sa_yf13,sa_yf46,sa_yf79,sa_yf10,sa_yf11,sa_yf12) values ",
+            "insert into ym_salary_income(jtbh,xm,wggz,wgdz,wgljsj,wgqymc,salary_nf,salary_yf1,salary_yf2,salary_yf3,salary_yf4,salary_yf5,salary_yf6,salary_yf7,salary_yf8,salary_yf9,salary_yf10,salary_yf11,salary_yf12) values ",
             "<foreach collection='ymSalaryIncomeList' item='item' index='index' separator=','>",
-            "(#{item.jtbh},#{item.xm},#{item.wggz},#{item.wgdz},#{item.wgljsj},#{item.wgqymc},#{item.sa_nf},#{item.sa_yf13},#{item.sa_yf46},#{item.sa_yf79},#{item.sa_yf10},#{item.sa_yf11},#{item.sa_yf12}) ",
+            "(#{item.jtbh},#{item.xm},#{item.wggz},#{item.wgdz},#{item.wgljsj},#{item.wgqymc},#{item.salary_nf},#{item.salary_yf1},#{item.salary_yf2},#{item.salary_yf3},#{item.salary_yf4},#{item.salary_yf5},#{item.salary_yf6},#{item.salary_yf7},#{item.salary_yf8},#{item.salary_yf9},#{item.salary_yf10},#{item.salary_yf11},#{item.salary_yf12}) ",
             "</foreach>",
             "</script>"
     })

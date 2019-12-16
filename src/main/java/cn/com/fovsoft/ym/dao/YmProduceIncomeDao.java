@@ -27,9 +27,9 @@ public interface  YmProduceIncomeDao {
      */
     @Insert({
             "<script>",
-            "insert into ym_produce_income(jtbh,xtdl,xtxl1,xtxl2,nf,yf13,yf46,yf79,yf10,yf11,yf12) values ",
+            "insert into ym_produce_income(jtbh,produce_xtdl,produce_xtxl1,produce_xtxl2,produce_nf,produce_yf1,produce_yf2,produce_yf3,produce_yf4,produce_yf5,produce_yf6,produce_yf7,produce_yf8,produce_yf9,produce_yf10,produce_yf11,produce_yf12) values ",
             "<foreach collection='ymProduceIncomeList' item='item' index='index' separator=','>",
-            "(#{item.jtbh},#{item.xtdl},#{item.xtxl1},#{item.xtxl2},#{item.nf},#{item.yf13},#{item.yf46},#{item.yf79},#{item.yf10},#{item.yf11},#{item.yf12}) ",
+            "(#{item.jtbh},#{item.produce_xtdl},#{item.produce_xtxl1},#{item.produce_xtxl2},#{item.produce_nf},#{item.produce_yf1},#{item.produce_yf2},#{item.produce_yf3},#{item.produce_yf4},#{item.produce_yf5},#{item.produce_yf6},#{item.produce_yf7},#{item.produce_yf8},#{item.produce_yf9},#{item.produce_yf10},#{item.produce_yf11},#{item.produce_yf12}) ",
             "</foreach>",
             "</script>"
     })

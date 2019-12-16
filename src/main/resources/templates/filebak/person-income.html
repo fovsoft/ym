@@ -1,0 +1,2201 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta charset="utf-8"/>
+    <title>家庭收入信息录入 - 钦南区易地搬迁信息管理系统</title>
+
+    <meta name="description" content="and Validation"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+
+    <!-- bootstrap & fontawesome -->
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/font-awesome/4.5.0/css/font-awesome.min.css}"/>
+
+
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" th:href="@{/static/css/jquery-ui.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap-datepicker3.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap-timepicker.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/ui.jqgrid.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap-datetimepicker.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/bootstrap-colorpicker.min.css}"/>
+
+    <!-- page specific plugin styles -->
+    <link rel="stylesheet" th:href="@{/static/css/select2.min.css}"/>
+
+    <!-- text fonts -->
+    <link rel="stylesheet" th:href="@{/static/css/fonts.googleapis.com.css}"/>
+
+    <!-- ace styles -->
+    <link rel="stylesheet" th:href="@{/static/css/ace.min.css}" class="ace-main-stylesheet" id="main-ace-style"/>
+
+    <style>
+        .ui-jqgrid .ui-jqgrid-bdiv {
+            border-top: 1px solid #E1E1E1;
+            overflow-x: auto;
+        }
+
+        .frozen-div, .frozen-bdiv {
+            background-color: #E4E6E9; /*与网页背景色一致*/
+        }
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle !important;
+        }
+
+    </style>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" th:href="@{/static/css/ace-part2.min.css}" class="ace-main-stylesheet"/>
+    <![endif]-->
+    <link rel="stylesheet" th:href="@{/static/css/ace-skins.min.css}"/>
+    <link rel="stylesheet" th:href="@{/static/css/ace-rtl.min.css}"/>
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" th:href="@{/static/css/ace-ie.min.css}"/>
+    <![endif]-->
+
+
+    <!-- inline styles related to this page -->
+
+    <!-- ace settings handler -->
+    <script th:src="@{/static/js/ace-extra.min.js}"></script>
+
+    <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
+
+    <!--[if lte IE 8]>
+    <script th:src="@{/static/js/html5shiv.min.js}"></script>
+    <script th:src="@{/static/js/respond.min.js}"></script>
+    <![endif]-->
+</head>
+
+<body class="no-skin">
+
+<div id="navbar" class="navbar navbar-default          ace-save-state">
+    <div class="navbar-container ace-save-state" id="navbar-container">
+        <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
+            <span class="sr-only">Toggle sidebar</span>
+
+            <span class="icon-bar"></span>
+
+            <span class="icon-bar"></span>
+
+            <span class="icon-bar"></span>
+        </button>
+
+        <div class="navbar-header pull-left">
+            <a href="index.html" class="navbar-brand">
+                <small>
+                    <i class="fa fa-leaf"></i>
+                    钦南区易地搬迁信息管理系统
+                </small>
+            </a>
+        </div>
+
+        <div class="navbar-buttons navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav">
+                <li class="light-blue dropdown-modal">
+                    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
+                        <img class="nav-user-photo" th:src="@{/static/images/avatars/user.jpg}" alt="Jason's Photo"/>
+                        <span class="user-info">
+									<small>欢迎你,</small>
+									[(${sessionUser})]
+								</span>
+
+                        <i class="ace-icon fa fa-caret-down"></i>
+                    </a>
+
+                    <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
+                        <li>
+                            <a href="#" data-toggle="modal" data-target="#updatePasswordModal">
+                                <i class="ace-icon fa fa-cog"></i>
+                                修改密码
+                            </a>
+                        </li>
+
+                        <li class="divider"></li>
+
+                        <li>
+                            <a href="/logout">
+                                <i class="ace-icon fa fa-power-off"></i>
+                                注销
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div><!-- /.navbar-container -->
+</div>
+
+
+<div class="main-container ace-save-state" id="main-container">
+    <script type="text/javascript">
+        try {
+            ace.settings.loadState('main-container')
+        } catch (e) {
+        }
+    </script>
+
+    <div id="sidebar" class="sidebar                  responsive                    ace-save-state">
+        <script type="text/javascript">
+            try {
+                ace.settings.loadState('sidebar')
+            } catch (e) {
+            }
+        </script>
+
+        <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+            <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+                <button class="btn btn-success">
+                    <i class="ace-icon fa fa-signal"></i>
+                </button>
+
+                <button class="btn btn-info">
+                    <i class="ace-icon fa fa-pencil"></i>
+                </button>
+
+                <button class="btn btn-warning">
+                    <i class="ace-icon fa fa-users"></i>
+                </button>
+
+                <button class="btn btn-danger">
+                    <i class="ace-icon fa fa-cogs"></i>
+                </button>
+            </div>
+
+            <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+                <span class="btn btn-success"></span>
+
+                <span class="btn btn-info"></span>
+
+                <span class="btn btn-warning"></span>
+
+                <span class="btn btn-danger"></span>
+            </div>
+        </div><!-- /.sidebar-shortcuts -->
+
+        <ul class="nav nav-list">
+            <li class="">
+                <a href="#" id="toIndex">
+                    <i class="menu-icon fa fa-tachometer"></i>
+                    <span class="menu-text"> 首页 </span>
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+
+            <!-- 动态生成菜单 -->
+            <li th:each="sysMenu : ${rootSysMenuList}">
+                <!-- 这里写死判断了，改进思路：通过对比当前URL与菜单的层级关系可避免写死 -->
+                <a th:href="@{${sysMenu.url}}" class="dropdown-toggle">
+                    <i class="menu-icon fa fa-desktop"></i>
+                    <span class="menu-text" th:text="${sysMenu.menuName}">
+							</span>
+
+                    <b class="arrow fa fa-angle-down"></b>
+                </a>
+                <b class="arrow"></b>
+                <ul class="submenu">
+                    <li th:each="childMenu : ${sysMenu.childMenuList}"> <!-- 同上 -->
+                        <a th:href="@{${childMenu.url}}">
+                            <i class="menu-icon fa fa-caret-right"></i>
+                            [(${childMenu.menuName})]  <!-- 行内写法 -->
+                        </a>
+
+                        <b class="arrow"></b>
+                    </li>
+                </ul>
+            </li>
+
+        </ul><!-- /.nav-list -->
+
+        <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
+            <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state"
+               data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="main-content-inner">
+            <div class="breadcrumbs ace-save-state" id="breadcrumbs">
+                <ul class="breadcrumb">
+                    <li>
+                        <i class="ace-icon fa fa-home home-icon"></i>
+                        <a href="/toIndex">首页</a>
+                    </li>
+
+                    <li>
+                        <a href="/ym/income">贫困户家庭收入信息录入</a>
+                    </li>
+                    <li class="active">贫困户家庭收入详表</li>
+                </ul><!-- /.breadcrumb -->
+
+                <div class="nav-search" id="nav-search">
+                    <form class="form-search">
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input"
+                                           id="nav-search-input" autocomplete="off"/>
+									<i class="ace-icon fa fa-search nav-search-icon"></i>
+								</span>
+                    </form>
+                </div><!-- /.nav-search -->
+            </div>
+
+            <div class="page-content">
+                <div class="ace-settings-container" id="ace-settings-container">
+                    <div class="btn btn-app btn-xs btn-warning ace-settings-btn" id="ace-settings-btn">
+                        <i class="ace-icon fa fa-cog bigger-130"></i>
+                    </div>
+
+                    <div class="ace-settings-box clearfix" id="ace-settings-box">
+                        <div class="pull-left width-50">
+                            <div class="ace-settings-item">
+                                <div class="pull-left">
+                                    <select id="skin-colorpicker" class="hide">
+                                        <option data-skin="no-skin" value="#438EB9">#438EB9</option>
+                                        <option data-skin="skin-1" value="#222A2D">#222A2D</option>
+                                        <option data-skin="skin-2" value="#C6487E">#C6487E</option>
+                                        <option data-skin="skin-3" value="#D0D0D0">#D0D0D0</option>
+                                    </select>
+                                </div>
+                                <span>&nbsp; 选择 皮肤</span>
+                            </div>
+
+                            <div class="ace-settings-item">
+                                <input type="checkbox" class="ace ace-checkbox-2 ace-save-state"
+                                       id="ace-settings-navbar" autocomplete="off"/>
+                                <label class="lbl" for="ace-settings-navbar"> 固定导航栏</label>
+                            </div>
+
+                            <div class="ace-settings-item">
+                                <input type="checkbox" class="ace ace-checkbox-2 ace-save-state"
+                                       id="ace-settings-sidebar" autocomplete="off"/>
+                                <label class="lbl" for="ace-settings-sidebar"> 固定菜单栏</label>
+                            </div>
+
+                            <div class="ace-settings-item">
+                                <input type="checkbox" class="ace ace-checkbox-2 ace-save-state"
+                                       id="ace-settings-breadcrumbs" autocomplete="off"/>
+                                <label class="lbl" for="ace-settings-breadcrumbs"> 固定面包屑</label>
+                            </div>
+
+                            <div class="ace-settings-item">
+                                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-rtl"
+                                       autocomplete="off"/>
+                                <label class="lbl" for="ace-settings-rtl"> 菜单靠右(左)</label>
+                            </div>
+
+                            <div class="ace-settings-item">
+                                <input type="checkbox" class="ace ace-checkbox-2 ace-save-state"
+                                       id="ace-settings-add-container" autocomplete="off"/>
+                                <label class="lbl" for="ace-settings-add-container">
+                                    居中
+                                    <b>内容</b>
+                                </label>
+                            </div>
+                        </div><!-- /.pull-left -->
+
+                        <div class="pull-left width-50">
+                            <div class="ace-settings-item">
+                                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-hover"
+                                       autocomplete="off"/>
+                                <label class="lbl" for="ace-settings-hover"> 悬停子菜单</label>
+                            </div>
+
+                            <div class="ace-settings-item">
+                                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-compact"
+                                       autocomplete="off"/>
+                                <label class="lbl" for="ace-settings-compact"> 紧凑菜单栏</label>
+                            </div>
+
+                            <div class="ace-settings-item">
+                                <input type="checkbox" class="ace ace-checkbox-2" id="ace-settings-highlight"
+                                       autocomplete="off"/>
+                                <label class="lbl" for="ace-settings-highlight"> Alt激活选项</label>
+                            </div>
+                        </div><!-- /.pull-left -->
+                    </div><!-- /.ace-settings-box -->
+                </div><!-- /.ace-settings-container -->
+
+                <div class="page-header">
+                    <h1>
+                        贫困人员信息列表
+                        <small>
+                            <i class="ace-icon fa fa-angle-double-right"></i>
+                            可以进行家庭收入信息的录入
+                        </small>
+                    </h1>
+                </div><!-- /.page-header -->
+
+                <div class="row">
+                    <div class="col-xs-12">
+
+                        <!-- 修改密码的窗口 -->
+                        <div>
+                            <!--新增角色的窗口-->
+                            <div class="modal fade" id="updatePasswordModal" tabindex="-1" role="dialog" aria-labelledby="updatePasswordModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title red" id="updatePasswordModalLabel">
+                                                <label id="addTitle">修改</label>
+                                            </h4>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <div class="widget-box widget-color-green2">
+                                                <div class="widget-header">
+                                                    <h4 class="widget-title lighter smaller">
+                                                        <span class="smaller-80"></span>
+                                                    </h4>
+                                                </div>
+
+                                                <div class="widget-body">
+                                                    <div class="widget-main padding-8">
+                                                        <form class="form-horizontal">
+                                                            <div class="form-group">
+                                                                <label for="oldPassword" class="col-xs-12 col-xs-3 control-label no-padding-right">原密码</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="password" class="col-xs-12 col-xs-8 form-control" id="oldPassword" name="oldPassword" placeholder="请输入原密码" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="newPassword" class="col-xs-12 col-sm-3 control-label no-padding-right">新密码</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="password" class="col-xs-12 col-sm-8 form-control" id="newPassword" name="newPassword" placeholder="请输入新密码" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="hr hr-dotted"></div>
+
+                                                            <div class="form-group">
+                                                                <label for="newPassword1" class="col-xs-12 col-sm-3 control-label no-padding-right">确认新密码</label>
+                                                                <div class="col-xs-12 col-sm-9">
+                                                                    <div class="clearfix">
+                                                                        <input type="password" class="col-xs-12 col-sm-8 form-control" id="newPassword1" name="newPassword1" placeholder="请确认新密码" />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-info" data-dismiss="modal">关闭
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="updatePasswordBtn">
+                                                确定
+                                            </button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+
+                            </div>
+                        </div>
+
+
+                        <!-- 选取家庭窗口 -->
+                        <div>
+                            <!-- 选取家庭窗口-->
+                            <div class="modal fade" id="getFamilyModal" tabindex="-1" role="dialog" aria-labelledby="getFamilyModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                &times;
+                                            </button>
+                                            <h4 class="modal-title red" id="getFamilyModalLabel">
+                                                <label id="addTitle5">获取家庭地址</label>
+                                            </h4>
+                                        </div>
+
+                                        <div class="modal-body">
+                                            <div class="widget-box widget-color-green2">
+                                                <div class="widget-header">
+                                                    <h4 class="widget-title lighter smaller">
+                                                        <span class="smaller-80"></span>
+                                                    </h4>
+                                                </div>
+
+                                                <div class="widget-body">
+                                                    <div class="widget-main padding-8">
+                                                        <div class="row">
+                                                            <form class="form-inline" role="form">
+                                                                <div class="form-group col-xs-12">
+                                                                    <label class="sr-only control-label" for="s-xm">姓名:</label>
+                                                                    <input type="text" id="s-xm" name="s-xm" class="form-control" placeholder="姓名">
+                                                                    <label class="sr-only control-label" for="s-sfzmhm">身份证明号码:</label>
+                                                                    <input type="text" id="s-sfzmhm" name="s-sfzmhm" class=" form-control" placeholder="身份证明号码">
+                                                                    <label class="sr-only control-label" for="s-lxdh">联系电话:</label>
+                                                                    <input type="text" id="s-lxdh" name="s-lxdh" class="form-control" placeholder="联系电话">
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                        <div class="hr hr-dotted"></div>
+                                                        <div class="row">
+                                                            <form class="form-inline" role="form">
+                                                                <div class="form-group col-xs-12">
+                                                                    <label class="sr-only control-label" for="s-csrq">出生日期:</label>
+                                                                    <div class="input-group">
+                                                                        <input class="form-control date-picker" id="s-csrq" name="s-csrq" type="text" data-date-format="yyyy-mm-dd" placeholder="出生日期"/>
+                                                                        <span class="input-group-addon">
+                                                                        <i class="fa fa-calendar bigger-110"></i>
+                                                                    </span>
+                                                                    </div>
+                                                                    <button type="button" class="btn btn-purple btn-sm" id="searchBtn">
+                                                                        <span class="ace-icon fa fa-search icon-on-right"></span>
+                                                                        查询
+                                                                    </button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+
+                                                        <div class="hr hr-double dotted"></div>
+
+                                                        <table id="grid-table"></table>
+                                                        <div id="grid-pager"></div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-info" data-dismiss="modal">关闭
+                                            </button>
+                                            <button type="button" class="btn btn-primary" id="getFamilyResultBtn">
+                                                确定
+                                            </button>
+                                        </div>
+                                    </div><!-- /.modal-content -->
+                                </div><!-- /.modal -->
+
+                            </div>
+                        </div>
+
+
+
+                        <div class="row">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="red ace-icon fa fa-check"></i>
+                                </span>
+                                <input type="text" class="form-control search-query" id="jtbh" name="jtbh" placeholder="请点击获取按钮获取家庭编号信息" readonly/>
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-purple btn-sm" id="getFamilyBtn" data-toggle="modal" data-target="#getFamilyModal">
+                                        <span class="ace-icon fa fa-search icon-on-right bigger-110"></span>
+                                        获取
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="hr hr-dotted"></div>
+
+                        <div class="row">
+                            <div class="tabbable tabs-left">
+                                <ul class="nav nav-tabs" id="myTab">
+                                    <li class="active">
+                                        <a data-toggle="tab" href="#produce">
+                                            <i class="green ace-icon fa fa-gavel bigger-120"></i>
+                                            生产收入
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a data-toggle="tab" href="#salary">
+                                            <i class="blue ace-icon fa fa-gift bigger-120"></i>
+                                            工资性收入
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a data-toggle="tab" href="#property">
+                                            <i class="green ace-icon fa fa-home bigger-120"></i>
+                                            财产收入
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a data-toggle="tab" href="#transfer">
+                                            <i class="red ace-icon fa fa-fighter-jet bigger-120"></i>
+                                            转移性收入
+                                        </a>
+                                    </li>
+
+                                    <li>
+                                        <a data-toggle="tab" href="#out-poverty">
+                                            <i class="orange2 ace-icon fa fa-asterisk bigger-120"></i>
+                                            其他收入
+                                        </a>
+                                    </li>
+
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div id="produce" class="tab-pane fade in active">
+                                        <div class="widget-box widget-color-green2 table-responsive">
+                                            <div class="widget-header width-auto">
+                                                <h4 class="widget-title width-auto lighter smaller">
+                                                    生产
+                                                    <span class="smaller-80">收入信息</span>
+                                                </h4>
+                                            </div>
+
+                                            <div class="widget-body">
+                                                <div class="widget-main padding-8">
+                                                    <form id="produceIncomeForm">
+                                                    <table class="table table-striped table-bordered table-hover">
+                                                        <thead class="success">
+                                                        <tr class="success">
+                                                            <th class="center " colspan="3" rowspan="2">类别</th>
+                                                            <th class="center" colspan="3">2018年</th>
+                                                            <th class="center" rowspan="2">2019年1-3月</th>
+                                                            <th class="center" rowspan="2">2019年4-6月</th>
+                                                            <th class="center" rowspan="2">2019年7-9月</th>
+                                                            <th class="center" colspan="3" >2019年</th>
+                                                        </tr>
+                                                        <tr class="success">
+                                                            <th class="center">10月</th>
+                                                            <th class="center">11月</th>
+                                                            <th class="center">12月</th>
+                                                            <th class="center">10月</th>
+                                                            <th class="center">11月</th>
+                                                            <th class="center">12月</th>
+                                                        </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td class="center" rowspan="11">一、生产经营性收入</td>
+                                                            <td class="center" rowspan="3">种植业</td>
+                                                            <td class="center">品种</td>
+                                                            <td><input type="text" class="input-mini" id="sr-zzy-1810pz" name="sr-zzy-1810pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-zzy-1811pz" name="sr-zzy-1811pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-zzy-1812pz" name="sr-zzy-1811pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-zzy-1913pz" name="sr-zzy-1913pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-zzy-1946pz" name="sr-zzy-1946pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-zzy-1979pz" name="sr-zzy-1979pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-zzy-1910pz" name="sr-zzy-1910pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-zzy-1911pz" name="sr-zzy-1911pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-zzy-1912pz" name="sr-zzy-1912pz"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">数量</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1810sl" name="sr-zzy-1810sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1811sl" name="sr-zzy-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1812sl" name="sr-zzy-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-zzy-1913sl" name="sr-zzy-1913sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-zzy-1946sl" name="sr-zzy-1946sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-zzy-1979sl" name="sr-zzy-1979sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1910sl" name="sr-zzy-1910sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1911sl" name="sr-zzy-1911sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1912sl" name="sr-zzy-1912sl"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">金额</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1810je" name="sr-zzy-1810je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1811je" name="sr-zzy-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1812je" name="sr-zzy-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-zzy-1913je" name="sr-zzy-1913je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-zzy-1946je" name="sr-zzy-1946je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-zzy-1979je" name="sr-zzy-1979je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1910je" name="sr-zzy-1910je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1911je" name="sr-zzy-1911je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-zzy-1912je" name="sr-zzy-1912je"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" rowspan="3">林业</td>
+                                                            <td class="center">品种</td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1810pz" name="sr-ly-1810pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1811pz" name="sr-ly-1811pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1812pz" name="sr-ly-1811pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-ly-1913pz" name="sr-ly-1913pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-ly-1946pz" name="sr-ly-1946pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-ly-1979pz" name="sr-ly-1979pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1910pz" name="sr-ly-1910pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1911pz" name="sr-ly-1911pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1912pz" name="sr-ly-1912pz"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">数量</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-ly-1810sl" name="sr-ly-1810sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-ly-1811sl" name="sr-ly-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-ly-1812sl" name="sr-ly-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-ly-1913sl" name="sr-ly-1913sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-ly-1946sl" name="sr-ly-1946sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-ly-1979sl" name="sr-ly-1979sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-ly-1910sl" name="sr-ly-1910sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-ly-1911sl" name="sr-ly-1911sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-ly-1912sl" name="sr-ly-1912sl"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">金额</td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1810je" name="sr-ly-1810je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1811je" name="sr-ly-1811je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1812je" name="sr-ly-1811je"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-ly-1913je" name="sr-ly-1913je"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-ly-1946je" name="sr-ly-1946je"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-ly-1979je" name="sr-ly-1979je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1910je" name="sr-ly-1910je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1911je" name="sr-ly-1911je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-ly-1912je" name="sr-ly-1912je"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" rowspan="3">养殖业</td>
+                                                            <td class="center">品种</td>
+                                                            <td><input type="text" class="input-mini" id="sr-yzy-1810pz" name="sr-yzy-1810pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-yzy-1811pz" name="sr-yzy-1811pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-yzy-1812pz" name="sr-yzy-1811pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-yzy-1913pz" name="sr-yzy-1913pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-yzy-1946pz" name="sr-yzy-1946pz"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-yzy-1979pz" name="sr-yzy-1979pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-yzy-1910pz" name="sr-yzy-1910pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-yzy-1911pz" name="sr-yzy-1911pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-yzy-1912pz" name="sr-yzy-1912pz"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">数量</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1810sl" name="sr-yzy-1810sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1811sl" name="sr-yzy-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1812sl" name="sr-yzy-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-yzy-1913sl" name="sr-yzy-1913sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-yzy-1946sl" name="sr-yzy-1946sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-yzy-1979sl" name="sr-yzy-1979sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1910sl" name="sr-yzy-1910sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1911sl" name="sr-yzy-1911sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1912sl" name="sr-yzy-1912sl"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">金额</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1810je" name="sr-yzy-1810je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1811je" name="sr-yzy-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1812je" name="sr-yzy-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-yzy-1913je" name="sr-yzy-1913je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-yzy-1946je" name="sr-yzy-1946je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-yzy-1979je" name="sr-yzy-1979je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1910je" name="sr-yzy-1910je"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="sr-yzy-1911je" name="sr-yzy-1911je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-yzy-1912je" name="sr-yzy-1912je"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" colspan="2">其他</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-qt-1810je" name="sr-qt-1810je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-qt-1811je" name="sr-qt-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-qt-1812je" name="sr-qt-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-qt-1913je" name="sr-qt-1913je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-qt-1946je" name="sr-qt-1946je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="sr-qt-1979je" name="sr-qt-1979je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-qt-1910je" name="sr-qt-1910je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-qt-1911je" name="sr-qt-1911je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="sr-qt-1912je" name="sr-qt-1912je"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" colspan="2">小计</td>
+                                                            <td><input type="text" class="input-mini" id="sr-xj-1810je" name="sr-xj-1810je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-xj-1811je" name="sr-xj-1811je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-xj-1812je" name="sr-xj-1811je"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-xj-1913je" name="sr-xj-1913je"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-xj-1946je" name="sr-xj-1946je"/></td>
+                                                            <td><input type="text" class="input-small" id="sr-xj-1979je" name="sr-xj-1979je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-xj-1910je" name="sr-xj-1910je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-xj-1911je" name="sr-xj-1911je"/></td>
+                                                            <td><input type="text" class="input-mini" id="sr-xj-1912je" name="sr-xj-1912je"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" rowspan="11">二、生产经营性支出</td>
+                                                            <td class="center" rowspan="3">种植业</td>
+                                                            <td class="center">品种</td>
+                                                            <td><input type="text" class="input-mini" id="zc-zzy-1810pz" name="zc-zzy-1810pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-zzy-1811pz" name="zc-zzy-1811pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-zzy-1812pz" name="zc-zzy-1811pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-zzy-1913pz" name="zc-zzy-1913pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-zzy-1946pz" name="zc-zzy-1946pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-zzy-1979pz" name="zc-zzy-1979pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-zzy-1910pz" name="zc-zzy-1910pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-zzy-1911pz" name="zc-zzy-1911pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-zzy-1912pz" name="zc-zzy-1912pz"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">数量</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1810sl" name="zc-zzy-1810sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1811sl" name="zc-zzy-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1812sl" name="zc-zzy-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-zzy-1913sl" name="zc-zzy-1913sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-zzy-1946sl" name="zc-zzy-1946sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-zzy-1979sl" name="zc-zzy-1979sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1910sl" name="zc-zzy-1910sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1911sl" name="zc-zzy-1911sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1912sl" name="zc-zzy-1912sl"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">金额</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1810je" name="zc-zzy-1810je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1811je" name="zc-zzy-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1812je" name="zc-zzy-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-zzy-1913je" name="zc-zzy-1913je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-zzy-1946je" name="zc-zzy-1946je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-zzy-1979je" name="zc-zzy-1979je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1910je" name="zc-zzy-1910je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1911je" name="zc-zzy-1911je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-zzy-1912je" name="zc-zzy-1912je"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" rowspan="3">林业</td>
+                                                            <td class="center">品种</td>
+                                                            <td><input type="text" class="input-mini" id="zc-ly-1810pz" name="zc-ly-1810pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-ly-1811pz" name="zc-ly-1811pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-ly-1812pz" name="zc-ly-1811pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-ly-1913pz" name="zc-ly-1913pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-ly-1946pz" name="zc-ly-1946pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-ly-1979pz" name="zc-ly-1979pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-ly-1910pz" name="zc-ly-1910pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-ly-1911pz" name="zc-ly-1911pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-ly-1912pz" name="zc-ly-1912pz"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">数量</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1810sl" name="zc-ly-1810sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1811sl" name="zc-ly-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1812sl" name="zc-ly-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-ly-1913sl" name="zc-ly-1913sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-ly-1946sl" name="zc-ly-1946sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-ly-1979sl" name="zc-ly-1979sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1910sl" name="zc-ly-1910sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1911sl" name="zc-ly-1911sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1912sl" name="zc-ly-1912sl"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">金额</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1810je" name="zc-ly-1810je"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="zc-ly-1811je" name="zc-ly-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1812je" name="zc-ly-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-ly-1913je" name="zc-ly-1913je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-ly-1946je" name="zc-ly-1946je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-ly-1979je" name="zc-ly-1979je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1910je" name="zc-ly-1910je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1911je" name="zc-ly-1911je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-ly-1912je" name="zc-ly-1912je"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" rowspan="3">养殖业</td>
+                                                            <td class="center">品种</td>
+                                                            <td><input type="text" class="input-mini" id="zc-yzy-1810pz" name="zc-yzy-1810pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-yzy-1811pz" name="zc-yzy-1811pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-yzy-1812pz" name="zc-yzy-1811pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-yzy-1913pz" name="zc-yzy-1913pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-yzy-1946pz" name="zc-yzy-1946pz"/></td>
+                                                            <td><input type="text" class="input-small" id="zc-yzy-1979pz" name="zc-yzy-1979pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-yzy-1910pz" name="zc-yzy-1910pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-yzy-1911pz" name="zc-yzy-1911pz"/></td>
+                                                            <td><input type="text" class="input-mini" id="zc-yzy-1912pz" name="zc-yzy-1912pz"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">数量</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1810sl" name="zc-yzy-1810sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1811sl" name="zc-yzy-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1812sl" name="zc-yzy-1811sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-yzy-1913sl" name="zc-yzy-1913sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-yzy-1946sl" name="zc-yzy-1946sl"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-yzy-1979sl" name="zc-yzy-1979sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1910sl" name="zc-yzy-1910sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1911sl" name="zc-yzy-1911sl"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1912sl" name="zc-yzy-1912sl"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center">金额</td>
+                                                            <td><input type="number" value="0"class="input-mini" id="zc-yzy-1810je" name="zc-yzy-1810je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1811je" name="zc-yzy-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1812je" name="zc-yzy-1811je"/></td>
+                                                            <td><input type="number" value="0"class="input-small" id="zc-yzy-1913je" name="zc-yzy-1913je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-yzy-1946je" name="zc-yzy-1946je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-yzy-1979je" name="zc-yzy-1979je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1910je" name="zc-yzy-1910je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1911je" name="zc-yzy-1911je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-yzy-1912je" name="zc-yzy-1912je"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" colspan="2">其他</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-xj-1810je" name="zc-xj-1810je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-xj-1811je" name="zc-xj-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-xj-1812je" name="zc-xj-1811je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-xj-1913je" name="zc-xj-1913je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-xj-1946je" name="zc-xj-1946je"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zc-xj-1979je" name="zc-xj-1979je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-xj-1910je" name="zc-xj-1910je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-xj-1911je" name="zc-xj-1911je"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zc-xj-1912je" name="zc-xj-1912je"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="center" colspan="2">小计</td>
+                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="text" class="input-small"/></td>
+                                                            <td><input type="text" class="input-small"/></td>
+                                                            <td><input type="text" class="input-small"/></td>
+                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="text" class="input-mini"/></td>
+                                                            <td><input type="text" class="input-mini"/></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                    <div class="row">
+                                                        <div class="center">
+                                                            <button  class="btn btn-danger" id="addProduceIncomeBtn" type="button">提交</button>
+                                                        </div>
+                                                    </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div><!--id=produce-->
+
+                                    <div id="salary" class="tab-pane fade">
+                                        <div class="widget-box widget-color-green2 table-responsive">
+                                            <div class="widget-header width-auto">
+                                                <h4 class="widget-title width-auto lighter smaller">
+                                                    工资
+                                                    <span class="smaller-80">收入信息</span>
+                                                </h4>
+                                            </div>
+
+                                            <div class="widget-body">
+                                                <div class="widget-main padding-8">
+                                                    <form id="salaryIncomeForm">
+                                                    <table class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                        <tr class="success">
+                                                            <th class="center" rowspan="2">类别</th>
+                                                            <th class="center" rowspan="2">姓名</th>
+                                                            <th class="center" rowspan="2">务工工种</th>
+                                                            <th class="center" rowspan="2">务工省/市/县/乡</th>
+                                                            <th class="center" rowspan="2">务工累计时间(月)</th>
+                                                            <th class="center" rowspan="2">务工企业(单位)名称</th>
+                                                            <th class="center" colspan="3">2018年</th>
+                                                            <th class="center" rowspan="2">2019年1-3月</th>
+                                                            <th class="center" rowspan="2">2019年4-6月</th>
+                                                            <th class="center" rowspan="2">2019年7-9月</th>
+                                                            <th class="center" colspan="3" >2019年</th>
+                                                        </tr>
+                                                        <tr class="success">
+                                                            <th class="center">10月</th>
+                                                            <th class="center">11月</th>
+                                                            <th class="center">12月</th>
+                                                            <th class="center">10月</th>
+                                                            <th class="center">11月</th>
+                                                            <th class="center">12月</th>
+                                                        </tr>
+
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td rowspan="7">三、工资性收入(劳务收入)</td>
+                                                            <td><input type="text" class="input-mini" id="gz_xm1" name="gz_xm1"/></td>
+                                                            <td><input type="text" class="input-mini" id="gz_gz1" name="gz_gz1"/></td>
+                                                            <td><input type="text" class="input-small" id="gz_dz1" name="gz_dz1"/></td>
+                                                            <td><input type="text" class="input-mini" id="gz_sj1" name="gz_sj1"/></td>
+                                                            <td><input type="text" class="input-small" id="gz_dw1" name="gz_dw1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1810je1" name="gz_1810je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1811je1" name="gz_1811je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1812je1" name="gz_1812je1"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1913je1" name="gz_1913je1"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1946je1" name="gz_1946je1"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1979je1" name="gz_1979je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1910je1" name="gz_1910je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1911je1" name="gz_1911je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1912je1" name="gz_1912je1"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="text" class="input-mini" id="gz_xm2" name="gz_xm2"/></td>
+                                                            <td><input type="text" class="input-mini" id="gz_gz2" name="gz_gz2"/></td>
+                                                            <td><input type="text" class="input-small" id="gz_dz2" name="gz_dz2"/></td>
+                                                            <td><input type="text" class="input-mini" id="gz_sj2" name="gz_sj2"/></td>
+                                                            <td><input type="text" class="input-small" id="gz_dw2" name="gz_dw2"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1810je2" name="gz_1810je2"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1811je2" name="gz_1811je2"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1812je2" name="gz_1812je2"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1913je2" name="gz_1913je2"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1946je2" name="gz_1946je2"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1979je2" name="gz_1979je2"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1910je2" name="gz_1910je2"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1911je2" name="gz_1911je2"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1912je2" name="gz_1912je2"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="text" class="input-mini" id="gz_xm3" name="gz_xm3"/></td>
+                                                            <td><input type="text" class="input-mini" id="gz_gz3" name="gz_gz3"/></td>
+                                                            <td><input type="text" class="input-small" id="gz_dz3" name="gz_dz3"/></td>
+                                                            <td><input type="text" class="input-mini" id="gz_sj3" name="gz_sj3"/></td>
+                                                            <td><input type="text" class="input-small" id="gz_dw3" name="gz_dw3"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1810je3" name="gz_1810je3"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1811je3" name="gz_1811je3"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1812je3" name="gz_1812je3"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1913je3" name="gz_1913je3"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1946je3" name="gz_1946je3"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1979je3" name="gz_1979je3"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1910je3" name="gz_1910je3"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1911je3" name="gz_1911je3"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1912je3" name="gz_1912je3"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="text" class="input-mini" id="gz_xm4" name="gz_xm4"/></td>
+                                                            <td><input type="text" class="input-mini" id="gz_gz4" name="gz_gz4"/></td>
+                                                            <td><input type="text" class="input-small" id="gz_dz4" name="gz_dz4"/></td>
+                                                            <td><input type="text" class="input-mini" id="gz_sj4" name="gz_sj4"/></td>
+                                                            <td><input type="text" class="input-small" id="gz_dw4" name="gz_dw4"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1810je4" name="gz_1810je4"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1811je4" name="gz_1811je4"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1812je4" name="gz_1812je4"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1913je4" name="gz_1913je4"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1946je4" name="gz_1946je4"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1979je4" name="gz_1979je4"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1910je4" name="gz_1910je4"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1911je4" name="gz_1911je4"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1912je4" name="gz_1912je4"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><input type="text" class="input-mini" id="gz_xm5" name="gz_xm5"/></td>
+                                                            <td><input type="text" class="input-mini" id="gz_gz5" name="gz_gz5"/></td>
+                                                            <td><input type="text" class="input-small" id="gz_dz5" name="gz_dz5"/></td>
+                                                            <td><input type="text" class="input-mini" id="gz_sj5" name="gz_sj5"/></td>
+                                                            <td><input type="text" class="input-small" id="gz_dw5" name="gz_dw5"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1810je5" name="gz_1810je5"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1811je5" name="gz_1811je5"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1812je5" name="gz_1812je5"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1913je5" name="gz_1913je5"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1946je5" name="gz_1946je5"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1979je5" name="gz_1979je5"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1910je5" name="gz_1910je5"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1911je5" name="gz_1911je5"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1912je5" name="gz_1912je5"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="5">其他</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1810je6" name="gz_1810je6"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1811je6" name="gz_1811je6"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1812je6" name="gz_1812je6"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1913je6" name="gz_1913je6"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1946je6" name="gz_1946je6"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1979je6" name="gz_1979je6"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1910je6" name="gz_1910je6"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1911je6" name="gz_1911je6"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1912je6" name="gz_1912je6"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="5">小计</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1810je7" name="gz_1810je7"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1811je7" name="gz_1811je7"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1812je7" name="gz_1812je7"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1913je7" name="gz_1913je7"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1946je7" name="gz_1946je7"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="gz_1979je7" name="gz_1979je7"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1910je7" name="gz_1910je7"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1911je7" name="gz_1911je7"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="gz_1912je7" name="gz_1912je7"/></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                        <div class="row">
+                                                            <div class="center">
+                                                                <button  class="btn btn-danger" id="addSalaryIncomeBtn" type="button">提交</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="property" class="tab-pane fade">
+                                        <div class="widget-box widget-color-green2 table-responsive">
+                                            <div class="widget-header width-auto">
+                                                <h4 class="widget-title width-auto lighter smaller col-xs-12">
+                                                    财产
+                                                    <span class="smaller-80">收入信息</span>
+                                                </h4>
+                                            </div>
+
+                                            <div class="widget-body">
+                                                <div class="widget-main padding-8">
+                                                    <form id="propertyIncomeForm">
+                                                    <table class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                        <tr class="success">
+                                                            <th class="center" rowspan="2" colspan="2">类别</th>
+                                                            <th class="center" colspan="3">2018年</th>
+                                                            <th class="center" rowspan="2">2019年1-3月</th>
+                                                            <th class="center" rowspan="2">2019年4-6月</th>
+                                                            <th class="center" rowspan="2">2019年7-9月</th>
+                                                            <th class="center" colspan="3" >2019年</th>
+                                                        </tr>
+                                                        <tr class="success">
+                                                            <th class="center">10月</th>
+                                                            <th class="center">11月</th>
+                                                            <th class="center">12月</th>
+                                                            <th class="center">10月</th>
+                                                            <th class="center">11月</th>
+                                                            <th class="center">12月</th>
+                                                        </tr>
+
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td rowspan="3">四、财产性收入</td>
+                                                            <td>(一)资产收益扶贫分红收入</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="cc_1810je1" name="cc_1810je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="cc_1811je1" name="cc_1811je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="cc_1812je1" name="cc_1812je1"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="cc_1913je1" name="cc_1913je1"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="cc_1946je1" name="cc_1946je1"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="cc_1979je1" name="cc_1979je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="cc_1910je1" name="cc_1910je1"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="cc_1911je1" name="cc_1911je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="cc_1912je1" name="cc_1912je1"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(二)其他</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="cc_1810je2" name="cc_1810je2"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="cc_1811je2" name="cc_1811je2"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="cc_1812je2" name="cc_1812je2"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="cc_1913je2" name="cc_1913je2"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="cc_1946je2" name="cc_1946je2"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="cc_1979je2" name="cc_1979je2"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="cc_1910je2" name="cc_1910je2"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="cc_1911je2" name="cc_1911je2"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="cc_1912je2" name="cc_1912je2"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>小计</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="cc_1810je_count" name="cc_1810je_count"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="cc_1811je_count" name="cc_1811je_count"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="cc_1812je_count" name="cc_1812je_count"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="cc_1913je_count" name="cc_1913je_count"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="cc_1946je_count" name="cc_1946je_count"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="cc_1979je_count" name="cc_1979je_count"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="cc_1910je_count" name="cc_1910je_count"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="cc_1911je_count" name="cc_1911je_count"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="cc_1912je_count" name="cc_1912je_count"/></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                        <div class="row">
+                                                            <div class="center">
+                                                                <button  class="btn btn-danger" id="addPropertyIncomeBtn" type="button">提交</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div id="transfer" class="tab-pane fade">
+                                        <div class="widget-box widget-color-green2 table-responsive">
+                                            <div class="widget-header width-auto">
+                                                <h4 class="widget-title width-auto lighter smaller col-xs-12">
+                                                    转移
+                                                    <span class="smaller-80">收入信息</span>
+                                                </h4>
+                                            </div>
+
+                                            <div class="widget-body">
+                                                <div class="widget-main padding-8">
+                                                    <form id="transferIncomeForm">
+                                                    <table class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                        <tr class="success">
+                                                            <th class="center" rowspan="2" colspan="3">类别</th>
+                                                            <th class="center" colspan="3">2018年</th>
+                                                            <th class="center" rowspan="2">2019年1-3月</th>
+                                                            <th class="center" rowspan="2">2019年4-6月</th>
+                                                            <th class="center" rowspan="2">2019年7-9月</th>
+                                                            <th class="center" colspan="3" >2019年</th>
+                                                        </tr>
+                                                        <tr class="success">
+                                                            <th class="center">10月</th>
+                                                            <th class="center">11月</th>
+                                                            <th class="center">12月</th>
+                                                            <th class="center">10月</th>
+                                                            <th class="center">11月</th>
+                                                            <th class="center">12月</th>
+                                                        </tr>
+
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td rowspan="13">五、转移性收入</td>
+                                                            <td colspan="2">(一)计划生育金</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1810je1" name="zy_1810je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1811je1" name="zy_1811je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1812je1" name="zy_1812je1"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1913je1" name="zy_1913je1"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1946je1" name="zy_1946je1"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1979je1" name="zy_1979je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1910je1" name="zy_1910je1"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="zy_1911je1" name="zy_1911je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1912je1" name="zy_1912je1"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td rowspan="3">(二)低保金</td>
+                                                            <td> A </td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1810je2A" name="zy_1810je2A"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1811je2A" name="zy_1811je2A"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1812je2A" name="zy_1812je2A"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1913je2A" name="zy_1913je2A"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1946je2A" name="zy_1946je2A"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1979je2A" name="zy_1979je2A"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1910je2A" name="zy_1910je2A"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="zy_1911je2A" name="zy_1911je2A"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1912je2A" name="zy_1912je2A"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> B </td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1810je2B" name="zy_1810je2B"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1811je2B" name="zy_1811je2B"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1812je2B" name="zy_1812je2B"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1913je2B" name="zy_1913je2B"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1946je2B" name="zy_1946je2B"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1979je2B" name="zy_1979je2B"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1910je2B" name="zy_1910je2B"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="zy_1911je2B" name="zy_1911je2B"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1912je2B" name="zy_1912je2B"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> C </td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1810je2C" name="zy_1810je2C"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1811je2C" name="zy_1811je2C"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1812je2C" name="zy_1812je2C"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1913je2C" name="zy_1913je2C"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1946je2C" name="zy_1946je2C"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1979je2C" name="zy_1979je2C"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1910je2C" name="zy_1910je2C"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="zy_1911je2C" name="zy_1911je2C"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1912je2C" name="zy_1912je2C"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">(三)特困供养金</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1810je3" name="zy_1810je3"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1811je3" name="zy_1811je3"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1812je3" name="zy_1812je3"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1913je3" name="zy_1913je3"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1946je3" name="zy_1946je3"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1979je3" name="zy_1979je3"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1910je3" name="zy_1910je3"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="zy_1911je3" name="zy_1911je3"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1912je3" name="zy_1912je3"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">(四)养老保险金</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1810je4" name="zy_1810je4"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1811je4" name="zy_1811je4"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1812je4" name="zy_1812je4"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1913je4" name="zy_1913je4"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1946je4" name="zy_1946je4"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1979je4" name="zy_1979je4"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1910je4" name="zy_1910je4"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="zy_1911je4" name="zy_1911je4"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1912je4" name="zy_1912je4"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">(五)生态补偿金(林业补贴)</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1810je5" name="zy_1810je5"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1811je5" name="zy_1811je5"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1812je5" name="zy_1812je5"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1913je5" name="zy_1913je5"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1946je5" name="zy_1946je5"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1979je5" name="zy_1979je5"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1910je5" name="zy_1910je5"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="zy_1911je5" name="zy_1911je5"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1912je5" name="zy_1912je5"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">(六)困难残疾人生活补贴和重度残疾人护理补贴</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1810je6" name="zy_1810je6"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1811je6" name="zy_1811je6"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1812je6" name="zy_1812je6"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1913je6" name="zy_1913je6"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1946je6" name="zy_1946je6"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1979je6" name="zy_1979je6"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1910je6" name="zy_1910je6"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="zy_1911je6" name="zy_1911je6"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1912je6" name="zy_1912je6"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">(七)农业补贴</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1810je7" name="zy_1810je7"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1811je7" name="zy_1811je7"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1812je7" name="zy_1812je7"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1913je7" name="zy_1913je7"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1946je7" name="zy_1946je7"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1979je7" name="zy_1979je7"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1910je7" name="zy_1910je7"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="zy_1911je7" name="zy_1911je7"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1912je7" name="zy_1912je7"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">(八)高龄补贴</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1810je8" name="zy_1810je8"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1811je8" name="zy_1811je8"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1812je8" name="zy_1812je8"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1913je8" name="zy_1913je8"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1946je8" name="zy_1946je8"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1979je8" name="zy_1979je8"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1910je8" name="zy_1910je8"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="zy_1911je8" name="zy_1911je8"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1912je8" name="zy_1912je8"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">(九)水库移民补贴</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1810je9" name="zy_1810je9"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1811je9" name="zy_1811je9"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1812je9" name="zy_1812je9"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1913je9" name="zy_1913je9"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1946je9" name="zy_1946je9"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1979je9" name="zy_1979je9"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1910je9" name="zy_1910je9"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="zy_1911je9" name="zy_1911je9"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1912je9" name="zy_1912je9"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">(十)其他长期性(3年以上，不含3年)的政府性补助</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1810je10" name="zy_1810je10"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1811je10" name="zy_1811je10"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1812je10" name="zy_1812je10"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1913je10" name="zy_1913je10"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1946je10" name="zy_1946je10"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="zy_1979je10" name="zy_1979je10"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1910je10" name="zy_1910je10"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="zy_1911je10" name="zy_1911je10"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="zy_1912je10" name="zy_1912je10"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="2">(六)—(十)项  小计</td>
+                                                            <td colspan="4"><input type="text" class="input-medium"/></td>
+                                                            <td colspan="2">(一)—(十)项  小计</td>
+                                                            <td colspan="3"><input type="text" class="input-medium"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="3">六、家庭稳定总收入=(一 + 三 + 四 + 五)</td>
+                                                            <td colspan="8"><input type="text" class="input-large"/></td>
+                                                            <td> / </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="3">七、家庭稳定纯收入=(六 - 二)</td>
+                                                            <td colspan="8"><input type="text" class="input-large"/></td>
+                                                            <td> / </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td colspan="3">八、家庭稳定年人均纯收入=七 + 年底家庭人口数</td>
+                                                            <td colspan="8"><input type="text" class="input-large"/></td>
+                                                            <td> / </td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                        <div class="row">
+                                                            <div class="center">
+                                                                <button  class="btn btn-danger" id="addTransferIncomeBtn" type="button">提交</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div id="out-poverty" class="tab-pane fade">
+                                        <div class="widget-box widget-color-green2 table-responsive">
+                                            <div class="widget-header width-auto">
+                                                <h4 class="widget-title width-auto lighter smaller col-xs-12">
+                                                    不计入家庭稳定脱贫
+                                                    <span class="smaller-80">收入项目</span>
+                                                </h4>
+                                            </div>
+
+                                            <div class="widget-body">
+                                                <div class="widget-main padding-8">
+                                                    <form id="outPovertyIncomeForm">
+                                                    <table class="table table-striped table-bordered table-hover">
+                                                        <thead>
+                                                        <tr class="success">
+                                                            <th class="center" rowspan="2" colspan="2">类别</th>
+                                                            <th class="center" colspan="3">2018年</th>
+                                                            <th class="center" rowspan="2">2019年1-3月</th>
+                                                            <th class="center" rowspan="2">2019年4-6月</th>
+                                                            <th class="center" rowspan="2">2019年7-9月</th>
+                                                            <th class="center" colspan="3" >2019年</th>
+                                                        </tr>
+                                                        <tr class="success">
+                                                            <th class="center">10月</th>
+                                                            <th class="center">11月</th>
+                                                            <th class="center">12月</th>
+                                                            <th class="center">10月</th>
+                                                            <th class="center">11月</th>
+                                                            <th class="center">12月</th>
+                                                        </tr>
+
+                                                        </thead>
+                                                        <tbody>
+                                                        <tr>
+                                                            <td rowspan="12">九、不计入家庭稳定脱贫</td>
+                                                            <td>(一)教育保障类(雨露计划补助、"两后生"培训补助、教育助学金等)</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1810je1" name="op_1810je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1811je1" name="op_1811je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1812je1" name="op_1812je1"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1913je1" name="op_1913je1"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1946je1" name="op_1946je1"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1979je1" name="op_1979je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1910je1" name="op_1910je1"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="op_1911je1" name="op_1911je1"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1912je1" name="op_1912je1"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(二)医疗保障类(城乡居民基本医疗保险、大病保险、医疗救助、财政补助(补充商业医疗保险)等.需注明医疗费用总额及获得的报销和补助金额)</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1810je2" name="op_1810je2"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1811je2" name="op_1811je2"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1812je2" name="op_1812je2"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1913je2" name="op_1913je2"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1946je2" name="op_1946je2"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1979je2" name="op_1979je2"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1910je2" name="op_1910je2"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="op_1911je2" name="op_1911je2"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1912je2" name="op_1912je2"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(三)住房保障类(易地扶贫搬迁、危房改造等补助)</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1810je3" name="op_1810je3"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1811je3" name="op_1811je3"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1812je3" name="op_1812je3"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1913je3" name="op_1913je3"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1946je3" name="op_1946je3"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1979je3" name="op_1979je3"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1910je3" name="op_1910je3"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="op_1911je3" name="op_1911je3"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1912je3" name="op_1912je3"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(四)产业奖补类</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1810je4" name="op_1810je4"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1811je4" name="op_1811je4"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1812je4" name="op_1812je4"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1913je4" name="op_1913je4"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1946je4" name="op_1946je4"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1979je4" name="op_1979je4"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1910je4" name="op_1910je4"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="op_1911je4" name="op_1911je4"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1912je4" name="op_1912je4"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(五)金融类(扶贫小额贷款)</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1810je5" name="op_1810je5"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1811je5" name="op_1811je5"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1812je5" name="op_1812je5"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1913je5" name="op_1913je5"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1946je5" name="op_1946je5"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1979je5" name="op_1979je5"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1910je5" name="op_1910je5"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="op_1911je5" name="op_1911je5"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1912je5" name="op_1912je5"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(六)社会保障类(临时救助金等)</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1810je6" name="op_1810je6"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1811je6" name="op_1811je6"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1812je6" name="op_1812je6"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1913je6" name="op_1913je6"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1946je6" name="op_1946je6"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1979je6" name="op_1979je6"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1910je6" name="op_1910je6"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="op_1911je6" name="op_1911je6"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1912je6" name="op_1912je6"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(七)保险赔付金</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1810je7" name="op_1810je7"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1811je7" name="op_1811je7"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1812je7" name="op_1812je7"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1913je7" name="op_1913je7"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1946je7" name="op_1946je7"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1979je7" name="op_1979je7"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1910je7" name="op_1910je7"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="op_1911je7" name="op_1911je7"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1912je7" name="op_1912je7"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(八)残疾人补贴(除困难残疾人生活补贴和重度残疾人护理补贴)</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1810je8" name="op_1810je8"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1811je8" name="op_1811je8"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1812je8" name="op_1812je8"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1913je8" name="op_1913je8"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1946je8" name="op_1946je8"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1979je8" name="op_1979je8"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1910je8" name="op_1910je8"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="op_1911je8" name="op_1911je8"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1912je8" name="op_1912je8"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(九)捐赠金、慰问金、短期性赡养金、抚养金等</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1810je9" name="op_1810je9"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1811je9" name="op_1811je9"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1812je9" name="op_1812je9"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1913je9" name="op_1913je9"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1946je9" name="op_1946je9"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1979je9" name="op_1979je9"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1910je9" name="op_1910je9"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="op_1911je9" name="op_1911je9"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1912je9" name="op_1912je9"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(十)短期性抚恤金、优待金、补助金、保健金、伤残治疗费、护理费、丧葬费</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1810je10" name="op_1810je10"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1811je10" name="op_1811je10"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1812je10" name="op_1812je10"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1913je10" name="op_1913je10"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1946je10" name="op_1946je10"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1979je10" name="op_1979je10"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1910je10" name="op_1910je10"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="op_1911je10" name="op_1911je10"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1912je10" name="op_1912je10"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>(十一)其他短期性(3年以下，含3年)的政策性补助</td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1810je11" name="op_1810je11"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1811je11" name="op_1811je11"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1812je11" name="op_1812je11"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1913je11" name="op_1913je11"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1946je11" name="op_1946je11"/></td>
+                                                            <td><input type="number" value="0" class="input-small" id="op_1979je11" name="op_1979je11"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1910je11" name="op_1910je11"/></td>
+                                                            <td><input type="number" value="0"class="input-mini" id="op_1911je11" name="op_1911je11"/></td>
+                                                            <td><input type="number" value="0" class="input-mini" id="op_1912je11" name="op_1912je11"/></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>小计</td>
+                                                            <td colspan="9"><input type="text" class="input-large"/></td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                        <div class="row">
+                                                            <div class="center">
+                                                                <button  class="btn btn-danger" id="addOutPovertyIncomeBtn" type="button">提交</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hr hr-double dotted"></div>
+
+
+                        <!-- PAGE CONTENT BEGINS -->
+
+                        <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row --><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
+
+    <div class="footer">
+        <div class="footer-inner">
+            <div class="footer-content">
+						<span class="bigger-120">
+							<span class="blue bolder">Fov</span>
+							Application &copy; 2016-2019
+						</span>
+
+                &nbsp; &nbsp;
+                <span class="action-buttons">
+							<a href="#">
+								<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+							</a>
+
+							<a href="#">
+								<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+							</a>
+
+							<a href="#">
+								<i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+							</a>
+						</span>
+            </div>
+        </div>
+    </div>
+
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->
+
+<!-- basic scripts -->
+
+<!--[if !IE]> -->
+<script th:src="@{/static/js/jquery-2.1.4.min.js}"></script>
+
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script th:src="@{/static/js/jquery-1.11.3.min.js}"></script>
+<![endif]-->
+<script type="text/javascript">
+    if ('ontouchstart' in document.documentElement) document.write("<script src='/static/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+</script>
+<script th:src="@{/static/js/bootstrap.min.js}"></script>
+
+<!-- page specific plugin scripts -->
+<script th:src="@{/static/js/wizard.min.js}"></script>
+<script th:src="@{/static/js/jquery.validate.min.js}"></script>
+<script th:src="@{/static/js/jquery-additional-methods.min.js}"></script>
+<script th:src="@{/static/js/bootbox.js}"></script>
+<script th:src="@{/static/js/jquery.maskedinput.min.js}"></script>
+<script th:src="@{/static/js/select2.min.js}"></script>
+<script th:src="@{/static/js/jquery.jqGrid.min.js}"></script>
+<script th:src="@{/static/js/grid.locale-en.js}"></script>
+<script th:src="@{/static/js/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/static/js/bootstrap-timepicker.min.js}"></script>
+<script th:src="@{/static/js/moment.min.js}"></script>
+<script th:src="@{/static/js/bootstrap-datetimepicker.min.js}"></script>
+<script th:src="@{/static/js/bootstrap-colorpicker.min.js}"></script>
+<script th:src="@{/static/js/bootstrap-treeview.js}"></script>
+
+<!-- ace scripts -->
+<script th:src="@{/static/js/ace-elements.min.js}"></script>
+<script th:src="@{/static/js/ace.min.js}"></script>
+
+<!-- 引入JQuery提示库 start-->
+<script th:src="@{/static/js/jquery.tips.js}"></script>
+
+<!-- inline scripts related to this page -->
+<script type="text/javascript">
+
+
+    jQuery(function ($) {
+
+
+        //去首页方法
+        $("#toIndex").on("click",function () {
+            window.location.href="/toIndex";
+        });
+
+
+
+        //修改密码方法
+        $("#updatePasswordBtn").on("click",function () {
+            if($("#newPassword").val()!=$("#newPassword1").val()){
+                $("#newPassword1").tips({
+                    side : 3,
+                    msg : '两次输入的密码不一致！',
+                    bg : '#ff1642',
+                    time : 3
+                });
+            }else if($("#newPassword").val().length<6){
+                $("#newPassword1").tips({
+                    side : 3,
+                    msg : '密码长度必须大于等于6位！',
+                    bg : '#ff1642',
+                    time : 3
+                });
+            } else{
+                var oldPassword = $("#oldPassword").val();
+                var newPassword = $("#newPassword").val();
+                $.ajax({
+                    type: "POST",//请求方式为POST
+                    url: "/user/password",//检验url
+                    data:{
+                        "oldPassword":oldPassword,
+                        "newPassword":newPassword
+                    },
+                    dataType: 'json',//数据类型为JSON类型
+                    cache: false,//关闭缓存
+                    success: function (data) {
+                        if(data.status==1){
+                            alert("密码修改成功！");
+                        }else if(data.result=="errorPw"){
+                            $("#oldPassword").focus();
+                            $("#oldPassword").tips({
+                                side : 3,
+                                msg : '原密码输入错误！',
+                                bg : '#ff1642',
+                                time : 3
+                            });
+                        }else {
+                            alert("发生不可预测的错误，请联系管理员！");
+                        }
+                    }//响应成功
+                })
+            }
+        });
+
+        var grid_selector = "#grid-table";
+        var pager_selector = "#grid-pager";
+
+
+        var parent_column = $(grid_selector).closest('[class*="widget-main"]');
+        //var parent_column = $(grid_selector).closest("div");
+        //resize to fit page size
+        $(window).on('resize.jqGrid', function () {
+            $(grid_selector).jqGrid( 'setGridWidth', parent_column.width()-10 );
+        });
+
+        //resize on sidebar collapse/expand
+        $(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
+            if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
+                //setTimeout is for webkit only to give time for DOM changes and then redraw!!!
+                setTimeout(function() {
+                    $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
+                }, 20);
+            }
+        });
+
+        jQuery(grid_selector).jqGrid({
+            datatype: "json",//数据封装方式为json
+            url: '/ym/all',
+            mtype:"POST",
+            // ajaxGridOptions: { contentType: 'application/json; charset=utf-8' },
+            // serializeGridData: function (postData)
+            // {
+            //     if (postData.searchField === undefined) postData.searchField = null;
+            //     if (postData.searchString === undefined) postData.searchString = null;
+            //     if (postData.searchOper === undefined) postData.searchOper = null;
+            //     alert(JSON.stringify(postData));
+            //     return JSON.stringify(postData);
+            // },
+            height: 250,
+            shrinkToFit:true,
+            colNames:['人员编号','家庭编号','姓名','性别','身份证明号码','身份证签发机关','身份证有效期始','身份证有效期止','与户主关系','民族','出生日期','政治面貌','文化程度','在校生情况','失学或辍学原因','健康情况','劳动技能情况','是否会讲普通话','是否现役军人','是否参加城乡居民基本医疗保险','是否参加商业补充医疗保险','是否享受低保','是否参加城乡居民基本养老保险','是否享受人身意外保险补贴','联系电话'],
+            colModel:[
+                {name:'rybh',       index:'rybh',       width:60, fixed:true, editable:true, sorttype:"int" },
+                {name:'jtbh',       index:'jtbh',       width:60, fixed:true, editable:true, sorttype:"int" },
+                {name:'xm',         index:'xm',         width:60, fixed:true, editable:true,                 },
+                {name:'xb',         index:'xb',         width:40, fixed:true, editable:true,                 },
+                {name:'sfzmhm',     index:'sfzmhm',     width:140, fixed:true, editable:true,                 },
+                {name:'qfjg',       index:'qfjg',       width:150, fixed:true, editable:true,                 },
+                {name:'sfzyxqs',    index:'sfzyxqs',    width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'sfzyxqz',    index:'sfzyxqz',    width:120, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'yhzgx',      index:'yhzgx',      width:80, fixed:true, editable:true,                 },
+                {name:'mz',         index:'mz',         width:40, fixed:true, editable:true,                 },
+                {name:'csrq',       index:'csrq',       width:70, fixed:true, editable:true, sorttype:"date", unformat: pickDate },
+                {name:'zzmm',       index:'zzmm',       width:70, fixed:true, editable:true,                 },
+                {name:'whcd',       index:'whcd',       width:70, fixed:true, editable:true,                 },
+                {name:'zxsqk',      index:'zxsqk',      width:80, fixed:true, editable:true,                 },
+                {name:'sxhcxyy',    index:'sxhcxyy',    width:110, fixed:true, editable:true,                 },
+                {name:'jkqk',       index:'jkqk',       width:70, fixed:true, editable:true,                 },
+                {name:'ldjn',       index:'ldjn',       width:90, fixed:true, editable:true,                 },
+                {name:'sfhjpth',    index:'sfhjpth',    width:110, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfxyjr',     index:'sfxyjr',     width:90, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfcjylbx1',  index:'sfcjylbx1',  width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfcjsybx',   index:'sfcjsybx',   width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfxsdb',     index:'sfxsdb',     width:90, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfcjylbx2',  index:'sfcjylbx2',  width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'sfxsywbxbt', index:'sfxsywbxbt', width:200, fixed:true, editable:true, edittype:"checkbox",                 editoptions:{value: "Yes:No"}, unformat: aceSwitch},
+                {name:'lxdh',       index:'lxdh',       width:90, fixed:true, editable:true                  }
+            ],
+            viewrecords : true,
+            rowNum:10,
+            rowList:[10,20,30],
+            pager : pager_selector,
+            altRows: true,
+            //toppager: true,
+
+            multiselect: true,
+            multiboxonly: true,
+
+            loadComplete : function() {
+                var table = this;
+                setTimeout(function(){
+                    styleCheckbox(table);
+
+                    updateActionIcons(table);
+                    updatePagerIcons(table);
+                    enableTooltips(table);
+                }, 0);
+            },
+
+            editurl: "./dummy.php",//nothing is saved
+            caption: "贫困人员信息列表"
+
+        });
+        $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
+
+
+
+        //enable search/filter toolbar
+        //jQuery(grid_selector).jqGrid('filterToolbar',{defaultSearch:true,stringResult:true})
+        //jQuery(grid_selector).filterToolbar({});
+
+
+        //switch element when editing inline
+        function aceSwitch( cellvalue, options, cell ) {
+            setTimeout(function(){
+                $(cell) .find('input[type=checkbox]')
+                    .addClass('ace ace-switch ace-switch-5')
+                    .after('<span class="lbl"></span>');
+            }, 0);
+        }
+        //enable datepicker
+        function pickDate( cellvalue, options, cell ) {
+            setTimeout(function(){
+                $(cell) .find('input[type=text]')
+                    .datepicker({format:'yyyy-mm-dd' , autoclose:true});
+            }, 0);
+        }
+
+
+        //navButtons
+        jQuery(grid_selector).jqGrid('navGrid',pager_selector,
+            { 	//navbar options
+                edit: true,
+                editicon : 'ace-icon fa fa-pencil blue',
+                add: true,
+                addicon : 'ace-icon fa fa-plus-circle purple',
+                del: true,
+                delicon : 'ace-icon fa fa-trash-o red',
+                search: true,
+                searchicon : 'ace-icon fa fa-search orange',
+                refresh: true,
+                refreshicon : 'ace-icon fa fa-refresh green',
+                view: true,
+                viewicon : 'ace-icon fa fa-search-plus grey',
+            },
+            {
+                //edit record form
+                //closeAfterEdit: true,
+                //width: 700,
+                recreateForm: true,
+                beforeShowForm : function(e) {
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                    style_edit_form(form);
+                }
+            },
+            {
+                //new record form
+                //width: 700,
+                closeAfterAdd: true,
+                recreateForm: true,
+                viewPagerButtons: false,
+                beforeShowForm : function(e) {
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar')
+                        .wrapInner('<div class="widget-header" />')
+                    style_edit_form(form);
+                }
+            },
+            {
+                //delete record form
+                recreateForm: true,
+                beforeShowForm : function(e) {
+                    var form = $(e[0]);
+                    if(form.data('styled')) return false;
+
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+                    style_delete_form(form);
+
+                    form.data('styled', true);
+                },
+                onClick : function(e) {
+                    //alert(1);
+                }
+            },
+            {
+                //search form
+                recreateForm: true,
+                afterShowSearch: function(e){
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+                    style_search_form(form);
+                },
+                afterRedraw: function(){
+                    style_search_filters($(this));
+                }
+                ,
+                multipleSearch: true,
+                /**
+                 multipleGroup:true,
+                 showQuery: true
+                 */
+            },
+            {
+                //view record form
+                recreateForm: true,
+                beforeShowForm: function(e){
+                    var form = $(e[0]);
+                    form.closest('.ui-jqdialog').find('.ui-jqdialog-title').wrap('<div class="widget-header" />')
+                }
+            }
+        )
+
+
+
+        function style_edit_form(form) {
+            //enable datepicker on "sdate" field and switches for "stock" field
+            form.find('input[name=sdate]').datepicker({format:'yyyy-mm-dd' , autoclose:true})
+
+            form.find('input[name=stock]').addClass('ace ace-switch ace-switch-5').after('<span class="lbl"></span>');
+            //don't wrap inside a label element, the checkbox value won't be submitted (POST'ed)
+            //.addClass('ace ace-switch ace-switch-5').wrap('<label class="inline" />').after('<span class="lbl"></span>');
+
+
+            //update buttons classes
+            var buttons = form.next().find('.EditButton .fm-button');
+            buttons.addClass('btn btn-sm').find('[class*="-icon"]').hide();//ui-icon, s-icon
+            buttons.eq(0).addClass('btn-primary').prepend('<i class="ace-icon fa fa-check"></i>');
+            buttons.eq(1).prepend('<i class="ace-icon fa fa-times"></i>')
+
+            buttons = form.next().find('.navButton a');
+            buttons.find('.ui-icon').hide();
+            buttons.eq(0).append('<i class="ace-icon fa fa-chevron-left"></i>');
+            buttons.eq(1).append('<i class="ace-icon fa fa-chevron-right"></i>');
+        }
+
+        function style_delete_form(form) {
+            var buttons = form.next().find('.EditButton .fm-button');
+            buttons.addClass('btn btn-sm btn-white btn-round').find('[class*="-icon"]').hide();//ui-icon, s-icon
+            buttons.eq(0).addClass('btn-danger').prepend('<i class="ace-icon fa fa-trash-o"></i>');
+            buttons.eq(1).addClass('btn-default').prepend('<i class="ace-icon fa fa-times"></i>')
+        }
+
+        function style_search_filters(form) {
+            form.find('.delete-rule').val('X');
+            form.find('.add-rule').addClass('btn btn-xs btn-primary');
+            form.find('.add-group').addClass('btn btn-xs btn-success');
+            form.find('.delete-group').addClass('btn btn-xs btn-danger');
+        }
+        function style_search_form(form) {
+            var dialog = form.closest('.ui-jqdialog');
+            var buttons = dialog.find('.EditTable')
+            buttons.find('.EditButton a[id*="_reset"]').addClass('btn btn-sm btn-info').find('.ui-icon').attr('class', 'ace-icon fa fa-retweet');
+            buttons.find('.EditButton a[id*="_query"]').addClass('btn btn-sm btn-inverse').find('.ui-icon').attr('class', 'ace-icon fa fa-comment-o');
+            buttons.find('.EditButton a[id*="_search"]').addClass('btn btn-sm btn-purple').find('.ui-icon').attr('class', 'ace-icon fa fa-search');
+        }
+
+        function beforeDeleteCallback(e) {
+            var form = $(e[0]);
+            if(form.data('styled')) return false;
+
+            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+            style_delete_form(form);
+
+            form.data('styled', true);
+        }
+
+        function beforeEditCallback(e) {
+            var form = $(e[0]);
+            form.closest('.ui-jqdialog').find('.ui-jqdialog-titlebar').wrapInner('<div class="widget-header" />')
+            style_edit_form(form);
+        }
+
+
+
+        //it causes some flicker when reloading or navigating grid
+        //it may be possible to have some custom formatter to do this as the grid is being created to prevent this
+        //or go back to default browser checkbox styles for the grid
+        function styleCheckbox(table) {
+            /**
+             $(table).find('input:checkbox').addClass('ace')
+             .wrap('<label />')
+             .after('<span class="lbl align-top" />')
+
+
+             $('.ui-jqgrid-labels th[id*="_cb"]:first-child')
+             .find('input.cbox[type=checkbox]').addClass('ace')
+             .wrap('<label />').after('<span class="lbl align-top" />');
+             */
+        }
+
+
+        //unlike navButtons icons, action icons in rows seem to be hard-coded
+        //you can change them like this in here if you want
+        function updateActionIcons(table) {
+            /**
+             var replacement =
+             {
+						'ui-ace-icon fa fa-pencil' : 'ace-icon fa fa-pencil blue',
+						'ui-ace-icon fa fa-trash-o' : 'ace-icon fa fa-trash-o red',
+						'ui-icon-disk' : 'ace-icon fa fa-check green',
+						'ui-icon-cancel' : 'ace-icon fa fa-times red'
+					};
+             $(table).find('.ui-pg-div span.ui-icon').each(function(){
+						var icon = $(this);
+						var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+						if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+					})
+             */
+        }
+
+        //replace icons with FontAwesome icons like above
+        function updatePagerIcons(table) {
+            var replacement =
+                {
+                    'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
+                    'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
+                    'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
+                    'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
+                };
+            $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+                var icon = $(this);
+                var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+
+                if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+            })
+        }
+
+        function enableTooltips(table) {
+            $('.navtable .ui-pg-button').tooltip({container:'body'});
+            $(table).find('.ui-pg-div').tooltip({container:'body'});
+        }
+
+
+
+        //if your grid is inside another element, for example a tab pane, you should use its parent's width:
+        /**
+         $(window).on('resize.jqGrid', function () {
+					var parent_width = $(grid_selector).closest('.tab-pane').width();
+					$(grid_selector).jqGrid( 'setGridWidth', parent_width );
+				})
+         //and also set width when tab pane becomes visible
+         $('#myTab a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+				  if($(e.target).attr('href') == '#mygrid') {
+					var parent_width = $(grid_selector).closest('.tab-pane').width();
+					$(grid_selector).jqGrid( 'setGridWidth', parent_width );
+				  }
+				})
+         */
+
+
+
+
+        //当模态框显示时候，这种jqgrid宽度
+        $('#getFamilyModal').on('shown.bs.modal',function () {
+            var parent_column = $(grid_selector).closest('[class*="widget-main"]');
+            $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
+
+        });
+
+
+
+
+
+
+        //replace icons with FontAwesome icons like above
+        function updatePagerIcons(table) {
+            var replacement =
+                {
+                    'ui-icon-seek-first' : 'ace-icon fa fa-angle-double-left bigger-140',
+                    'ui-icon-seek-prev' : 'ace-icon fa fa-angle-left bigger-140',
+                    'ui-icon-seek-next' : 'ace-icon fa fa-angle-right bigger-140',
+                    'ui-icon-seek-end' : 'ace-icon fa fa-angle-double-right bigger-140'
+                };
+            $('.ui-pg-table:not(.navtable) > tbody > tr > .ui-pg-button > .ui-icon').each(function(){
+                var icon = $(this);
+                var $class = $.trim(icon.attr('class').replace('ui-icon', ''));
+
+                if($class in replacement) icon.attr('class', 'ui-icon '+replacement[$class]);
+            })
+        }
+
+        function enableTooltips(table) {
+            $('.navtable .ui-pg-button').tooltip({container:'body'});
+            $(table).find('.ui-pg-div').tooltip({container:'body'});
+        }
+
+        //var selr = jQuery(grid_selector).jqGrid('getGridParam','selrow');
+
+
+        //日期插件
+        $('.date-picker').datepicker({
+            autoclose: true,
+            todayHighlight: true
+        })
+        //show datepicker when clicking on the icon
+            .next().on(ace.click_event, function(){
+            $(this).prev().focus();
+        });
+
+        //or change it into a date range picker
+        $('.input-daterange').datepicker({autoclose:true});
+
+        $('#timepicker1').timepicker({
+            minuteStep: 1,
+            showSeconds: true,
+            showMeridian: false,
+            disableFocus: true,
+            icons: {
+                up: 'fa fa-chevron-up',
+                down: 'fa fa-chevron-down'
+            }
+        }).on('focus', function() {
+            $('#timepicker1').timepicker('showWidget');
+        }).next().on(ace.click_event, function(){
+            $(this).prev().focus();
+        });
+
+        $(document).one('ajaxloadstart.page', function(e) {
+            $.jgrid.gridDestroy(grid_selector);
+            $('.ui-jqdialog').remove();
+        });
+    });
+
+
+
+    //查询按钮
+    $('#searchBtn').on('click',function () {
+        var xm = $('#s-xm').val();
+        var sfzmhm = $('#s-sfzmhm').val();
+        var lxdh = $('#s-lxdh').val();
+        var csrq = $('#s-csrq').val();
+        $("#grid-table").jqGrid('clearGridData');
+        $("#grid-table").jqGrid('setGridParam', {
+            datatype:"json",
+            mtype:"POST",
+            page:1,
+            url:"/person/search",
+            postData:{
+                "xm": xm,
+                "sfzmhm": sfzmhm,
+                "lxdh": lxdh,
+                "csrq": csrq
+            }
+        }).trigger("reloadGrid");
+    });
+    
+    
+    //确定选择家庭按钮
+    $('#getFamilyResultBtn').on('click',function () {
+        var rowids=$('#grid-table').jqGrid('getGridParam','selarrrow');
+        if(rowids !=""){
+            if(rowids.length==1){
+                var rowData = $("#grid-table").jqGrid('getRowData',rowids[0]);
+                $('#jtbh').attr('value',rowData.jtbh);
+                alert("家庭编号获取成功!")
+            }else {
+                $('#getFamilyResultBtn').tips({
+                    side : 1,
+                    msg : '请选择一个人员(不要超过一个）！',
+                    bg : '#ff2120',
+                    time : 2
+                })
+            }
+        }else {
+            $('#getFamilyResultBtn').tips({
+                side : 1,
+                msg : '请至少选择一个人员！',
+                bg : '#ff2120',
+                time : 2
+            })
+        }
+    });
+
+    //提交生产性收入情况信息
+    $('#addProduceIncomeBtn').on('click',function () {
+        if($('#jtbh').val()==""){
+            alert('家庭编号不能为空，请进行获取!');
+        }else {
+            //生产收入种植业表格数据
+            var postData = $('#produceIncomeForm').serialize();
+            var jtbh = $('#jtbh').val();
+            //alert(postData);
+            postData = postData + "&jtbh="+ jtbh;
+            $.post("/produceIncome/add", postData,function (data) {
+                if(data.status==1){
+                    alert("生产收入信息写入成功！");
+                }
+            })
+
+        }
+    });
+
+
+    
+    //提交工资收入信息
+    $('#addSalaryIncomeBtn').on('click',function () {
+        if($('#jtbh').val()==""){
+            alert('家庭编号不能为空，请进行获取!');
+        }else {
+            //生产收入种植业表格数据
+            var postData = $('#salaryIncomeForm').serialize();
+            var jtbh = $('#jtbh').val();
+            postData = postData + "&jtbh="+ jtbh;
+            $.post("/salaryIncome/add",postData,function (data) {
+                if(data.status==1){
+                    alert("工作收入信息写入成功！");
+                }
+            })
+        }
+    });
+
+
+    //提交财产收入信息
+    $('#addPropertyIncomeBtn').on('click',function () {
+        if($('#jtbh').val()==""){
+            alert('家庭编号不能为空，请进行获取!');
+        }else {
+            //生产收入种植业表格数据
+            var postData = $('#propertyIncomeForm').serialize();
+            var jtbh = $('#jtbh').val();
+            postData = postData + "&jtbh="+ jtbh;
+            $.post("/propertyIncome/add",postData,function (data) {
+                if(data.status==1){
+                    alert("财产收入信息写入成功！");
+                }
+            })
+        }
+    });
+
+    //提交转移收入信息
+    $('#addTransferIncomeBtn').on('click',function () {
+        if($('#jtbh').val()==""){
+            alert('家庭编号不能为空，请进行获取!');
+        }else {
+            //转移收表格数据
+            var postData = $('#transferIncomeForm').serialize();
+            var jtbh = $('#jtbh').val();
+            postData = postData + "&jtbh="+ jtbh;
+            $.post("/transferIncome/add",postData,function (data) {
+                if(data.status==1){
+                    alert("转移性收入信息写入成功！");
+                }
+            })
+        }
+    });
+
+    //提交额外收入信息
+    $('#addOutPovertyIncomeBtn').on('click',function () {
+        if($('#jtbh').val()==""){
+            alert('家庭编号不能为空，请进行获取!');
+        }else {
+            //额外收入种植业表格数据
+            var postData = $('#outPovertyIncomeForm').serialize();
+            var jtbh = $('#jtbh').val();
+            postData = postData + "&jtbh="+ jtbh;
+            $.post("/outPovertyIncome/add",postData,function (data) {
+                if(data.status==1){
+                    alert("不计入家庭稳定脱贫收入信息写入成功！");
+                }
+            })
+        }
+    });
+
+
+</script>
+</body>
+</html>

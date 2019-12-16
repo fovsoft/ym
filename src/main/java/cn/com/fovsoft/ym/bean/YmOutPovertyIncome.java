@@ -5,18 +5,25 @@ package cn.com.fovsoft.ym.bean;/*
  * @version:
  */
 
-public class YmOutPovertyIncome {
-    private String    pov_bh   ;// '不计入家庭稳定脱贫收入编号',
-    private String    jtbh     ;// '家庭编号，对应家庭表',
-    private String    pov_xtlb ;// '转移性财产类别:01，教育保障类(雨露计划补助、"两后生"培训补助、教育助学金等)；02，医疗保障类(城乡居民基本医疗保险、大病保险、医疗救助、财政补助(补充商业医疗保险)等.需注明医疗费用总额及获得的报销和补助金额)；03,住房保障类(易地扶贫搬迁、危房改造等补助)；04，产业奖补类；05，金融类(扶贫小额贷款)）；06，社会保障类(临时救助金等)；07，保险赔付金；08，残疾人补贴(除困难残疾人生活补贴和重度残疾人护理补贴)；09，捐赠金、慰问金、短期性赡养金、抚养金等；10，短期性抚恤金、优待金、补助金、保健金、伤残治疗费、护理费、丧葬费；11，其他短期性(3年以下，含3年)的政策性补助',
-    private String    pov_nf   ;// '年份',
-    private String    pov_yf13 ;// '1-3月的收入或者其他信息',
-    private String    pov_yf46 ;// '4-6月的收入或者其他信息',
-    private String    pov_yf79 ;// '7-9月的收入或者其他信息',
-    private String    pov_yf10 ;// '10月的收入或者其他信息',
-    private String    pov_yf11 ;// '11月的收入或者其他信息',
-    private String    pov_yf12 ;// '12月的收入或者其他信息'
+import java.io.Serializable;
 
+public class YmOutPovertyIncome implements Serializable {
+    private String pov_bh   ;//'不计入家庭稳定脱贫收入编号',
+    private String jtbh     ;//'家庭编号，对应家庭表',
+    private String pov_xtlb ;//'转移性财产类别:01，教育保障类(雨露计划补助、"两后生"培训补助、教育助学金等)；02，医疗保障类(城乡居民基本医疗保险、大病保险、医疗救助、财政补助(补充商业医疗保险)等.需注明医疗费用总额及获得的报销和补助金额)；03,住房保障类(易地扶贫搬迁、危房改造等补助)；
+    private String pov_nf   ;//'年份',
+    private String pov_yf1  ;//'1月的收入或者其他信息',
+    private String pov_yf2  ;//'2月的收入或者其他信息',
+    private String pov_yf3  ;//'3月的收入或者其他信息',
+    private String pov_yf4  ;//'4月的收入或者其他信息',
+    private String pov_yf5  ;//'5月的收入或者其他信息',
+    private String pov_yf6  ;//'6月的收入或者其他信息',
+    private String pov_yf7  ;//'7月的收入或者其他信息',
+    private String pov_yf8  ;//'8月的收入或者其他信息',
+    private String pov_yf9  ;//'9月的收入或者其他信息',
+    private String pov_yf10 ;//'10月的收入或者其他信息',
+    private String pov_yf11 ;//'11月的收入或者其他信息',
+    private String pov_yf12 ;//'12月的收入或者其他信息'
 
     public String getPov_bh() {
         return pov_bh;
@@ -50,28 +57,76 @@ public class YmOutPovertyIncome {
         this.pov_nf = pov_nf;
     }
 
-    public String getPov_yf13() {
-        return pov_yf13;
+    public String getPov_yf1() {
+        return pov_yf1;
     }
 
-    public void setPov_yf13(String pov_yf13) {
-        this.pov_yf13 = pov_yf13;
+    public void setPov_yf1(String pov_yf1) {
+        this.pov_yf1 = pov_yf1;
     }
 
-    public String getPov_yf46() {
-        return pov_yf46;
+    public String getPov_yf2() {
+        return pov_yf2;
     }
 
-    public void setPov_yf46(String pov_yf46) {
-        this.pov_yf46 = pov_yf46;
+    public void setPov_yf2(String pov_yf2) {
+        this.pov_yf2 = pov_yf2;
     }
 
-    public String getPov_yf79() {
-        return pov_yf79;
+    public String getPov_yf3() {
+        return pov_yf3;
     }
 
-    public void setPov_yf79(String pov_yf79) {
-        this.pov_yf79 = pov_yf79;
+    public void setPov_yf3(String pov_yf3) {
+        this.pov_yf3 = pov_yf3;
+    }
+
+    public String getPov_yf4() {
+        return pov_yf4;
+    }
+
+    public void setPov_yf4(String pov_yf4) {
+        this.pov_yf4 = pov_yf4;
+    }
+
+    public String getPov_yf5() {
+        return pov_yf5;
+    }
+
+    public void setPov_yf5(String pov_yf5) {
+        this.pov_yf5 = pov_yf5;
+    }
+
+    public String getPov_yf6() {
+        return pov_yf6;
+    }
+
+    public void setPov_yf6(String pov_yf6) {
+        this.pov_yf6 = pov_yf6;
+    }
+
+    public String getPov_yf7() {
+        return pov_yf7;
+    }
+
+    public void setPov_yf7(String pov_yf7) {
+        this.pov_yf7 = pov_yf7;
+    }
+
+    public String getPov_yf8() {
+        return pov_yf8;
+    }
+
+    public void setPov_yf8(String pov_yf8) {
+        this.pov_yf8 = pov_yf8;
+    }
+
+    public String getPov_yf9() {
+        return pov_yf9;
+    }
+
+    public void setPov_yf9(String pov_yf9) {
+        this.pov_yf9 = pov_yf9;
     }
 
     public String getPov_yf10() {

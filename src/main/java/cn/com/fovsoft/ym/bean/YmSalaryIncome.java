@@ -5,30 +5,37 @@ package cn.com.fovsoft.ym.bean;/*
  * version:
  */
 
-public class YmSalaryIncome {
+import java.io.Serializable;
 
-    private String rygzsrbh  ;
-    private String jtbh      ;
-    private String xm        ;
-    private String wggz      ;
-    private String wgdz      ;
-    private String wgljsj    ;
-    private String wgqymc    ;
-    private String sa_nf     ;
-    private String sa_yf13   ;
-    private String sa_yf46   ;
-    private String sa_yf79   ;
-    private String sa_yf10   ;
-    private String sa_yf11   ;
-    private String sa_yf12   ;
+public class YmSalaryIncome implements Serializable {
 
+    private String salary_bh   ;//'人员工资收入编号',
+    private String jtbh        ;//'家庭编号，对应家庭表',
+    private String xm          ;//'姓名',
+    private String wggz        ;//'务工工种',
+    private String wgdz        ;//'务工省、市、县',
+    private String wgljsj      ;//'务工累计时间（月）',
+    private String wgqymc      ;//'务工企业名称',
+    private String salary_nf   ;//'年份',
+    private String salary_yf1  ;//'1月的收入或者其他信息',
+    private String salary_yf2  ;//'2月的收入或者其他信息',
+    private String salary_yf3  ;//'3月的收入或者其他信息',
+    private String salary_yf4  ;//'4月的收入或者其他信息',
+    private String salary_yf5  ;//'5月的收入或者其他信息',
+    private String salary_yf6  ;//'6月的收入或者其他信息',
+    private String salary_yf7  ;//'7月的收入或者其他信息',
+    private String salary_yf8  ;//'8月的收入或者其他信息',
+    private String salary_yf9  ;//'9月的收入或者其他信息',
+    private String salary_yf10 ;//'10月的收入或者其他信息',
+    private String salary_yf11 ;//'11月的收入或者其他信息',
+    private String salary_yf12 ;//'12月的收入或者其他信息'
 
-    public String getRygzsrbh() {
-        return rygzsrbh;
+    public String getSalary_bh() {
+        return salary_bh;
     }
 
-    public void setRygzsrbh(String rygzsrbh) {
-        this.rygzsrbh = rygzsrbh;
+    public void setSalary_bh(String salary_bh) {
+        this.salary_bh = salary_bh;
     }
 
     public String getJtbh() {
@@ -79,59 +86,107 @@ public class YmSalaryIncome {
         this.wgqymc = wgqymc;
     }
 
-    public String getSa_nf() {
-        return sa_nf;
+    public String getSalary_nf() {
+        return salary_nf;
     }
 
-    public void setSa_nf(String sa_nf) {
-        this.sa_nf = sa_nf;
+    public void setSalary_nf(String salary_nf) {
+        this.salary_nf = salary_nf;
     }
 
-    public String getSa_yf13() {
-        return sa_yf13;
+    public String getSalary_yf1() {
+        return salary_yf1;
     }
 
-    public void setSa_yf13(String sa_yf13) {
-        this.sa_yf13 = sa_yf13;
+    public void setSalary_yf1(String salary_yf1) {
+        this.salary_yf1 = salary_yf1;
     }
 
-    public String getSa_yf46() {
-        return sa_yf46;
+    public String getSalary_yf2() {
+        return salary_yf2;
     }
 
-    public void setSa_yf46(String sa_yf46) {
-        this.sa_yf46 = sa_yf46;
+    public void setSalary_yf2(String salary_yf2) {
+        this.salary_yf2 = salary_yf2;
     }
 
-    public String getSa_yf79() {
-        return sa_yf79;
+    public String getSalary_yf3() {
+        return salary_yf3;
     }
 
-    public void setSa_yf79(String sa_yf79) {
-        this.sa_yf79 = sa_yf79;
+    public void setSalary_yf3(String salary_yf3) {
+        this.salary_yf3 = salary_yf3;
     }
 
-    public String getSa_yf10() {
-        return sa_yf10;
+    public String getSalary_yf4() {
+        return salary_yf4;
     }
 
-    public void setSa_yf10(String sa_yf10) {
-        this.sa_yf10 = sa_yf10;
+    public void setSalary_yf4(String salary_yf4) {
+        this.salary_yf4 = salary_yf4;
     }
 
-    public String getSa_yf11() {
-        return sa_yf11;
+    public String getSalary_yf5() {
+        return salary_yf5;
     }
 
-    public void setSa_yf11(String sa_yf11) {
-        this.sa_yf11 = sa_yf11;
+    public void setSalary_yf5(String salary_yf5) {
+        this.salary_yf5 = salary_yf5;
     }
 
-    public String getSa_yf12() {
-        return sa_yf12;
+    public String getSalary_yf6() {
+        return salary_yf6;
     }
 
-    public void setSa_yf12(String sa_yf12) {
-        this.sa_yf12 = sa_yf12;
+    public void setSalary_yf6(String salary_yf6) {
+        this.salary_yf6 = salary_yf6;
+    }
+
+    public String getSalary_yf7() {
+        return salary_yf7;
+    }
+
+    public void setSalary_yf7(String salary_yf7) {
+        this.salary_yf7 = salary_yf7;
+    }
+
+    public String getSalary_yf8() {
+        return salary_yf8;
+    }
+
+    public void setSalary_yf8(String salary_yf8) {
+        this.salary_yf8 = salary_yf8;
+    }
+
+    public String getSalary_yf9() {
+        return salary_yf9;
+    }
+
+    public void setSalary_yf9(String salary_yf9) {
+        this.salary_yf9 = salary_yf9;
+    }
+
+    public String getSalary_yf10() {
+        return salary_yf10;
+    }
+
+    public void setSalary_yf10(String salary_yf10) {
+        this.salary_yf10 = salary_yf10;
+    }
+
+    public String getSalary_yf11() {
+        return salary_yf11;
+    }
+
+    public void setSalary_yf11(String salary_yf11) {
+        this.salary_yf11 = salary_yf11;
+    }
+
+    public String getSalary_yf12() {
+        return salary_yf12;
+    }
+
+    public void setSalary_yf12(String salary_yf12) {
+        this.salary_yf12 = salary_yf12;
     }
 }

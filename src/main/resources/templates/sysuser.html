@@ -39,6 +39,10 @@
         .frozen-div, .frozen-bdiv {
             background-color: #E4E6E9; /*与网页背景色一致*/
         }
+        .modal-body{
+            max-height:400px;
+            overflow-y:auto;
+        }
     </style>
 
     <!--[if lte IE 9]>
@@ -431,7 +435,7 @@
                         <div>
                             <!--新增用户的窗口-->
                             <div class="modal fade" id="userAddModal" tabindex="-1" role="dialog" aria-labelledby="userAddModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
+                                <div class="modal-dialog modal-lg">
                                     <div class="modal-content">
                                         <div class="modal-header">
                                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">

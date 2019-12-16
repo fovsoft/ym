@@ -74,14 +74,14 @@ insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, 
 values ('', '贫困人员信息管理', 6, '/ym/mgr', '1', 'a,d,u,s', 7, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 #insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
 #values ('', '影像化采集', 6, '/ym/img', '1', 'a,d,u,s', 14, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+#insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
+#values ('', '收入信息采集', 6, '/ym/income', '1', 'a,d,u,s', 8, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '收入信息采集', 6, '/ym/income', '1', 'a,d,u,s', 8, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+values ('', '安置管理', 0, '#', '1', 'a,d,u,s', 8, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '安置管理', 0, '#', '1', 'a,d,u,s', 9, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+values ('', '安置点管理', 8, '/az/settlement', '1', 'a,d,u,s', 9, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '安置点管理', 9, '/az/settlement', '1', 'a,d,u,s', 10, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
-insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '安置户管理', 9, '/az/household', '1', 'a,d,u,s', 11, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+values ('', '安置户管理', 8, '/az/household', '1', 'a,d,u,s', 10, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 #insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
 #values ('', '安置户信息录入', 9, '/az/add', '1', 'a,d,u,s', 12, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 
@@ -124,8 +124,7 @@ insert into frm_role_menu
 values (1, 9);
 insert into frm_role_menu
 values (1, 10);
-insert into frm_role_menu
-values (1, 11);
+
 
 
 drop table frm_department;
@@ -536,57 +535,92 @@ drop table ym_produce_income;
 #移民贫困人员生产收入情况调查表
 create table ym_produce_income
 (
-    ryscsrbh int auto_increment primary key comment '人员生产收入编号',
-    jtbh     varchar(20) comment '家庭编号，对应家庭表',
-    xtdl     char(2) comment '类别大类：01为生产经营性收入,02为生产经营支出',
-    xtxl1    char(2) comment '类别小类：01为种植业，02为林业，03为养殖业，04为其他',
-    xtxl2    char(2) comment '类别小类：01为品种，02为数量，03为金额，04为其他',
-    nf       varchar(10) comment '年份',
-    yf13     varchar(40) comment '1-3月的收入或者其他信息',
-    yf46     varchar(40) comment '4-6月的收入或者其他信息',
-    yf79     varchar(40) comment '7-9月的收入或者其他信息',
-    yf10     varchar(40) comment '10月的收入或者其他信息',
-    yf11     varchar(40) comment '11月的收入或者其他信息',
-    yf12     varchar(40) comment '12月的收入或者其他信息'
-)ENGINE = InnoDB
- DEFAULT CHARSET = utf8;
+    produce_bh    int auto_increment primary key comment '人员生产收入编号',
+    jtbh          varchar(20) comment '家庭编号，对应家庭表',
+    produce_xtdl  char(2) comment '类别大类：01为生产经营性收入,02为生产经营支出',
+    produce_xtxl1 char(2) comment '类别小类：01为种植业，02为林业，03为养殖业，04为其他',
+    produce_xtxl2 char(2) comment '类别小类：01为品种，02为数量，03为金额，04为其他',
+    produce_nf    varchar(10) comment '年份',
+    produce_yf1   varchar(20) comment '1月的收入或者其他信息',
+    produce_yf2   varchar(20) comment '2月的收入或者其他信息',
+    produce_yf3   varchar(20) comment '3月的收入或者其他信息',
+    produce_yf4   varchar(20) comment '4月的收入或者其他信息',
+    produce_yf5   varchar(20) comment '5月的收入或者其他信息',
+    produce_yf6   varchar(20) comment '6月的收入或者其他信息',
+    produce_yf7   varchar(20) comment '7月的收入或者其他信息',
+    produce_yf8   varchar(20) comment '8月的收入或者其他信息',
+    produce_yf9   varchar(20) comment '9月的收入或者其他信息',
+    produce_yf10  varchar(20) comment '10月的收入或者其他信息',
+    produce_yf11  varchar(20) comment '11月的收入或者其他信息',
+    produce_yf12  varchar(20) comment '12月的收入或者其他信息'
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
+# create table ym_produce_income
+# (
+#     ryscsrbh int auto_increment primary key comment '人员生产收入编号',
+#     jtbh     varchar(20) comment '家庭编号，对应家庭表',
+#     xtdl     char(2) comment '类别大类：01为生产经营性收入,02为生产经营支出',
+#     xtxl1    char(2) comment '类别小类：01为种植业，02为林业，03为养殖业，04为其他',
+#     xtxl2    char(2) comment '类别小类：01为品种，02为数量，03为金额，04为其他',
+#     nf       varchar(10) comment '年份',
+#     yf13     varchar(40) comment '1-3月的收入或者其他信息',
+#     yf46     varchar(40) comment '4-6月的收入或者其他信息',
+#     yf79     varchar(40) comment '7-9月的收入或者其他信息',
+#     yf10     varchar(40) comment '10月的收入或者其他信息',
+#     yf11     varchar(40) comment '11月的收入或者其他信息',
+#     yf12     varchar(40) comment '12月的收入或者其他信息'
+# )ENGINE = InnoDB
+#  DEFAULT CHARSET = utf8;
 
 drop table ym_salary_income;
 #工资性收入表
-create table ym_salary_income(
-    rygzsrbh int auto_increment primary key comment '人员工资收入编号',
-    jtbh varchar(20) comment '家庭编号，对应家庭表',
-    xm varchar(20) comment '姓名',
-    wggz varchar(20) comment '务工工种',
-    wgdz varchar(60) comment '务工省、市、县',
-    wgljsj varchar(10) comment '务工累计时间（月）',
-    wgqymc varchar(60) comment '务工企业名称',
-    sa_nf  varchar(10) comment '年份',
-    sa_yf13 varchar(40) comment '1-3月的收入或者其他信息',
-    sa_yf46 varchar(40) comment '4-6月的收入或者其他信息',
-    sa_yf79 varchar(40) comment '7-9月的收入或者其他信息',
-    sa_yf10 varchar(40) comment '10月的收入或者其他信息',
-    sa_yf11 varchar(40) comment '11月的收入或者其他信息',
-    sa_yf12 varchar(40) comment '12月的收入或者其他信息'
-)ENGINE = InnoDB
- DEFAULT CHARSET = utf8;
+create table ym_salary_income
+(
+    salary_bh   int auto_increment primary key comment '人员工资收入编号',
+    jtbh        varchar(20) comment '家庭编号，对应家庭表',
+    xm          varchar(20) comment '姓名',
+    wggz        varchar(20) comment '务工工种',
+    wgdz        varchar(60) comment '务工省、市、县',
+    wgljsj      varchar(10) comment '务工累计时间（月）',
+    wgqymc      varchar(60) comment '务工企业名称',
+    salary_nf   varchar(10) comment '年份',
+    salary_yf1  varchar(20) comment '1月的收入或者其他信息',
+    salary_yf2  varchar(20) comment '2月的收入或者其他信息',
+    salary_yf3  varchar(20) comment '3月的收入或者其他信息',
+    salary_yf4  varchar(20) comment '4月的收入或者其他信息',
+    salary_yf5  varchar(20) comment '5月的收入或者其他信息',
+    salary_yf6  varchar(20) comment '6月的收入或者其他信息',
+    salary_yf7  varchar(20) comment '7月的收入或者其他信息',
+    salary_yf8  varchar(20) comment '8月的收入或者其他信息',
+    salary_yf9  varchar(20) comment '9月的收入或者其他信息',
+    salary_yf10 varchar(20) comment '10月的收入或者其他信息',
+    salary_yf11 varchar(20) comment '11月的收入或者其他信息',
+    salary_yf12 varchar(20) comment '12月的收入或者其他信息'
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 drop table ym_property_income;
 #财产收入表
 create table ym_property_income
 (
-    pro_bh   int auto_increment primary key comment '财产性收入编号',
-    jtbh     varchar(20) comment '家庭编号，对应家庭表',
-    pro_xtlb char(2) comment '财产收入类别：01，财产收益扶贫分红收入，02，其他',
-    pro_nf   varchar(10) comment '年份',
-    pro_yf13 varchar(40) comment '1-3月的收入或者其他信息',
-    pro_yf46 varchar(40) comment '4-6月的收入或者其他信息',
-    pro_yf79 varchar(40) comment '7-9月的收入或者其他信息',
-    pro_yf10 varchar(40) comment '10月的收入或者其他信息',
-    pro_yf11 varchar(40) comment '11月的收入或者其他信息',
-    pro_yf12 varchar(40) comment '12月的收入或者其他信息'
-)ENGINE = InnoDB
- DEFAULT CHARSET = utf8;
+    property_bh   int auto_increment primary key comment '财产性收入编号',
+    jtbh          varchar(20) comment '家庭编号，对应家庭表',
+    property_xtlb char(2) comment '财产收入类别：01，财产收益扶贫分红收入，02，其他',
+    property_nf   varchar(10) comment '年份',
+    property_yf1  varchar(20) comment '1月的收入或者其他信息',
+    property_yf2  varchar(20) comment '2月的收入或者其他信息',
+    property_yf3  varchar(20) comment '3月的收入或者其他信息',
+    property_yf4  varchar(20) comment '4月的收入或者其他信息',
+    property_yf5  varchar(20) comment '5月的收入或者其他信息',
+    property_yf6  varchar(20) comment '6月的收入或者其他信息',
+    property_yf7  varchar(20) comment '7月的收入或者其他信息',
+    property_yf8  varchar(20) comment '8月的收入或者其他信息',
+    property_yf9  varchar(20) comment '9月的收入或者其他信息',
+    property_yf10 varchar(20) comment '10月的收入或者其他信息',
+    property_yf11 varchar(20) comment '11月的收入或者其他信息',
+    property_yf12 varchar(20) comment '12月的收入或者其他信息'
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 
 
@@ -596,16 +630,22 @@ create table ym_transfer_income
 (
     tra_bh   int auto_increment primary key comment '转移性收入编号',
     jtbh     varchar(20) comment '家庭编号，对应家庭表',
-    tra_xtlb char(4) comment '转移性财产类别:01，计划生育金；0201，低保金A；0202，低保金B；0203，低保金C；03,特困供养金；04，养老保险金；05，生态补偿金（林业补贴）；06，困难残疾人生活补贴和重度残疾人护理补贴；07，农业补贴；08，高龄补贴；09，水库移民补贴；10，其他长期性的政策性补贴',
+    tra_xtlb char(4) comment '转移性财产类别:01，计划生育金；0201，低保金A；0202，低保金B；0203，低保金C；03,特困供养金；04，养老保险金；05，生态补偿金（林业补贴）；06，困难残疾人生活补贴和重度残疾人护理补贴；07，农业补贴；08，高龄补贴；09，水库移民补贴；10，其他长期性的政策性补贴 11，06-10项小计 11，01-10项小计 12，01+02+03+04 13，06-02 14',
     tra_nf   varchar(10) comment '年份',
-    tra_yf13 varchar(40) comment '1-3月的收入或者其他信息',
-    tra_yf46 varchar(40) comment '4-6月的收入或者其他信息',
-    tra_yf79 varchar(40) comment '7-9月的收入或者其他信息',
-    tra_yf10 varchar(40) comment '10月的收入或者其他信息',
-    tra_yf11 varchar(40) comment '11月的收入或者其他信息',
-    tra_yf12 varchar(40) comment '12月的收入或者其他信息'
-)ENGINE = InnoDB
- DEFAULT CHARSET = utf8;
+    tra_yf1  varchar(20) comment '1月的收入或者其他信息',
+    tra_yf2  varchar(20) comment '2月的收入或者其他信息',
+    tra_yf3  varchar(20) comment '3月的收入或者其他信息',
+    tra_yf4  varchar(20) comment '4月的收入或者其他信息',
+    tra_yf5  varchar(20) comment '5月的收入或者其他信息',
+    tra_yf6  varchar(20) comment '6月的收入或者其他信息',
+    tra_yf7  varchar(20) comment '7月的收入或者其他信息',
+    tra_yf8  varchar(20) comment '8月的收入或者其他信息',
+    tra_yf9  varchar(20) comment '9月的收入或者其他信息',
+    tra_yf10 varchar(20) comment '10月的收入或者其他信息',
+    tra_yf11 varchar(20) comment '11月的收入或者其他信息',
+    tra_yf12 varchar(20) comment '12月的收入或者其他信息'
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 drop table ym_out_poverty_income;
 create table ym_out_poverty_income
@@ -615,14 +655,20 @@ create table ym_out_poverty_income
     pov_xtlb char(4) comment '转移性财产类别:01，教育保障类(雨露计划补助、"两后生"培训补助、教育助学金等)；02，医疗保障类(城乡居民基本医疗保险、大病保险、医疗救助、财政补助(补充商业医疗保险)等.需注明医疗费用总额及获得的报销和补助金额)；03,住房保障类(易地扶贫搬迁、危房改造等补助)；
 04，产业奖补类；05，金融类(扶贫小额贷款)）；06，社会保障类(临时救助金等)；07，保险赔付金；08，残疾人补贴(除困难残疾人生活补贴和重度残疾人护理补贴)；09，捐赠金、慰问金、短期性赡养金、抚养金等；10，短期性抚恤金、优待金、补助金、保健金、伤残治疗费、护理费、丧葬费；11，其他短期性(3年以下，含3年)的政策性补助',
     pov_nf   varchar(10) comment '年份',
-    pov_yf13 varchar(40) comment '1-3月的收入或者其他信息',
-    pov_yf46 varchar(40) comment '4-6月的收入或者其他信息',
-    pov_yf79 varchar(40) comment '7-9月的收入或者其他信息',
-    pov_yf10 varchar(40) comment '10月的收入或者其他信息',
-    pov_yf11 varchar(40) comment '11月的收入或者其他信息',
-    pov_yf12 varchar(40) comment '12月的收入或者其他信息'
-)ENGINE = InnoDB
- DEFAULT CHARSET = utf8;
+    pov_yf1  varchar(20) comment '1月的收入或者其他信息',
+    pov_yf2  varchar(20) comment '2月的收入或者其他信息',
+    pov_yf3  varchar(20) comment '3月的收入或者其他信息',
+    pov_yf4  varchar(20) comment '4月的收入或者其他信息',
+    pov_yf5  varchar(20) comment '5月的收入或者其他信息',
+    pov_yf6  varchar(20) comment '6月的收入或者其他信息',
+    pov_yf7  varchar(20) comment '7月的收入或者其他信息',
+    pov_yf8  varchar(20) comment '8月的收入或者其他信息',
+    pov_yf9  varchar(20) comment '9月的收入或者其他信息',
+    pov_yf10 varchar(20) comment '10月的收入或者其他信息',
+    pov_yf11 varchar(20) comment '11月的收入或者其他信息',
+    pov_yf12 varchar(20) comment '12月的收入或者其他信息'
+) ENGINE = InnoDB
+  DEFAULT CHARSET = utf8;
 
 drop table az_settlement;
 

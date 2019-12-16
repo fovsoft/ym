@@ -9,26 +9,32 @@ import java.io.Serializable;
 
 public class YmProduceIncome implements Serializable {
 
-    private String ryscsrbh     ;// '人员生产收入编号',
-    private String jtbh         ;// '家庭编号，对应家庭表',
-    private String xtdl         ;//'类别大类：01为生产经营性收入,02为生产经营支出',
-    private String xtxl1        ;//'类别小类：01为种植业，02为林业，03为养殖业，04为其他',
-    private String xtxl2        ;//'类别小类：01为品种，02为数量，03为金额，04为其他',
-    private String nf           ;//'年份',
-    private String yf13         ;//'1-3月的收入或者其他信息',
-    private String yf46         ;//'4-6月的收入或者其他信息',
-    private String yf79         ;//'7-9月的收入或者其他信息',
-    private String yf10         ;//'10月的收入或者其他信息',
-    private String yf11         ;//'11月的收入或者其他信息',
-    private String yf12         ;//'12月的收入或者其他信息'
+    private String produce_bh        ;//'人员生产收入编号',
+    private String jtbh              ;//'家庭编号，对应家庭表',
+    private String produce_xtdl      ;//'类别大类：01为生产经营性收入,02为生产经营支出',
+    private String produce_xtxl1     ;//'类别小类：01为种植业，02为林业，03为养殖业，04为其他',
+    private String produce_xtxl2     ;//'类别小类：01为品种，02为数量，03为金额，04为其他',
+    private String produce_nf        ;//'年份',
+    private String produce_yf1       ;//'1月的收入或者其他信息',
+    private String produce_yf2       ;//'2月的收入或者其他信息',
+    private String produce_yf3       ;//'3月的收入或者其他信息',
+    private String produce_yf4       ;//'4月的收入或者其他信息',
+    private String produce_yf5       ;//'5月的收入或者其他信息',
+    private String produce_yf6       ;//'6月的收入或者其他信息',
+    private String produce_yf7       ;//'7月的收入或者其他信息',
+    private String produce_yf8       ;//'8月的收入或者其他信息',
+    private String produce_yf9       ;//'9月的收入或者其他信息',
+    private String produce_yf10      ;//'10月的收入或者其他信息',
+    private String produce_yf11      ;//'11月的收入或者其他信息',
+    private String produce_yf12      ;//'12月的收入或者其他信息'
 
 
-    public String getRyscsrbh() {
-        return ryscsrbh;
+    public String getProduce_bh() {
+        return produce_bh;
     }
 
-    public void setRyscsrbh(String ryscsrbh) {
-        this.ryscsrbh = ryscsrbh;
+    public void setProduce_bh(String produce_bh) {
+        this.produce_bh = produce_bh;
     }
 
     public String getJtbh() {
@@ -39,83 +45,131 @@ public class YmProduceIncome implements Serializable {
         this.jtbh = jtbh;
     }
 
-    public String getXtdl() {
-        return xtdl;
+    public String getProduce_xtdl() {
+        return produce_xtdl;
     }
 
-    public void setXtdl(String xtdl) {
-        this.xtdl = xtdl;
+    public void setProduce_xtdl(String produce_xtdl) {
+        this.produce_xtdl = produce_xtdl;
     }
 
-    public String getXtxl1() {
-        return xtxl1;
+    public String getProduce_xtxl1() {
+        return produce_xtxl1;
     }
 
-    public void setXtxl1(String xtxl1) {
-        this.xtxl1 = xtxl1;
+    public void setProduce_xtxl1(String produce_xtxl1) {
+        this.produce_xtxl1 = produce_xtxl1;
     }
 
-    public String getXtxl2() {
-        return xtxl2;
+    public String getProduce_xtxl2() {
+        return produce_xtxl2;
     }
 
-    public void setXtxl2(String xtxl2) {
-        this.xtxl2 = xtxl2;
+    public void setProduce_xtxl2(String produce_xtxl2) {
+        this.produce_xtxl2 = produce_xtxl2;
     }
 
-    public String getNf() {
-        return nf;
+    public String getProduce_nf() {
+        return produce_nf;
     }
 
-    public void setNf(String nf) {
-        this.nf = nf;
+    public void setProduce_nf(String produce_nf) {
+        this.produce_nf = produce_nf;
     }
 
-    public String getYf13() {
-        return yf13;
+    public String getProduce_yf1() {
+        return produce_yf1;
     }
 
-    public void setYf13(String yf13) {
-        this.yf13 = yf13;
+    public void setProduce_yf1(String produce_yf1) {
+        this.produce_yf1 = produce_yf1;
     }
 
-    public String getYf46() {
-        return yf46;
+    public String getProduce_yf2() {
+        return produce_yf2;
     }
 
-    public void setYf46(String yf46) {
-        this.yf46 = yf46;
+    public void setProduce_yf2(String produce_yf2) {
+        this.produce_yf2 = produce_yf2;
     }
 
-    public String getYf79() {
-        return yf79;
+    public String getProduce_yf3() {
+        return produce_yf3;
     }
 
-    public void setYf79(String yf79) {
-        this.yf79 = yf79;
+    public void setProduce_yf3(String produce_yf3) {
+        this.produce_yf3 = produce_yf3;
     }
 
-    public String getYf10() {
-        return yf10;
+    public String getProduce_yf4() {
+        return produce_yf4;
     }
 
-    public void setYf10(String yf10) {
-        this.yf10 = yf10;
+    public void setProduce_yf4(String produce_yf4) {
+        this.produce_yf4 = produce_yf4;
     }
 
-    public String getYf11() {
-        return yf11;
+    public String getProduce_yf5() {
+        return produce_yf5;
     }
 
-    public void setYf11(String yf11) {
-        this.yf11 = yf11;
+    public void setProduce_yf5(String produce_yf5) {
+        this.produce_yf5 = produce_yf5;
     }
 
-    public String getYf12() {
-        return yf12;
+    public String getProduce_yf6() {
+        return produce_yf6;
     }
 
-    public void setYf12(String yf12) {
-        this.yf12 = yf12;
+    public void setProduce_yf6(String produce_yf6) {
+        this.produce_yf6 = produce_yf6;
+    }
+
+    public String getProduce_yf7() {
+        return produce_yf7;
+    }
+
+    public void setProduce_yf7(String produce_yf7) {
+        this.produce_yf7 = produce_yf7;
+    }
+
+    public String getProduce_yf8() {
+        return produce_yf8;
+    }
+
+    public void setProduce_yf8(String produce_yf8) {
+        this.produce_yf8 = produce_yf8;
+    }
+
+    public String getProduce_yf9() {
+        return produce_yf9;
+    }
+
+    public void setProduce_yf9(String produce_yf9) {
+        this.produce_yf9 = produce_yf9;
+    }
+
+    public String getProduce_yf10() {
+        return produce_yf10;
+    }
+
+    public void setProduce_yf10(String produce_yf10) {
+        this.produce_yf10 = produce_yf10;
+    }
+
+    public String getProduce_yf11() {
+        return produce_yf11;
+    }
+
+    public void setProduce_yf11(String produce_yf11) {
+        this.produce_yf11 = produce_yf11;
+    }
+
+    public String getProduce_yf12() {
+        return produce_yf12;
+    }
+
+    public void setProduce_yf12(String produce_yf12) {
+        this.produce_yf12 = produce_yf12;
     }
 }

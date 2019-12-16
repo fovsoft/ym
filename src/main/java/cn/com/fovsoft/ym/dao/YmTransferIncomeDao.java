@@ -27,9 +27,9 @@ public interface YmTransferIncomeDao {
      */
     @Insert({
             "<script>",
-            "insert into ym_transfer_income(jtbh,tra_xtlb,tra_nf,tra_yf13,tra_yf46,tra_yf79,tra_yf10,tra_yf11,tra_yf12) values ",
+            "insert into ym_transfer_income(jtbh,tra_xtlb,tra_nf,tra_yf1,tra_yf2,tra_yf3,tra_yf4,tra_yf5,tra_yf6,tra_yf7,tra_yf8,tra_yf9,tra_yf10,tra_yf11,tra_yf12) values ",
             "<foreach collection='ymTransferIncomeList' item='item' index='index' separator=','>",
-            "(#{item.jtbh},#{item.tra_xtlb},#{item.tra_nf},#{item.tra_yf13},#{item.tra_yf46},#{item.tra_yf79},#{item.tra_yf10},#{item.tra_yf11},#{item.tra_yf12}) ",
+            "(#{item.jtbh},#{item.tra_xtlb},#{item.tra_nf},#{item.tra_yf1},#{item.tra_yf2},#{item.tra_yf3},#{item.tra_yf4},#{item.tra_yf5},#{item.tra_yf6},#{item.tra_yf7},#{item.tra_yf8},#{item.tra_yf9},#{item.tra_yf10},#{item.tra_yf11},#{item.tra_yf12}) ",
             "</foreach>",
             "</script>"
     })

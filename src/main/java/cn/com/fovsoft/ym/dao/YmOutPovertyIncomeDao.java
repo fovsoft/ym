@@ -27,9 +27,9 @@ public interface YmOutPovertyIncomeDao {
      */
     @Insert({
             "<script>",
-            "insert into ym_out_poverty_income(jtbh,pov_xtlb,pov_nf,pov_yf13,pov_yf46,pov_yf79,pov_yf10,pov_yf11,pov_yf12) values ",
+            "insert into ym_out_poverty_income(jtbh,pov_xtlb,pov_nf,pov_yf1,pov_yf2,pov_yf3,pov_yf4,pov_yf5,pov_yf6,pov_yf7,pov_yf8,pov_yf9,pov_yf10,pov_yf11,pov_yf12) values ",
             "<foreach collection='ymOutPovertyIncomeList' item='item' index='index' separator=','>",
-            "(#{item.jtbh},#{item.pov_xtlb},#{item.pov_nf},#{item.pov_yf13},#{item.pov_yf46},#{item.pov_yf79},#{item.pov_yf10},#{item.pov_yf11},#{item.pov_yf12}) ",
+            "(#{item.jtbh},#{item.pov_xtlb},#{item.pov_nf},#{item.pov_yf1},#{item.pov_yf2},#{item.pov_yf3},#{item.pov_yf4},#{item.pov_yf5},#{item.pov_yf6},#{item.pov_yf7},#{item.pov_yf8},#{item.pov_yf9},#{item.pov_yf10},#{item.pov_yf11},#{item.pov_yf12}) ",
             "</foreach>",
             "</script>"
     })
