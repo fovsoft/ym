@@ -69,7 +69,7 @@ values ('', '角色管理', 1, '/admin/role', '1', 'a,d,u,s', 4, '1', '2019-11-0
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
 values ('', '菜单管理', 1, '/admin/sysMenu', '1', 'a,d,u,s', 5, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
-values ('', '贫困人员管理', 0, '#', '1', 'a,d,u,s', 6, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
+values ('', '贫困户管理', 0, '#', '1', 'a,d,u,s', 6, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
 values ('', '贫困人员信息管理', 6, '/ym/mgr', '1', 'a,d,u,s', 7, '1', '2019-11-06 08:00:00', '2019-11-06 08:00:00');
 #insert into frm_menu( css, menuName, parentId, url, type, permission, sequence, zt, cjsj, gxsj)
