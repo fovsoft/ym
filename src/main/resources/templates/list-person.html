@@ -2634,6 +2634,11 @@
                                                                     生产收入：
                                                                     <input class="red " style="background-color:transparent;border:0;" type="text" id="produce_count" name="produce_count"/>
                                                                 </li>
+                                                                <li>
+                                                                    <i class="ace-icon fa fa-caret-right blue"></i>
+                                                                    生产支出：
+                                                                    <input class="red " style="background-color:transparent;border:0;" type="text" id="produce_count1" name="produce_count1"/>
+                                                                </li>
 
                                                                 <li>
                                                                     <i class="ace-icon fa fa-caret-right blue"></i>
@@ -6772,6 +6777,8 @@
             $("#produce_yf9_11").val(resultNum);
             resultNum = getIncomeInt($("#produce_yf10_3").val())+getIncomeInt($("#produce_yf10_6").val())+getIncomeInt($("#produce_yf10_9").val())+getIncomeInt($("#produce_yf10_10").val());
             $("#produce_yf10_11").val(resultNum);
+            resultNum = getIncomeInt($("#produce_yf11_3").val())+getIncomeInt($("#produce_yf11_6").val())+getIncomeInt($("#produce_yf11_9").val())+getIncomeInt($("#produce_yf11_10").val());
+            $("#produce_yf11_11").val(resultNum);
             resultNum = getIncomeInt($("#produce_yf12_3").val())+getIncomeInt($("#produce_yf12_6").val())+getIncomeInt($("#produce_yf12_9").val())+getIncomeInt($("#produce_yf12_10").val());
             $("#produce_yf12_11").val(resultNum);
 
@@ -6795,6 +6802,8 @@
             $("#produce_yf9_31").val(resultNum);
             resultNum = getIncomeInt($("#produce_yf10_23").val())+getIncomeInt($("#produce_yf10_26").val())+getIncomeInt($("#produce_yf10_29").val())+getIncomeInt($("#produce_yf10_30").val());
             $("#produce_yf10_31").val(resultNum);
+            resultNum = getIncomeInt($("#produce_yf11_23").val())+getIncomeInt($("#produce_yf11_26").val())+getIncomeInt($("#produce_yf11_29").val())+getIncomeInt($("#produce_yf11_30").val());
+            $("#produce_yf11_31").val(resultNum);
             resultNum = getIncomeInt($("#produce_yf12_23").val())+getIncomeInt($("#produce_yf12_26").val())+getIncomeInt($("#produce_yf12_29").val())+getIncomeInt($("#produce_yf12_30").val());
             $("#produce_yf12_31").val(resultNum);
         });
@@ -7101,12 +7110,21 @@
         $("#showIncomeModal").modal("show");
         $("#income_jtbh").val(jtbh);
         postData = "jtbh="+ jtbh;
-        $.post("/outPovertyIncome/add",postData,function (data) {
+        $.post("/incomeSum/list",postData,function (data) {
             if(data.status==1){
                 $("#produce_count").val(data.ymIncomeSum.sum_produce);
+                $("#produce_count1").val(data.ymIncomeSum.sum_produce1);
                 $("#salary_count").val(data.ymIncomeSum.sum_salary);
+                $("#property_count").val(data.ymIncomeSum.sum_property);
+                $("#transfer_count").val(data.ymIncomeSum.sum_transfer);
+                $("#out_poverty_count").val(data.ymIncomeSum.sum_poverty);
             }else{
-                $
+                $("#produce_count").val(0);
+                $("#produce_count1").val(0);
+                $("#salary_count").val(0);
+                $("#property_count").val(0);
+                $("#transfer_count").val(0);
+                $("#out_poverty_count").val(0);
             }
         })
 

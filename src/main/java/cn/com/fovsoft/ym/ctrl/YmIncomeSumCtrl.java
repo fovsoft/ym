@@ -11,6 +11,7 @@ import cn.com.fovsoft.ym.service.YmIncomeSumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -23,6 +24,7 @@ public class YmIncomeSumCtrl {
 
 
     @RequestMapping(value = "/incomeSum/list")
+    @ResponseBody
     public Map<String,Object> viewPersonInfo(HttpServletRequest request){
         String jtbh = request.getParameter("jtbh");
 
