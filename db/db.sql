@@ -670,9 +670,23 @@ create table ym_out_poverty_income
 ) ENGINE = InnoDB
   DEFAULT CHARSET = utf8;
 
+drop table ym_income_sum;
+create table ym_income_sum
+(
+    id int auto_increment primary key comment '主键',
+    jtbh varchar(20) comment '家庭编号，对应家庭表',
+    rks varchar(5) comment '人口数',
+    sum_nf varchar(20) comment '年份',
+    sum_produce varchar(20) comment '生产收入综合',
+    sum_produce1 varchar(20) comment '生产支出综合',
+    sum_salary varchar(20) comment '工资收入综合',
+    sum_property varchar(20) comment '财产收入综合',
+    sum_transfer varchar(20) comment '转移性收入综合',
+    sum_poverty varchar(20) comment '不计入收入综合'
+)ENGINE = InnoDB
+ DEFAULT CHARSET = utf8;
+
 drop table az_settlement;
-
-
 create table az_settlement(
     id int(10) auto_increment primary key comment '主键值',
     azdbh varchar(20) unique comment '安置点编号',
