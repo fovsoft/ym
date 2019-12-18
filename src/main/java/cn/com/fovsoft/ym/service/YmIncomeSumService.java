@@ -17,9 +17,15 @@ public class YmIncomeSumService {
     @Resource
     private YmIncomeSumDao ymIncomeSumDao;
 
-    public YmIncomeSum getYmIncomeSumByJtbh(String jtbh){
-        return ymIncomeSumDao.getYmIncomeSumByJtbh(jtbh);
+    public YmIncomeSum getYmIncomeSumByJtbhAndYear(String jtbh,String nf){
+        return ymIncomeSumDao.getYmIncomeSumByJtbhAndYear(jtbh,nf);
     }
+
+
+    public int updateYmIncomeSumByJtbhAndYear(YmIncomeSum ymIncomeSum){
+        return ymIncomeSumDao.updateYmIncomeSumByJtbhAndYear(ymIncomeSum);
+    }
+
 
     public int addYmIncomeSum(YmIncomeSum ymIncomeSum){
         return ymIncomeSumDao.addYmIncomeSum(ymIncomeSum);

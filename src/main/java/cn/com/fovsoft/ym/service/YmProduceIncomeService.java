@@ -29,9 +29,21 @@ public class YmProduceIncomeService {
         return ymProduceIncomeDao.addYmProduceIncomeMore(ymProduceIncomeList);
     }
 
+    public int getCountByJtbhAndYear(String jtbh,String year){
+        return ymProduceIncomeDao.getCountByJtbhAndYear(jtbh, year);
+    }
 
 
     public int deleteYmProduceIncomeByJtbh(String jtbh){
         return ymProduceIncomeDao.deleteYmProduceIncomeByJtbh(jtbh);
+    }
+
+
+    public int deleteYmProduceIncomeByJtbhAndYear(String jtbh,String year){
+        return ymProduceIncomeDao.deleteYmProduceIncomeByJtbhAndYear(jtbh, year);
+    }
+
+    public List<YmProduceIncome> getProduceIncomeByJtbhAndYear(String jtbh,String year){
+        return ymProduceIncomeDao.getProduceIncomeByJtbhAndYear(jtbh,year);
     }
 }

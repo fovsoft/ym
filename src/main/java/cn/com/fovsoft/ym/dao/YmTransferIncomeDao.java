@@ -7,15 +7,39 @@ package cn.com.fovsoft.ym.dao;
  */
 
 import cn.com.fovsoft.ym.bean.YmTransferIncome;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
 public interface YmTransferIncomeDao {
+
+
+
+    @Select("select * from ym_transfer_income where jtbh=#{jtbh} and tra_nf=#{year} ")
+    @Results(id="ymTransferIncomeResult",value = {
+            @Result(property="tra_bh"            , column="tra_bh"         ),
+            @Result(property="jtbh"              , column="jtbh"           ),
+            @Result(property="tra_xtlb"             , column="tra_xtlb"          ),
+            @Result(property="tra_nf"           , column="tra_nf"        ),
+            @Result(property="tra_yf1"              , column="tra_yf1"           ),
+            @Result(property="tra_yf2"              , column="tra_yf2"           ),
+            @Result(property="tra_yf3"            , column="tra_yf3"         ),
+            @Result(property="tra_yf4"              , column="tra_yf4"           ),
+            @Result(property="tra_yf5"            , column="tra_yf5"         ),
+            @Result(property="tra_yf6"            , column="tra_yf6"         ),
+            @Result(property="tra_yf7"            , column="tra_yf7"         ),
+            @Result(property="tra_yf8"            , column="tra_yf8"         ),
+            @Result(property="tra_yf9"            , column="tra_yf9"         ),
+            @Result(property="tra_yf10"            , column="tra_yf10"         ),
+            @Result(property="tra_yf11"            , column="tra_yf11"         ),
+            @Result(property="tra_yf2"            , column="tra_yf12"         ),
+    })
+    List<YmTransferIncome> getTransferIncomeByJtbhAndYear(String jtbh,String year);
+
+
+    @Select("select count(*) from ym_transfer_income where jtbh=#{jtbh} and tra_nf=#{year}")
+    int getCountByJtbhAndYear(String jtbh,String year);
 
 
     /*
@@ -46,4 +70,7 @@ public interface YmTransferIncomeDao {
      */
     @Delete("delete from ym_transfer_income where jtbh=#{jtbh} ")
     int deleteYmTransferIncomeByJtbh(String jtbh);
+
+    @Delete("delete from ym_transfer_income where jtbh=#{jtbh} and tra_nf=#{year} ")
+    int deleteYmTransferIncomeByJtbhAndYear(String jtbh,String year);
 }

@@ -1,10 +1,7 @@
 package cn.com.fovsoft.ym.dao;
 
 import cn.com.fovsoft.ym.bean.YmOutPovertyIncome;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -16,6 +13,32 @@ import java.util.List;
  */
 @Mapper
 public interface YmOutPovertyIncomeDao {
+
+
+    @Select("select * from ym_out_poverty_income where jtbh=#{jtbh} and pov_nf=#{year} ")
+    @Results(id="ymOutPovertyIncomeResult",value = {
+            @Result(property="pov_bh"            , column="pov_bh"         ),
+            @Result(property="jtbh"              , column="jtbh"           ),
+            @Result(property="pov_xtlb"             , column="pov_xtlb"          ),
+            @Result(property="pov_nf"           , column="pov_nf"        ),
+            @Result(property="pov_yf1"              , column="pov_yf1"           ),
+            @Result(property="pov_yf2"              , column="pov_yf2"           ),
+            @Result(property="pov_yf3"            , column="pov_yf3"         ),
+            @Result(property="pov_yf4"              , column="pov_yf4"           ),
+            @Result(property="pov_yf5"            , column="pov_yf5"         ),
+            @Result(property="pov_yf6"            , column="pov_yf6"         ),
+            @Result(property="pov_yf7"            , column="pov_yf7"         ),
+            @Result(property="pov_yf8"            , column="pov_yf8"         ),
+            @Result(property="pov_yf9"            , column="pov_yf9"         ),
+            @Result(property="pov_yf10"            , column="pov_yf10"         ),
+            @Result(property="pov_yf11"            , column="pov_yf11"         ),
+            @Result(property="pov_yf2"            , column="pov_yf12"         ),
+    })
+    List<YmOutPovertyIncome> getOutPovertyIncomeByJtbhAndYear(String jtbh,String year);
+
+
+    @Select("select count(*) from ym_out_poverty_income where jtbh=#{jtbh} and pov_nf=#{year}")
+    int getCountByJtbhAndYear(String jtbh,String year);
 
 
     /*
@@ -46,4 +69,7 @@ public interface YmOutPovertyIncomeDao {
      */
     @Delete("delete from ym_out_poverty_income where jtbh=#{jtbh} ")
     int deleteYmOutPovertyIncomeByJtbh(String jtbh);
+
+    @Delete("delete from ym_out_poverty_income where jtbh=#{jtbh} and pov_nf=#{year} ")
+    int deleteYmOutPovertyIncomeByJtbhAndYear(String jtbh,String year);
 }

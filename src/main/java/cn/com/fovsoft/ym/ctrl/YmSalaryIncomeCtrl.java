@@ -24,12 +24,59 @@ public class YmSalaryIncomeCtrl {
     @Autowired
     private YmSalaryIncomeService ymSalaryIncomeService;
 
-    @RequestMapping("/salaryIncome/add")
+
+
+    @RequestMapping("/salaryIncome/edit")
+    @ResponseBody
+    public Map<String,Object> editYmProduceIncomeMore(HttpServletRequest request){
+        //获取家庭编号信息
+        String jtbh = request.getParameter("jtbh");
+        String year = request.getParameter("nf");
+        List<YmSalaryIncome> ymSalaryIncomeList = getSalaryList(request,jtbh,year);
+        //返回信息
+        Map<String,Object> map = new HashMap<>();
+        int status = 1;
+        String result = "success";
+        //先删除信息，再写入信息
+        ymSalaryIncomeService.deleteYmSalaryIncomeByJtbhAndYear(jtbh,year);
+        ymSalaryIncomeService.addYmSalaryIncomeMore(ymSalaryIncomeList);
+        map.put("status",status);
+        map.put("result",result);
+        return map;
+    }
+
+
+
+
+        @RequestMapping("/salaryIncome/add")
     @ResponseBody
     public Map<String,Object> addYmProduceIncomeMore(HttpServletRequest request){
 
         //获取表格数据
         String jtbh=request.getParameter("jtbh");
+        String year = request.getParameter("nf");
+
+        List<YmSalaryIncome> ymSalaryIncomeList = getSalaryList(request,jtbh,year);
+        //返回信息
+        Map<String,Object> map = new HashMap<>();
+        int status = 1;
+        String result = "success";
+
+        int num = ymSalaryIncomeService.getCountByJtbhAndYear(jtbh,year);
+
+        if(num>0){
+            status = 0;
+            result = "haveData";
+        }else {
+            ymSalaryIncomeService.addYmSalaryIncomeMore(ymSalaryIncomeList);
+        }
+
+        map.put("status",status);
+        map.put("result",result);
+        return map;
+    }
+
+    private List<YmSalaryIncome> getSalaryList(HttpServletRequest request,String jtbh,String year){
         List<YmSalaryIncome> ymSalaryIncomeList = new ArrayList<>();
 
         String gz_xm1              = request.getParameter("gz_xm1");
@@ -56,7 +103,7 @@ public class YmSalaryIncomeCtrl {
         ymSalaryIncome.setWgdz(gz_dz1);
         ymSalaryIncome.setWgljsj(gz_sj1);
         ymSalaryIncome.setWgqymc(gz_dw1);
-        ymSalaryIncome.setSalary_nf("2019");
+        ymSalaryIncome.setSalary_nf(year);
         ymSalaryIncome.setSalary_yf1(salary_yf1_1);
         ymSalaryIncome.setSalary_yf2(salary_yf2_1);
         ymSalaryIncome.setSalary_yf3(salary_yf3_1);
@@ -95,7 +142,7 @@ public class YmSalaryIncomeCtrl {
         ymSalaryIncome.setWgdz(gz_dz2);
         ymSalaryIncome.setWgljsj(gz_sj2);
         ymSalaryIncome.setWgqymc(gz_dw2);
-        ymSalaryIncome.setSalary_nf("2019");
+        ymSalaryIncome.setSalary_nf(year);
         ymSalaryIncome.setSalary_yf1(salary_yf1_2);
         ymSalaryIncome.setSalary_yf2(salary_yf2_2);
         ymSalaryIncome.setSalary_yf3(salary_yf3_2);
@@ -134,7 +181,7 @@ public class YmSalaryIncomeCtrl {
         ymSalaryIncome.setWgdz(gz_dz3);
         ymSalaryIncome.setWgljsj(gz_sj3);
         ymSalaryIncome.setWgqymc(gz_dw3);
-        ymSalaryIncome.setSalary_nf("2019");
+        ymSalaryIncome.setSalary_nf(year);
         ymSalaryIncome.setSalary_yf1(salary_yf1_3);
         ymSalaryIncome.setSalary_yf2(salary_yf2_3);
         ymSalaryIncome.setSalary_yf3(salary_yf3_3);
@@ -174,7 +221,7 @@ public class YmSalaryIncomeCtrl {
         ymSalaryIncome.setWgdz(gz_dz4);
         ymSalaryIncome.setWgljsj(gz_sj4);
         ymSalaryIncome.setWgqymc(gz_dw4);
-        ymSalaryIncome.setSalary_nf("2019");
+        ymSalaryIncome.setSalary_nf(year);
         ymSalaryIncome.setSalary_yf1(salary_yf1_4);
         ymSalaryIncome.setSalary_yf2(salary_yf2_4);
         ymSalaryIncome.setSalary_yf3(salary_yf3_4);
@@ -213,7 +260,7 @@ public class YmSalaryIncomeCtrl {
         ymSalaryIncome.setWgdz(gz_dz5);
         ymSalaryIncome.setWgljsj(gz_sj5);
         ymSalaryIncome.setWgqymc(gz_dw5);
-        ymSalaryIncome.setSalary_nf("2019");
+        ymSalaryIncome.setSalary_nf(year);
         ymSalaryIncome.setSalary_yf1(salary_yf1_5);
         ymSalaryIncome.setSalary_yf2(salary_yf2_5);
         ymSalaryIncome.setSalary_yf3(salary_yf3_5);
@@ -247,7 +294,7 @@ public class YmSalaryIncomeCtrl {
         ymSalaryIncome.setWgdz("other");
         ymSalaryIncome.setWgljsj("other");
         ymSalaryIncome.setWgqymc("other");
-        ymSalaryIncome.setSalary_nf("2019");
+        ymSalaryIncome.setSalary_nf(year);
         ymSalaryIncome.setSalary_yf1(salary_yf1_6);
         ymSalaryIncome.setSalary_yf2(salary_yf2_6);
         ymSalaryIncome.setSalary_yf3(salary_yf3_6);
@@ -274,13 +321,29 @@ public class YmSalaryIncomeCtrl {
         String salary_yf10_7       = request.getParameter("salary_yf10_7");
         String salary_yf11_7       = request.getParameter("salary_yf11_7");
         String salary_yf12_7       = request.getParameter("salary_yf12_7");
+        ymSalaryIncome = new YmSalaryIncome();
+        ymSalaryIncome.setJtbh(jtbh);
+        ymSalaryIncome.setXm("00");
+        ymSalaryIncome.setWggz("00");
+        ymSalaryIncome.setWgdz("00");
+        ymSalaryIncome.setWgljsj("00");
+        ymSalaryIncome.setWgqymc("00");
+        ymSalaryIncome.setSalary_nf(year);
+        ymSalaryIncome.setSalary_yf1(salary_yf1_7);
+        ymSalaryIncome.setSalary_yf2(salary_yf2_7);
+        ymSalaryIncome.setSalary_yf3(salary_yf3_7);
+        ymSalaryIncome.setSalary_yf4(salary_yf4_7);
+        ymSalaryIncome.setSalary_yf5(salary_yf5_7);
+        ymSalaryIncome.setSalary_yf6(salary_yf6_7);
+        ymSalaryIncome.setSalary_yf7(salary_yf7_7);
+        ymSalaryIncome.setSalary_yf8(salary_yf8_7);
+        ymSalaryIncome.setSalary_yf9(salary_yf9_7);
+        ymSalaryIncome.setSalary_yf10(salary_yf10_7);
+        ymSalaryIncome.setSalary_yf11(salary_yf11_7);
+        ymSalaryIncome.setSalary_yf12(salary_yf12_7);
+        ymSalaryIncomeList.add(ymSalaryIncome);
 
-        ymSalaryIncomeService.addYmSalaryIncomeMore(ymSalaryIncomeList);
-
-        Map<String,Object> map = new HashMap<>();
-        map.put("status",1);
-        map.put("result","success");
-        return map;
+        return ymSalaryIncomeList;
     }
 
 

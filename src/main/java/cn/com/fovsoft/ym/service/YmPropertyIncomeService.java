@@ -18,6 +18,15 @@ public class YmPropertyIncomeService {
     @Resource
     private YmPropertyIncomeDao ymPropertyIncomeDao;
 
+
+    public List<YmPropertyIncome> getPropertyIncomeByJtbhAndYear(String jtbh,String year){
+        return ymPropertyIncomeDao.getPropertyIncomeByJtbhAndYear(jtbh, year);
+    }
+
+    public int getCountByJtbhAndYear(String jtbh,String year){
+        return ymPropertyIncomeDao.getCountByJtbhAndYear(jtbh, year);
+    }
+
     /**
      * @author: tpc
      * @date: 2019/11/26 22:01
@@ -33,5 +42,9 @@ public class YmPropertyIncomeService {
         return ymPropertyIncomeDao.deleteYmPropertyIncomeByJtbh(jtbh);
     }
 
+
+    public int deleteYmPropertyIncomeByJtbhAndYear(String jtbh,String year){
+        return ymPropertyIncomeDao.deleteYmPropertyIncomeByJtbhAndYear(jtbh, year);
+    }
 
 }

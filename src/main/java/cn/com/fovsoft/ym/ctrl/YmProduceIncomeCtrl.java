@@ -27,13 +27,57 @@ public class YmProduceIncomeCtrl {
     private YmProduceIncomeService ymProduceIncomeService;
 
 
+    @RequestMapping("/produceIncome/edit")
+    @ResponseBody
+    public Map<String,Object> editYmProduceIncome(HttpServletRequest request){
+        //获取家庭编号信息
+        String jtbh = request.getParameter("jtbh");
+        String year = request.getParameter("nf");
+        List<YmProduceIncome> ymProduceIncomeList = getProduceList(request,jtbh,year);
+        //返回信息
+        Map<String,Object> map = new HashMap<>();
+        int status = 1;
+        String result = "success";
+        //先删除信息，再写入信息
+        ymProduceIncomeService.deleteYmProduceIncomeByJtbhAndYear(jtbh,year);
+        ymProduceIncomeService.addYmProduceIncomeMore(ymProduceIncomeList);
+        map.put("status",status);
+        map.put("result",result);
+        return map;
+    }
+
+
+
     @RequestMapping("/produceIncome/add")
     @ResponseBody
     public Map<String,Object> addYmProduceIncome(HttpServletRequest request){
 
-
         //获取家庭编号信息
         String jtbh = request.getParameter("jtbh");
+        String year = request.getParameter("nf");
+
+        List<YmProduceIncome> ymProduceIncomeList = getProduceList(request,jtbh,year);
+        //返回信息
+        Map<String,Object> map = new HashMap<>();
+        int status = 1;
+        String result = "success";
+
+        int num = ymProduceIncomeService.getCountByJtbhAndYear(jtbh,year);
+
+        if(num>0){
+            status = 0;
+            result = "haveData";
+        }else {
+            //底层写入
+            ymProduceIncomeService.addYmProduceIncomeMore(ymProduceIncomeList);
+        }
+
+        map.put("status",status);
+        map.put("result",result);
+        return map;
+    }
+
+    private List<YmProduceIncome> getProduceList(HttpServletRequest request,String jtbh,String year){
         List<YmProduceIncome> ymProduceIncomeList = new ArrayList();
 
         String produce_yf1_1      = request.getParameter("produce_yf1_1");
@@ -53,7 +97,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("01");
         ymProduceIncome.setProduce_xtxl1("01");
         ymProduceIncome.setProduce_xtxl2("01");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_1);
         ymProduceIncome.setProduce_yf2(produce_yf2_1);
         ymProduceIncome.setProduce_yf3(produce_yf3_1);
@@ -86,7 +130,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("01");
         ymProduceIncome.setProduce_xtxl1("01");
         ymProduceIncome.setProduce_xtxl2("02");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_2);
         ymProduceIncome.setProduce_yf2(produce_yf2_2);
         ymProduceIncome.setProduce_yf3(produce_yf3_2);
@@ -120,7 +164,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("01");
         ymProduceIncome.setProduce_xtxl1("01");
         ymProduceIncome.setProduce_xtxl2("03");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_3);
         ymProduceIncome.setProduce_yf2(produce_yf2_3);
         ymProduceIncome.setProduce_yf3(produce_yf3_3);
@@ -153,7 +197,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("01");
         ymProduceIncome.setProduce_xtxl1("02");
         ymProduceIncome.setProduce_xtxl2("01");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_4);
         ymProduceIncome.setProduce_yf2(produce_yf2_4);
         ymProduceIncome.setProduce_yf3(produce_yf3_4);
@@ -186,7 +230,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("01");
         ymProduceIncome.setProduce_xtxl1("02");
         ymProduceIncome.setProduce_xtxl2("02");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_5);
         ymProduceIncome.setProduce_yf2(produce_yf2_5);
         ymProduceIncome.setProduce_yf3(produce_yf3_5);
@@ -219,7 +263,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("01");
         ymProduceIncome.setProduce_xtxl1("02");
         ymProduceIncome.setProduce_xtxl2("03");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_6);
         ymProduceIncome.setProduce_yf2(produce_yf2_6);
         ymProduceIncome.setProduce_yf3(produce_yf3_6);
@@ -252,7 +296,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("01");
         ymProduceIncome.setProduce_xtxl1("03");
         ymProduceIncome.setProduce_xtxl2("01");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_7);
         ymProduceIncome.setProduce_yf2(produce_yf2_7);
         ymProduceIncome.setProduce_yf3(produce_yf3_7);
@@ -285,7 +329,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("01");
         ymProduceIncome.setProduce_xtxl1("03");
         ymProduceIncome.setProduce_xtxl2("02");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_8);
         ymProduceIncome.setProduce_yf2(produce_yf2_8);
         ymProduceIncome.setProduce_yf3(produce_yf3_8);
@@ -318,7 +362,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("01");
         ymProduceIncome.setProduce_xtxl1("03");
         ymProduceIncome.setProduce_xtxl2("03");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_9);
         ymProduceIncome.setProduce_yf2(produce_yf2_9);
         ymProduceIncome.setProduce_yf3(produce_yf3_9);
@@ -351,7 +395,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("01");
         ymProduceIncome.setProduce_xtxl1("04");
         ymProduceIncome.setProduce_xtxl2("03");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_10);
         ymProduceIncome.setProduce_yf2(produce_yf2_10);
         ymProduceIncome.setProduce_yf3(produce_yf3_10);
@@ -379,6 +423,26 @@ public class YmProduceIncomeCtrl {
         String produce_yf11_11    = request.getParameter("produce_yf11_11");
         String produce_yf12_11    = request.getParameter("produce_yf12_11");
 
+        ymProduceIncome = new YmProduceIncome();
+        ymProduceIncome.setJtbh(jtbh);
+        ymProduceIncome.setProduce_xtdl("01");
+        ymProduceIncome.setProduce_xtxl1("05");
+        ymProduceIncome.setProduce_xtxl2("03");
+        ymProduceIncome.setProduce_nf(year);
+        ymProduceIncome.setProduce_yf1(produce_yf1_11);
+        ymProduceIncome.setProduce_yf2(produce_yf2_11);
+        ymProduceIncome.setProduce_yf3(produce_yf3_11);
+        ymProduceIncome.setProduce_yf4(produce_yf4_11);
+        ymProduceIncome.setProduce_yf5(produce_yf5_11);
+        ymProduceIncome.setProduce_yf6(produce_yf6_11);
+        ymProduceIncome.setProduce_yf7(produce_yf7_11);
+        ymProduceIncome.setProduce_yf8(produce_yf8_11);
+        ymProduceIncome.setProduce_yf9(produce_yf9_11);
+        ymProduceIncome.setProduce_yf10(produce_yf10_11);
+        ymProduceIncome.setProduce_yf11(produce_yf11_11);
+        ymProduceIncome.setProduce_yf12(produce_yf12_11);
+        ymProduceIncomeList.add(ymProduceIncome);
+
 
         String produce_yf1_21     = request.getParameter("produce_yf1_21");
         String produce_yf2_21     = request.getParameter("produce_yf2_21");
@@ -398,7 +462,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("02");
         ymProduceIncome.setProduce_xtxl1("01");
         ymProduceIncome.setProduce_xtxl2("01");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_21);
         ymProduceIncome.setProduce_yf2(produce_yf2_21);
         ymProduceIncome.setProduce_yf3(produce_yf3_21);
@@ -431,7 +495,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("02");
         ymProduceIncome.setProduce_xtxl1("01");
         ymProduceIncome.setProduce_xtxl2("02");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_22);
         ymProduceIncome.setProduce_yf2(produce_yf2_22);
         ymProduceIncome.setProduce_yf3(produce_yf3_22);
@@ -464,7 +528,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("02");
         ymProduceIncome.setProduce_xtxl1("01");
         ymProduceIncome.setProduce_xtxl2("03");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_23);
         ymProduceIncome.setProduce_yf2(produce_yf2_23);
         ymProduceIncome.setProduce_yf3(produce_yf3_23);
@@ -497,7 +561,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("02");
         ymProduceIncome.setProduce_xtxl1("02");
         ymProduceIncome.setProduce_xtxl2("01");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_24);
         ymProduceIncome.setProduce_yf2(produce_yf2_24);
         ymProduceIncome.setProduce_yf3(produce_yf3_24);
@@ -530,7 +594,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("02");
         ymProduceIncome.setProduce_xtxl1("02");
         ymProduceIncome.setProduce_xtxl2("02");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_25);
         ymProduceIncome.setProduce_yf2(produce_yf2_25);
         ymProduceIncome.setProduce_yf3(produce_yf3_25);
@@ -563,7 +627,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("02");
         ymProduceIncome.setProduce_xtxl1("02");
         ymProduceIncome.setProduce_xtxl2("03");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_26);
         ymProduceIncome.setProduce_yf2(produce_yf2_26);
         ymProduceIncome.setProduce_yf3(produce_yf3_26);
@@ -596,7 +660,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("02");
         ymProduceIncome.setProduce_xtxl1("03");
         ymProduceIncome.setProduce_xtxl2("01");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_27);
         ymProduceIncome.setProduce_yf2(produce_yf2_27);
         ymProduceIncome.setProduce_yf3(produce_yf3_27);
@@ -629,7 +693,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("02");
         ymProduceIncome.setProduce_xtxl1("03");
         ymProduceIncome.setProduce_xtxl2("02");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_28);
         ymProduceIncome.setProduce_yf2(produce_yf2_28);
         ymProduceIncome.setProduce_yf3(produce_yf3_28);
@@ -662,7 +726,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("02");
         ymProduceIncome.setProduce_xtxl1("03");
         ymProduceIncome.setProduce_xtxl2("03");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_29);
         ymProduceIncome.setProduce_yf2(produce_yf2_29);
         ymProduceIncome.setProduce_yf3(produce_yf3_29);
@@ -695,7 +759,7 @@ public class YmProduceIncomeCtrl {
         ymProduceIncome.setProduce_xtdl("02");
         ymProduceIncome.setProduce_xtxl1("04");
         ymProduceIncome.setProduce_xtxl2("03");
-        ymProduceIncome.setProduce_nf("2019");
+        ymProduceIncome.setProduce_nf(year);
         ymProduceIncome.setProduce_yf1(produce_yf1_30);
         ymProduceIncome.setProduce_yf2(produce_yf2_30);
         ymProduceIncome.setProduce_yf3(produce_yf3_30);
@@ -722,16 +786,26 @@ public class YmProduceIncomeCtrl {
         String produce_yf10_31    = request.getParameter("produce_yf10_31");
         String produce_yf11_31    = request.getParameter("produce_yf11_31");
         String produce_yf12_31    = request.getParameter("produce_yf12_31");
-
-
-        //底层写入
-        ymProduceIncomeService.addYmProduceIncomeMore(ymProduceIncomeList);
-
-        //返回信息
-        Map<String,Object> map = new HashMap<>();
-        map.put("status",1);
-        map.put("result","success");
-        return map;
+        ymProduceIncome = new YmProduceIncome();
+        ymProduceIncome.setJtbh(jtbh);
+        ymProduceIncome.setProduce_xtdl("02");
+        ymProduceIncome.setProduce_xtxl1("05");
+        ymProduceIncome.setProduce_xtxl2("03");
+        ymProduceIncome.setProduce_nf(year);
+        ymProduceIncome.setProduce_yf1(produce_yf1_31);
+        ymProduceIncome.setProduce_yf2(produce_yf2_31);
+        ymProduceIncome.setProduce_yf3(produce_yf3_31);
+        ymProduceIncome.setProduce_yf4(produce_yf4_31);
+        ymProduceIncome.setProduce_yf5(produce_yf5_31);
+        ymProduceIncome.setProduce_yf6(produce_yf6_31);
+        ymProduceIncome.setProduce_yf7(produce_yf7_31);
+        ymProduceIncome.setProduce_yf8(produce_yf8_31);
+        ymProduceIncome.setProduce_yf9(produce_yf9_31);
+        ymProduceIncome.setProduce_yf10(produce_yf10_31);
+        ymProduceIncome.setProduce_yf11(produce_yf11_31);
+        ymProduceIncome.setProduce_yf12(produce_yf12_31);
+        ymProduceIncomeList.add(ymProduceIncome);
+        return ymProduceIncomeList;
     }
 
 

@@ -6,15 +6,39 @@ package cn.com.fovsoft.ym.dao;/*
  */
 
 import cn.com.fovsoft.ym.bean.YmProduceIncome;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
 public interface  YmProduceIncomeDao {
+
+
+    @Select("select * from ym_produce_income where jtbh=#{jtbh} and produce_nf=#{year} ")
+    @Results(id="ymProduceIncomeResult",value = {
+            @Result(property="produce_bh"            , column="produce_bh"         ),
+            @Result(property="jtbh"              , column="jtbh"           ),
+            @Result(property="produce_xtdl"             , column="produce_xtdl"          ),
+            @Result(property="produce_xtxl1"             , column="produce_xtxl1"          ),
+            @Result(property="produce_xtxl2"             , column="produce_xtxl2"          ),
+            @Result(property="produce_nf"           , column="produce_nf"        ),
+            @Result(property="produce_yf1"           , column="produce_yf1"        ),
+            @Result(property="produce_yf2"              , column="produce_yf2"           ),
+            @Result(property="produce_yf3"            , column="produce_yf3"         ),
+            @Result(property="produce_yf4"              , column="produce_yf4"           ),
+            @Result(property="produce_yf5"            , column="produce_yf5"         ),
+            @Result(property="produce_yf6"            , column="produce_yf6"         ),
+            @Result(property="produce_yf7"            , column="produce_yf7"         ),
+            @Result(property="produce_yf8"            , column="produce_yf8"         ),
+            @Result(property="produce_yf9"            , column="produce_yf9"         ),
+            @Result(property="produce_yf10"            , column="produce_yf10"         ),
+            @Result(property="produce_yf11"            , column="produce_yf11"         ),
+            @Result(property="produce_yf2"            , column="produce_yf12"         ),
+    })
+    List<YmProduceIncome> getProduceIncomeByJtbhAndYear(String jtbh,String year);
+
+    @Select("select count(*) from ym_produce_income where jtbh=#{jtbh} and produce_nf=#{year}")
+    int getCountByJtbhAndYear(String jtbh,String year);
 
 
 
@@ -45,4 +69,7 @@ public interface  YmProduceIncomeDao {
      */
     @Delete("delete from ym_produce_income where jtbh=#{jtbh} ")
     int deleteYmProduceIncomeByJtbh(String jtbh);
+
+    @Delete("delete from ym_produce_income where jtbh=#{jtbh} and produce_nf=#{year} ")
+    int deleteYmProduceIncomeByJtbhAndYear(String jtbh,String year);
 }

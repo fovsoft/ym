@@ -12,7 +12,7 @@ import org.apache.ibatis.annotations.*;
 public interface YmIncomeSumDao {
 
 
-    @Select("select * from ym_income_sum where jtbh=#{jtbh} ")
+    @Select("select * from ym_income_sum where jtbh=#{jtbh} and sum_nf=#{nf} ")
     @Results(id="ymIncomeSumResult",value = {
             @Result(property="id"            , column="id"         ),
             @Result(property="jtbh"              , column="jtbh"           ),
@@ -25,7 +25,7 @@ public interface YmIncomeSumDao {
             @Result(property="sum_transfer"            , column="sum_transfer"         ),
             @Result(property="sum_poverty"              , column="sum_poverty"           )
     })
-    YmIncomeSum getYmIncomeSumByJtbh(String jtbh);
+    YmIncomeSum getYmIncomeSumByJtbhAndYear(String jtbh,String nf);
 
 
     @Insert("insert into ym_income_sum(jtbh,rks,sum_nf,sum_produce,sum_produce1,sum_salary,sum_property,sum_transfer,sum_poverty) values (#{jtbh},#{rks},#{sum_nf},#{sum_produce},#{sum_produce1},#{sum_salary},#{sum_property},#{sum_transfer},#{sum_poverty})")
@@ -33,4 +33,8 @@ public interface YmIncomeSumDao {
 
     @Delete("delete from ym_income_sum where jtbh=#{jtbh}")
     int deleteYmIncomeSumByJtbh(String jtbh);
+
+
+    @Update("update ym_income_sum set sum_produce=#{sum_produce},sum_produce1=#{sum_produce1},sum_salary=#{sum_salary},sum_property=#{sum_property},sum_transfer=#{sum_transfer},sum_poverty=#{sum_poverty} where jtbh=#{jtbh} and sum_nf=#{sum_nf}")
+    int updateYmIncomeSumByJtbhAndYear(YmIncomeSum ymIncomeSum);
 }

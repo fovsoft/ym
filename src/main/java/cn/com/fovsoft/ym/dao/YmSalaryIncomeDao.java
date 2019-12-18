@@ -6,15 +6,42 @@ package cn.com.fovsoft.ym.dao;/*
  */
 
 import cn.com.fovsoft.ym.bean.YmSalaryIncome;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
 @Mapper
 public interface YmSalaryIncomeDao {
+
+
+    @Select("select * from ym_salary_income where jtbh=#{jtbh} and salary_nf=#{year} ")
+    @Results(id="ymSalaryIncomeResult",value = {
+            @Result(property="salary_bh"            , column="salary_bh"         ),
+            @Result(property="jtbh"              , column="jtbh"           ),
+            @Result(property="xm"             , column="xm"          ),
+            @Result(property="wggz"             , column="wggz"          ),
+            @Result(property="wgdz"             , column="wgdz"          ),
+            @Result(property="wgljsj"           , column="wgljsj"        ),
+            @Result(property="wgqymc"           , column="wgqymc"        ),
+            @Result(property="salary_nf"           , column="salary_nf"        ),
+            @Result(property="salary_yf1"              , column="salary_yf1"           ),
+            @Result(property="salary_yf2"              , column="salary_yf2"           ),
+            @Result(property="salary_yf3"            , column="salary_yf3"         ),
+            @Result(property="salary_yf4"              , column="salary_yf4"           ),
+            @Result(property="salary_yf5"            , column="salary_yf5"         ),
+            @Result(property="salary_yf6"            , column="salary_yf6"         ),
+            @Result(property="salary_yf7"            , column="salary_yf7"         ),
+            @Result(property="salary_yf8"            , column="salary_yf8"         ),
+            @Result(property="salary_yf9"            , column="salary_yf9"         ),
+            @Result(property="salary_yf10"            , column="salary_yf10"         ),
+            @Result(property="salary_yf11"            , column="salary_yf11"         ),
+            @Result(property="salary_yf2"            , column="salary_yf12"         ),
+    })
+    List<YmSalaryIncome> getSalaryIncomeByJtbhAndYear(String jtbh,String year);
+
+
+    @Select("select count(*) from ym_salary_income where jtbh=#{jtbh} and salary_nf=#{year}")
+    int getCountByJtbhAndYear(String jtbh,String year);
 
     /*
      * Author:tpc
@@ -43,4 +70,7 @@ public interface YmSalaryIncomeDao {
      */
     @Delete("delete from ym_salary_income where jtbh=#{jtbh} ")
     int deleteYmSalaryIncomeByJtbh(String jtbh);
+
+    @Delete("delete from ym_salary_income where jtbh=#{jtbh} and salary_nf=#{year} ")
+    int deleteYmSalaryIncomeByJtbhAndYear(String jtbh,String year);
 }

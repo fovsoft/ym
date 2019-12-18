@@ -27,15 +27,57 @@ public class YmTransferIncomeCtrl {
     private YmTransferIncomeService ymTransferIncomeService;
 
 
+    @RequestMapping("/transferIncome/edit")
+    @ResponseBody
+    public Map<String,Object> editYmTransferIncomeMore(HttpServletRequest request){
+        //获取家庭编号信息
+        String jtbh = request.getParameter("jtbh");
+        String year = request.getParameter("nf");
+        List<YmTransferIncome> ymTransferIncomeList = getTransferList(request,jtbh,year);
+        //返回信息
+        Map<String,Object> map = new HashMap<>();
+        int status = 1;
+        String result = "success";
+        //先删除信息，再写入信息
+        ymTransferIncomeService.deleteYmTransferIncomeByJtbhAndYear(jtbh,year);
+        ymTransferIncomeService.addYmTransferIncomeMore(ymTransferIncomeList);
+        map.put("status",status);
+        map.put("result",result);
+        return map;
+    }
+
+
     @RequestMapping("/transferIncome/add")
     @ResponseBody
     public Map<String,Object> addYmTransferIncomeMore(HttpServletRequest request){
 
+        String jtbh             = request.getParameter("jtbh");
+        String year = request.getParameter("nf");
+
+
+        List<YmTransferIncome> ymTransferIncomeList = getTransferList(request,jtbh,year);
+        //返回信息
+        Map<String,Object> map = new HashMap<>();
+        int status = 1;
+        String result = "success";
+
+        int num = ymTransferIncomeService.getCountByJtbhAndYear(jtbh,year);
+
+        if(num>0){
+            status = 0;
+            result = "haveData";
+        }else {
+            ymTransferIncomeService.addYmTransferIncomeMore(ymTransferIncomeList);
+        }
+
+        map.put("status",status);
+        map.put("result",result);
+        return map;
+    }
+
+    private List<YmTransferIncome> getTransferList(HttpServletRequest request,String jtbh,String year){
         //用来记录多个记录的list
         List<YmTransferIncome> ymTransferIncomeList = new ArrayList<>();
-
-        String jtbh             = request.getParameter("jtbh");
-
         String tra_yf1_1          = request.getParameter("tra_yf1_1");
         String tra_yf2_1          = request.getParameter("tra_yf2_1");
         String tra_yf3_1          = request.getParameter("tra_yf3_1");
@@ -51,7 +93,7 @@ public class YmTransferIncomeCtrl {
         YmTransferIncome ymTransferIncome = new YmTransferIncome();
         ymTransferIncome.setJtbh(jtbh);
         ymTransferIncome.setTra_xtlb("01");
-        ymTransferIncome.setTra_nf("2019");
+        ymTransferIncome.setTra_nf(year);
         ymTransferIncome.setTra_yf1(tra_yf1_1);
         ymTransferIncome.setTra_yf2(tra_yf2_1);
         ymTransferIncome.setTra_yf3(tra_yf3_1);
@@ -82,7 +124,7 @@ public class YmTransferIncomeCtrl {
         ymTransferIncome = new YmTransferIncome();
         ymTransferIncome.setJtbh(jtbh);
         ymTransferIncome.setTra_xtlb("0201");
-        ymTransferIncome.setTra_nf("2019");
+        ymTransferIncome.setTra_nf(year);
         ymTransferIncome.setTra_yf1(tra_yf1_2);
         ymTransferIncome.setTra_yf2(tra_yf2_2);
         ymTransferIncome.setTra_yf3(tra_yf3_2);
@@ -112,7 +154,7 @@ public class YmTransferIncomeCtrl {
         ymTransferIncome = new YmTransferIncome();
         ymTransferIncome.setJtbh(jtbh);
         ymTransferIncome.setTra_xtlb("0202");
-        ymTransferIncome.setTra_nf("2019");
+        ymTransferIncome.setTra_nf(year);
         ymTransferIncome.setTra_yf1(tra_yf1_2b);
         ymTransferIncome.setTra_yf2(tra_yf2_2b);
         ymTransferIncome.setTra_yf3(tra_yf3_2b);
@@ -142,7 +184,7 @@ public class YmTransferIncomeCtrl {
         ymTransferIncome = new YmTransferIncome();
         ymTransferIncome.setJtbh(jtbh);
         ymTransferIncome.setTra_xtlb("0203");
-        ymTransferIncome.setTra_nf("2019");
+        ymTransferIncome.setTra_nf(year);
         ymTransferIncome.setTra_yf1(tra_yf1_2c);
         ymTransferIncome.setTra_yf2(tra_yf2_2c);
         ymTransferIncome.setTra_yf3(tra_yf3_2c);
@@ -172,7 +214,7 @@ public class YmTransferIncomeCtrl {
         ymTransferIncome = new YmTransferIncome();
         ymTransferIncome.setJtbh(jtbh);
         ymTransferIncome.setTra_xtlb("03");
-        ymTransferIncome.setTra_nf("2019");
+        ymTransferIncome.setTra_nf(year);
         ymTransferIncome.setTra_yf1(tra_yf1_3);
         ymTransferIncome.setTra_yf2(tra_yf2_3);
         ymTransferIncome.setTra_yf3(tra_yf3_3);
@@ -202,7 +244,7 @@ public class YmTransferIncomeCtrl {
         ymTransferIncome = new YmTransferIncome();
         ymTransferIncome.setJtbh(jtbh);
         ymTransferIncome.setTra_xtlb("04");
-        ymTransferIncome.setTra_nf("2019");
+        ymTransferIncome.setTra_nf(year);
         ymTransferIncome.setTra_yf1(tra_yf1_4);
         ymTransferIncome.setTra_yf2(tra_yf2_4);
         ymTransferIncome.setTra_yf3(tra_yf3_4);
@@ -232,7 +274,7 @@ public class YmTransferIncomeCtrl {
         ymTransferIncome = new YmTransferIncome();
         ymTransferIncome.setJtbh(jtbh);
         ymTransferIncome.setTra_xtlb("05");
-        ymTransferIncome.setTra_nf("2019");
+        ymTransferIncome.setTra_nf(year);
         ymTransferIncome.setTra_yf1(tra_yf1_5);
         ymTransferIncome.setTra_yf2(tra_yf2_5);
         ymTransferIncome.setTra_yf3(tra_yf3_5);
@@ -262,7 +304,7 @@ public class YmTransferIncomeCtrl {
         ymTransferIncome = new YmTransferIncome();
         ymTransferIncome.setJtbh(jtbh);
         ymTransferIncome.setTra_xtlb("06");
-        ymTransferIncome.setTra_nf("2019");
+        ymTransferIncome.setTra_nf(year);
         ymTransferIncome.setTra_yf1(tra_yf1_6);
         ymTransferIncome.setTra_yf2(tra_yf2_6);
         ymTransferIncome.setTra_yf3(tra_yf3_6);
@@ -292,7 +334,7 @@ public class YmTransferIncomeCtrl {
         ymTransferIncome = new YmTransferIncome();
         ymTransferIncome.setJtbh(jtbh);
         ymTransferIncome.setTra_xtlb("07");
-        ymTransferIncome.setTra_nf("2019");
+        ymTransferIncome.setTra_nf(year);
         ymTransferIncome.setTra_yf1(tra_yf1_7);
         ymTransferIncome.setTra_yf2(tra_yf2_7);
         ymTransferIncome.setTra_yf3(tra_yf3_7);
@@ -322,7 +364,7 @@ public class YmTransferIncomeCtrl {
         ymTransferIncome = new YmTransferIncome();
         ymTransferIncome.setJtbh(jtbh);
         ymTransferIncome.setTra_xtlb("08");
-        ymTransferIncome.setTra_nf("2019");
+        ymTransferIncome.setTra_nf(year);
         ymTransferIncome.setTra_yf1(tra_yf1_8);
         ymTransferIncome.setTra_yf2(tra_yf2_8);
         ymTransferIncome.setTra_yf3(tra_yf3_8);
@@ -352,7 +394,7 @@ public class YmTransferIncomeCtrl {
         ymTransferIncome = new YmTransferIncome();
         ymTransferIncome.setJtbh(jtbh);
         ymTransferIncome.setTra_xtlb("0201");
-        ymTransferIncome.setTra_nf("2019");
+        ymTransferIncome.setTra_nf(year);
         ymTransferIncome.setTra_yf1(tra_yf1_9);
         ymTransferIncome.setTra_yf2(tra_yf2_9);
         ymTransferIncome.setTra_yf3(tra_yf3_9);
@@ -382,7 +424,7 @@ public class YmTransferIncomeCtrl {
         ymTransferIncome = new YmTransferIncome();
         ymTransferIncome.setJtbh(jtbh);
         ymTransferIncome.setTra_xtlb("10");
-        ymTransferIncome.setTra_nf("2019");
+        ymTransferIncome.setTra_nf(year);
         ymTransferIncome.setTra_yf1(tra_yf1_10);
         ymTransferIncome.setTra_yf2(tra_yf2_10);
         ymTransferIncome.setTra_yf3(tra_yf3_10);
@@ -409,6 +451,24 @@ public class YmTransferIncomeCtrl {
         String tra_yf10_11        = request.getParameter("tra_yf10_11");
         String tra_yf11_11        = request.getParameter("tra_yf11_11");
         String tra_yf12_11        = request.getParameter("tra_yf12_11");
+        ymTransferIncome = new YmTransferIncome();
+        ymTransferIncome.setJtbh(jtbh);
+        ymTransferIncome.setTra_xtlb("11");
+        ymTransferIncome.setTra_nf(year);
+        ymTransferIncome.setTra_yf1(tra_yf1_11);
+        ymTransferIncome.setTra_yf2(tra_yf2_11);
+        ymTransferIncome.setTra_yf3(tra_yf3_11);
+        ymTransferIncome.setTra_yf4(tra_yf4_11);
+        ymTransferIncome.setTra_yf5(tra_yf5_11);
+        ymTransferIncome.setTra_yf6(tra_yf6_11);
+        ymTransferIncome.setTra_yf7(tra_yf7_11);
+        ymTransferIncome.setTra_yf8(tra_yf8_11);
+        ymTransferIncome.setTra_yf9(tra_yf9_11);
+        ymTransferIncome.setTra_yf10(tra_yf10_11);
+        ymTransferIncome.setTra_yf11(tra_yf11_11);
+        ymTransferIncome.setTra_yf12(tra_yf12_11);
+        ymTransferIncomeList.add(ymTransferIncome);
+
         String tra_yf1_12         = request.getParameter("tra_yf1_12");
         String tra_yf2_12         = request.getParameter("tra_yf2_12");
         String tra_yf3_12         = request.getParameter("tra_yf3_12");
@@ -421,50 +481,25 @@ public class YmTransferIncomeCtrl {
         String tra_yf10_12        = request.getParameter("tra_yf10_12");
         String tra_yf11_12        = request.getParameter("tra_yf11_12");
         String tra_yf12_12        = request.getParameter("tra_yf12_12");
-        String tra_yf1_13         = request.getParameter("tra_yf1_13");
-        String tra_yf2_13         = request.getParameter("tra_yf2_13");
-        String tra_yf3_13         = request.getParameter("tra_yf3_13");
-        String tra_yf4_13         = request.getParameter("tra_yf4_13");
-        String tra_yf5_13         = request.getParameter("tra_yf5_13");
-        String tra_yf6_13         = request.getParameter("tra_yf6_13");
-        String tra_yf7_13         = request.getParameter("tra_yf7_13");
-        String tra_yf8_13         = request.getParameter("tra_yf8_13");
-        String tra_yf9_13         = request.getParameter("tra_yf9_13");
-        String tra_yf10_13        = request.getParameter("tra_yf10_13");
-        String tra_yf11_13        = request.getParameter("tra_yf11_13");
-        String tra_yf12_13        = request.getParameter("tra_yf12_13");
-        String tra_yf1_14         = request.getParameter("tra_yf1_14");
-        String tra_yf2_14         = request.getParameter("tra_yf2_14");
-        String tra_yf3_14         = request.getParameter("tra_yf3_14");
-        String tra_yf4_14         = request.getParameter("tra_yf4_14");
-        String tra_yf5_14         = request.getParameter("tra_yf5_14");
-        String tra_yf6_14         = request.getParameter("tra_yf6_14");
-        String tra_yf7_14         = request.getParameter("tra_yf7_14");
-        String tra_yf8_14         = request.getParameter("tra_yf8_14");
-        String tra_yf9_14         = request.getParameter("tra_yf9_14");
-        String tra_yf10_14        = request.getParameter("tra_yf10_14");
-        String tra_yf11_14        = request.getParameter("tra_yf11_14");
-        String tra_yf12_14        = request.getParameter("tra_yf12_14");
-        String tra_yf1_15         = request.getParameter("tra_yf1_15");
-        String tra_yf2_15         = request.getParameter("tra_yf2_15");
-        String tra_yf3_15         = request.getParameter("tra_yf3_15");
-        String tra_yf4_15         = request.getParameter("tra_yf4_15");
-        String tra_yf5_15         = request.getParameter("tra_yf5_15");
-        String tra_yf6_15         = request.getParameter("tra_yf6_15");
-        String tra_yf7_15         = request.getParameter("tra_yf7_15");
-        String tra_yf8_15         = request.getParameter("tra_yf8_15");
-        String tra_yf9_15         = request.getParameter("tra_yf9_15");
-        String tra_yf10_15        = request.getParameter("tra_yf10_15");
-        String tra_yf11_15        = request.getParameter("tra_yf11_15");
-        String tra_yf12_15        = request.getParameter("tra_yf12_15");
+        ymTransferIncome = new YmTransferIncome();
+        ymTransferIncome.setJtbh(jtbh);
+        ymTransferIncome.setTra_xtlb("12");
+        ymTransferIncome.setTra_nf(year);
+        ymTransferIncome.setTra_yf1(tra_yf1_12);
+        ymTransferIncome.setTra_yf2(tra_yf2_12);
+        ymTransferIncome.setTra_yf3(tra_yf3_12);
+        ymTransferIncome.setTra_yf4(tra_yf4_12);
+        ymTransferIncome.setTra_yf5(tra_yf5_12);
+        ymTransferIncome.setTra_yf6(tra_yf6_12);
+        ymTransferIncome.setTra_yf7(tra_yf7_12);
+        ymTransferIncome.setTra_yf8(tra_yf8_12);
+        ymTransferIncome.setTra_yf9(tra_yf9_12);
+        ymTransferIncome.setTra_yf10(tra_yf10_12);
+        ymTransferIncome.setTra_yf11(tra_yf11_12);
+        ymTransferIncome.setTra_yf12(tra_yf12_12);
+        ymTransferIncomeList.add(ymTransferIncome);
 
-
-        ymTransferIncomeService.addYmTransferIncomeMore(ymTransferIncomeList);
-
-        Map<String,Object> map = new HashMap<>();
-        map.put("status",1);
-        map.put("result","success");
-        return map;
+        return ymTransferIncomeList;
     }
 
 

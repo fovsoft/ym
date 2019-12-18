@@ -19,6 +19,15 @@ public class YmOutPovertyIncomeService {
     @Resource
     private YmOutPovertyIncomeDao ymOutPovertyIncomeDao;
 
+
+    public List<YmOutPovertyIncome> getOutPovertyIncomeByJtbhAndYear(String jtbh,String year){
+        return ymOutPovertyIncomeDao.getOutPovertyIncomeByJtbhAndYear(jtbh, year);
+    }
+
+
+    public int getCountByJtbhAndYear(String jtbh,String year){
+        return ymOutPovertyIncomeDao.getCountByJtbhAndYear(jtbh, year);
+    }
     
     /**
      * @author: tpc
@@ -38,5 +47,9 @@ public class YmOutPovertyIncomeService {
      */
     public int deleteYmOutPovertyIncomeByJtbh(String jtbh){
         return ymOutPovertyIncomeDao.deleteYmOutPovertyIncomeByJtbh(jtbh);
+    }
+
+    public int deleteYmOutPovertyIncomeByJtbhAndYear(String jtbh,String year){
+        return ymOutPovertyIncomeDao.deleteYmOutPovertyIncomeByJtbhAndYear(jtbh, year);
     }
 }

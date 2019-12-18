@@ -1,6 +1,8 @@
 package cn.com.fovsoft.ym.ctrl;
 
+import cn.com.fovsoft.ym.bean.YmIncomeSum;
 import cn.com.fovsoft.ym.bean.YmOutPovertyIncome;
+import cn.com.fovsoft.ym.service.YmIncomeSumService;
 import cn.com.fovsoft.ym.service.YmOutPovertyIncomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,385 +28,467 @@ public class YmOutPovertyIncomeCtrl {
     @Autowired
     private YmOutPovertyIncomeService ymOutPovertyIncomeService;
 
+    @Autowired
+    private YmIncomeSumService ymIncomeSumService;
+
+
+    @RequestMapping("/outPovertyIncome/edit")
+    @ResponseBody
+    public Map<String,Object> editYmOutPovertyIncomeMore(HttpServletRequest request){
+        //获取家庭编号信息
+        String jtbh = request.getParameter("jtbh");
+        String year = request.getParameter("nf");
+        List<YmOutPovertyIncome> ymOutPovertyIncomeList = getPovertyList(request,jtbh,year);
+        //返回信息
+        Map<String,Object> map = new HashMap<>();
+        int status = 1;
+        String result = "success";
+        //先删除信息，再写入信息
+        ymOutPovertyIncomeService.deleteYmOutPovertyIncomeByJtbhAndYear(jtbh,year);
+        ymOutPovertyIncomeService.addYmOutPovertyIncomeMore(ymOutPovertyIncomeList);
+        //再修改各项小计信息
+        String produce_count = request.getParameter("produce_count");
+        String produce_count1 = request.getParameter("produce_count1");
+        String salary_count = request.getParameter("salary_count");
+        String property_count = request.getParameter("property_count");
+        String transfer_count = request.getParameter("transfer_count");
+        String poverty_count = request.getParameter("poverty_count");
+
+        YmIncomeSum ymIncomeSum = new YmIncomeSum();
+        ymIncomeSum.setJtbh(jtbh);
+        ymIncomeSum.setSum_nf(year);
+        ymIncomeSum.setSum_produce(produce_count);
+        ymIncomeSum.setSum_produce1(produce_count1);
+        ymIncomeSum.setSum_salary(salary_count);
+        ymIncomeSum.setSum_property(property_count);
+        ymIncomeSum.setSum_transfer(transfer_count);
+        ymIncomeSum.setSum_poverty(poverty_count);
+        ymIncomeSumService.updateYmIncomeSumByJtbhAndYear(ymIncomeSum);
+
+        map.put("status",status);
+        map.put("result",result);
+        return map;
+    }
+
 
     @RequestMapping("/outPovertyIncome/add")
     @ResponseBody
     public Map<String,Object> addYmOutPovertyIncomeMore(HttpServletRequest request){
 
-        //封装写入对象的list
-//        List<YmOutPovertyIncome> ymOutPovertyIncomeList = new ArrayList<>();
-//
-//        String jtbh           = request.getParameter("jtbh");
-//        String op_1810je1     = request.getParameter("op_1810je1");
-//        String op_1811je1     = request.getParameter("op_1811je1");
-//        String op_1812je1     = request.getParameter("op_1812je1");
-//        String op_1913je1     = request.getParameter("op_1913je1");
-//        String op_1946je1     = request.getParameter("op_1946je1");
-//        String op_1979je1     = request.getParameter("op_1979je1");
-//        String op_1910je1     = request.getParameter("op_1910je1");
-//        String op_1911je1     = request.getParameter("op_1911je1");
-//        String op_1912je1     = request.getParameter("op_1912je1");
-//        YmOutPovertyIncome ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("01");
-//        ymOutPovertyIncome.setPov_nf("2018");
-//        ymOutPovertyIncome.setPov_yf13("");
-//        ymOutPovertyIncome.setPov_yf46("");
-//        ymOutPovertyIncome.setPov_yf79("");
-//        ymOutPovertyIncome.setPov_yf10(op_1810je1);
-//        ymOutPovertyIncome.setPov_yf11(op_1811je1);
-//        ymOutPovertyIncome.setPov_yf12(op_1812je1);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("01");
-//        ymOutPovertyIncome.setPov_nf("2019");
-//        ymOutPovertyIncome.setPov_yf13(op_1913je1);
-//        ymOutPovertyIncome.setPov_yf46(op_1946je1);
-//        ymOutPovertyIncome.setPov_yf79(op_1979je1);
-//        ymOutPovertyIncome.setPov_yf10(op_1910je1);
-//        ymOutPovertyIncome.setPov_yf11(op_1911je1);
-//        ymOutPovertyIncome.setPov_yf12(op_1912je1);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//
-//        String op_1810je2     = request.getParameter("op_1810je2");
-//        String op_1811je2     = request.getParameter("op_1811je2");
-//        String op_1812je2     = request.getParameter("op_1812je2");
-//        String op_1913je2     = request.getParameter("op_1913je2");
-//        String op_1946je2     = request.getParameter("op_1946je2");
-//        String op_1979je2     = request.getParameter("op_1979je2");
-//        String op_1910je2     = request.getParameter("op_1910je2");
-//        String op_1911je2     = request.getParameter("op_1911je2");
-//        String op_1912je2     = request.getParameter("op_1912je2");
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("02");
-//        ymOutPovertyIncome.setPov_nf("2018");
-//        ymOutPovertyIncome.setPov_yf13("");
-//        ymOutPovertyIncome.setPov_yf46("");
-//        ymOutPovertyIncome.setPov_yf79("");
-//        ymOutPovertyIncome.setPov_yf10(op_1810je2);
-//        ymOutPovertyIncome.setPov_yf11(op_1811je2);
-//        ymOutPovertyIncome.setPov_yf12(op_1812je2);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("02");
-//        ymOutPovertyIncome.setPov_nf("2019");
-//        ymOutPovertyIncome.setPov_yf13(op_1913je2);
-//        ymOutPovertyIncome.setPov_yf46(op_1946je2);
-//        ymOutPovertyIncome.setPov_yf79(op_1979je2);
-//        ymOutPovertyIncome.setPov_yf10(op_1910je2);
-//        ymOutPovertyIncome.setPov_yf11(op_1911je2);
-//        ymOutPovertyIncome.setPov_yf12(op_1912je2);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        String op_1810je3     = request.getParameter("op_1810je3");
-//        String op_1811je3     = request.getParameter("op_1811je3");
-//        String op_1812je3     = request.getParameter("op_1812je3");
-//        String op_1913je3     = request.getParameter("op_1913je3");
-//        String op_1946je3     = request.getParameter("op_1946je3");
-//        String op_1979je3     = request.getParameter("op_1979je3");
-//        String op_1910je3     = request.getParameter("op_1910je3");
-//        String op_1911je3     = request.getParameter("op_1911je3");
-//        String op_1912je3     = request.getParameter("op_1912je3");
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("03");
-//        ymOutPovertyIncome.setPov_nf("2018");
-//        ymOutPovertyIncome.setPov_yf13("");
-//        ymOutPovertyIncome.setPov_yf46("");
-//        ymOutPovertyIncome.setPov_yf79("");
-//        ymOutPovertyIncome.setPov_yf10(op_1810je3);
-//        ymOutPovertyIncome.setPov_yf11(op_1811je3);
-//        ymOutPovertyIncome.setPov_yf12(op_1812je3);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("03");
-//        ymOutPovertyIncome.setPov_nf("2019");
-//        ymOutPovertyIncome.setPov_yf13(op_1913je3);
-//        ymOutPovertyIncome.setPov_yf46(op_1946je3);
-//        ymOutPovertyIncome.setPov_yf79(op_1979je3);
-//        ymOutPovertyIncome.setPov_yf10(op_1910je3);
-//        ymOutPovertyIncome.setPov_yf11(op_1911je3);
-//        ymOutPovertyIncome.setPov_yf12(op_1912je3);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        String op_1810je4     = request.getParameter("op_1810je4");
-//        String op_1811je4     = request.getParameter("op_1811je4");
-//        String op_1812je4     = request.getParameter("op_1812je4");
-//        String op_1913je4     = request.getParameter("op_1913je4");
-//        String op_1946je4     = request.getParameter("op_1946je4");
-//        String op_1979je4     = request.getParameter("op_1979je4");
-//        String op_1910je4     = request.getParameter("op_1910je4");
-//        String op_1911je4     = request.getParameter("op_1911je4");
-//        String op_1912je4     = request.getParameter("op_1912je4");
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("04");
-//        ymOutPovertyIncome.setPov_nf("2018");
-//        ymOutPovertyIncome.setPov_yf13("");
-//        ymOutPovertyIncome.setPov_yf46("");
-//        ymOutPovertyIncome.setPov_yf79("");
-//        ymOutPovertyIncome.setPov_yf10(op_1810je4);
-//        ymOutPovertyIncome.setPov_yf11(op_1811je4);
-//        ymOutPovertyIncome.setPov_yf12(op_1812je4);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("04");
-//        ymOutPovertyIncome.setPov_nf("2019");
-//        ymOutPovertyIncome.setPov_yf13(op_1913je4);
-//        ymOutPovertyIncome.setPov_yf46(op_1946je4);
-//        ymOutPovertyIncome.setPov_yf79(op_1979je4);
-//        ymOutPovertyIncome.setPov_yf10(op_1910je4);
-//        ymOutPovertyIncome.setPov_yf11(op_1911je4);
-//        ymOutPovertyIncome.setPov_yf12(op_1912je4);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        String op_1810je5     = request.getParameter("op_1810je5");
-//        String op_1811je5     = request.getParameter("op_1811je5");
-//        String op_1812je5     = request.getParameter("op_1812je5");
-//        String op_1913je5     = request.getParameter("op_1913je5");
-//        String op_1946je5     = request.getParameter("op_1946je5");
-//        String op_1979je5     = request.getParameter("op_1979je5");
-//        String op_1910je5     = request.getParameter("op_1910je5");
-//        String op_1911je5     = request.getParameter("op_1911je5");
-//        String op_1912je5     = request.getParameter("op_1912je5");
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("05");
-//        ymOutPovertyIncome.setPov_nf("2018");
-//        ymOutPovertyIncome.setPov_yf13("");
-//        ymOutPovertyIncome.setPov_yf46("");
-//        ymOutPovertyIncome.setPov_yf79("");
-//        ymOutPovertyIncome.setPov_yf10(op_1810je5);
-//        ymOutPovertyIncome.setPov_yf11(op_1811je5);
-//        ymOutPovertyIncome.setPov_yf12(op_1812je5);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("05");
-//        ymOutPovertyIncome.setPov_nf("2019");
-//        ymOutPovertyIncome.setPov_yf13(op_1913je5);
-//        ymOutPovertyIncome.setPov_yf46(op_1946je5);
-//        ymOutPovertyIncome.setPov_yf79(op_1979je5);
-//        ymOutPovertyIncome.setPov_yf10(op_1910je5);
-//        ymOutPovertyIncome.setPov_yf11(op_1911je5);
-//        ymOutPovertyIncome.setPov_yf12(op_1912je5);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        String op_1810je6     = request.getParameter("op_1810je6");
-//        String op_1811je6     = request.getParameter("op_1811je6");
-//        String op_1812je6     = request.getParameter("op_1812je6");
-//        String op_1913je6     = request.getParameter("op_1913je6");
-//        String op_1946je6     = request.getParameter("op_1946je6");
-//        String op_1979je6     = request.getParameter("op_1979je6");
-//        String op_1910je6     = request.getParameter("op_1910je6");
-//        String op_1911je6     = request.getParameter("op_1911je6");
-//        String op_1912je6     = request.getParameter("op_1912je6");
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("06");
-//        ymOutPovertyIncome.setPov_nf("2018");
-//        ymOutPovertyIncome.setPov_yf13("");
-//        ymOutPovertyIncome.setPov_yf46("");
-//        ymOutPovertyIncome.setPov_yf79("");
-//        ymOutPovertyIncome.setPov_yf10(op_1810je6);
-//        ymOutPovertyIncome.setPov_yf11(op_1811je6);
-//        ymOutPovertyIncome.setPov_yf12(op_1812je6);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("06");
-//        ymOutPovertyIncome.setPov_nf("2019");
-//        ymOutPovertyIncome.setPov_yf13(op_1913je6);
-//        ymOutPovertyIncome.setPov_yf46(op_1946je6);
-//        ymOutPovertyIncome.setPov_yf79(op_1979je6);
-//        ymOutPovertyIncome.setPov_yf10(op_1910je6);
-//        ymOutPovertyIncome.setPov_yf11(op_1911je6);
-//        ymOutPovertyIncome.setPov_yf12(op_1912je6);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        String op_1810je7     = request.getParameter("op_1810je7");
-//        String op_1811je7     = request.getParameter("op_1811je7");
-//        String op_1812je7     = request.getParameter("op_1812je7");
-//        String op_1913je7     = request.getParameter("op_1913je7");
-//        String op_1946je7     = request.getParameter("op_1946je7");
-//        String op_1979je7     = request.getParameter("op_1979je7");
-//        String op_1910je7     = request.getParameter("op_1910je7");
-//        String op_1911je7     = request.getParameter("op_1911je7");
-//        String op_1912je7     = request.getParameter("op_1912je7");
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("07");
-//        ymOutPovertyIncome.setPov_nf("2018");
-//        ymOutPovertyIncome.setPov_yf13("");
-//        ymOutPovertyIncome.setPov_yf46("");
-//        ymOutPovertyIncome.setPov_yf79("");
-//        ymOutPovertyIncome.setPov_yf10(op_1810je7);
-//        ymOutPovertyIncome.setPov_yf11(op_1811je7);
-//        ymOutPovertyIncome.setPov_yf12(op_1812je7);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("07");
-//        ymOutPovertyIncome.setPov_nf("2019");
-//        ymOutPovertyIncome.setPov_yf13(op_1913je7);
-//        ymOutPovertyIncome.setPov_yf46(op_1946je7);
-//        ymOutPovertyIncome.setPov_yf79(op_1979je7);
-//        ymOutPovertyIncome.setPov_yf10(op_1910je7);
-//        ymOutPovertyIncome.setPov_yf11(op_1911je7);
-//        ymOutPovertyIncome.setPov_yf12(op_1912je7);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        String op_1810je8     = request.getParameter("op_1810je8");
-//        String op_1811je8     = request.getParameter("op_1811je8");
-//        String op_1812je8     = request.getParameter("op_1812je8");
-//        String op_1913je8     = request.getParameter("op_1913je8");
-//        String op_1946je8     = request.getParameter("op_1946je8");
-//        String op_1979je8     = request.getParameter("op_1979je8");
-//        String op_1910je8     = request.getParameter("op_1910je8");
-//        String op_1911je8     = request.getParameter("op_1911je8");
-//        String op_1912je8     = request.getParameter("op_1912je8");
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("08");
-//        ymOutPovertyIncome.setPov_nf("2018");
-//        ymOutPovertyIncome.setPov_yf13("");
-//        ymOutPovertyIncome.setPov_yf46("");
-//        ymOutPovertyIncome.setPov_yf79("");
-//        ymOutPovertyIncome.setPov_yf10(op_1810je8);
-//        ymOutPovertyIncome.setPov_yf11(op_1811je8);
-//        ymOutPovertyIncome.setPov_yf12(op_1812je8);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("08");
-//        ymOutPovertyIncome.setPov_nf("2019");
-//        ymOutPovertyIncome.setPov_yf13(op_1913je8);
-//        ymOutPovertyIncome.setPov_yf46(op_1946je8);
-//        ymOutPovertyIncome.setPov_yf79(op_1979je8);
-//        ymOutPovertyIncome.setPov_yf10(op_1910je8);
-//        ymOutPovertyIncome.setPov_yf11(op_1911je8);
-//        ymOutPovertyIncome.setPov_yf12(op_1912je8);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        String op_1810je9     = request.getParameter("op_1810je9");
-//        String op_1811je9     = request.getParameter("op_1811je9");
-//        String op_1812je9     = request.getParameter("op_1812je9");
-//        String op_1913je9     = request.getParameter("op_1913je9");
-//        String op_1946je9     = request.getParameter("op_1946je9");
-//        String op_1979je9     = request.getParameter("op_1979je9");
-//        String op_1910je9     = request.getParameter("op_1910je9");
-//        String op_1911je9     = request.getParameter("op_1911je9");
-//        String op_1912je9     = request.getParameter("op_1912je9");
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("09");
-//        ymOutPovertyIncome.setPov_nf("2018");
-//        ymOutPovertyIncome.setPov_yf13("");
-//        ymOutPovertyIncome.setPov_yf46("");
-//        ymOutPovertyIncome.setPov_yf79("");
-//        ymOutPovertyIncome.setPov_yf10(op_1810je9);
-//        ymOutPovertyIncome.setPov_yf11(op_1811je9);
-//        ymOutPovertyIncome.setPov_yf12(op_1812je9);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("09");
-//        ymOutPovertyIncome.setPov_nf("2019");
-//        ymOutPovertyIncome.setPov_yf13(op_1913je9);
-//        ymOutPovertyIncome.setPov_yf46(op_1946je9);
-//        ymOutPovertyIncome.setPov_yf79(op_1979je9);
-//        ymOutPovertyIncome.setPov_yf10(op_1910je9);
-//        ymOutPovertyIncome.setPov_yf11(op_1911je9);
-//        ymOutPovertyIncome.setPov_yf12(op_1912je9);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        String op_1810je10    = request.getParameter("op_1810je10");
-//        String op_1811je10    = request.getParameter("op_1811je10");
-//        String op_1812je10    = request.getParameter("op_1812je10");
-//        String op_1913je10    = request.getParameter("op_1913je10");
-//        String op_1946je10    = request.getParameter("op_1946je10");
-//        String op_1979je10    = request.getParameter("op_1979je10");
-//        String op_1910je10    = request.getParameter("op_1910je10");
-//        String op_1911je10    = request.getParameter("op_1911je10");
-//        String op_1912je10    = request.getParameter("op_1912je10");
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("10");
-//        ymOutPovertyIncome.setPov_nf("2018");
-//        ymOutPovertyIncome.setPov_yf13("");
-//        ymOutPovertyIncome.setPov_yf46("");
-//        ymOutPovertyIncome.setPov_yf79("");
-//        ymOutPovertyIncome.setPov_yf10(op_1810je10);
-//        ymOutPovertyIncome.setPov_yf11(op_1811je10);
-//        ymOutPovertyIncome.setPov_yf12(op_1812je10);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("10");
-//        ymOutPovertyIncome.setPov_nf("2019");
-//        ymOutPovertyIncome.setPov_yf13(op_1913je10);
-//        ymOutPovertyIncome.setPov_yf46(op_1946je10);
-//        ymOutPovertyIncome.setPov_yf79(op_1979je10);
-//        ymOutPovertyIncome.setPov_yf10(op_1910je10);
-//        ymOutPovertyIncome.setPov_yf11(op_1911je10);
-//        ymOutPovertyIncome.setPov_yf12(op_1912je10);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        String op_1810je11    = request.getParameter("op_1810je11");
-//        String op_1811je11    = request.getParameter("op_1811je11");
-//        String op_1812je11    = request.getParameter("op_1812je11");
-//        String op_1913je11    = request.getParameter("op_1913je11");
-//        String op_1946je11    = request.getParameter("op_1946je11");
-//        String op_1979je11    = request.getParameter("op_1979je11");
-//        String op_1910je11    = request.getParameter("op_1910je11");
-//        String op_1911je11    = request.getParameter("op_1911je11");
-//        String op_1912je11    = request.getParameter("op_1912je11");
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("11");
-//        ymOutPovertyIncome.setPov_nf("2018");
-//        ymOutPovertyIncome.setPov_yf13("");
-//        ymOutPovertyIncome.setPov_yf46("");
-//        ymOutPovertyIncome.setPov_yf79("");
-//        ymOutPovertyIncome.setPov_yf10(op_1810je11);
-//        ymOutPovertyIncome.setPov_yf11(op_1811je11);
-//        ymOutPovertyIncome.setPov_yf12(op_1812je11);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        ymOutPovertyIncome = new YmOutPovertyIncome();
-//        ymOutPovertyIncome.setJtbh(jtbh);
-//        ymOutPovertyIncome.setPov_xtlb("11");
-//        ymOutPovertyIncome.setPov_nf("2019");
-//        ymOutPovertyIncome.setPov_yf13(op_1913je11);
-//        ymOutPovertyIncome.setPov_yf46(op_1946je11);
-//        ymOutPovertyIncome.setPov_yf79(op_1979je11);
-//        ymOutPovertyIncome.setPov_yf10(op_1910je11);
-//        ymOutPovertyIncome.setPov_yf11(op_1911je11);
-//        ymOutPovertyIncome.setPov_yf12(op_1912je11);
-//        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
-//
-//        ymOutPovertyIncomeService.addYmOutPovertyIncomeMore(ymOutPovertyIncomeList);
+        String jtbh           = request.getParameter("jtbh");
+        String year           = request.getParameter("nf");
 
+        List<YmOutPovertyIncome> ymOutPovertyIncomeList = getPovertyList(request,jtbh,year);
+
+
+        String produce_count = request.getParameter("produce_count");
+        String produce_count1 = request.getParameter("produce_count1");
+        String salary_count = request.getParameter("salary_count");
+        String property_count = request.getParameter("property_count");
+        String transfer_count = request.getParameter("transfer_count");
+        String poverty_count = request.getParameter("poverty_count");
+        String rks = request.getParameter("rks");
+
+        YmIncomeSum ymIncomeSum = new YmIncomeSum();
+        ymIncomeSum.setJtbh(jtbh);
+        ymIncomeSum.setRks(rks);
+        ymIncomeSum.setSum_nf(year);
+        ymIncomeSum.setSum_produce(produce_count);
+        ymIncomeSum.setSum_produce1(produce_count1);
+        ymIncomeSum.setSum_salary(salary_count);
+        ymIncomeSum.setSum_property(property_count);
+        ymIncomeSum.setSum_transfer(transfer_count);
+        ymIncomeSum.setSum_poverty(poverty_count);
+
+
+        //返回信息
         Map<String,Object> map = new HashMap<>();
-        map.put("status",1);
-        map.put("result","success");
+        int status = 1;
+        String result = "success";
+
+        int num = ymOutPovertyIncomeService.getCountByJtbhAndYear(jtbh,year);
+
+        if(num>0){
+            status = 0;
+            result = "haveData";
+        }else {
+            //底层写入
+            ymOutPovertyIncomeService.addYmOutPovertyIncomeMore(ymOutPovertyIncomeList);
+            ymIncomeSumService.addYmIncomeSum(ymIncomeSum);
+
+        }
+
+        map.put("status",status);
+        map.put("result",result);
+
         return map;
+    }
+
+
+    private List<YmOutPovertyIncome> getPovertyList(HttpServletRequest request,String jtbh,String year){
+        //封装写入对象的list
+        List<YmOutPovertyIncome> ymOutPovertyIncomeList = new ArrayList<>();
+        String pov_yf1_1        = request.getParameter("pov_yf1_1");
+        String pov_yf2_1        = request.getParameter("pov_yf2_1");
+        String pov_yf3_1        = request.getParameter("pov_yf3_1");
+        String pov_yf4_1        = request.getParameter("pov_yf4_1");
+        String pov_yf5_1        = request.getParameter("pov_yf5_1");
+        String pov_yf6_1        = request.getParameter("pov_yf6_1");
+        String pov_yf7_1        = request.getParameter("pov_yf7_1");
+        String pov_yf8_1        = request.getParameter("pov_yf8_1");
+        String pov_yf9_1        = request.getParameter("pov_yf9_1");
+        String pov_yf10_1       = request.getParameter("pov_yf10_1");
+        String pov_yf11_1       = request.getParameter("pov_yf11_1");
+        String pov_yf12_1       = request.getParameter("pov_yf12_1");
+        YmOutPovertyIncome ymOutPovertyIncome = new YmOutPovertyIncome();
+        ymOutPovertyIncome.setJtbh(jtbh);
+        ymOutPovertyIncome.setPov_xtlb("01");
+        ymOutPovertyIncome.setPov_nf(year);
+        ymOutPovertyIncome.setPov_yf1(pov_yf1_1);
+        ymOutPovertyIncome.setPov_yf2(pov_yf2_1);
+        ymOutPovertyIncome.setPov_yf3(pov_yf3_1);
+        ymOutPovertyIncome.setPov_yf4(pov_yf4_1);
+        ymOutPovertyIncome.setPov_yf5(pov_yf5_1);
+        ymOutPovertyIncome.setPov_yf6(pov_yf6_1);
+        ymOutPovertyIncome.setPov_yf7(pov_yf7_1);
+        ymOutPovertyIncome.setPov_yf8(pov_yf8_1);
+        ymOutPovertyIncome.setPov_yf9(pov_yf9_1);
+        ymOutPovertyIncome.setPov_yf10(pov_yf10_1);
+        ymOutPovertyIncome.setPov_yf11(pov_yf11_1);
+        ymOutPovertyIncome.setPov_yf12(pov_yf12_1);
+        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
+
+        String pov_yf1_2        = request.getParameter("pov_yf1_2");
+        String pov_yf2_2        = request.getParameter("pov_yf2_2");
+        String pov_yf3_2        = request.getParameter("pov_yf3_2");
+        String pov_yf4_2        = request.getParameter("pov_yf4_2");
+        String pov_yf5_2        = request.getParameter("pov_yf5_2");
+        String pov_yf6_2        = request.getParameter("pov_yf6_2");
+        String pov_yf7_2        = request.getParameter("pov_yf7_2");
+        String pov_yf8_2        = request.getParameter("pov_yf8_2");
+        String pov_yf9_2        = request.getParameter("pov_yf9_2");
+        String pov_yf10_2       = request.getParameter("pov_yf10_2");
+        String pov_yf11_2       = request.getParameter("pov_yf11_2");
+        String pov_yf12_2       = request.getParameter("pov_yf12_2");
+        ymOutPovertyIncome = new YmOutPovertyIncome();
+        ymOutPovertyIncome.setJtbh(jtbh);
+        ymOutPovertyIncome.setPov_xtlb("02");
+        ymOutPovertyIncome.setPov_nf(year);
+        ymOutPovertyIncome.setPov_yf1(pov_yf1_2);
+        ymOutPovertyIncome.setPov_yf2(pov_yf2_2);
+        ymOutPovertyIncome.setPov_yf3(pov_yf3_2);
+        ymOutPovertyIncome.setPov_yf4(pov_yf4_2);
+        ymOutPovertyIncome.setPov_yf5(pov_yf5_2);
+        ymOutPovertyIncome.setPov_yf6(pov_yf6_2);
+        ymOutPovertyIncome.setPov_yf7(pov_yf7_2);
+        ymOutPovertyIncome.setPov_yf8(pov_yf8_2);
+        ymOutPovertyIncome.setPov_yf9(pov_yf9_2);
+        ymOutPovertyIncome.setPov_yf10(pov_yf10_2);
+        ymOutPovertyIncome.setPov_yf11(pov_yf11_2);
+        ymOutPovertyIncome.setPov_yf12(pov_yf12_2);
+        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
+
+        String pov_yf1_3        = request.getParameter("pov_yf1_3");
+        String pov_yf2_3        = request.getParameter("pov_yf2_3");
+        String pov_yf3_3        = request.getParameter("pov_yf3_3");
+        String pov_yf4_3        = request.getParameter("pov_yf4_3");
+        String pov_yf5_3        = request.getParameter("pov_yf5_3");
+        String pov_yf6_3        = request.getParameter("pov_yf6_3");
+        String pov_yf7_3        = request.getParameter("pov_yf7_3");
+        String pov_yf8_3        = request.getParameter("pov_yf8_3");
+        String pov_yf9_3        = request.getParameter("pov_yf9_3");
+        String pov_yf10_3       = request.getParameter("pov_yf10_3");
+        String pov_yf11_3       = request.getParameter("pov_yf11_3");
+        String pov_yf12_3       = request.getParameter("pov_yf12_3");
+        ymOutPovertyIncome = new YmOutPovertyIncome();
+        ymOutPovertyIncome.setJtbh(jtbh);
+        ymOutPovertyIncome.setPov_xtlb("03");
+        ymOutPovertyIncome.setPov_nf(year);
+        ymOutPovertyIncome.setPov_yf1(pov_yf1_3);
+        ymOutPovertyIncome.setPov_yf2(pov_yf2_3);
+        ymOutPovertyIncome.setPov_yf3(pov_yf3_3);
+        ymOutPovertyIncome.setPov_yf4(pov_yf4_3);
+        ymOutPovertyIncome.setPov_yf5(pov_yf5_3);
+        ymOutPovertyIncome.setPov_yf6(pov_yf6_3);
+        ymOutPovertyIncome.setPov_yf7(pov_yf7_3);
+        ymOutPovertyIncome.setPov_yf8(pov_yf8_3);
+        ymOutPovertyIncome.setPov_yf9(pov_yf9_3);
+        ymOutPovertyIncome.setPov_yf10(pov_yf10_3);
+        ymOutPovertyIncome.setPov_yf11(pov_yf11_3);
+        ymOutPovertyIncome.setPov_yf12(pov_yf12_3);
+        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
+
+
+        String pov_yf1_4        = request.getParameter("pov_yf1_4");
+        String pov_yf2_4        = request.getParameter("pov_yf2_4");
+        String pov_yf3_4        = request.getParameter("pov_yf3_4");
+        String pov_yf4_4        = request.getParameter("pov_yf4_4");
+        String pov_yf5_4        = request.getParameter("pov_yf5_4");
+        String pov_yf6_4        = request.getParameter("pov_yf6_4");
+        String pov_yf7_4        = request.getParameter("pov_yf7_4");
+        String pov_yf8_4        = request.getParameter("pov_yf8_4");
+        String pov_yf9_4        = request.getParameter("pov_yf9_4");
+        String pov_yf10_4       = request.getParameter("pov_yf10_4");
+        String pov_yf11_4       = request.getParameter("pov_yf11_4");
+        String pov_yf12_4       = request.getParameter("pov_yf12_4");
+        ymOutPovertyIncome = new YmOutPovertyIncome();
+        ymOutPovertyIncome.setJtbh(jtbh);
+        ymOutPovertyIncome.setPov_xtlb("01");
+        ymOutPovertyIncome.setPov_nf(year);
+        ymOutPovertyIncome.setPov_yf1(pov_yf1_4);
+        ymOutPovertyIncome.setPov_yf2(pov_yf2_4);
+        ymOutPovertyIncome.setPov_yf3(pov_yf3_4);
+        ymOutPovertyIncome.setPov_yf4(pov_yf4_4);
+        ymOutPovertyIncome.setPov_yf5(pov_yf5_4);
+        ymOutPovertyIncome.setPov_yf6(pov_yf6_4);
+        ymOutPovertyIncome.setPov_yf7(pov_yf7_4);
+        ymOutPovertyIncome.setPov_yf8(pov_yf8_4);
+        ymOutPovertyIncome.setPov_yf9(pov_yf9_4);
+        ymOutPovertyIncome.setPov_yf10(pov_yf10_4);
+        ymOutPovertyIncome.setPov_yf11(pov_yf11_4);
+        ymOutPovertyIncome.setPov_yf12(pov_yf12_4);
+        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
+
+        String pov_yf1_5        = request.getParameter("pov_yf1_5");
+        String pov_yf2_5        = request.getParameter("pov_yf2_5");
+        String pov_yf3_5        = request.getParameter("pov_yf3_5");
+        String pov_yf4_5        = request.getParameter("pov_yf4_5");
+        String pov_yf5_5        = request.getParameter("pov_yf5_5");
+        String pov_yf6_5        = request.getParameter("pov_yf6_5");
+        String pov_yf7_5        = request.getParameter("pov_yf7_5");
+        String pov_yf8_5        = request.getParameter("pov_yf8_5");
+        String pov_yf9_5        = request.getParameter("pov_yf9_5");
+        String pov_yf10_5       = request.getParameter("pov_yf10_5");
+        String pov_yf11_5       = request.getParameter("pov_yf11_5");
+        String pov_yf12_5       = request.getParameter("pov_yf12_5");
+        ymOutPovertyIncome = new YmOutPovertyIncome();
+        ymOutPovertyIncome.setJtbh(jtbh);
+        ymOutPovertyIncome.setPov_xtlb("05");
+        ymOutPovertyIncome.setPov_nf(year);
+        ymOutPovertyIncome.setPov_yf1(pov_yf1_5);
+        ymOutPovertyIncome.setPov_yf2(pov_yf2_5);
+        ymOutPovertyIncome.setPov_yf3(pov_yf3_5);
+        ymOutPovertyIncome.setPov_yf4(pov_yf4_5);
+        ymOutPovertyIncome.setPov_yf5(pov_yf5_5);
+        ymOutPovertyIncome.setPov_yf6(pov_yf6_5);
+        ymOutPovertyIncome.setPov_yf7(pov_yf7_5);
+        ymOutPovertyIncome.setPov_yf8(pov_yf8_5);
+        ymOutPovertyIncome.setPov_yf9(pov_yf9_5);
+        ymOutPovertyIncome.setPov_yf10(pov_yf10_5);
+        ymOutPovertyIncome.setPov_yf11(pov_yf11_5);
+        ymOutPovertyIncome.setPov_yf12(pov_yf12_5);
+        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
+
+        String pov_yf1_6        = request.getParameter("pov_yf1_6");
+        String pov_yf2_6        = request.getParameter("pov_yf2_6");
+        String pov_yf3_6        = request.getParameter("pov_yf3_6");
+        String pov_yf4_6        = request.getParameter("pov_yf4_6");
+        String pov_yf5_6        = request.getParameter("pov_yf5_6");
+        String pov_yf6_6        = request.getParameter("pov_yf6_6");
+        String pov_yf7_6        = request.getParameter("pov_yf7_6");
+        String pov_yf8_6        = request.getParameter("pov_yf8_6");
+        String pov_yf9_6        = request.getParameter("pov_yf9_6");
+        String pov_yf10_6       = request.getParameter("pov_yf10_6");
+        String pov_yf11_6       = request.getParameter("pov_yf11_6");
+        String pov_yf12_6       = request.getParameter("pov_yf12_6");
+        ymOutPovertyIncome = new YmOutPovertyIncome();
+        ymOutPovertyIncome.setJtbh(jtbh);
+        ymOutPovertyIncome.setPov_xtlb("06");
+        ymOutPovertyIncome.setPov_nf(year);
+        ymOutPovertyIncome.setPov_yf1(pov_yf1_6);
+        ymOutPovertyIncome.setPov_yf2(pov_yf2_6);
+        ymOutPovertyIncome.setPov_yf3(pov_yf3_6);
+        ymOutPovertyIncome.setPov_yf4(pov_yf4_6);
+        ymOutPovertyIncome.setPov_yf5(pov_yf5_6);
+        ymOutPovertyIncome.setPov_yf6(pov_yf6_6);
+        ymOutPovertyIncome.setPov_yf7(pov_yf7_6);
+        ymOutPovertyIncome.setPov_yf8(pov_yf8_6);
+        ymOutPovertyIncome.setPov_yf9(pov_yf9_6);
+        ymOutPovertyIncome.setPov_yf10(pov_yf10_6);
+        ymOutPovertyIncome.setPov_yf11(pov_yf11_6);
+        ymOutPovertyIncome.setPov_yf12(pov_yf12_6);
+        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
+
+        String pov_yf1_7        = request.getParameter("pov_yf1_7");
+        String pov_yf2_7        = request.getParameter("pov_yf2_7");
+        String pov_yf3_7        = request.getParameter("pov_yf3_7");
+        String pov_yf4_7        = request.getParameter("pov_yf4_7");
+        String pov_yf5_7        = request.getParameter("pov_yf5_7");
+        String pov_yf6_7        = request.getParameter("pov_yf6_7");
+        String pov_yf7_7        = request.getParameter("pov_yf7_7");
+        String pov_yf8_7        = request.getParameter("pov_yf8_7");
+        String pov_yf9_7        = request.getParameter("pov_yf9_7");
+        String pov_yf10_7       = request.getParameter("pov_yf10_7");
+        String pov_yf11_7       = request.getParameter("pov_yf11_7");
+        String pov_yf12_7       = request.getParameter("pov_yf12_7");
+        ymOutPovertyIncome = new YmOutPovertyIncome();
+        ymOutPovertyIncome.setJtbh(jtbh);
+        ymOutPovertyIncome.setPov_xtlb("07");
+        ymOutPovertyIncome.setPov_nf(year);
+        ymOutPovertyIncome.setPov_yf1(pov_yf1_7);
+        ymOutPovertyIncome.setPov_yf2(pov_yf2_7);
+        ymOutPovertyIncome.setPov_yf3(pov_yf3_7);
+        ymOutPovertyIncome.setPov_yf4(pov_yf4_7);
+        ymOutPovertyIncome.setPov_yf5(pov_yf5_7);
+        ymOutPovertyIncome.setPov_yf6(pov_yf6_7);
+        ymOutPovertyIncome.setPov_yf7(pov_yf7_7);
+        ymOutPovertyIncome.setPov_yf8(pov_yf8_7);
+        ymOutPovertyIncome.setPov_yf9(pov_yf9_7);
+        ymOutPovertyIncome.setPov_yf10(pov_yf10_7);
+        ymOutPovertyIncome.setPov_yf11(pov_yf11_7);
+        ymOutPovertyIncome.setPov_yf12(pov_yf12_7);
+        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
+
+        String pov_yf1_8        = request.getParameter("pov_yf1_8");
+        String pov_yf2_8        = request.getParameter("pov_yf2_8");
+        String pov_yf3_8        = request.getParameter("pov_yf3_8");
+        String pov_yf4_8        = request.getParameter("pov_yf4_8");
+        String pov_yf5_8        = request.getParameter("pov_yf5_8");
+        String pov_yf6_8        = request.getParameter("pov_yf6_8");
+        String pov_yf7_8        = request.getParameter("pov_yf7_8");
+        String pov_yf8_8        = request.getParameter("pov_yf8_8");
+        String pov_yf9_8        = request.getParameter("pov_yf9_8");
+        String pov_yf10_8       = request.getParameter("pov_yf10_8");
+        String pov_yf11_8       = request.getParameter("pov_yf11_8");
+        String pov_yf12_8       = request.getParameter("pov_yf12_8");
+        ymOutPovertyIncome = new YmOutPovertyIncome();
+        ymOutPovertyIncome.setJtbh(jtbh);
+        ymOutPovertyIncome.setPov_xtlb("08");
+        ymOutPovertyIncome.setPov_nf(year);
+        ymOutPovertyIncome.setPov_yf1(pov_yf1_8);
+        ymOutPovertyIncome.setPov_yf2(pov_yf2_8);
+        ymOutPovertyIncome.setPov_yf3(pov_yf3_8);
+        ymOutPovertyIncome.setPov_yf4(pov_yf4_8);
+        ymOutPovertyIncome.setPov_yf5(pov_yf5_8);
+        ymOutPovertyIncome.setPov_yf6(pov_yf6_8);
+        ymOutPovertyIncome.setPov_yf7(pov_yf7_8);
+        ymOutPovertyIncome.setPov_yf8(pov_yf8_8);
+        ymOutPovertyIncome.setPov_yf9(pov_yf9_8);
+        ymOutPovertyIncome.setPov_yf10(pov_yf10_8);
+        ymOutPovertyIncome.setPov_yf11(pov_yf11_8);
+        ymOutPovertyIncome.setPov_yf12(pov_yf12_8);
+        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
+
+        String pov_yf1_9        = request.getParameter("pov_yf1_9");
+        String pov_yf2_9        = request.getParameter("pov_yf2_9");
+        String pov_yf3_9        = request.getParameter("pov_yf3_9");
+        String pov_yf4_9        = request.getParameter("pov_yf4_9");
+        String pov_yf5_9        = request.getParameter("pov_yf5_9");
+        String pov_yf6_9        = request.getParameter("pov_yf6_9");
+        String pov_yf7_9        = request.getParameter("pov_yf7_9");
+        String pov_yf8_9        = request.getParameter("pov_yf8_9");
+        String pov_yf9_9        = request.getParameter("pov_yf9_9");
+        String pov_yf10_9       = request.getParameter("pov_yf10_9");
+        String pov_yf11_9       = request.getParameter("pov_yf11_9");
+        String pov_yf12_9       = request.getParameter("pov_yf12_9");
+        ymOutPovertyIncome = new YmOutPovertyIncome();
+        ymOutPovertyIncome.setJtbh(jtbh);
+        ymOutPovertyIncome.setPov_xtlb("09");
+        ymOutPovertyIncome.setPov_nf(year);
+        ymOutPovertyIncome.setPov_yf1(pov_yf1_9);
+        ymOutPovertyIncome.setPov_yf2(pov_yf2_9);
+        ymOutPovertyIncome.setPov_yf3(pov_yf3_9);
+        ymOutPovertyIncome.setPov_yf4(pov_yf4_9);
+        ymOutPovertyIncome.setPov_yf5(pov_yf5_9);
+        ymOutPovertyIncome.setPov_yf6(pov_yf6_9);
+        ymOutPovertyIncome.setPov_yf7(pov_yf7_9);
+        ymOutPovertyIncome.setPov_yf8(pov_yf8_9);
+        ymOutPovertyIncome.setPov_yf9(pov_yf9_9);
+        ymOutPovertyIncome.setPov_yf10(pov_yf10_9);
+        ymOutPovertyIncome.setPov_yf11(pov_yf11_9);
+        ymOutPovertyIncome.setPov_yf12(pov_yf12_9);
+        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
+
+        String pov_yf1_10       = request.getParameter("pov_yf1_10");
+        String pov_yf2_10       = request.getParameter("pov_yf2_10");
+        String pov_yf3_10       = request.getParameter("pov_yf3_10");
+        String pov_yf4_10       = request.getParameter("pov_yf4_10");
+        String pov_yf5_10       = request.getParameter("pov_yf5_10");
+        String pov_yf6_10       = request.getParameter("pov_yf6_10");
+        String pov_yf7_10       = request.getParameter("pov_yf7_10");
+        String pov_yf8_10       = request.getParameter("pov_yf8_10");
+        String pov_yf9_10       = request.getParameter("pov_yf9_10");
+        String pov_yf10_10      = request.getParameter("pov_yf10_10");
+        String pov_yf11_10      = request.getParameter("pov_yf11_10");
+        String pov_yf12_10      = request.getParameter("pov_yf12_10");
+        ymOutPovertyIncome = new YmOutPovertyIncome();
+        ymOutPovertyIncome.setJtbh(jtbh);
+        ymOutPovertyIncome.setPov_xtlb("10");
+        ymOutPovertyIncome.setPov_nf(year);
+        ymOutPovertyIncome.setPov_yf1(pov_yf1_10);
+        ymOutPovertyIncome.setPov_yf2(pov_yf2_10);
+        ymOutPovertyIncome.setPov_yf3(pov_yf3_10);
+        ymOutPovertyIncome.setPov_yf4(pov_yf4_10);
+        ymOutPovertyIncome.setPov_yf5(pov_yf5_10);
+        ymOutPovertyIncome.setPov_yf6(pov_yf6_10);
+        ymOutPovertyIncome.setPov_yf7(pov_yf7_10);
+        ymOutPovertyIncome.setPov_yf8(pov_yf8_10);
+        ymOutPovertyIncome.setPov_yf9(pov_yf9_10);
+        ymOutPovertyIncome.setPov_yf10(pov_yf10_10);
+        ymOutPovertyIncome.setPov_yf11(pov_yf11_10);
+        ymOutPovertyIncome.setPov_yf12(pov_yf12_10);
+        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
+
+        String pov_yf1_11       = request.getParameter("pov_yf1_11");
+        String pov_yf2_11       = request.getParameter("pov_yf2_11");
+        String pov_yf3_11       = request.getParameter("pov_yf3_11");
+        String pov_yf4_11       = request.getParameter("pov_yf4_11");
+        String pov_yf5_11       = request.getParameter("pov_yf5_11");
+        String pov_yf6_11       = request.getParameter("pov_yf6_11");
+        String pov_yf7_11       = request.getParameter("pov_yf7_11");
+        String pov_yf8_11       = request.getParameter("pov_yf8_11");
+        String pov_yf9_11       = request.getParameter("pov_yf9_11");
+        String pov_yf10_11      = request.getParameter("pov_yf10_11");
+        String pov_yf11_11      = request.getParameter("pov_yf11_11");
+        String pov_yf12_11      = request.getParameter("pov_yf12_11");
+        ymOutPovertyIncome = new YmOutPovertyIncome();
+        ymOutPovertyIncome.setJtbh(jtbh);
+        ymOutPovertyIncome.setPov_xtlb("11");
+        ymOutPovertyIncome.setPov_nf(year);
+        ymOutPovertyIncome.setPov_yf1(pov_yf1_11);
+        ymOutPovertyIncome.setPov_yf2(pov_yf2_11);
+        ymOutPovertyIncome.setPov_yf3(pov_yf3_11);
+        ymOutPovertyIncome.setPov_yf4(pov_yf4_11);
+        ymOutPovertyIncome.setPov_yf5(pov_yf5_11);
+        ymOutPovertyIncome.setPov_yf6(pov_yf6_11);
+        ymOutPovertyIncome.setPov_yf7(pov_yf7_11);
+        ymOutPovertyIncome.setPov_yf8(pov_yf8_11);
+        ymOutPovertyIncome.setPov_yf9(pov_yf9_11);
+        ymOutPovertyIncome.setPov_yf10(pov_yf10_11);
+        ymOutPovertyIncome.setPov_yf11(pov_yf11_11);
+        ymOutPovertyIncome.setPov_yf12(pov_yf12_11);
+        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
+
+        String pov_yf1_12       = request.getParameter("pov_yf1_12");
+        String pov_yf2_12       = request.getParameter("pov_yf2_12");
+        String pov_yf3_12       = request.getParameter("pov_yf3_12");
+        String pov_yf4_12       = request.getParameter("pov_yf4_12");
+        String pov_yf5_12       = request.getParameter("pov_yf5_12");
+        String pov_yf6_12       = request.getParameter("pov_yf6_12");
+        String pov_yf7_12       = request.getParameter("pov_yf7_12");
+        String pov_yf8_12       = request.getParameter("pov_yf8_12");
+        String pov_yf9_12       = request.getParameter("pov_yf9_12");
+        String pov_yf10_12      = request.getParameter("pov_yf10_12");
+        String pov_yf11_12      = request.getParameter("pov_yf11_12");
+        String pov_yf12_12      = request.getParameter("pov_yf12_12");
+        ymOutPovertyIncome = new YmOutPovertyIncome();
+        ymOutPovertyIncome.setJtbh(jtbh);
+        ymOutPovertyIncome.setPov_xtlb("12");
+        ymOutPovertyIncome.setPov_nf(year);
+        ymOutPovertyIncome.setPov_yf1(pov_yf1_12);
+        ymOutPovertyIncome.setPov_yf2(pov_yf2_12);
+        ymOutPovertyIncome.setPov_yf3(pov_yf3_12);
+        ymOutPovertyIncome.setPov_yf4(pov_yf4_12);
+        ymOutPovertyIncome.setPov_yf5(pov_yf5_12);
+        ymOutPovertyIncome.setPov_yf6(pov_yf6_12);
+        ymOutPovertyIncome.setPov_yf7(pov_yf7_12);
+        ymOutPovertyIncome.setPov_yf8(pov_yf8_12);
+        ymOutPovertyIncome.setPov_yf9(pov_yf9_12);
+        ymOutPovertyIncome.setPov_yf10(pov_yf10_12);
+        ymOutPovertyIncome.setPov_yf11(pov_yf11_12);
+        ymOutPovertyIncome.setPov_yf12(pov_yf12_12);
+        ymOutPovertyIncomeList.add(ymOutPovertyIncome);
+        return ymOutPovertyIncomeList;
     }
 
 

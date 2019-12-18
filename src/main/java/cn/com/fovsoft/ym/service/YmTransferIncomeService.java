@@ -20,6 +20,15 @@ public class YmTransferIncomeService {
     private YmTransferIncomeDao ymTransferIncomeDao;
 
 
+    public List<YmTransferIncome> getTransferIncomeByJtbhAndYear(String jtbh,String year){
+        return ymTransferIncomeDao.getTransferIncomeByJtbhAndYear(jtbh, year);
+    }
+
+
+    public int getCountByJtbhAndYear(String jtbh,String year){
+        return ymTransferIncomeDao.getCountByJtbhAndYear(jtbh, year);
+    }
+
     /**
      * @author: tpc
      * @date: 2019/11/26 22:02
@@ -32,6 +41,10 @@ public class YmTransferIncomeService {
 
     public int deleteYmTransferIncomeByJtbh(String jtbh){
         return ymTransferIncomeDao.deleteYmTransferIncomeByJtbh(jtbh);
+    }
+
+    public int deleteYmTransferIncomeByJtbhAndYear(String jtbh,String year){
+        return ymTransferIncomeDao.deleteYmTransferIncomeByJtbhAndYear(jtbh,year);
     }
 
 }

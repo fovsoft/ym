@@ -19,6 +19,15 @@ public class YmSalaryIncomeService {
     private YmSalaryIncomeDao ymSalaryIncomeDao;
 
 
+
+
+    public int getCountByJtbhAndYear(String jtbh,String year){
+        return ymSalaryIncomeDao.getCountByJtbhAndYear(jtbh, year);
+    }
+
+    public List<YmSalaryIncome> getSalaryIncomeByJtbhAndYear(String jtbh,String year){
+        return ymSalaryIncomeDao.getSalaryIncomeByJtbhAndYear(jtbh, year);
+    }
     /*
      * Author:tpc
      * Date: 2019/11/26 15:48
@@ -40,5 +49,10 @@ public class YmSalaryIncomeService {
      */
     public int deleteYmSalaryIncomeByJtbh(String jtbh){
         return ymSalaryIncomeDao.deleteYmSalaryIncomeByJtbh(jtbh);
+    }
+
+
+    public int deleteYmSalaryIncomeByJtbhAndYear(String jtbh,String year){
+        return ymSalaryIncomeDao.deleteYmSalaryIncomeByJtbhAndYear(jtbh, year);
     }
 }
