@@ -6,6 +6,7 @@ package cn.com.fovsoft.ym.ctrl;/*
  */
 
 
+import cn.com.fovsoft.common.util.CommonUtil;
 import cn.com.fovsoft.ym.bean.YmFamilyStatus;
 import cn.com.fovsoft.ym.bean.YmIncomeSum;
 import cn.com.fovsoft.ym.service.YmFamilyStatusService;
@@ -21,6 +22,7 @@ import java.util.Map;
 
 @Controller
 public class YmIncomeSumCtrl {
+
     @Autowired
     private YmIncomeSumService ymIncomeSumService;
     @Autowired
@@ -43,7 +45,8 @@ public class YmIncomeSumCtrl {
         //通过家庭编号查找人口数
         YmFamilyStatus ymFamilyStatus = ymFamilyStatusService.getYmFamilyStatusByJtbh(jtbh);
         String personNum = ymFamilyStatus.getNdjtrks();
-        map.put("rks",personNum);
+
+        map.put("rks", CommonUtil.getStringInt(personNum));
 
         if(ymIncomeSum == null){
             status = 0;

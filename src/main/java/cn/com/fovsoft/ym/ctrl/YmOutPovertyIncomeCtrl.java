@@ -1,5 +1,6 @@
 package cn.com.fovsoft.ym.ctrl;
 
+import cn.com.fovsoft.common.util.CommonUtil;
 import cn.com.fovsoft.ym.bean.YmIncomeSum;
 import cn.com.fovsoft.ym.bean.YmOutPovertyIncome;
 import cn.com.fovsoft.ym.service.YmIncomeSumService;
@@ -46,24 +47,15 @@ public class YmOutPovertyIncomeCtrl {
         //先删除信息，再写入信息
         ymOutPovertyIncomeService.deleteYmOutPovertyIncomeByJtbhAndYear(jtbh,year);
         ymOutPovertyIncomeService.addYmOutPovertyIncomeMore(ymOutPovertyIncomeList);
-        //再修改各项小计信息
-        String produce_count = request.getParameter("produce_count");
-        String produce_count1 = request.getParameter("produce_count1");
-        String salary_count = request.getParameter("salary_count");
-        String property_count = request.getParameter("property_count");
-        String transfer_count = request.getParameter("transfer_count");
-        String poverty_count = request.getParameter("poverty_count");
+        YmOutPovertyIncome ymOutPovertyIncome = ymOutPovertyIncomeList.get(11);
+        int sum_poverty = CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf1()) + CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf2()) + CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf3())
+                + CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf4())+ CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf5())+ CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf6())+ CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf7())
+                + CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf8())+ CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf9())+ CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf10())+ CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf11())
+                + CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf12());
 
-        YmIncomeSum ymIncomeSum = new YmIncomeSum();
-        ymIncomeSum.setJtbh(jtbh);
-        ymIncomeSum.setSum_nf(year);
-        ymIncomeSum.setSum_produce(produce_count);
-        ymIncomeSum.setSum_produce1(produce_count1);
-        ymIncomeSum.setSum_salary(salary_count);
-        ymIncomeSum.setSum_property(property_count);
-        ymIncomeSum.setSum_transfer(transfer_count);
-        ymIncomeSum.setSum_poverty(poverty_count);
-        ymIncomeSumService.updateYmIncomeSumByJtbhAndYear(ymIncomeSum);
+        //修改记录
+        String sql = "update ym_income_sum set sum_poverty='"+sum_poverty+"' where jtbh='"+jtbh+"' and sum_nf='"+year+"' ";
+        ymIncomeSumService.updateYmIncomeSumBySql(sql);
 
         map.put("status",status);
         map.put("result",result);
@@ -81,25 +73,7 @@ public class YmOutPovertyIncomeCtrl {
         List<YmOutPovertyIncome> ymOutPovertyIncomeList = getPovertyList(request,jtbh,year);
 
 
-        String produce_count = request.getParameter("produce_count");
-        String produce_count1 = request.getParameter("produce_count1");
-        String salary_count = request.getParameter("salary_count");
-        String property_count = request.getParameter("property_count");
-        String transfer_count = request.getParameter("transfer_count");
-        String poverty_count = request.getParameter("poverty_count");
         String rks = request.getParameter("rks");
-
-        YmIncomeSum ymIncomeSum = new YmIncomeSum();
-        ymIncomeSum.setJtbh(jtbh);
-        ymIncomeSum.setRks(rks);
-        ymIncomeSum.setSum_nf(year);
-        ymIncomeSum.setSum_produce(produce_count);
-        ymIncomeSum.setSum_produce1(produce_count1);
-        ymIncomeSum.setSum_salary(salary_count);
-        ymIncomeSum.setSum_property(property_count);
-        ymIncomeSum.setSum_transfer(transfer_count);
-        ymIncomeSum.setSum_poverty(poverty_count);
-
 
         //返回信息
         Map<String,Object> map = new HashMap<>();
@@ -114,7 +88,32 @@ public class YmOutPovertyIncomeCtrl {
         }else {
             //底层写入
             ymOutPovertyIncomeService.addYmOutPovertyIncomeMore(ymOutPovertyIncomeList);
-            ymIncomeSumService.addYmIncomeSum(ymIncomeSum);
+            YmIncomeSum ymIncomeSum = ymIncomeSumService.getYmIncomeSumByJtbhAndYear(jtbh,year);
+
+            YmOutPovertyIncome ymOutPovertyIncome = ymOutPovertyIncomeList.get(11);
+            int sum_poverty = CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf1()) + CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf2()) + CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf3())
+                    + CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf4())+ CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf5())+ CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf6())+ CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf7())
+                    + CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf8())+ CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf9())+ CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf10())+ CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf11())
+                    + CommonUtil.getStringInt(ymOutPovertyIncome.getPov_yf12());
+
+            //如果年度各项收入信息记录为空,则写入新记录，否则进行修改
+            if(ymIncomeSum==null){
+                ymIncomeSum = new YmIncomeSum();
+                ymIncomeSum.setJtbh(jtbh);
+                ymIncomeSum.setSum_nf(year);
+                ymIncomeSum.setRks(rks);
+                ymIncomeSum.setSum_produce("0");
+                ymIncomeSum.setSum_produce1("0");
+                ymIncomeSum.setSum_salary("0");
+                ymIncomeSum.setSum_property("0");
+                ymIncomeSum.setSum_transfer("0");
+                ymIncomeSum.setSum_poverty(Integer.toString(sum_poverty));
+                ymIncomeSumService.addYmIncomeSum(ymIncomeSum);
+            }else{
+                //修改记录
+                String sql = "update ym_income_sum set sum_poverty='"+sum_poverty+"' where jtbh='"+jtbh+"' and sum_nf='"+year+"' ";
+                ymIncomeSumService.updateYmIncomeSumBySql(sql);
+            }
 
         }
 

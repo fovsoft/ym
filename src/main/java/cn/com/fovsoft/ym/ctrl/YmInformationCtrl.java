@@ -11,11 +11,9 @@ import cn.com.fovsoft.ym.util.UuidUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -248,6 +246,8 @@ public class YmInformationCtrl {
         ymFamilyStatus.setBgqksm(bgqksm);
 
         return_num = ymFamilyStatusService.addYmFamilyStatus(ymFamilyStatus);
+        //同时写入一条家庭收入记录
+
 
         //判断写入情况
         if(return_num<1){

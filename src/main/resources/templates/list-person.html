@@ -2668,8 +2668,20 @@
 
                                                                 <li>
                                                                     <i class="ace-icon fa fa-caret-right blue"></i>
-                                                                    年度人均收入：
-                                                                    <input class="red" style="background-color:transparent;border:0;"  type="text" id="year_count" name="year_count"/>
+                                                                    年度家庭稳定总收入：
+                                                                    <input class="red" style="background-color:transparent;border:0;"  type="text" id="year_wdCount" name="year_count"/>
+                                                                </li>
+
+                                                                <li>
+                                                                    <i class="ace-icon fa fa-caret-right blue"></i>
+                                                                    年度家庭稳定纯收入：
+                                                                    <input class="red" style="background-color:transparent;border:0;"  type="text" id="year_cCount" name="year_count"/>
+                                                                </li>
+
+                                                                <li>
+                                                                    <i class="ace-icon fa fa-caret-right blue"></i>
+                                                                    年度家庭人均收入：
+                                                                    <input class="red" style="background-color:transparent;border:0;"  type="text" id="year_manCount" name="year_count"/>
                                                                 </li>
                                                             </ul>
                                                         </div>
@@ -7632,8 +7644,8 @@
             var postData = $('#produceIncomeForm').serialize();
             var jtbh = $('#income_jtbh').val();
             var nf = $("#selected_nf").find("option:selected").val();
-            //alert(postData);
-            postData = postData + "&jtbh="+ jtbh+"&nf="+nf;
+            var rks = $("#income_rks").val();
+            postData = postData + "&jtbh="+ jtbh+"&nf="+nf+"&rks="+rks;
             $.post("/produceIncome/add", postData,function (data) {
                 if(data.status==1){
                     alert("生产收入信息写入成功！");
@@ -7649,8 +7661,8 @@
             var postData = $('#produceIncomeForm').serialize();
             var jtbh = $('#income_jtbh').val();
             var nf = $("#selected_nf").find("option:selected").val();
-            //alert(postData);
-            postData = postData + "&jtbh="+ jtbh+"&nf="+nf;
+            var rks = $("#income_rks").val();
+            postData = postData + "&jtbh="+ jtbh+"&nf="+nf+"&rks="+rks;
             $.post("/produceIncome/edit", postData,function (data) {
                 if(data.status==1){
                     alert("生产收入信息修改成功！");
@@ -7706,7 +7718,8 @@
             var postData = $('#salaryIncomeForm').serialize();
             var jtbh = $('#income_jtbh').val();
             var nf = $("#selected_nf").find("option:selected").val();
-            postData = postData + "&jtbh="+ jtbh+"&nf="+nf;
+            var rks = $("#income_rks").val();
+            postData = postData + "&jtbh="+ jtbh+"&nf="+nf+"&rks="+rks;
             $.post("/salaryIncome/add",postData,function (data) {
                 if(data.status==1){
                     alert("工资收入信息写入成功！");
@@ -7765,7 +7778,8 @@
             var postData = $('#propertyIncomeForm').serialize();
             var jtbh = $('#income_jtbh').val();
             var nf = $("#selected_nf").find("option:selected").val();
-            postData = postData + "&jtbh="+ jtbh+"&nf="+nf;
+            var rks = $("#income_rks").val();
+            postData = postData + "&jtbh="+ jtbh+"&nf="+nf+"&rks="+rks;
             $.post("/propertyIncome/add",postData,function (data) {
                 if(data.status==1){
                     alert("财产收入信息写入成功！");
@@ -7781,7 +7795,8 @@
             var postData = $('#propertyIncomeForm').serialize();
             var jtbh = $('#income_jtbh').val();
             var nf = $("#selected_nf").find("option:selected").val();
-            postData = postData + "&jtbh="+ jtbh+"&nf="+nf;
+            var rks = $("#income_rks").val();
+            postData = postData + "&jtbh="+ jtbh+"&nf="+nf+"&rks="+rks;
             $.post("/propertyIncome/edit",postData,function (data) {
                 if(data.status==1){
                     alert("财产收入信息修改成功！");
@@ -7897,7 +7912,8 @@
             var postData = $('#transferIncomeForm').serialize();
             var jtbh = $('#income_jtbh').val();
             var nf = $("#selected_nf").find("option:selected").val();
-            postData = postData + "&jtbh="+ jtbh+"&nf="+nf;
+            var rks = $("#income_rks").val();
+            postData = postData + "&jtbh="+ jtbh+"&nf="+nf+"&rks="+rks;
             $.post("/transferIncome/add",postData,function (data) {
                 if(data.status==1){
                     alert("转移性收入信息写入成功！");
@@ -7913,7 +7929,8 @@
             var postData = $('#transferIncomeForm').serialize();
             var jtbh = $('#income_jtbh').val();
             var nf = $("#selected_nf").find("option:selected").val();
-            postData = postData + "&jtbh="+ jtbh+"&nf="+nf;
+            var rks = $("#income_rks").val();
+            postData = postData + "&jtbh="+ jtbh+"&nf="+nf+"&rks="+rks;
             $.post("/transferIncome/edit",postData,function (data) {
                 if(data.status==1){
                     alert("转移性收入信息修改成功！");
@@ -7992,9 +8009,7 @@
             var jtbh = $('#income_jtbh').val();
             var nf = $("#selected_nf").find("option:selected").val();
             var rks = $("#income_rks").val();
-            postData = postData + "&jtbh="+ jtbh+"&nf="+nf+"&rks="+rks+ "&produce_count="+ produce_count+ "&produce_count1="
-                + produce_count1+ "&salary_count="+ salary_count+ "&property_count="+ property_count+ "&transfer_count="
-                + transfer_count+"&poverty_count="+poverty_count;
+            postData = postData + "&jtbh="+ jtbh+"&nf="+nf+"&rks="+rks;
             $.post("/outPovertyIncome/add",postData,function (data) {
                 if(data.status==1){
                     alert("不计入家庭稳定脱贫收入信息写入成功！");
@@ -8030,9 +8045,7 @@
             var jtbh = $('#income_jtbh').val();
             var nf = $("#selected_nf").find("option:selected").val();
             var rks = $("#income_rks").val();
-            postData = postData + "&jtbh="+ jtbh+"&nf="+nf+"&rks="+rks+ "&produce_count="+ produce_count+ "&produce_count1="
-                + produce_count1+ "&salary_count="+ salary_count+ "&property_count="+ property_count+ "&transfer_count="
-                + transfer_count+"&poverty_count="+poverty_count;
+            postData = postData + "&jtbh="+ jtbh+"&nf="+nf+"&rks="+rks;
             $.post("/outPovertyIncome/edit",postData,function (data) {
                 if(data.status==1){
                     alert("不计入家庭稳定脱贫收入信息修改成功！");
@@ -8061,6 +8074,17 @@
                     $("#transfer_count").val(data.ymIncomeSum.sum_transfer);
                     $("#out_poverty_count").val(data.ymIncomeSum.sum_poverty);
 
+                    var count1 = parseInt(data.ymIncomeSum.sum_produce) + parseInt(data.ymIncomeSum.sum_salary)
+                        + parseInt(data.ymIncomeSum.sum_property) + parseInt(data.ymIncomeSum.sum_transfer);
+                    $("#year_wdCount").val(count1);
+                    count1 = count1 - parseInt(data.ymIncomeSum.sum_produce1);
+                    $("#year_cCount").val(count1);
+                    if(data.rks==0){
+                        $("#year_manCount").val(count1);
+                    }else {
+                        count1 = count1/parseInt(data.rks);
+                        $("#year_manCount").val(count1);
+                    }
                 }else{
                     $("#produce_count").val(0);
                     $("#produce_count1").val(0);
@@ -8068,6 +8092,9 @@
                     $("#property_count").val(0);
                     $("#transfer_count").val(0);
                     $("#out_poverty_count").val(0);
+                    $("#year_wdCount").val(0);
+                    $("#year_cCount").val(0);
+                    $("#year_manCount").val(0);
 
                 }
             })
@@ -8086,6 +8113,9 @@
                     $("#property_count").val(0);
                     $("#transfer_count").val(0);
                     $("#out_poverty_count").val(0);
+                    $("#year_wdCount").val(0);
+                    $("#year_cCount").val(0);
+                    $("#year_manCount").val(0);
                     alert("收入信息删除成功！");
                 });
             }
@@ -8167,7 +8197,18 @@
                 $("#property_count").val(data.ymIncomeSum.sum_property);
                 $("#transfer_count").val(data.ymIncomeSum.sum_transfer);
                 $("#out_poverty_count").val(data.ymIncomeSum.sum_poverty);
-                $("#addIncomeBtn").addClass("hide");
+                var count1 = parseInt(data.ymIncomeSum.sum_produce) + parseInt(data.ymIncomeSum.sum_salary)
+                + parseInt(data.ymIncomeSum.sum_property) + parseInt(data.ymIncomeSum.sum_transfer);
+                $("#year_wdCount").val(count1);
+                count1 = count1 - parseInt(data.ymIncomeSum.sum_produce1);
+                $("#year_cCount").val(count1);
+                if(data.rks==0){
+                    $("#year_manCount").val(count1);
+                }else {
+                    count1 = count1/parseInt(data.rks);
+                    $("#year_manCount").val(count1);
+                }
+
             }else{
                 $("#produce_count").val(0);
                 $("#produce_count1").val(0);
@@ -8175,7 +8216,10 @@
                 $("#property_count").val(0);
                 $("#transfer_count").val(0);
                 $("#out_poverty_count").val(0);
-                $("#addIncomeBtn").removeClass("hide");
+                $("#year_wdCount").val(0);
+                $("#year_cCount").val(0);
+                $("#year_manCount").val(0);
+
             }
         })
 

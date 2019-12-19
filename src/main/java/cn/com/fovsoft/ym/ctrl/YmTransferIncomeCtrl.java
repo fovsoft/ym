@@ -1,12 +1,16 @@
 package cn.com.fovsoft.ym.ctrl;
 
+import cn.com.fovsoft.common.util.CommonUtil;
+import cn.com.fovsoft.ym.bean.YmIncomeSum;
 import cn.com.fovsoft.ym.bean.YmTransferIncome;
+import cn.com.fovsoft.ym.service.YmIncomeSumService;
 import cn.com.fovsoft.ym.service.YmTransferIncomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -26,6 +30,9 @@ public class YmTransferIncomeCtrl {
     @Autowired
     private YmTransferIncomeService ymTransferIncomeService;
 
+    @Autowired
+    private YmIncomeSumService ymIncomeSumService;
+
 
     @RequestMapping("/transferIncome/edit")
     @ResponseBody
@@ -41,6 +48,16 @@ public class YmTransferIncomeCtrl {
         //先删除信息，再写入信息
         ymTransferIncomeService.deleteYmTransferIncomeByJtbhAndYear(jtbh,year);
         ymTransferIncomeService.addYmTransferIncomeMore(ymTransferIncomeList);
+
+        YmTransferIncome ymTransferIncome = ymTransferIncomeList.get(11);
+        //获取小计总收入
+        int sum_transfer = CommonUtil.getStringInt(ymTransferIncome.getTra_yf1()) + CommonUtil.getStringInt(ymTransferIncome.getTra_yf2()) + CommonUtil.getStringInt(ymTransferIncome.getTra_yf3())
+                + CommonUtil.getStringInt(ymTransferIncome.getTra_yf4())+ CommonUtil.getStringInt(ymTransferIncome.getTra_yf5())+ CommonUtil.getStringInt(ymTransferIncome.getTra_yf6())+ CommonUtil.getStringInt(ymTransferIncome.getTra_yf7())
+                + CommonUtil.getStringInt(ymTransferIncome.getTra_yf8())+ CommonUtil.getStringInt(ymTransferIncome.getTra_yf9())+ CommonUtil.getStringInt(ymTransferIncome.getTra_yf10())+ CommonUtil.getStringInt(ymTransferIncome.getTra_yf11())
+                + CommonUtil.getStringInt(ymTransferIncome.getTra_yf12());
+        //修改记录
+        String sql = "update ym_income_sum set sum_transfer='"+sum_transfer+"' where jtbh='"+jtbh+"' and sum_nf='"+year+"' ";
+        ymIncomeSumService.updateYmIncomeSumBySql(sql);
         map.put("status",status);
         map.put("result",result);
         return map;
@@ -53,6 +70,7 @@ public class YmTransferIncomeCtrl {
 
         String jtbh             = request.getParameter("jtbh");
         String year = request.getParameter("nf");
+        String rks = request.getParameter("rks");
 
 
         List<YmTransferIncome> ymTransferIncomeList = getTransferList(request,jtbh,year);
@@ -68,6 +86,33 @@ public class YmTransferIncomeCtrl {
             result = "haveData";
         }else {
             ymTransferIncomeService.addYmTransferIncomeMore(ymTransferIncomeList);
+            YmIncomeSum ymIncomeSum = ymIncomeSumService.getYmIncomeSumByJtbhAndYear(jtbh,year);
+
+            YmTransferIncome ymTransferIncome = ymTransferIncomeList.get(11);
+            //获取小计总收入
+            int sum_transfer = CommonUtil.getStringInt(ymTransferIncome.getTra_yf1()) + CommonUtil.getStringInt(ymTransferIncome.getTra_yf2()) + CommonUtil.getStringInt(ymTransferIncome.getTra_yf3())
+                    + CommonUtil.getStringInt(ymTransferIncome.getTra_yf4())+ CommonUtil.getStringInt(ymTransferIncome.getTra_yf5())+ CommonUtil.getStringInt(ymTransferIncome.getTra_yf6())+ CommonUtil.getStringInt(ymTransferIncome.getTra_yf7())
+                    + CommonUtil.getStringInt(ymTransferIncome.getTra_yf8())+ CommonUtil.getStringInt(ymTransferIncome.getTra_yf9())+ CommonUtil.getStringInt(ymTransferIncome.getTra_yf10())+ CommonUtil.getStringInt(ymTransferIncome.getTra_yf11())
+                    + CommonUtil.getStringInt(ymTransferIncome.getTra_yf12());
+
+            //如果年度各项收入信息记录为空,则写入新记录，否则进行修改
+            if(ymIncomeSum==null){
+                ymIncomeSum = new YmIncomeSum();
+                ymIncomeSum.setJtbh(jtbh);
+                ymIncomeSum.setSum_nf(year);
+                ymIncomeSum.setRks(rks);
+                ymIncomeSum.setSum_produce("0");
+                ymIncomeSum.setSum_produce1("0");
+                ymIncomeSum.setSum_salary("0");
+                ymIncomeSum.setSum_property("0");
+                ymIncomeSum.setSum_transfer(Integer.toString(sum_transfer));
+                ymIncomeSum.setSum_poverty("0");
+                ymIncomeSumService.addYmIncomeSum(ymIncomeSum);
+            }else{
+                //修改记录
+                String sql = "update ym_income_sum set sum_transfer='"+sum_transfer+"' where jtbh='"+jtbh+"' and sum_nf='"+year+"' ";
+                ymIncomeSumService.updateYmIncomeSumBySql(sql);
+            }
         }
 
         map.put("status",status);

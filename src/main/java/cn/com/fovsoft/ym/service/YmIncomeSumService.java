@@ -34,4 +34,9 @@ public class YmIncomeSumService {
     public int deleteYmIncomeSumByJtbh(String jtbh){
         return ymIncomeSumDao.deleteYmIncomeSumByJtbh(jtbh);
     }
+
+
+    public int updateYmIncomeSumBySql(String sql){
+        return ymIncomeSumDao.updateYmIncomeSumBySql(sql);
+    }
 }

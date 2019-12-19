@@ -6,7 +6,10 @@ package cn.com.fovsoft.ym.ctrl;/*
  */
 
 
+import cn.com.fovsoft.common.util.CommonUtil;
+import cn.com.fovsoft.ym.bean.YmIncomeSum;
 import cn.com.fovsoft.ym.bean.YmProduceIncome;
+import cn.com.fovsoft.ym.service.YmIncomeSumService;
 import cn.com.fovsoft.ym.service.YmProduceIncomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,6 +29,9 @@ public class YmProduceIncomeCtrl {
     @Autowired
     private YmProduceIncomeService ymProduceIncomeService;
 
+    @Autowired
+    private YmIncomeSumService ymIncomeSumService;
+
 
     @RequestMapping("/produceIncome/edit")
     @ResponseBody
@@ -41,6 +47,22 @@ public class YmProduceIncomeCtrl {
         //先删除信息，再写入信息
         ymProduceIncomeService.deleteYmProduceIncomeByJtbhAndYear(jtbh,year);
         ymProduceIncomeService.addYmProduceIncomeMore(ymProduceIncomeList);
+
+        YmProduceIncome ymProduceIncome = ymProduceIncomeList.get(10);
+        int produce_count = CommonUtil.getStringInt(ymProduceIncome.getProduce_yf1()) + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf2()) + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf3())
+                + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf4())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf5())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf6())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf7())
+                + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf8())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf9())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf10())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf11())
+                + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf12());
+        ymProduceIncome = ymProduceIncomeList.get(21);
+        int produce_count1 = CommonUtil.getStringInt(ymProduceIncome.getProduce_yf1()) + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf2()) + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf3())
+                + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf4())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf5())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf6())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf7())
+                + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf8())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf9())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf10())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf11())
+                + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf12());
+
+        //修改记录
+        String sql = "update ym_income_sum set sum_produce='"+produce_count+"',sum_produce1='"+produce_count1+"'";
+        ymIncomeSumService.updateYmIncomeSumBySql(sql);
+
         map.put("status",status);
         map.put("result",result);
         return map;
@@ -55,6 +77,7 @@ public class YmProduceIncomeCtrl {
         //获取家庭编号信息
         String jtbh = request.getParameter("jtbh");
         String year = request.getParameter("nf");
+        String rks = request.getParameter("rks");
 
         List<YmProduceIncome> ymProduceIncomeList = getProduceList(request,jtbh,year);
         //返回信息
@@ -70,12 +93,44 @@ public class YmProduceIncomeCtrl {
         }else {
             //底层写入
             ymProduceIncomeService.addYmProduceIncomeMore(ymProduceIncomeList);
+            //记录各个收入的记录
+            YmIncomeSum ymIncomeSum = ymIncomeSumService.getYmIncomeSumByJtbhAndYear(jtbh,year);
+            YmProduceIncome ymProduceIncome = ymProduceIncomeList.get(10);
+            int produce_count = CommonUtil.getStringInt(ymProduceIncome.getProduce_yf1()) + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf2()) + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf3())
+                    + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf4())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf5())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf6())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf7())
+                    + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf8())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf9())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf10())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf11())
+                    + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf12());
+            ymProduceIncome = ymProduceIncomeList.get(21);
+            int produce_count1 = CommonUtil.getStringInt(ymProduceIncome.getProduce_yf1()) + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf2()) + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf3())
+                    + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf4())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf5())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf6())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf7())
+                    + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf8())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf9())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf10())+ CommonUtil.getStringInt(ymProduceIncome.getProduce_yf11())
+                    + CommonUtil.getStringInt(ymProduceIncome.getProduce_yf12());
+            //如果没有记录，则写入记录
+            if(ymIncomeSum==null){
+                ymIncomeSum = new YmIncomeSum();
+                ymIncomeSum.setJtbh(jtbh);
+                ymIncomeSum.setSum_nf(year);
+                ymIncomeSum.setRks(rks);
+                ymIncomeSum.setSum_produce(Integer.toString(produce_count));
+                ymIncomeSum.setSum_produce1(Integer.toString(produce_count1));
+                ymIncomeSum.setSum_salary("0");
+                ymIncomeSum.setSum_property("0");
+                ymIncomeSum.setSum_transfer("0");
+                ymIncomeSum.setSum_poverty("0");
+                ymIncomeSumService.addYmIncomeSum(ymIncomeSum);
+            }else{
+                //修改记录
+                String sql = "update ym_income_sum set sum_produce='"+produce_count+"',sum_produce1='"+produce_count1+"' where jtbh='"+jtbh+"' and sum_nf='"+year+"' ";
+                ymIncomeSumService.updateYmIncomeSumBySql(sql);
+            }
+
         }
 
         map.put("status",status);
         map.put("result",result);
         return map;
     }
+
 
     private List<YmProduceIncome> getProduceList(HttpServletRequest request,String jtbh,String year){
         List<YmProduceIncome> ymProduceIncomeList = new ArrayList();

@@ -1,6 +1,9 @@
 package cn.com.fovsoft.ym.ctrl;
 
+import cn.com.fovsoft.common.util.CommonUtil;
+import cn.com.fovsoft.ym.bean.YmIncomeSum;
 import cn.com.fovsoft.ym.bean.YmPropertyIncome;
+import cn.com.fovsoft.ym.service.YmIncomeSumService;
 import cn.com.fovsoft.ym.service.YmPropertyIncomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +28,9 @@ public class YmPropertyIncomeCtrl {
     @Autowired
     private YmPropertyIncomeService ymPropertyIncomeService;
 
+    @Autowired
+    private YmIncomeSumService ymIncomeSumService;
+
 
     @RequestMapping("/propertyIncome/edit")
     @ResponseBody
@@ -40,6 +46,17 @@ public class YmPropertyIncomeCtrl {
         //先删除信息，再写入信息
         ymPropertyIncomeService.deleteYmPropertyIncomeByJtbhAndYear(jtbh,year);
         ymPropertyIncomeService.addYmPropertyIncomeMore(ymPropertyIncomeList);
+        //修改收入总和信息
+        //拿到小计数据
+        YmPropertyIncome ymPropertyIncome = ymPropertyIncomeList.get(2);
+        //进行计算年度收入总和
+        int sum_property = CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf1()) + CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf2()) + CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf3())
+                + CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf4())+ CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf5())+ CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf6())+ CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf7())
+                + CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf8())+ CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf9())+ CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf10())+ CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf11())
+                + CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf12());
+        //修改记录
+        String sql = "update ym_income_sum set sum_property='"+sum_property+"' where jtbh='"+jtbh+"' and sum_nf='"+year+"' ";
+        ymIncomeSumService.updateYmIncomeSumBySql(sql);
         map.put("status",status);
         map.put("result",result);
         return map;
@@ -53,6 +70,7 @@ public class YmPropertyIncomeCtrl {
 
         String jtbh          = request.getParameter("jtbh");
         String year = request.getParameter("nf");
+        String rks = request.getParameter("rks");
 
         List<YmPropertyIncome> ymPropertyIncomeList = getPropertyList(request,jtbh,year);
 
@@ -67,6 +85,36 @@ public class YmPropertyIncomeCtrl {
             result = "haveData";
         }else {
             ymPropertyIncomeService.addYmPropertyIncomeMore(ymPropertyIncomeList);
+            YmIncomeSum ymIncomeSum = ymIncomeSumService.getYmIncomeSumByJtbhAndYear(jtbh,year);
+
+            //拿到小计数据
+            YmPropertyIncome ymPropertyIncome = ymPropertyIncomeList.get(2);
+            //进行计算年度收入总和
+            int sum_property = CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf1()) + CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf2()) + CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf3())
+                    + CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf4())+ CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf5())+ CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf6())+ CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf7())
+                    + CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf8())+ CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf9())+ CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf10())+ CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf11())
+                    + CommonUtil.getStringInt(ymPropertyIncome.getProperty_yf12());
+
+            //如果年度各项收入信息记录为空,则写入新记录，否则进行修改
+            if(ymIncomeSum==null){
+                ymIncomeSum = new YmIncomeSum();
+                ymIncomeSum.setJtbh(jtbh);
+                ymIncomeSum.setSum_nf(year);
+                ymIncomeSum.setRks(rks);
+                ymIncomeSum.setSum_produce("0");
+                ymIncomeSum.setSum_produce1("0");
+                ymIncomeSum.setSum_salary("0");
+                ymIncomeSum.setSum_property(Integer.toString(sum_property));
+                ymIncomeSum.setSum_transfer("0");
+                ymIncomeSum.setSum_poverty("0");
+                ymIncomeSumService.addYmIncomeSum(ymIncomeSum);
+            }else{
+                //修改记录
+                String sql = "update ym_income_sum set sum_property='"+sum_property+"' where jtbh='"+jtbh+"' and sum_nf='"+year+"' ";
+                ymIncomeSumService.updateYmIncomeSumBySql(sql);
+            }
+
+
         }
 
         map.put("status",status);

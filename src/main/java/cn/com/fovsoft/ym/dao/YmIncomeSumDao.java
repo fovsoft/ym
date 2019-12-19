@@ -37,4 +37,12 @@ public interface YmIncomeSumDao {
 
     @Update("update ym_income_sum set sum_produce=#{sum_produce},sum_produce1=#{sum_produce1},sum_salary=#{sum_salary},sum_property=#{sum_property},sum_transfer=#{sum_transfer},sum_poverty=#{sum_poverty} where jtbh=#{jtbh} and sum_nf=#{sum_nf}")
     int updateYmIncomeSumByJtbhAndYear(YmIncomeSum ymIncomeSum);
+
+    @UpdateProvider(type=updateYmIncomeSumProvider.class,method = "updateYmIncomeSumBySql")
+    int updateYmIncomeSumBySql(String sql);
+    class updateYmIncomeSumProvider{
+        public String updateYmIncomeSumBySql(String sql){
+            return sql;
+        }
+    }
 }
