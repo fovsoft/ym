@@ -5,13 +5,12 @@
     <meta charset="utf-8"/>
     <title>贫困人员管理 - 钦南区易地搬迁信息管理系统</title>
 
-    <meta name="description" content="and Validation"/>
+    <meta name="description" content="Dynamic tables and grids using jqGrid plugin"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
     <!-- bootstrap & fontawesome -->
     <link rel="stylesheet" th:href="@{/static/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/static/font-awesome/4.5.0/css/font-awesome.min.css}"/>
-
 
     <!-- page specific plugin styles -->
     <link rel="stylesheet" th:href="@{/static/css/jquery-ui.min.css}"/>
@@ -44,10 +43,12 @@
             text-align: center;
             vertical-align: middle !important;
         }
+
         .modal-body {
             /*max-height: 400px;*/
             overflow-y: auto;
         }
+
     </style>
 
     <!--[if lte IE 9]>
@@ -75,7 +76,6 @@
 </head>
 
 <body class="no-skin">
-
 <div id="navbar" class="navbar navbar-default          ace-save-state">
     <div class="navbar-container ace-save-state" id="navbar-container">
         <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
@@ -133,7 +133,6 @@
     </div><!-- /.navbar-container -->
 </div>
 
-
 <div class="main-container ace-save-state" id="main-container">
     <script type="text/javascript">
         try {
@@ -190,9 +189,9 @@
                 <b class="arrow"></b>
             </li>
 
+
             <!-- 动态生成菜单 -->
-            <li th:each="sysMenu : ${rootSysMenuList}">
-                <!-- 这里写死判断了，改进思路：通过对比当前URL与菜单的层级关系可避免写死 -->
+            <li th:each="sysMenu : ${rootSysMenuList}">  <!-- 这里写死判断了，改进思路：通过对比当前URL与菜单的层级关系可避免写死 -->
                 <a th:href="@{${sysMenu.url}}" class="dropdown-toggle">
                     <i class="menu-icon fa fa-desktop"></i>
                     <span class="menu-text" th:text="${sysMenu.menuName}">
@@ -335,82 +334,6 @@
 
                 <div class="row">
                     <div class="col-xs-12">
-                        <!-- 修改密码的窗口 -->
-                        <div>
-                            <!--新增角色的窗口-->
-                            <div class="modal fade" id="updatePasswordModal" tabindex="-1" role="dialog" aria-labelledby="updatePasswordModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                                &times;
-                                            </button>
-                                            <h4 class="modal-title red" id="updatePasswordModalLabel">
-                                                <label id="addTitle3">修改</label>
-                                            </h4>
-                                        </div>
-
-                                        <div class="modal-body">
-                                            <div class="widget-box widget-color-green2">
-                                                <div class="widget-header">
-                                                    <h4 class="widget-title lighter smaller">
-                                                        <span class="smaller-80"></span>
-                                                    </h4>
-                                                </div>
-
-                                                <div class="widget-body">
-                                                    <div class="widget-main padding-8">
-                                                        <form class="form-horizontal">
-                                                            <div class="form-group">
-                                                                <label for="oldPassword" class="col-xs-12 col-xs-3 control-label no-padding-right">原密码</label>
-                                                                <div class="col-xs-12 col-sm-9">
-                                                                    <div class="clearfix">
-                                                                        <input type="password" class="col-xs-12 col-xs-8 form-control" id="oldPassword" name="oldPassword" placeholder="请输入原密码" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="hr hr-dotted"></div>
-
-                                                            <div class="form-group">
-                                                                <label for="newPassword" class="col-xs-12 col-sm-3 control-label no-padding-right">新密码</label>
-                                                                <div class="col-xs-12 col-sm-9">
-                                                                    <div class="clearfix">
-                                                                        <input type="password" class="col-xs-12 col-sm-8 form-control" id="newPassword" name="newPassword" placeholder="请输入新密码" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="hr hr-dotted"></div>
-
-                                                            <div class="form-group">
-                                                                <label for="newPassword1" class="col-xs-12 col-sm-3 control-label no-padding-right">确认新密码</label>
-                                                                <div class="col-xs-12 col-sm-9">
-                                                                    <div class="clearfix">
-                                                                        <input type="password" class="col-xs-12 col-sm-8 form-control" id="newPassword1" name="newPassword1" placeholder="请确认新密码" />
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-info" data-dismiss="modal">关闭
-                                            </button>
-                                            <button type="button" class="btn btn-primary" id="updatePasswordBtn">
-                                                确定
-                                            </button>
-                                        </div>
-                                    </div><!-- /.modal-content -->
-                                </div><!-- /.modal -->
-
-                            </div>
-                        </div>
-
-
                         <form class="form-inline" role="form">
                             <div class="form-group">
                                 <label class="sr-only control-label" for="s-xm">姓名:</label>
@@ -455,12 +378,9 @@
                             <table id="grid-table"></table>
                             <div id="grid-pager"></div>
                         </div>
-
-                        <!-- PAGE CONTENT BEGINS -->
                         <!-- PAGE CONTENT ENDS -->
                     </div><!-- /.col -->
                 </div><!-- /.row -->
-
                 <div class="row"><!--用户模态框-->
                     <!--查看贫困人员的模态框-->
                     <div id="modal-wizard-view" class="modal fade">
@@ -2576,91 +2496,91 @@
 
 
                     <!-- 修改密码的窗口 -->
-<!--                    <div>-->
-<!--                        &lt;!&ndash;新增角色的窗口&ndash;&gt;-->
-<!--                        <div class="modal fade" id="updatePasswordModal" tabindex="-1" role="dialog"-->
-<!--                             aria-labelledby="updatePasswordModalLabel" aria-hidden="true">-->
-<!--                            <div class="modal-dialog">-->
-<!--                                <div class="modal-content">-->
-<!--                                    <div class="modal-header">-->
-<!--                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">-->
-<!--                                            &times;-->
-<!--                                        </button>-->
-<!--                                        <h4 class="modal-title red" id="updatePasswordModalLabel">-->
-<!--                                            <label>修改密码</label>-->
-<!--                                        </h4>-->
-<!--                                    </div>-->
+                    <div>
+                        <!--新增角色的窗口-->
+                        <div class="modal fade" id="updatePasswordModal" tabindex="-1" role="dialog"
+                             aria-labelledby="updatePasswordModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            &times;
+                                        </button>
+                                        <h4 class="modal-title red" id="updatePasswordModalLabel">
+                                            <label>修改密码</label>
+                                        </h4>
+                                    </div>
 
-<!--                                    <div class="modal-body">-->
-<!--                                        <div class="widget-box widget-color-green2">-->
-<!--                                            <div class="widget-header">-->
-<!--                                                <h4 class="widget-title lighter smaller">-->
-<!--                                                    <span class="smaller-80"></span>-->
-<!--                                                </h4>-->
-<!--                                            </div>-->
+                                    <div class="modal-body">
+                                        <div class="widget-box widget-color-green2">
+                                            <div class="widget-header">
+                                                <h4 class="widget-title lighter smaller">
+                                                    <span class="smaller-80"></span>
+                                                </h4>
+                                            </div>
 
-<!--                                            <div class="widget-body">-->
-<!--                                                <div class="widget-main padding-8">-->
-<!--                                                    <form class="form-horizontal">-->
-<!--                                                        <div class="form-group">-->
-<!--                                                            <label for="oldPassword"-->
-<!--                                                                   class="col-xs-12 col-xs-3 control-label no-padding-right">原密码</label>-->
-<!--                                                            <div class="col-xs-12 col-sm-9">-->
-<!--                                                                <div class="clearfix">-->
-<!--                                                                    <input type="password"-->
-<!--                                                                           class="col-xs-12 col-xs-8 form-control"-->
-<!--                                                                           id="oldPassword" name="oldPassword"-->
-<!--                                                                           placeholder="请输入原密码"/>-->
-<!--                                                                </div>-->
-<!--                                                            </div>-->
-<!--                                                        </div>-->
+                                            <div class="widget-body">
+                                                <div class="widget-main padding-8">
+                                                    <form class="form-horizontal">
+                                                        <div class="form-group">
+                                                            <label for="oldPassword"
+                                                                   class="col-xs-12 col-xs-3 control-label no-padding-right">原密码</label>
+                                                            <div class="col-xs-12 col-sm-9">
+                                                                <div class="clearfix">
+                                                                    <input type="password"
+                                                                           class="col-xs-12 col-xs-8 form-control"
+                                                                           id="oldPassword" name="oldPassword"
+                                                                           placeholder="请输入原密码"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-<!--                                                        <div class="hr hr-dotted"></div>-->
+                                                        <div class="hr hr-dotted"></div>
 
-<!--                                                        <div class="form-group">-->
-<!--                                                            <label for="newPassword"-->
-<!--                                                                   class="col-xs-12 col-sm-3 control-label no-padding-right">新密码</label>-->
-<!--                                                            <div class="col-xs-12 col-sm-9">-->
-<!--                                                                <div class="clearfix">-->
-<!--                                                                    <input type="password"-->
-<!--                                                                           class="col-xs-12 col-sm-8 form-control"-->
-<!--                                                                           id="newPassword" name="newPassword"-->
-<!--                                                                           placeholder="请输入新密码"/>-->
-<!--                                                                </div>-->
-<!--                                                            </div>-->
-<!--                                                        </div>-->
+                                                        <div class="form-group">
+                                                            <label for="newPassword"
+                                                                   class="col-xs-12 col-sm-3 control-label no-padding-right">新密码</label>
+                                                            <div class="col-xs-12 col-sm-9">
+                                                                <div class="clearfix">
+                                                                    <input type="password"
+                                                                           class="col-xs-12 col-sm-8 form-control"
+                                                                           id="newPassword" name="newPassword"
+                                                                           placeholder="请输入新密码"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
 
-<!--                                                        <div class="hr hr-dotted"></div>-->
+                                                        <div class="hr hr-dotted"></div>
 
-<!--                                                        <div class="form-group">-->
-<!--                                                            <label for="newPassword1"-->
-<!--                                                                   class="col-xs-12 col-sm-3 control-label no-padding-right">确认新密码</label>-->
-<!--                                                            <div class="col-xs-12 col-sm-9">-->
-<!--                                                                <div class="clearfix">-->
-<!--                                                                    <input type="password"-->
-<!--                                                                           class="col-xs-12 col-sm-8 form-control"-->
-<!--                                                                           id="newPassword1" name="newPassword1"-->
-<!--                                                                           placeholder="请确认新密码"/>-->
-<!--                                                                </div>-->
-<!--                                                            </div>-->
-<!--                                                        </div>-->
-<!--                                                    </form>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
+                                                        <div class="form-group">
+                                                            <label for="newPassword1"
+                                                                   class="col-xs-12 col-sm-3 control-label no-padding-right">确认新密码</label>
+                                                            <div class="col-xs-12 col-sm-9">
+                                                                <div class="clearfix">
+                                                                    <input type="password"
+                                                                           class="col-xs-12 col-sm-8 form-control"
+                                                                           id="newPassword1" name="newPassword1"
+                                                                           placeholder="请确认新密码"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
 
-<!--                                    <div class="modal-footer">-->
-<!--                                        <button type="button" class="btn btn-info" data-dismiss="modal">关闭-->
-<!--                                        </button>-->
-<!--                                        <button type="button" class="btn btn-primary" id="updatePasswordBtn">-->
-<!--                                            确定-->
-<!--                                        </button>-->
-<!--                                    </div>-->
-<!--                                </div>&lt;!&ndash; /.modal-content &ndash;&gt;-->
-<!--                            </div>&lt;!&ndash; /.modal &ndash;&gt;-->
-<!--                        </div>-->
-<!--                    </div>&lt;!&ndash; 修改密码的窗口 &ndash;&gt;-->
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-info" data-dismiss="modal">关闭
+                                        </button>
+                                        <button type="button" class="btn btn-primary" id="updatePasswordBtn">
+                                            确定
+                                        </button>
+                                    </div>
+                                </div><!-- /.modal-content -->
+                            </div><!-- /.modal -->
+                        </div>
+                    </div><!-- 修改密码的窗口 -->
 
                     <!-- 查看家庭收入的模态框 -->
                     <div>
@@ -2675,7 +2595,7 @@
                                         <h4 class="modal-title pink2" id="showIncomeModalLabel">
                                             <div class="row">
                                                 <label class="control-label col-xs-12 col-sm-2 sr-only"
-                                                       for="selected_nf">年度:</label>
+                                                                    for="selected_nf">年度:</label>
                                                 <select class="input-medium form-control col-sm-2" id="selected_nf" name="selected_nf">
                                                     <option value="2017">2017</option>
                                                     <option value="2018">2018</option>
@@ -4140,58 +4060,67 @@
 <!-- 引入JQuery提示库 start-->
 <script th:src="@{/static/js/jquery.tips.js}"></script>
 
+<script type="text/javascript">
+
+    jQuery.jgrid.useJSON = true;
+
+</script>
+
+<!-- ace scripts -->
+<script th:src="@{/static/js/ace-elements.min.js}"></script>
+<script th:src="@{/static/js/ace.min.js}"></script>
+
 <!-- inline scripts related to this page -->
 <script type="text/javascript">
 
 
     jQuery(function ($) {
 
-
         //去首页方法
-        $("#toIndex").on("click",function () {
-            window.location.href="/toIndex";
+        $("#toIndex").on("click", function () {
+            window.location.href = "/toIndex";
         });
 
         //修改密码方法
-        $("#updatePasswordBtn").on("click",function () {
-            if($("#newPassword").val()!=$("#newPassword1").val()){
+        $("#updatePasswordBtn").on("click", function () {
+            if ($("#newPassword").val() != $("#newPassword1").val()) {
                 $("#newPassword1").tips({
-                    side : 3,
-                    msg : '两次输入的密码不一致！',
-                    bg : '#ff1642',
-                    time : 3
+                    side: 3,
+                    msg: '两次输入的密码不一致！',
+                    bg: '#ff1642',
+                    time: 3
                 });
-            }else if($("#newPassword").val().length<6){
+            } else if ($("#newPassword").val().length < 6) {
                 $("#newPassword1").tips({
-                    side : 3,
-                    msg : '密码长度必须大于等于6位！',
-                    bg : '#ff1642',
-                    time : 3
+                    side: 3,
+                    msg: '密码长度必须大于等于6位！',
+                    bg: '#ff1642',
+                    time: 3
                 });
-            } else{
+            } else {
                 var oldPassword = $("#oldPassword").val();
                 var newPassword = $("#newPassword").val();
                 $.ajax({
                     type: "POST",//请求方式为POST
                     url: "/user/password",//检验url
-                    data:{
-                      "oldPassword":oldPassword,
-                      "newPassword":newPassword
+                    data: {
+                        "oldPassword": oldPassword,
+                        "newPassword": newPassword
                     },
                     dataType: 'json',//数据类型为JSON类型
                     cache: false,//关闭缓存
                     success: function (data) {
-                        if(data.status==1){
+                        if (data.status == 1) {
                             alert("密码修改成功！");
-                        }else if(data.result=="errorPw"){
+                        } else if (data.result == "errorPw") {
                             $("#oldPassword").focus();
                             $("#oldPassword").tips({
-                                side : 3,
-                                msg : '原密码输入错误！',
-                                bg : '#ff1642',
-                                time : 3
+                                side: 3,
+                                msg: '原密码输入错误！',
+                                bg: '#ff1642',
+                                time: 3
                             });
-                        }else {
+                        } else {
                             alert("发生不可预测的错误，请联系管理员！");
                         }
                     }//响应成功
@@ -4200,14 +4129,26 @@
         });
 
 
-
         var grid_selector = "#grid-table";
         var pager_selector = "#grid-pager";
 
         var parent_column = $(grid_selector).closest('[class*="col-"]');
 
-        //var parent_column = $(grid_selector).closest("div");
-        //resize to fit page size
+        // $(window).on('resize.jqGrid', function () {
+        //     var parent_column = $(grid_selector).closest('[class*="col-xs"]');
+        //     //console.log(parent_column.width());
+        //     $(grid_selector).jqGrid('setGridWidth', parent_column.width());
+        // });
+        //
+        // //resize on sidebar collapse/expand
+        // $(document).on('settings.ace.jqGrid', function (ev, event_name, collapsed) {
+        //     if (event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed') {
+        //         //setTimeout is for webkit only to give time for DOM changes and then redraw!!!
+        //         setTimeout(function () {
+        //             $(grid_selector).jqGrid('setGridWidth', parent_column.width());
+        //         }, 20);
+        //     }
+        // });
         $(window).on('resize.jqGrid', function () {
             $(grid_selector).jqGrid( 'setGridWidth', parent_column.width() );
         });
@@ -4221,6 +4162,7 @@
                 }, 20);
             }
         });
+
 
         //if your grid is inside another element, for example a tab pane, you should use its parent's width:
         /**
@@ -4236,12 +4178,6 @@
 				  }
 				})
          */
-
-
-
-
-
-
 
         jQuery(grid_selector).jqGrid({
             datatype: "json",//数据封装方式为json
@@ -4421,8 +4357,8 @@
             caption: "贫困人员信息列表"
 
         });
-        $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
-
+        //trigger window resize to make the grid get the correct size
+        $(window).triggerHandler('resize.jqGrid');
 
         function operPerson(cellValue, grid, rows, state) {
             return "<div style='margin-left: 8px;'>" +
@@ -4430,7 +4366,6 @@
                 "<div title style='float:left;cursor:pointer;' class='ui-pg-div ui-inline-view' onclick=\"viewIncome('" + rows.rybh + "','" + rows.jtbh + "','" + rows.yhzgx + "')\" onmouseover=\"jQuery(this).addClass('ui-state-hover');\" onmouseout=\"jQuery(this).removeClass('ui-state-hover');\" data-original-title=\"查看家庭收入信息！\"><span class='ui-icon ui-icon-disk blue'></span></div>" +
                 "</div>";
         }
-
 
 
 
@@ -4766,7 +4701,7 @@
                 } else if (sfydfpbqh == "无搬迁意愿") {
                     $("#v-sfydfpbqh")[0].selectedIndex = 2;
                 }
-                var bqfs = data.ymFamily.bqfs;
+                var bqfs = data.ymFamily.pkhsx;
                 if (bqfs == "行政村整体搬迁") {
                     $("#v-bqfs")[0].selectedIndex = 1;
                 } else if (bqfs == "自然村整体搬迁") {
@@ -5178,13 +5113,18 @@
             })
         }
 
-        // //进行家庭人员添加事件处理
-        // var parent_column = $("#getperson-grid-table").closest('[class*="modal-body"]');
-        //
-        //
-        // $(window).on('resize.jqGrid', function () {
-        //     $("#getperson-grid-table").jqGrid('setGridWidth', parent_column.width() - 30);
-        // });
+
+        //enable search/filter toolbar
+        //jQuery(grid_selector).jqGrid('filterToolbar',{defaultSearch:true,stringResult:true})
+        //jQuery(grid_selector).filterToolbar({});
+
+        //进行家庭人员添加事件处理
+        var parent_column = $("#getperson-grid-table").closest('[class*="modal-body"]');
+
+
+        $(window).on('resize.jqGrid', function () {
+            $("#getperson-grid-table").jqGrid('setGridWidth', parent_column.width() - 30);
+        });
 
         // $(document).on('settings.ace.jqGrid' , function(ev, event_name, collapsed) {
         //     if( event_name === 'sidebar_collapsed' || event_name === 'main_container_fixed' ) {
@@ -5370,11 +5310,13 @@
 
         });
 
+        //$(window).triggerHandler('resize.jqGrid');
+
+
         function operPerson1(cellValue, grid, rows, state) {
             return "<div style='margin-left: 8px;'>" +
                 "<div title style='float:left;cursor:pointer;' class='ui-pg-div ui-inline-del' onclick=\"delPerson1('" + rows.rybh + "','" + rows.jtbh + "','" + rows.yhzgx + "')\" onmouseover=\"jQuery(this).addClass('ui-state-hover');\" onmouseout=\"jQuery(this).removeClass('ui-state-hover');\" data-original-title=\"删除该行数据！\"><span class='ui-icon ui-icon-trash'></span></div></div>";
         }
-
 
         //查看贫困人员列表
         jQuery("#v-getperson-grid-table").jqGrid({
@@ -5539,7 +5481,6 @@
             caption: "贫困人员信息列表"
 
         });
-
         //$(window).triggerHandler('resize.jqGrid');
 
 
@@ -8280,7 +8221,7 @@
                 $("#transfer_count").val(data.ymIncomeSum.sum_transfer);
                 $("#out_poverty_count").val(data.ymIncomeSum.sum_poverty);
                 var count1 = parseInt(data.ymIncomeSum.sum_produce) + parseInt(data.ymIncomeSum.sum_salary)
-                    + parseInt(data.ymIncomeSum.sum_property) + parseInt(data.ymIncomeSum.sum_transfer);
+                + parseInt(data.ymIncomeSum.sum_property) + parseInt(data.ymIncomeSum.sum_transfer);
                 $("#year_wdCount").val(count1);
                 count1 = count1 - parseInt(data.ymIncomeSum.sum_produce1);
                 $("#year_cCount").val(count1);
