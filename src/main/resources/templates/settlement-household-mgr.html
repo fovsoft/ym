@@ -1657,7 +1657,7 @@
             },
 
             editurl: "./dummy.php",//nothing is saved
-            caption: "贫困人员信息列表"
+            caption: "安置人员信息列表"
 
         });
         $(window).triggerHandler('resize.jqGrid');//trigger window resize to make the grid get the correct size
@@ -1790,7 +1790,7 @@
         });
 
         //当点击确定新增按钮时，进行与后台交互
-        $("#add-settlement-household").on("click",function () {
+        $("#sureAddAzhBtn").on("click",function () {
             if(checkSettlementHouseholdForm()){
                 //生产收入种植业表格数据
                 var postData = $('#settlement-household-form').serialize();
@@ -1801,6 +1801,7 @@
                 })
             }
         });
+        //当点击新增确定按钮时候，进行
 
 
         //查询按钮的响应事件
