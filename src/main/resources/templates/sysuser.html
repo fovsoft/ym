@@ -865,7 +865,7 @@
 
         jQuery(grid_selector).jqGrid({
             datatype: "json",//数据封装方式为json
-            //url: '/user/list',
+            url: '/user/list',
             mtype:"POST",
             // ajaxGridOptions: { contentType: 'application/json; charset=utf-8' },
             // serializeGridData: function (postData)
@@ -1310,10 +1310,20 @@
 
 
                         if (1 == data.status) {
-                            confirm("新增用户成功！")
+                            confirm("新增用户成功！");
+                            $("#grid-table").jqGrid('clearGridData');
+                            $("#grid-table").jqGrid('setGridParam', {
+                                datatype:"json",
+                                url:"/user/list"
+                            }).trigger("reloadGrid");
                             //window.location.href="/index";
                         } else if(2 == data.status){
-                            confirm("修改用户成功！")
+                            confirm("修改用户成功！");
+                            $("#grid-table").jqGrid('clearGridData');
+                            $("#grid-table").jqGrid('setGridParam', {
+                                datatype:"json",
+                                url:"/user/list"
+                            }).trigger("reloadGrid");
                         }else if ("havedUser" == data.result) {
                             $("#userName").focus();
                             $("#userName").tips({
