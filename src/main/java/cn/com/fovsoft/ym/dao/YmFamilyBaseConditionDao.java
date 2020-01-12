@@ -1,6 +1,7 @@
 package cn.com.fovsoft.ym.dao;
 
 import cn.com.fovsoft.ym.entity.YmFamilyBaseCondition;
+import cn.com.fovsoft.ym.entity.holders.YmQueryConditionHolder;
 import org.apache.ibatis.annotations.*;
 
 @Mapper
@@ -20,12 +21,9 @@ public interface YmFamilyBaseConditionDao {
             "        get_toilet = #{getToilet},distance_mainroad = #{distanceMainroad}, type_road = #{typeRoad},area_housing =#{areaHousing},is_dilapidated = #{isDilapidated},level_dilapidated = #{levelDilapidated},year_reform = #{yearReform},type_fuel = #{typeFuel},type_fuel_other = #{typeFuelOther} where id = #{id}")
     int update(YmFamilyBaseCondition ymFamilyBaseCondition);
 
-    @Select("SELECT id, area_cultivated areaCultivated, area_woodland areaWoodland, area_turninto areaTurninto, area_fruit areaFruit, area_foragegrass areaForagegrass," +
-            "area_waters areaWaters, is_cooperative isCooperative, get_leaded getLeaded, get_pioneer getPioneer, get_electric getElectric, get_television getTelevision," +
-            "get_potablewater getPotablewater, get_toilet getToilet, distance_mainroad distanceMainroad, type_road typeRoad, area_housing areaHousing, is_dilapidated isDilapidated," +
-            "level_dilapidated levelDilapidated, year_reform yearReform, type_fuel typeFuel, type_fuel_other typeFuelOther " +
-            " From ym_family_base_condition WHERE fid = #{fid}")
-    YmFamilyBaseCondition get(Integer fid);
+    @Select("SELECT gdmj,yxggmj,ldmj,tghlmj,lgmj,smmj,mcdmj,sfyltqydd,sfycyzfdtrdd,sftscyd,sftshyd,sftgbds,yssfkn,yssfaq,zfmj,ywwscs,sfwfh,wfdj,wgnd,zfjg,sfjrnmzyhzs,yczgljl,rhllx,zyrllx,bgqksm" +
+            " From ym_family_status WHERE jtbh = #{fid}")
+    YmQueryConditionHolder get(String fid);
 }
 
 

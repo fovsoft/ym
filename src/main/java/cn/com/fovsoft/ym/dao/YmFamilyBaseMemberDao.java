@@ -1,6 +1,7 @@
 package cn.com.fovsoft.ym.dao;
 
 import cn.com.fovsoft.ym.entity.YmFamilyBaseMember;
+import cn.com.fovsoft.ym.entity.holders.YmQueryPersionHolder;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -23,8 +24,8 @@ public interface YmFamilyBaseMemberDao {
     int update(YmFamilyBaseMember ymFamilyBaseMember);
 
 
-    @Select("SELECT id,member_name memberName,sex,id_num idNum,relation,nation,political_exp politicalExp,level_edu levelEdu,school_status schoolStatus,stopedu_rsn stopeduRsn,healthy_status healthyStatus,labor_skill laborSkill,can_mandarin canMandarin,medical_insurance medicalInsurance,business_insurance businessInsurance,basic_allowances basicAllowances,endowment_insurance endowmentInsurance,accident_insurance accidentInsurance,tel FROM ym_family_base_member WHERE fid = #{fid}")
-    List<YmFamilyBaseMember> list(Integer fid);
+    @Select("SELECT * FROM ym_person WHERE jtbh = #{fid}")
+    List<YmQueryPersionHolder> list(String fid);
 
     @Delete("DELETE FROM ym_family_base_member WHERE id = #{id}")
     int delete(Integer id);

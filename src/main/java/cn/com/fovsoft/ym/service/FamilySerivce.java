@@ -1,11 +1,9 @@
 package cn.com.fovsoft.ym.service;
 
-import cn.com.fovsoft.ym.dao.YmFamilyBaseAdditionDao;
-import cn.com.fovsoft.ym.dao.YmFamilyBaseConditionDao;
-import cn.com.fovsoft.ym.dao.YmFamilyBaseDao;
-import cn.com.fovsoft.ym.dao.YmFamilyBaseMemberDao;
+import cn.com.fovsoft.ym.dao.*;
 import cn.com.fovsoft.ym.entity.*;
 
+import cn.com.fovsoft.ym.entity.holders.*;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
@@ -13,6 +11,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @Service
@@ -30,14 +29,15 @@ public class FamilySerivce {
 
     @Resource
     private YmFamilyBaseMemberDao ymFamilyBaseMemberDao;
-
+    @Resource
+    private YmHouseHoldDao ymHouseHoldDao;
     /**
      *
      * @return
      */
-    public PageInfo getList(Integer page, Integer limit) {
-        PageHelper.startPage(page, limit);
-        List<YmFamilyBaseAndHouseHolder> list =  ymFamilyBaseDao.list();
+    public PageInfo getList(HashMap<String, Object> paramMap) {
+        PageHelper.startPage((int)paramMap.get("page"), (int)paramMap.get("limit"));
+        List<YmQueryFamilyHolder> list =  ymFamilyBaseDao.list2(paramMap);
         return new PageInfo(list);
     }
 
@@ -77,31 +77,11 @@ public class FamilySerivce {
         return id;
     }
 
-    public YmFamilyBase get(int id) {
+    public YmQueryFamilyBaseHolder get(String id) {
         return ymFamilyBaseDao.get(id);
     }
 
-    /**
-     *
-     *
-     * @param ymFamilyBaseAddition
-     * @return
-     */
-    public int addOrUpdateFamilyBaseAddition(YmFamilyBaseAddition ymFamilyBaseAddition) {
-        int id = 0;
-        if(ymFamilyBaseAddition.getId() == 0) {
-//            ymFamilyBaseAddition.setAddTime(new Timestamp(new Date().getTime()));
-            // 插入
-            ymFamilyBaseAdditionDao.add(ymFamilyBaseAddition);
-            id = ymFamilyBaseAddition.getId();
-        }
-        else {
-            // 更新
-            ymFamilyBaseAdditionDao.update(ymFamilyBaseAddition);
-            id = ymFamilyBaseAddition.getId();
-        }
-        return id;
-    }
+
 
 
 
@@ -135,8 +115,8 @@ public class FamilySerivce {
         return id;
     }
 
-    public List<YmFamilyBaseMember> getMemberList(Integer fid) {
-        List<YmFamilyBaseMember> list =  ymFamilyBaseMemberDao.list(fid);
+    public List<YmQueryPersionHolder> getMemberList(String fid) {
+        List<YmQueryPersionHolder> list =  ymFamilyBaseMemberDao.list(fid);
         return list;
     }
 
@@ -145,11 +125,15 @@ public class FamilySerivce {
         return affectRows;
      }
 
-     public YmFamilyBaseAddition getAddiction(Integer fid) {
+     public YmQueryAdditionHolder getAddiction(String fid) {
         return ymFamilyBaseAdditionDao.get(fid);
      }
 
-    public YmFamilyBaseCondition getCondition(Integer fid) {
+    public YmQueryConditionHolder getCondition(String fid) {
         return ymFamilyBaseConditionDao.get(fid);
+    }
+
+    public YmQueryHouseHold getHouseHold(String fid) {
+        return ymHouseHoldDao.get(fid);
     }
 }
