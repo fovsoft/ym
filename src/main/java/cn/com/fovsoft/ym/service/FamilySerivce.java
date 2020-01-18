@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -38,6 +39,19 @@ public class FamilySerivce {
     public PageInfo getList(HashMap<String, Object> paramMap) {
         PageHelper.startPage((int)paramMap.get("page"), (int)paramMap.get("limit"));
         List<YmQueryFamilyHolder> list =  ymFamilyBaseDao.list2(paramMap);
+
+        for (YmQueryFamilyHolder obj:
+        list) {
+            String sfzmhm = obj.getSfzmhm();
+            if((sfzmhm != null || !sfzmhm.isEmpty()) && sfzmhm.length() >= 18) {
+                 Integer age = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date())) - Integer.parseInt(obj.getSfzmhm().substring(6, 10));
+                 obj.setNl(age.toString());
+            }
+            else {
+                obj.setNl("");
+            }
+        }
+        
         return new PageInfo(list);
     }
 
@@ -117,6 +131,19 @@ public class FamilySerivce {
 
     public List<YmQueryPersionHolder> getMemberList(String fid) {
         List<YmQueryPersionHolder> list =  ymFamilyBaseMemberDao.list(fid);
+
+        for (YmQueryPersionHolder obj:
+                list) {
+            String sfzmhm = obj.getSfzmhm();
+            if((sfzmhm != null || !sfzmhm.isEmpty()) && sfzmhm.length() >= 18) {
+                Integer age = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date())) - Integer.parseInt(obj.getSfzmhm().substring(6, 10));
+                obj.setNl(age.toString());
+            }
+            else {
+                obj.setNl("");
+            }
+        }
+
         return list;
     }
 

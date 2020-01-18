@@ -181,6 +181,8 @@ let family = (function () {
                 , {field: 'xb', title: '性别'}
                 , {field: 'sfzmhm', title: '证件号码', minWidth:180}
                 , {field: 'yhzgx', title: '与户主关系'}
+                , {field: 'nl', title: '年龄'}
+                , {field: 'sfsyrk', title: '是否受益人口'}
                 , {field: 'mz', title: '民族'}
                 , {field: 'zzmm', title: '政治面貌'}
                 , {field: 'whcd', title: '文化程度'}

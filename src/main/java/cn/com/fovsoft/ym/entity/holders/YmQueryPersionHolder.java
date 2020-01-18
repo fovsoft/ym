@@ -8,6 +8,7 @@ public class YmQueryPersionHolder {
     private String rybh;
     private String jtbh;
     private String xm;
+    private String nl;
     private String xb;
     private String sfzmhm;
     private String qfjg;
@@ -53,6 +54,14 @@ public class YmQueryPersionHolder {
 
     public void setXm(String xm) {
         this.xm = xm;
+    }
+
+    public String getNl() {
+        return nl;
+    }
+
+    public void setNl(String nl) {
+        this.nl = nl;
     }
 
     public String getXb() {

@@ -18,6 +18,8 @@ public class YmQueryFamilyHolder {
     private String bqfs;
     private String sfydfpbqh;
 
+    private String nl;
+
     public String getJtbh() {
         return jtbh;
     }
@@ -97,5 +99,13 @@ public class YmQueryFamilyHolder {
 
     public void setSfydfpbqh(String sfydfpbqh) {
         this.sfydfpbqh = sfydfpbqh;
+    }
+
+    public String getNl() {
+        return nl;
+    }
+
+    public void setNl(String nl) {
+        this.nl = nl;
     }
 }

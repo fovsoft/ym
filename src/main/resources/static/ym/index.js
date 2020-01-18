@@ -50,9 +50,10 @@ let index = (function () {
                 title: '贫困户家庭基本情况',
                 cols: [[
                     {type: 'checkbox'}
-                    , {field: 'jtbh', title: 'ID', width: 80, unresize: true, sort: true}
+                    // , {field: 'jtbh', title: 'ID', width: 80, unresize: true, sort: true}
                     , {field: 'xm', title: '户主姓名', width: 120}
                     , {field: 'sfzmhm', title: '身份证号'}
+                    , {field: 'nl', title: '年龄'}
                     , {field: 'xxxzqhmz', title: '详细行政区划名字'}
                     , {field: 'lxdh', title: '联系电话'}
                     , {field: 'pkhsx', title: '贫困户属性'}
@@ -62,6 +63,10 @@ let index = (function () {
                     , {title: '操作', toolbar: '#barDemo', fixed: 'right', width: 160}
                 ]],
                 done: function (res, curr, count) {
+                    // $(".layui-table-box").find("[data-field='jtbh']").css("display", "none");
+
+
+
                     $("[data-field='pkhsx']").children().each(function () {
                         if ($(this).text() == 1) {
                             $(this).text("一般贫困户")
