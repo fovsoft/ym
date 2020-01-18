@@ -53,7 +53,6 @@ let index = (function () {
                     // , {field: 'jtbh', title: 'ID', width: 80, unresize: true, sort: true}
                     , {field: 'xm', title: '户主姓名', width: 120}
                     , {field: 'sfzmhm', title: '身份证号'}
-                    , {field: 'nl', title: '年龄'}
                     , {field: 'xxxzqhmz', title: '详细行政区划名字'}
                     , {field: 'lxdh', title: '联系电话'}
                     , {field: 'pkhsx', title: '贫困户属性'}
